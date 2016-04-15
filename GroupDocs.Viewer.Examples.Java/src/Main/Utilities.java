@@ -38,7 +38,7 @@ public class Utilities {
 
 	// ExEnd:ApplyLicenseFromFile
 
-	// ExStart:ExStart:ApplyLicenseFromStreamObj
+	// ExStart:ApplyLicenseFromStreamObj
 	/**
 	 * This method applies product license from stream
 	 * 
@@ -58,7 +58,7 @@ public class Utilities {
 		}
 	}
 
-	// ExEnd:ExStart:ApplyLicenseFromStreamObj
+	// ExEnd:ApplyLicenseFromStreamObj
 
 	// ExStart:SaveAsImage
 	/**
