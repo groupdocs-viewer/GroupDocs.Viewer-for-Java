@@ -39,11 +39,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentInformation(String fileName) {
+	public static void renderDocumentInformation(String fileName) {
 		// ExStart:GetDocumentInformation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
@@ -80,11 +80,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsImage(String fileName) {
+	public static void renderDocumentAsImage(String fileName) {
 		// ExStart:GetDocumentImageRepresentation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -94,7 +94,7 @@ public class ViewGenerator {
 
 			// Save pages
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -113,11 +113,11 @@ public class ViewGenerator {
 	 * @param countPagesToConvert
 	 *            total number of pages to convert
 	 */
-	public static void RenderDocumentAsImage(String fileName, int pageNumber, int countPagesToConvert) {
+	public static void renderDocumentAsImage(String fileName, int pageNumber, int countPagesToConvert) {
 		// ExStart:GetDocumentImageRepresentationOfNConsecutiveDocument
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -133,7 +133,7 @@ public class ViewGenerator {
 
 			// Save pages
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -150,11 +150,11 @@ public class ViewGenerator {
 	 * @param listPagesToConvert
 	 *            list of pages to render
 	 */
-	public static void RenderDocumentAsImage(String fileName, List<Integer> listPagesToConvert) {
+	public static void renderDocumentAsImage(String fileName, List<Integer> listPagesToConvert) {
 		// ExStart:GetImageRepresentationForCustomPages
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -166,7 +166,7 @@ public class ViewGenerator {
 			List<PageImage> pages = imageHandler.getPages(guid, options);
 
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -183,11 +183,11 @@ public class ViewGenerator {
 	 * @param rotationAngle
 	 *            value of angle
 	 */
-	public static void RenderDocumentAsImage(String fileName, int rotationAngle) {
+	public static void renderDocumentAsImage(String fileName, int rotationAngle) {
 		// ExStart:RotatePageToNintyDegreeInImageMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -205,7 +205,7 @@ public class ViewGenerator {
 			List<PageImage> pages = imageHandler.getPages(guid, imageOptions);
 
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -222,11 +222,11 @@ public class ViewGenerator {
 	 * @param excludeTransformation
 	 *            excludeTransformation true or false
 	 */
-	public static void RenderDocumentAsImage(String fileName, boolean excludeTransformation) {
+	public static void renderDocumentAsImage(String fileName, boolean excludeTransformation) {
 		// ExStart:RetrieveAllImagesExcludingTransformation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -244,7 +244,7 @@ public class ViewGenerator {
 			// transformations
 			List<PageImage> pagesWithoutTransformations2 = imageHandler.getPages(guid);
 			for (PageImage page : pagesWithoutTransformations) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -265,12 +265,12 @@ public class ViewGenerator {
 	 * @param isTransformation
 	 *            isTransformation is true of false
 	 */
-	public static void RenderDocumentAsImage(String fileName, int pageNumber, int newPosition,
+	public static void renderDocumentAsImage(String fileName, int pageNumber, int newPosition,
 			boolean isTransformation) {
 		// ExStart:ReorderFirstAndSecondPagesInImageMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -285,7 +285,7 @@ public class ViewGenerator {
 			List<PageImage> pages = imageHandler.getPages(guid, imageOptions);
 			int pageNumberCount = 1;
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(pageNumberCount + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(pageNumberCount + "_" + fileName, "png", page.getStream());
 				pageNumberCount++;
 			}
 
@@ -304,11 +304,11 @@ public class ViewGenerator {
 	 * @param watermarkText
 	 *            text that will appear on the image as watermark
 	 */
-	public static void RenderDocumentAsImage(String fileName, String watermarkText) {
+	public static void renderDocumentAsImage(String fileName, String watermarkText) {
 		// ExStart:AddWatermarkToImagePageRepresentation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
@@ -327,7 +327,7 @@ public class ViewGenerator {
 			// Get document pages image representation with watermark
 			List<PageImage> pages = imageHandler.getPages(guid, options);
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -342,11 +342,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsImageFromRelativePath(String fileName) {
+	public static void renderDocumentAsImageFromRelativePath(String fileName) {
 		// ExStart:GetDocumentRepresentationFromRelativePath
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -356,7 +356,7 @@ public class ViewGenerator {
 			// Get pages by absolute path
 			List<PageImage> pages = imageHandler.getPages(guid);
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -371,11 +371,11 @@ public class ViewGenerator {
 	 * @param URL
 	 *            url of the source document/file
 	 */
-	public static void RenderDocumentAsImageFromUri(String URL) {
+	public static void renderDocumentAsImageFromUri(String URL) {
 		// ExStart:GetDocumentRepresentationFromUri
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			URI uri = new URI(URL);
@@ -383,7 +383,7 @@ public class ViewGenerator {
 			// Get pages by absolute path
 			List<PageImage> pages = imageHandler.getPages(uri);
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(Integer.toString(page.getPageNumber()), "png", page.getStream());
+				Utilities.saveAsImage(Integer.toString(page.getPageNumber()), "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -398,11 +398,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsImageFromInputStream(String fileName) {
+	public static void renderDocumentAsImageFromInputStream(String fileName) {
 		// ExStart:GetDocumentRepresentationFromInputStream
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -411,9 +411,9 @@ public class ViewGenerator {
 
 			// Get pages
 			List<PageImage> pages = imageHandler.getPages(fileStream,
-					"./Data/Storage/tempfile." + Utilities.GetFileExtension(fileName));
+					"./Data/Storage/tempfile." + Utilities.getFileExtension(fileName));
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -428,11 +428,11 @@ public class ViewGenerator {
 	 * @param fileAbsolutePath
 	 *            absolute path of the document
 	 */
-	public static void RenderDocumentAsImageFromAbsolutePath(String fileAbsolutePath) {
+	public static void renderDocumentAsImageFromAbsolutePath(String fileAbsolutePath) {
 		// ExStart:GetDocumentRepresentationFromAbsolutePath
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -442,7 +442,7 @@ public class ViewGenerator {
 			// Get pages by absolute path
 			List<PageImage> pages = imageHandler.getPages(guid);
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(Integer.toString(page.getPageNumber()), "png", page.getStream());
+				Utilities.saveAsImage(Integer.toString(page.getPageNumber()), "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -451,12 +451,12 @@ public class ViewGenerator {
 		// ExEnd:GetDocumentRepresentationFromAbsolutePath
 	}
 
-	public static void RenderDocumentAsImageMultipleTransformations(String fileName, int rotationAngle,
+	public static void renderDocumentAsImageMultipleTransformations(String fileName, int rotationAngle,
 			int rotationPageNumber, int reorderPageNumber, int reorderNewPosition) {
 		// ExStart:PerformMultipleTransformationsInImageMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -487,7 +487,7 @@ public class ViewGenerator {
 			// transformations
 			List<PageImage> pages = imageHandler.getPages(guid, options);
 			for (PageImage page : pages) {
-				Utilities.SaveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -503,11 +503,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsHtml(String fileName) {
+	public static void renderDocumentAsHtml(String fileName) {
 		// ExStart:GetHtmlRepresentationWithEmbeddedRec
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -517,7 +517,7 @@ public class ViewGenerator {
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -536,11 +536,11 @@ public class ViewGenerator {
 	 * @param countPagesToConvert
 	 *            total number of pages to convert
 	 */
-	public static void RenderDocumentAsHtml(String fileName, int pageNumber, int countPagesToConvert) {
+	public static void renderDocumentAsHtml(String fileName, int pageNumber, int countPagesToConvert) {
 		// ExStart:GetHtmlRepresentationOfNConsecutiveDocs
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -553,7 +553,7 @@ public class ViewGenerator {
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -570,11 +570,11 @@ public class ViewGenerator {
 	 * @param listPagesToConvert
 	 *            list of pages to convert
 	 */
-	public static void RenderDocumentAsHtml(String fileName, List<Integer> listPagesToConvert) {
+	public static void renderDocumentAsHtml(String fileName, List<Integer> listPagesToConvert) {
 		// ExStart:GetHtmlRepresentationForCustomPageNumberList
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -586,7 +586,7 @@ public class ViewGenerator {
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -603,11 +603,11 @@ public class ViewGenerator {
 	 * @param rotationAngle
 	 *            value of angle
 	 */
-	public static void RenderDocumentAsHtml(String fileName, int rotationAngle) {
+	public static void renderDocumentAsHtml(String fileName, int rotationAngle) {
 		// ExStart:RotatePageToNintyDegreeInHtmlMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -626,7 +626,7 @@ public class ViewGenerator {
 
 			// Save pages
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 
 		} catch (Exception exp) {
@@ -648,12 +648,12 @@ public class ViewGenerator {
 	 * @param isTransformation
 	 *            isTransformation can be true or false
 	 */
-	public static void RenderDocumentAsHtml(String fileName, int pageNumber, int newPosition,
+	public static void renderDocumentAsHtml(String fileName, int pageNumber, int newPosition,
 			boolean isTransformation) {
 		// ExStart:ReorderFirstAndSecondPagesInHtmlMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
@@ -672,7 +672,7 @@ public class ViewGenerator {
 			List<PageHtml> pages = htmlHandler.getPages(guid, htmlOptions);
 			int pageNumberCount = 1;
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(pageNumberCount + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(pageNumberCount + "_" + fileName, page.getHtmlContent());
 				pageNumberCount++;
 			}
 		} catch (Exception exp) {
@@ -690,11 +690,11 @@ public class ViewGenerator {
 	 * @param watermarkText
 	 *            text that will show on the image as watermark
 	 */
-	public static void RenderDocumentAsHtml(String fileName, String watermarkText) {
+	public static void renderDocumentAsHtml(String fileName, String watermarkText) {
 		// ExStart:AddWatermarkToHtmlPageRepresentation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -712,7 +712,7 @@ public class ViewGenerator {
 			// Get document pages html representation with watermark
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -729,11 +729,11 @@ public class ViewGenerator {
 	 * @param excludeTransformation
 	 *            excludeTransformation true or false
 	 */
-	public static void RenderDocumentAsHtml(String fileName, boolean excludeTransformation) {
+	public static void renderDocumentAsHtml(String fileName, boolean excludeTransformation) {
 		// ExStart:RetrieveAllHtmlPagesExludingTransformation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -750,7 +750,7 @@ public class ViewGenerator {
 			// transformations
 			List<PageHtml> pagesWithoutTransformations2 = htmlHandler.getPages(guid);
 			for (PageHtml page : pagesWithoutTransformations) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -765,11 +765,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsHtmlForPrint(String fileName) {
+	public static void renderDocumentAsHtmlForPrint(String fileName) {
 		// ExStart:GetDocumentHtmlForPrint
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -779,7 +779,7 @@ public class ViewGenerator {
 			PrintableHtmlContainer container = imageHandler.getPrintableHtml(options);
 
 			// Save as html
-			Utilities.SaveAsHtml(fileName, container.getHtmlContent());
+			Utilities.saveAsHtml(fileName, container.getHtmlContent());
 
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -796,11 +796,11 @@ public class ViewGenerator {
 	 * @param watermarkText
 	 *            text that will appear as watermark
 	 */
-	public static void RenderDocumentAsHtmlForPrint(String fileName, String watermarkText) {
+	public static void renderDocumentAsHtmlForPrint(String fileName, String watermarkText) {
 		// ExStart:GetDocumentHtmlForPrintWithWatermark
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
@@ -815,7 +815,7 @@ public class ViewGenerator {
 			PrintableHtmlContainer container = imageHandler.getPrintableHtml(options);
 
 			// Save as html
-			Utilities.SaveAsHtml(fileName, container.getHtmlContent());
+			Utilities.saveAsHtml(fileName, container.getHtmlContent());
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -829,11 +829,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void RenderDocumentAsHtmlForPrintWithCustomCss(String fileName) {
+	public static void renderDocumentAsHtmlForPrintWithCustomCss(String fileName) {
 		// ExStart:GetDocumentHtmlForPrintWithCustomCss
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
@@ -845,7 +845,7 @@ public class ViewGenerator {
 			PrintableHtmlContainer container = imageHandler.getPrintableHtml(options);
 
 			// Save as html
-			Utilities.SaveAsHtml(fileName, container.getHtmlContent());
+			Utilities.saveAsHtml(fileName, container.getHtmlContent());
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -853,12 +853,12 @@ public class ViewGenerator {
 		// ExEnd:GetDocumentHtmlForPrintWithCustomCss
 	}
 
-	public static void RenderDocumentAsHtmlMultipleTransformations(String fileName, int rotationAngle,
+	public static void renderDocumentAsHtmlMultipleTransformations(String fileName, int rotationAngle,
 			int rotationPageNumber, int reorderPageNumber, int reorderNewPosition) {
 		// ExStart:PerformMultipleTransformationsInHtmlMode
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -889,7 +889,7 @@ public class ViewGenerator {
 			// transformations
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 			for (PageHtml page : pages) {
-				Utilities.SaveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -904,11 +904,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void GetDocumentHtmlResourceStream(String fileName) {
+	public static void getDocumentHtmlResourceStream(String fileName) {
 		// ExStart:GetHtmlResourceStream
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
@@ -943,11 +943,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void GetOriginalFile(String fileName) {
+	public static void getOriginalFile(String fileName) {
 		// ExStart:GetOriginalFile
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -957,7 +957,7 @@ public class ViewGenerator {
 			FileContainer container = imageHandler.getFile(guid);
 
 			// Save file
-			Utilities.SaveAsFile(fileName, container.getStream());
+			Utilities.saveAsFile(fileName, container.getStream());
 
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -972,11 +972,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void GetOriginalFileAsPdf(String fileName) {
+	public static void getOriginalFileAsPdf(String fileName) {
 		// ExStart:GetOriginalPdfDocWithoutTransformation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -988,7 +988,7 @@ public class ViewGenerator {
 			FileContainer container = imageHandler.getPdfFile(options);
 
 			// Save file
-			Utilities.SaveAsFile(fileName, container.getStream(), ".pdf");
+			Utilities.saveAsFile(fileName, container.getStream(), ".pdf");
 
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -1005,11 +1005,11 @@ public class ViewGenerator {
 	 * @param watermarkText
 	 *            text that will appear on the document as watermark
 	 */
-	public static void GetOriginalFileAsPdfWithWatermark(String fileName, String watermarkText) {
+	public static void getOriginalFileAsPdfWithWatermark(String fileName, String watermarkText) {
 		// ExStart:GetOriginalPdfDocWithWatermark
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1029,7 +1029,7 @@ public class ViewGenerator {
 			FileContainer container = imageHandler.getPdfFile(options);
 
 			// Save file
-			Utilities.SaveAsFile(fileName, container.getStream(), ".pdf");
+			Utilities.saveAsFile(fileName, container.getStream(), ".pdf");
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -1043,11 +1043,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void GetOriginalFileAsPdfWithPrintAction(String fileName) {
+	public static void getOriginalFileAsPdfWithPrintAction(String fileName) {
 		// ExStart:GetOriginalPdfDocWithPrintAction
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1059,7 +1059,7 @@ public class ViewGenerator {
 
 			// Get file as pdf with print action
 			FileContainer container = imageHandler.getPdfFile(options);
-			Utilities.SaveAsFile(fileName, container.getStream(), ".pdf");
+			Utilities.saveAsFile(fileName, container.getStream(), ".pdf");
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -1073,11 +1073,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void GetOriginalFileAsPdfWithTransformation(String fileName) {
+	public static void getOriginalFileAsPdfWithTransformation(String fileName) {
 		// ExStart:GetOriginalPdfDocWithTransformation
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1100,7 +1100,7 @@ public class ViewGenerator {
 			FileContainer container = imageHandler.getPdfFile(options);
 
 			// Save file
-			Utilities.SaveAsFile(fileName, container.getStream(), ".pdf");
+			Utilities.saveAsFile(fileName, container.getStream(), ".pdf");
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -1112,11 +1112,11 @@ public class ViewGenerator {
 	 * Loads file tree list for the storage path
 	 * 
 	 */
-	public static void LoadFileTreeList() {
+	public static void loadFileTreeList() {
 		// ExStart:LoadFileTreeListForStoragePath
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1147,11 +1147,11 @@ public class ViewGenerator {
 	 * @param customPath
 	 *            customPath of the storage
 	 */
-	public static void LoadFileTreeList(String customPath) {
+	public static void loadFileTreeList(String customPath) {
 		// ExStart:LoadFileTreeListForCustomPath
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1184,11 +1184,11 @@ public class ViewGenerator {
 	 * @param customPath
 	 *            customPath of the storage
 	 */
-	public static void LoadFileTreeListWithOrder(String customPath) {
-		// ExStart:LoadFileTreeListForCustomPathWithOrder
+	public static void loadFileTreeListWithOrder(String customPath) {
+		// ExStart:loadFileTreeListForCustomPathWithOrder
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 
@@ -1221,11 +1221,11 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            name of the document
 	 */
-	public static void RenderDocumentWithCustomDataHandler(String fileName) {
+	public static void renderDocumentWithCustomDataHandler(String fileName) {
 		// ExStart: RenderDocumentWithCustomDataHandler
 		try {
 			// Setup GroupDocs.Viewer config
-			ViewerConfig config = Utilities.GetConfiguration();
+			ViewerConfig config = Utilities.getConfiguration();
 
 			// File guid
 			String guid = fileName;

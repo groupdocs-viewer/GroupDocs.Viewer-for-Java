@@ -25,7 +25,7 @@ public class Utilities {
 	 * This method applies product license from file
 	 * 
 	 */
-	public static void ApplyLicenseFromFile(String filePath) {
+	public static void applyLicenseFromFile(String filePath) {
 		try {
 			// Setup license
 			com.groupdocs.viewer.licensing.License lic = new com.groupdocs.viewer.licensing.License();
@@ -43,7 +43,7 @@ public class Utilities {
 	 * This method applies product license from stream
 	 * 
 	 */
-	public static void ApplyLicenseFromStream(String filePath) {
+	public static void applyLicenseFromStream(String filePath) {
 
 		try {
 			// Obtain license stream
@@ -69,12 +69,12 @@ public class Utilities {
 	 * @param imageFormat
 	 *            format of output image file
 	 */
-	public static void SaveAsImage(String fileName, String imageFormat, InputStream inputStream) {
+	public static void saveAsImage(String fileName, String imageFormat, InputStream inputStream) {
 
 		try {
 			// Write input stream to output file
 			ImageIO.write(ImageIO.read(inputStream), imageFormat,
-					new File(outputImagePath + GetFileNameWithoutExtension(fileName) + "." + imageFormat));
+					new File(outputImagePath + getFileNameWithoutExtension(fileName) + "." + imageFormat));
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -93,11 +93,11 @@ public class Utilities {
 	 * @param fileContent
 	 *            content to be written in output html file
 	 */
-	public static void SaveAsHtml(String outputFileName, String fileContent) {
+	public static void saveAsHtml(String outputFileName, String fileContent) {
 		try {
 
 			// Initialize PrintWriter for output file
-			PrintWriter out = new PrintWriter(outputHtmlPath + GetFileNameWithoutExtension(outputFileName) + ".html");
+			PrintWriter out = new PrintWriter(outputHtmlPath + getFileNameWithoutExtension(outputFileName) + ".html");
 
 			// Write file content in
 			out.println(fileContent);
@@ -121,7 +121,7 @@ public class Utilities {
 	 * @param inputStream
 	 *            input stream to be written in output file
 	 */
-	public static void SaveAsFile(String fileName, InputStream inputStream) {
+	public static void saveAsFile(String fileName, InputStream inputStream) {
 
 		try {
 
@@ -155,13 +155,13 @@ public class Utilities {
 	 * @param fileExtension
 	 *            extension of output file
 	 */
-	public static void SaveAsFile(String fileName, InputStream inputStream, String fileExtension) {
+	public static void saveAsFile(String fileName, InputStream inputStream, String fileExtension) {
 
 		try {
 
 			// Create stream for output file
 			OutputStream outputStream = new FileOutputStream(
-					outputPath + GetFileNameWithoutExtension(fileName) + fileExtension);
+					outputPath + getFileNameWithoutExtension(fileName) + fileExtension);
 			int read = 0;
 			byte[] bytes = new byte[1024];
 
@@ -187,7 +187,7 @@ public class Utilities {
 	 *            name of the file
 	 * @return String file extension
 	 */
-	public static String GetFileExtension(String fileName) {
+	public static String getFileExtension(String fileName) {
 		try {
 
 			// Get file name tokens
@@ -211,7 +211,7 @@ public class Utilities {
 	 * @param fileName
 	 *            name of the file
 	 */
-	public static String GetFileNameWithoutExtension(String fileName) {
+	public static String getFileNameWithoutExtension(String fileName) {
 		try {
 
 			return fileName.replaceFirst("[.][^.]+$", "");
@@ -236,7 +236,7 @@ public class Utilities {
 	 *            format of output image file
 	 * @return ViewerConfig object
 	 */
-	public static ViewerConfig GetConfiguration() {
+	public static ViewerConfig getConfiguration() {
 		try {
 
 			// Setup GroupDocs.Viewer config
