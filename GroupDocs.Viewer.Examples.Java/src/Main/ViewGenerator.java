@@ -472,8 +472,7 @@ public class ViewGenerator {
 
 			// Set options to include rotate and reorder transformations
 			ImageOptions options = new ImageOptions();
-			options.setTransformations(
-					Transformation.fromValue(Transformation.Rotate.value() | Transformation.Reorder.value()));
+			options.setTransformations( Transformation.from(Transformation.Rotate, Transformation.Reorder));
 
 			// Set watermark properties
 			Watermark watermark = new Watermark("This is watermark text");
@@ -496,7 +495,7 @@ public class ViewGenerator {
 		// ExEnd:PerformMultipleTransformationsInImageMode
 	}
 
-	// ============================================================================
+ 
 	/**
 	 * Gets html representation of the document with embedded resource
 	 * 
@@ -874,8 +873,7 @@ public class ViewGenerator {
 
 			// Set options to include rotate and reorder transformations
 			HtmlOptions options = new HtmlOptions();
-			options.setTransformations(
-					Transformation.fromValue(Transformation.Rotate.value() | Transformation.Reorder.value()));
+			options.setTransformations(Transformation.from(Transformation.Rotate, Transformation.Reorder));
 
 			// Set watermark properties
 			Watermark watermark = new Watermark("This is watermark text");
