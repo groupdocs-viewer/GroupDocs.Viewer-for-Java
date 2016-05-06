@@ -15,7 +15,7 @@ public class MainClass {
 		//Utilities.applyLicenseFromFile("D:\\GroupDocs.Viewer.Java.lic");
 
 		 // Get document information
-		 ViewGenerator.renderDocumentInformation("word.docx");
+		 ViewGenerator.renderDocumentInformation("demo.docx");
 		
 		 // Render document as image
 		 ViewGenerator.renderDocumentAsImage("word.docx");
