@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="E:/Aspose Works/Java Projects/commons-lang3-3.4.jar"/>
 	<classpathentry kind="lib" path="E:/Aspose Works/Java Projects/azure-keyvault-core-0.9.2.jar"/>
 	<classpathentry kind="lib" path="E:/Aspose Works/Java Projects/slf4j.jar/slf4j.jar"/>
-	<classpathentry kind="lib" path="E:/Aspose Works/GitRepos/GroupDocs.Viewer-for-Java/GroupDocs.Viewer.Examples.Java/ExternalLibraries/GroupDocs.Viewer.jar"/>
+	<classpathentry kind="lib" path="E:/Aspose Works/GitRepos/GroupDocs.Viewer-for-Java/Examples/GroupDocs.Viewer.Examples.Java/ExternalLibraries/GroupDocs.Viewer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

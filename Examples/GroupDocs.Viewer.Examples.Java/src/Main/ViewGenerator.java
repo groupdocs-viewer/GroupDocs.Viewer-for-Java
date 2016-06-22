@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map;
 
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
@@ -14,6 +16,7 @@ import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.Transformation;
 import com.groupdocs.viewer.domain.Watermark;
 import com.groupdocs.viewer.domain.WatermarkPosition;
+import com.groupdocs.viewer.domain.containers.DocumentFormatsContainer;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileTreeContainer;
@@ -28,6 +31,7 @@ import com.groupdocs.viewer.domain.options.PdfFileOptions;
 import com.groupdocs.viewer.domain.options.PrintableHtmlOptions;
 import com.groupdocs.viewer.domain.options.ReorderPageOptions;
 import com.groupdocs.viewer.domain.options.RotatePageOptions;
+import com.groupdocs.viewer.handler.ViewerHandler;
 import com.groupdocs.viewer.handler.ViewerHtmlHandler;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
@@ -934,7 +938,7 @@ public class ViewGenerator {
 		// ExEnd:GetHtmlResourceStream
 	}
 
-	// ===================================================================================
+	
 	/**
 	 * Saves original file
 	 * 
@@ -1243,4 +1247,312 @@ public class ViewGenerator {
 		// ExEnd: RenderDocumentWithCustomDataHandler
 	}
 
+	/**
+	 * Renders excel document as image with gridlines
+	 * 
+	 * @param fileName
+	 *            name of the document
+	 */
+	public static void renderExcelAsImageWithGridLines(String fileName) {
+		// ExStart:renderExcelDocumentAsImageWithGridLines
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// File guid
+			String guid = fileName;
+						
+			// Create image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config); 
+			 
+			// Set image options to show grid lines
+			ImageOptions options = new ImageOptions();
+			options.getCellsOptions().setShowGridLines(true);
+			 
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+			 
+			for (PageImage page : pages)
+			{
+				System.out.printf("Page number: " + page.getPageNumber());
+
+				// Page image stream
+				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream()); 
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd:renderExcelDocumentAsImageWithGridLines
+	}
+	/**
+	 * Renders excel document as image with gridlines
+	 * 
+	 * @param fileName
+	 *            name of the document
+	 */
+	public static void renderExcelAsHtmlWithGridLines(String fileName) {
+		// ExStart:renderExcelDocumentAsHtmlWithGridLines
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// File guid
+			String guid = fileName;
+			
+			// Create html handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
+			 
+			// Set html options to show grid lines
+			HtmlOptions options = new HtmlOptions();
+			options.getCellsOptions().setShowGridLines(true);
+			List<PageHtml> pages = htmlHandler.getPages(guid, options);
+			 
+			for (PageHtml page : pages) {
+			    System.out.println("Page number: " + page.getPageNumber());
+			    System.out.println("Html content: " + page.getHtmlContent());
+			    Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd:renderExcelDocumentAsHtmlWithGridLines
+	}
+	
+	/**
+	 * Renders Excel document as html with multiple pages per seet setting
+	 * 
+	 * @param fileName
+	 *            name of the document
+	 */
+	public static void renderExcelAsHtmlWithMultiplePagesPerSheet(String fileName) {
+		// ExStart:renderExcelAsHtmlWithMultiplePagesPerSheet
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// File guid
+			String guid = fileName;
+			// Create image or html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config); 
+			 
+			// Set pdf file one page per sheet option to false, default value of this option is true
+			PdfFileOptions pdfFileOptions = new PdfFileOptions();
+			pdfFileOptions.setGuid(guid);
+			pdfFileOptions.getCellsOptions().setOnePagePerSheet(false);
+			 
+			//Get pdf file
+			FileContainer fileContainer = imageHandler.getPdfFile(pdfFileOptions);
+			 
+			//The pdf file stream
+			final InputStream pdfStream = fileContainer.getStream();
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd:renderExcelAsHtmlWithMultiplePagesPerSheet
+	}
+	
+	/**
+	 * Gets all supported formats 
+	 * 
+	 */
+	public static void getAllSupportedFormats() {
+		// ExStart: getAllSupportedFormats
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+			
+			// Create image or html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			// Get supported document formats
+			DocumentFormatsContainer documentFormatsContainer = imageHandler.getSupportedDocumentFormats();
+			Map<String, String> supportedDocumentFormats = documentFormatsContainer.getSupportedDocumentFormats();
+
+			for (Map.Entry<String, String> supportedDocumentFormat : supportedDocumentFormats.entrySet()) {
+				System.out.println(String.format("Extension: '%s'; Document format: '%s'", supportedDocumentFormat.getKey(), supportedDocumentFormat.getValue()));
+			}
+		}
+		catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: getAllSupportedFormats
+	}
+	
+	/**
+	 * Renders Excel as image with hidden sheets
+	 * 
+	 * @param fileName
+	 *            name of the document
+	 */
+	public static void renderExcelAsImageWithHiddenSheets(String fileName) {
+		// ExStart: renderExcelAsImageWithHiddenSheets
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+						
+			// Create image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			String guid = fileName;
+			 
+			// Set image options to show grid lines
+			ImageOptions options = new ImageOptions();
+			options.getCellsOptions().setShowGridLines(true);
+			 
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+			 
+			for (PageImage page : pages)
+			{
+			    System.out.printf("Page number: " + page.getPageNumber());
+			 
+			    // Page image stream
+			    final InputStream imageContent = page.getStream();
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: renderExcelAsImageWithHiddenSheets
+	}
+	
+	/**
+	 * Renders Excel as image with hidden sheets
+	 * 
+	 * @param fileName
+	 *            name of the document
+	 */
+	public static void renderExcelAsImageWithHiddenSheets2(String fileName) {
+		// ExStart: renderExcelAsImageWithHiddenSheets2
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create image or html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			String guid = fileName;
+			 
+			// Set image options to show grid lines
+			ImageOptions options = new ImageOptions();
+			options.getCellsOptions().setShowHiddenSheets(true);
+			 
+			DocumentInfoContainer container = imageHandler.getDocumentInfo(new DocumentInfoOptions(guid));
+			 
+			for (PageData page : container.getPages())
+			 System.out.println(String.format("Page number: %d, Page Name: %s, IsVisible: %s", page.getNumber(), page.getName(), page.isVisible()));
+			 
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+			 
+			for (PageImage page : pages) {
+			 System.out.println("Page number: " + page.getPageNumber());
+			 
+			 // Page image stream
+			 final InputStream imageContent = page.getStream();
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: renderExcelAsImageWithHiddenSheets2
+	}
+	
+	/**
+	 * Sets locales path in Viewer Configuration
+	 * 
+	 */
+	public static void setLocalesPath() {
+		// ExStart: setLocalesPath
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+			config.setLocalesPath("D://locales//");
+			 
+			// Create html handler
+			ViewerHandler.CultureInfo cultureInfo = new ViewerHandler.CultureInfo("fr-FR");
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config, cultureInfo);
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: setLocalesPath
+	}
+	
+	/**
+	 * Sets encoding of Word, Cells, Email documents
+	 * 
+	 */
+	public static void setDocumentEncoding() {
+		// ExStart: setDocumentEncoding
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+			 
+			//Initialize viewer handler
+			ViewerImageHandler viewerImageHandler = new ViewerImageHandler(config);
+			 
+			//Set encoding
+			Charset encoding = Charset.forName("shift-jis");
+			 
+			//Set image options
+			ImageOptions imageOptions = new ImageOptions();
+			imageOptions.getWordsOptions().setEncoding(encoding);
+			imageOptions.getCellsOptions().setEncoding(encoding);
+			imageOptions.getEmailOptions().setEncoding(encoding);
+			 
+			//Get words document pages with encoding
+			String wordsDocumentGuid = "document.txt";
+			List<PageImage> wordsDocumentPages = viewerImageHandler.getPages(wordsDocumentGuid, imageOptions);
+			 
+			//Get cells document pages with encoding
+			String cellsDocumentGuid = "document.csv";
+			List<PageImage> cellsDocumentPages = viewerImageHandler.getPages(cellsDocumentGuid, imageOptions);
+			 
+			//Get email document pages with encoding
+			String emailDocumentGuid = "document.msg";
+			List<PageImage> emailDocumentPages = viewerImageHandler.getPages(emailDocumentGuid, imageOptions);
+			 
+			//Get words document info with encoding
+			DocumentInfoOptions wordsDocumentInfoOptions = new DocumentInfoOptions(wordsDocumentGuid);
+			wordsDocumentInfoOptions.getWordsDocumentInfoOptions().setEncoding(encoding);
+			DocumentInfoContainer wordsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(wordsDocumentInfoOptions);
+			 
+			//Get cells document info with encoding
+			DocumentInfoOptions cellsDocumentInfoOptions = new DocumentInfoOptions(cellsDocumentGuid);
+			cellsDocumentInfoOptions.getCellsDocumentInfoOptions().setEncoding(encoding);
+			DocumentInfoContainer cellsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(cellsDocumentInfoOptions);
+			 
+			//Get email document info with encoding
+			DocumentInfoOptions emailDocumentInfoOptions = new DocumentInfoOptions(emailDocumentGuid);
+			emailDocumentInfoOptions.getEmailDocumentInfoOptions().setEncoding(encoding);
+			DocumentInfoContainer emailDocumentInfoContainer = viewerImageHandler.getDocumentInfo(emailDocumentInfoOptions);
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: setDocumentEncoding
+	}
+	
+	/**
+	 * Sets custom fonts directory
+	 * 
+	 */
+	public static void setCustomFontDirectory() {
+		// ExStart: setCustomFontDirectory
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+			 
+			// Add custom fonts directories to FontDirectories list
+			config.getFontDirectories().add("D://fonts//");
+
+			// Init viewer handler with config
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+			
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd: setCustomFontDirectory
+	}
 }
