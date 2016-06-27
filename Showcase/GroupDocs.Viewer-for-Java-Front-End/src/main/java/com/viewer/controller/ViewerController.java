@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.net.HttpCookie;
 import java.net.URI;
@@ -79,6 +80,7 @@ import com.groupdocs.viewer.domain.options.DocumentInfoOptions;
 import com.groupdocs.viewer.domain.options.FileTreeOptions;
 import com.groupdocs.viewer.domain.options.PdfFileOptions;
 import com.groupdocs.viewer.domain.options.RotatePageOptions;
+import com.groupdocs.viewer.handler.ViewerHandler;
 import com.groupdocs.viewer.handler.ViewerHtmlHandler;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 import com.groupdocs.viewer.licensing.License;
@@ -89,25 +91,22 @@ import com.viewer.model.helper.*;
 public class ViewerController {
 	private static ViewerHtmlHandler _htmlHandler;
 	private static ViewerImageHandler _imageHandler;
+
 	private final ConvertImageFileType _convertImageFileType = ConvertImageFileType.JPG;
-	public String _licensePath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\License\\GroupDocs.Total.Java.lic").replace("\\", "/");;
-	private static String _storagePath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\")
-			.replace("\\", "/");
-	private static String _tempPath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\")
-			.replace("\\", "/");
-	// private static String _CachePath = (System.getProperty("user.dir") +
-	// "\\src\\main\\webapp\\storage\\ali\\").replace("\\", "/");
-	private final boolean _usePdfInImageEngine = true;
+	public String _licensePath ="Z:\\GroupDocs.Viewer.Java.lic";
+	private static String _storagePath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\").replace("\\", "/");
+	private static String _tempPath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
+	private static String _locales = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
 	List<String> temp_cssList;
 	final ReentrantLock lock = new ReentrantLock();
-	private static ViewerConfig _config;
+
 
 	public ViewerController() {
+		
 		ViewerConfig htmlConfig = new ViewerConfig();
 		htmlConfig.setStoragePath(_storagePath);
 		htmlConfig.setTempPath(_tempPath);
 		htmlConfig.setUseCache(true);
-
 		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
 
 		ViewerConfig imageConfig = new ViewerConfig();
@@ -586,13 +585,6 @@ public class ViewerController {
 	@ResponseBody
 	public RotatePageResponse rotatePage(@RequestBody RotatePageParameters parameters, HttpServletRequest request)
 			throws Exception {
-		ViewerConfig imageConfig = new ViewerConfig();
-		imageConfig.setStoragePath(_storagePath);
-		imageConfig.setTempPath(_tempPath);
-		imageConfig.setUseCache(true);
-		imageConfig.setUsePdf(_usePdfInImageEngine);
-
-		_imageHandler = new ViewerImageHandler(imageConfig);
 		String guid = parameters.getPath();
 		int pageIndex = parameters.getPageNumber();
 
@@ -629,15 +621,11 @@ public class ViewerController {
 			Boolean useHtmlBasedEngine, Boolean rotate, int width, int pageindex, int quality) throws Exception {
 
 		lock.lock();
-		GetDocumentPageImageParameters parameters = null;
 		ViewerConfig imageConfig = new ViewerConfig();
 		imageConfig.setStoragePath(_storagePath);
 		imageConfig.setTempPath(_tempPath);
 		imageConfig.setUseCache(true);
-		imageConfig.setUsePdf(_usePdfInImageEngine);
-
 		_imageHandler = new ViewerImageHandler(imageConfig);
-
 		String guid = path;
 		int pageIndex = pageindex;
 		int pageNumber = pageIndex + 1;
