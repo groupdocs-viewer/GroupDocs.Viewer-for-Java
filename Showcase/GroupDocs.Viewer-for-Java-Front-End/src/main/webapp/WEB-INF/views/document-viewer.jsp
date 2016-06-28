@@ -72,7 +72,7 @@
 				showThumbnails : true,
 				width : 650,
 				height : 900,
-				useHtmlBasedEngine : true,
+				useHtmlBasedEngine : false,
 				showDownload : true,
 				downloadPdfFile : true,
 				showPrint : true,

@@ -94,6 +94,8 @@ public class GetImageUrlsParameters extends WatermarkedDocumentParameters {
 	}
 
 	public Boolean getUseHtmlBasedEngine() {
+		if(useHtmlBasedEngine == null)
+			return false;
 		return useHtmlBasedEngine;
 	}
 

@@ -107,14 +107,13 @@ public class ViewerController {
 		htmlConfig.setStoragePath(_storagePath);
 		htmlConfig.setTempPath(_tempPath);
 		htmlConfig.setUseCache(true);
+		
 		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
-
+		
 		ViewerConfig imageConfig = new ViewerConfig();
 		imageConfig.setStoragePath(_storagePath);
 		imageConfig.setTempPath(_tempPath);
 		imageConfig.setUseCache(true);
-		imageConfig.setUsePdf(_usePdfInImageEngine);
-
 		_imageHandler = new ViewerImageHandler(imageConfig);
 	}
 
@@ -134,13 +133,7 @@ public class ViewerController {
 		License lic = new License();
 		lic.setLicense(_licensePath);
 		if (params.getUseHtmlBasedEngine()) {
-
-			// View Doucmet as Html
-			ViewerConfig _config = new ViewerConfig();
-			String path = request.getSession().getServletContext().getRealPath("/storage/");
-			_config.setStoragePath(path);
-			_config.setTempPath(path + "/temp/");
-			_htmlHandler = new ViewerHtmlHandler(_config);
+			
 
 			DocumentInfoContainer docInfo = _htmlHandler.getDocumentInfo(new DocumentInfoOptions(params.getPath()));
 			int maxWidth = 0;
@@ -175,13 +168,9 @@ public class ViewerController {
 
 			HtmlOptions htmlOptions = new HtmlOptions();
 			htmlOptions.setResourcesEmbedded(false);
+	
 			htmlOptions.setHtmlResourcePrefix(
 					"/GetResourceForHtml?documentPath=" + params.getPath() + "&pageNumber={page-number}&resourceName=");
-			/*
-			 * htmlOptions.Watermark = Utils.GetWatermark(request.WatermarkText,
-			 * request.WatermarkColor, request.WatermarkPosition,
-			 * request.WatermarkWidth);
-			 */
 
 			if (!DotNetToJavaStringHelper.isNullOrEmpty(params.getPreloadPagesCount().toString())
 					&& params.getPreloadPagesCount().intValue() > 0) {
@@ -216,7 +205,7 @@ public class ViewerController {
 
 		} else {
 
-			String path = request.getSession().getServletContext().getRealPath("/storage/");
+
 			DocumentInfoContainer docInfo = _imageHandler.getDocumentInfo(new DocumentInfoOptions(params.getPath()));
 			int maxWidth = 0;
 			int maxHeight = 0;
@@ -284,12 +273,6 @@ public class ViewerController {
 
 			if (!StringUtils.isEmpty(parameters.getPath()))
 				path = path + parameters.getPath();
-
-			ViewerConfig _config = new ViewerConfig();
-			String _configPath = request.getSession().getServletContext().getRealPath("/storage/");
-			_config.setStoragePath(_configPath);
-			_config.setTempPath(_configPath + "/temp/");
-			_htmlHandler = new ViewerHtmlHandler(_config);
 
 			FileTreeOptions options = new FileTreeOptions(path);
 			FileTreeContainer tree = _htmlHandler.loadFileTree(options);
@@ -397,13 +380,17 @@ public class ViewerController {
 	public ResponseEntity<InputStreamResource> GetPdfWithPrintDialog(@RequestParam String path, Boolean getPdf,
 			Boolean useHtmlBasedEngine, Boolean supportPageRotation, HttpServletResponse response) throws Exception {
 
-		String displayName = path;
+		
+		
+		
 		PdfFileOptions options = new PdfFileOptions();
 		options.setGuid(path);
 		options.setAddPrintAction(true);
+	
+		
 
-		FileContainer result = _htmlHandler.getPdfFile(options);
-
+		FileContainer result = _imageHandler.getPdfFile(options);
+	
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/pdf"))
 				.body(new InputStreamResource(result.getStream()));
 	}
@@ -412,14 +399,6 @@ public class ViewerController {
 	@ResponseBody
 	private void GetFile(@RequestParam String path, Boolean getPdf, Boolean useHtmlBasedEngine,
 			Boolean supportPageRotation, HttpServletResponse response) throws Exception {
-		GetFileParameters parameters = null;
-
-		ViewerConfig htmlConfig = new ViewerConfig();
-		htmlConfig.setStoragePath(_storagePath);
-		htmlConfig.setTempPath(_tempPath);
-		htmlConfig.setUseCache(true);
-
-		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
 
 		File file = new File(path);
 
@@ -432,6 +411,7 @@ public class ViewerController {
 
 		PdfFileOptions options = new PdfFileOptions();
 		options.setGuid(path);
+		
 
 		FileContainer pdfFileResponse = _htmlHandler.getPdfFile(options);
 
@@ -447,6 +427,8 @@ public class ViewerController {
 		fileIn.close();
 		out.flush();
 		out.close();
+		
+		
 	}
 
 	@RequestMapping(value = "/GetDocumentPageHtml", method = RequestMethod.POST, headers = {
@@ -454,13 +436,6 @@ public class ViewerController {
 	@ResponseBody
 	public final Map<String, Object> GetDocumentPageHtml(@RequestBody GetDocumentPageHtmlParameters parameters,
 			HttpServletRequest request) throws Exception {
-
-		ViewerConfig htmlConfig = new ViewerConfig();
-		htmlConfig.setStoragePath(_storagePath);
-		htmlConfig.setTempPath(_tempPath);
-		htmlConfig.setUseCache(true);
-
-		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
 
 		if (DotNetToJavaStringHelper.isNullOrWhiteSpace(parameters.getPath())) {
 			System.out.println("A document path must be specified path");
@@ -490,12 +465,6 @@ public class ViewerController {
 	}
 
 	private List<PageHtml> GetHtmlPages(String filePath, HtmlOptions htmlOptions) throws Exception {
-
-		ViewerConfig htmlConfig = new ViewerConfig();
-		htmlConfig.setStoragePath(_storagePath);
-		htmlConfig.setTempPath(_tempPath);
-		htmlConfig.setUseCache(true);
-		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
 
 		List<PageHtml> htmlPages = _htmlHandler.getPages(filePath, htmlOptions);
 		temp_cssList = new ArrayList<String>();
@@ -585,6 +554,7 @@ public class ViewerController {
 	@ResponseBody
 	public RotatePageResponse rotatePage(@RequestBody RotatePageParameters parameters, HttpServletRequest request)
 			throws Exception {
+		
 		String guid = parameters.getPath();
 		int pageIndex = parameters.getPageNumber();
 
