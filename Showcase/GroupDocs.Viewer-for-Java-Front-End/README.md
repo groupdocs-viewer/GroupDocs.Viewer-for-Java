@@ -11,7 +11,6 @@ This application allows user to view document in Html and Image representation. 
 * Maven 4.0.0.
 * Spring Framework 4.2.5.
 * Any latest browsers (Firefox, Chrome ,IE9 or greater, Safari etc. )
-* GroupDocs.Viewer 3.0.0 for Java.
 
 # How to Run Application
 
