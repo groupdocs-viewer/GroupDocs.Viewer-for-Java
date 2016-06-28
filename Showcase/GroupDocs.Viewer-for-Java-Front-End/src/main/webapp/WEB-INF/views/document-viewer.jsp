@@ -8,7 +8,7 @@
 <head>
 <meta charset ="utf-8">
 <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-<title>Spring 4 MVC -HelloWorld</title>
+<title>GroupDocs.Viewer for Java</title>
 <c:url value="/resources/Scripts/jquery-1.9.1.min.js" var="jquery" />
 <c:url value="/resources/Scripts/jquery-ui-1.10.3.min.js" var="jquery2" />
 <c:url value="/resources/Scripts/knockout-3.2.0.js" var="knockout" />
@@ -72,7 +72,7 @@
 				showThumbnails : true,
 				width : 650,
 				height : 900,
-				useHtmlBasedEngine : true,
+				useHtmlBasedEngine : false,
 				showDownload : true,
 				downloadPdfFile : true,
 				showPrint : true,
