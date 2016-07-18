@@ -97,7 +97,7 @@ public class Utilities {
 		try {
 
 			// Initialize PrintWriter for output file
-			PrintWriter out = new PrintWriter(outputHtmlPath + getFileNameWithoutExtension(outputFileName) + ".html");
+			PrintWriter out = new PrintWriter(outputHtmlPath + getFileNameWithoutExtension(outputFileName) + ".html", "UTF-8");
 
 			// Write file content in
 			out.println(fileContent);

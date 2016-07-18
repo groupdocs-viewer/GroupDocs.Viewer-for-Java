@@ -54,7 +54,7 @@ public class MainClass {
 		//ViewGenerator.renderDocumentAsImage("word.docx", "test watermark");
 		 
 		//// Render document as html
-		//ViewGenerator.renderDocumentAsHtml("word.docx");
+		//ViewGenerator.renderDocumentAsHtml("utf.docx");
 		 
 		//// Get html resource stream
 		//ViewGenerator.getDocumentHtmlResourceStream("word.docx");
