@@ -1,4 +1,4 @@
-# GroupDocs.Viewer for Java using Servlets API
+# GroupDocs.Viewer for Java using Struts2
 
 This application allows user to view document in HTML and image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
 
