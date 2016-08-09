@@ -29,7 +29,7 @@
 <script src="${installableViewer}"></script>
 
 <script type='text/javascript'>
-	$.ui.groupdocsViewer.prototype.applicationPath = 'http://localhost:8080/';
+	$.ui.groupdocsViewer.prototype.applicationPath = 'http://localhost:8080';
 </script>
 <script type='text/javascript'>
 	$.ui.groupdocsViewer.prototype.useHttpHandlers = false;

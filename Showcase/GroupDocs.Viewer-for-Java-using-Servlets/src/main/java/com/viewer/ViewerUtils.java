@@ -15,21 +15,36 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
+import java.util.Properties;
 
 public class ViewerUtils {
 
-    public static final String STORAGE_PATH = System.getProperty("java.io.tmpdir");
+    public static final String STORAGE_PATH = getProjectBaseDir().resolve("src/main/webapp/storage").toString();
     public static final String TEMP_PATH = System.getProperty("java.io.tmpdir");
-    public static final String LICENSE_PATH = System.getProperty("java.io.tmpdir") + "/GroupDocs.Total.Java.lic";
+    public static final Path LICENSE_PATH = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
     private static ViewerHtmlHandler _htmlHandler;
     private static ViewerImageHandler _imageHandler;
 
     static {
         License l = new com.groupdocs.viewer.licensing.License();
-        if (LICENSE_PATH != null) {
-            l.setLicense(LICENSE_PATH);
+        if (LICENSE_PATH != null && Files.exists(LICENSE_PATH)) {
+            l.setLicense(LICENSE_PATH.toString());
         }
+    }
+
+    public static Path getProjectBaseDir() {
+        Properties props = new Properties();
+        try {
+            InputStream i = ViewerUtils.class.getResourceAsStream("/project.properties");
+            props.load(i);
+        } catch (IOException x) {
+            throw new RuntimeException(x);
+        }
+        return FileSystems.getDefault().getPath(props.getProperty("project.basedir"));
     }
 
     public static ViewerHtmlHandler getViewerHtmlHandler() {
