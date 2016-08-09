@@ -57,7 +57,7 @@ public class MainClass {
 		//ViewGenerator.renderDocumentAsHtml("utf.docx");
 		 
 		//// Get html resource stream
-		//ViewGenerator.getDocumentHtmlResourceStream("word.docx");
+		//ViewGenerator.getDocumentHtmlResourceStream("utf.docx");
 		 
 		//// Render n consecutive pages as html
 		//ViewGenerator.renderDocumentAsHtml("word.docx", 2, 1);
