@@ -16,6 +16,7 @@ It is assumed that maven is installed and configured in your system path. You ca
 3. Go to browser and type "localhost:8080/action"
 
 You may find following resources helpful:
+
 1. Learn how to <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm">install and configure</a> Maven - Environment Setup
 2. Maven <a href="http://www.tutorialspoint.com/maven/maven_netbeans.htm">support</a> for NetBeans
 3. Maven <a href="http://www.tutorialspoint.com/maven/maven_intellij_idea.htm">support</a> for IntelliJ IDEA
