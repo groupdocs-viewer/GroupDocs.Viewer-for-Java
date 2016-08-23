@@ -1,10 +1,10 @@
-# GroupDocs.Viewer for Java Front End
+# GroupDocs.Viewer for Java using Spring MVC
 
 This application allows user to view document in Html and Image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
 
 # Pre-Requisites
 
-* Java development kit 1.8
+* Java development kit (JDK) 1.8
 * Maven 4.0.0
 * Any latest browsers (Firefox, Chrome, IE9 or greater, Safari etc. )
 
@@ -13,7 +13,7 @@ This application allows user to view document in Html and Image representation. 
 It is assumed that maven is installed and configured in your system path. You can edit the project by opening in your favorite IDE like NetBeans, Eclipse, and IntelliJ IDEA. You can also run the project using CMD, follow the given steps.
 
 1. Inside the project folder, run "mvn jetty:run" command
-3. Go to browser and type "localhost:8080/action"
+3. Go to browser and type "http://localhost:8080/action"
 
 You may find following resources helpful:
 

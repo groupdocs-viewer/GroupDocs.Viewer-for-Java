@@ -4,7 +4,7 @@ This application allows user to view document in Html and Image representation. 
 
 # Pre-Requisites
 
-* Java development kit 1.8
+* Java development kit (JDK) 1.8
 * Maven 4.0.0
 * Any latest browsers (Firefox, Chrome, IE9 or greater, Safari etc. )
 
@@ -13,7 +13,7 @@ This application allows user to view document in Html and Image representation. 
 It is assumed that maven is installed and configured in your system path. You can edit the project by opening in your favorite IDE like NetBeans, Eclipse, and IntelliJ IDEA. You can also run the project using CMD, follow the given steps.
 
 1. Inside the project folder, run "mvn jetty:run" command
-3. Go to browser and type "localhost:8080/"
+3. Go to browser and type "http://localhost:8080/"
 
 You may find following resources helpful:
 
@@ -26,5 +26,5 @@ You may find following resources helpful:
 
 Follow below steps if you have product license
 
-1. Open ViewerController.java.
-2. Set "_licensePath" variable to your license path.
+1. Open ViewerUtils.java.
+2. Set "LICENSE_PATH" variable to your license path.
