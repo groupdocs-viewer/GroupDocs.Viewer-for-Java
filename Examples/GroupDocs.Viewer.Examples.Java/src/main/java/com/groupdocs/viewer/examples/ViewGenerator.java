@@ -1,4 +1,4 @@
-package Main;
+package com.groupdocs.viewer.examples;
 
 import java.awt.Color;
 import java.io.FileInputStream;

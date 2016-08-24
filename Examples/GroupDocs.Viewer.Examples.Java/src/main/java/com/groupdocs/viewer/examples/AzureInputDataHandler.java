@@ -1,4 +1,4 @@
-package Main;
+package com.groupdocs.viewer.examples;
 
 import java.util.List;
 import java.io.ByteArrayInputStream;

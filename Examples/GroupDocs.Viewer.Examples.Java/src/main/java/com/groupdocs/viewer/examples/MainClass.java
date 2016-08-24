@@ -1,10 +1,4 @@
-package Main;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+package com.groupdocs.viewer.examples;
 
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
