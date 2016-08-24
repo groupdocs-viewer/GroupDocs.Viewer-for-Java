@@ -93,23 +93,25 @@ public class ViewerController {
 	private static ViewerImageHandler _imageHandler;
 
 	private final ConvertImageFileType _convertImageFileType = ConvertImageFileType.JPG;
-	public String _licensePath ="Z:\\GroupDocs.Viewer.Java.lic";
-	private static String _storagePath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\").replace("\\", "/");
-	private static String _tempPath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
-	private static String _locales = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
+	public String _licensePath = "D:\\GroupDocs.Viewer.Java.lic";
+	private static String _storagePath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\")
+			.replace("\\", "/");
+	private static String _tempPath = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\")
+			.replace("\\", "/");
+	private static String _locales = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\")
+			.replace("\\", "/");
 	List<String> temp_cssList;
 	final ReentrantLock lock = new ReentrantLock();
 
-
 	public ViewerController() {
-		
+
 		ViewerConfig htmlConfig = new ViewerConfig();
 		htmlConfig.setStoragePath(_storagePath);
 		htmlConfig.setTempPath(_tempPath);
 		htmlConfig.setUseCache(true);
-		
+
 		_htmlHandler = new ViewerHtmlHandler(htmlConfig);
-		
+
 		ViewerConfig imageConfig = new ViewerConfig();
 		imageConfig.setStoragePath(_storagePath);
 		imageConfig.setTempPath(_tempPath);
@@ -129,11 +131,10 @@ public class ViewerController {
 	@ResponseBody
 	public ViewDocumentResponse viewDoc(@RequestBody ViewDocumentParameters params, HttpServletRequest request)
 			throws Exception {
-		//To Set License 
+		// To Set License
 		License lic = new License();
 		lic.setLicense(_licensePath);
 		if (params.getUseHtmlBasedEngine()) {
-			
 
 			DocumentInfoContainer docInfo = _htmlHandler.getDocumentInfo(new DocumentInfoOptions(params.getPath()));
 			int maxWidth = 0;
@@ -168,7 +169,7 @@ public class ViewerController {
 
 			HtmlOptions htmlOptions = new HtmlOptions();
 			htmlOptions.setResourcesEmbedded(false);
-	
+
 			htmlOptions.setHtmlResourcePrefix(
 					"/GetResourceForHtml?documentPath=" + params.getPath() + "&pageNumber={page-number}&resourceName=");
 
@@ -204,7 +205,6 @@ public class ViewerController {
 			return result;
 
 		} else {
-
 
 			DocumentInfoContainer docInfo = _imageHandler.getDocumentInfo(new DocumentInfoOptions(params.getPath()));
 			int maxWidth = 0;
@@ -380,17 +380,12 @@ public class ViewerController {
 	public ResponseEntity<InputStreamResource> GetPdfWithPrintDialog(@RequestParam String path, Boolean getPdf,
 			Boolean useHtmlBasedEngine, Boolean supportPageRotation, HttpServletResponse response) throws Exception {
 
-		
-		
-		
 		PdfFileOptions options = new PdfFileOptions();
 		options.setGuid(path);
 		options.setAddPrintAction(true);
-	
-		
 
 		FileContainer result = _imageHandler.getPdfFile(options);
-	
+
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/pdf"))
 				.body(new InputStreamResource(result.getStream()));
 	}
@@ -411,7 +406,6 @@ public class ViewerController {
 
 		PdfFileOptions options = new PdfFileOptions();
 		options.setGuid(path);
-		
 
 		FileContainer pdfFileResponse = _htmlHandler.getPdfFile(options);
 
@@ -427,8 +421,7 @@ public class ViewerController {
 		fileIn.close();
 		out.flush();
 		out.close();
-		
-		
+
 	}
 
 	@RequestMapping(value = "/GetDocumentPageHtml", method = RequestMethod.POST, headers = {
@@ -554,7 +547,7 @@ public class ViewerController {
 	@ResponseBody
 	public RotatePageResponse rotatePage(@RequestBody RotatePageParameters parameters, HttpServletRequest request)
 			throws Exception {
-		
+
 		String guid = parameters.getPath();
 		int pageIndex = parameters.getPageNumber();
 
@@ -599,7 +592,7 @@ public class ViewerController {
 		String guid = path;
 		int pageIndex = pageindex;
 		int pageNumber = pageIndex + 1;
-
+		PageImage pageImage = null;
 		ImageOptions imageOptions = new ImageOptions();
 		imageOptions.setConvertImageFileType(_convertImageFileType);
 		imageOptions.setTransformations(rotate ? Transformation.Rotate : Transformation.None);
@@ -624,31 +617,21 @@ public class ViewerController {
 				imageOptions.setWidth(side);
 			}
 		}
+		List<PageImage> pageImages = (List<PageImage>) _imageHandler.getPages(guid, imageOptions);
 
-		try {
-			List<PageImage> pageImages = (List<PageImage>) _imageHandler.getPages(guid, imageOptions);
+		for (PageImage image : pageImages) {
 
-			for (PageImage image : pageImages) {
-				int myNumber = image.getPageNumber();
-				if (image.getPageNumber() == pageNumber) {
-					PageImage pageImage = image;
+			if (image.getPageNumber() == pageNumber) {
+				pageImage = image;
 
-					lock.unlock();
-					return ResponseEntity.ok().contentType(GetContentType(_convertImageFileType))
-							.body(new InputStreamResource(pageImage.getStream()));
-
-				}
-
+				lock.unlock();
+				return ResponseEntity.ok().contentType(GetContentType(_convertImageFileType))
+						.body(new InputStreamResource(pageImage.getStream()));
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
-
 		lock.unlock();
-		PageImage test1 = null;
-
 		return ResponseEntity.ok().contentType(GetContentType(_convertImageFileType))
-				.body(new InputStreamResource(test1.getStream()));
+				.body(new InputStreamResource(pageImage.getStream()));
 	}
 
 	@SuppressWarnings("unused")
