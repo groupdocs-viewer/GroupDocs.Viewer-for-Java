@@ -3,9 +3,14 @@ package com.groupdocs.viewer.examples;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.Properties;
+
 import javax.imageio.ImageIO;
 
 import com.groupdocs.viewer.config.ViewerConfig;
@@ -13,10 +18,16 @@ import com.groupdocs.viewer.config.ViewerConfig;
 public class Utilities {
 
 	// ExStart:CommonProperties
-	public final static String storagePath = "./Data/Storage/";
-	public final static String outputHtmlPath = "./Data/Output/Html/";
-	public final static String outputImagePath = "./Data/Output/Images/";
-	public final static String outputPath = "./Data/Output/";
+	
+	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
+	public static final Path tempPath = FileSystems.getDefault().getPath(System.getProperty("java.io.tmpdir"));
+	public static final Path licensePath = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
+	//Generated html files will be saved in Html folder with name starting with output_
+	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
+	//Generated image files will be saved in Images folder with name starting with output_
+	public static final Path outputImagePath = getProjectBaseDir().resolve("Data/Output/Images/output_");
+	//Generated files will be saved in Output folder with name starting with output_
+	public static final Path outputPath = getProjectBaseDir().resolve("Data/Output/output_");
 
 	// ExEnd:CommonProperties
 
@@ -25,15 +36,26 @@ public class Utilities {
 	 * This method applies product license from file
 	 * 
 	 */
-	public static void applyLicenseFromFile(String filePath) {
+	public static void applyLicenseFromFile() {
 		try {
 			// Setup license
 			com.groupdocs.viewer.licensing.License lic = new com.groupdocs.viewer.licensing.License();
-			lic.setLicense(filePath);
+			lic.setLicense(licensePath.toString());
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
 		}
+	}
+
+	public static Path getProjectBaseDir() {
+		Properties props = new Properties();
+		try {
+			InputStream i = Utilities.class.getResourceAsStream("/project.properties");
+			props.load(i);
+		} catch (IOException x) {
+			throw new RuntimeException(x);
+		}
+		return FileSystems.getDefault().getPath(props.getProperty("project.basedir"));
 	}
 
 	// ExEnd:ApplyLicenseFromFile
@@ -97,7 +119,8 @@ public class Utilities {
 		try {
 
 			// Initialize PrintWriter for output file
-			PrintWriter out = new PrintWriter(outputHtmlPath + getFileNameWithoutExtension(outputFileName) + ".html", "UTF-8");
+			PrintWriter out = new PrintWriter(outputHtmlPath.toString() + getFileNameWithoutExtension(outputFileName) + ".html",
+					"UTF-8");
 
 			// Write file content in
 			out.println(fileContent);
@@ -242,9 +265,11 @@ public class Utilities {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig config = new ViewerConfig();
 			// Set storage path
-			config.setStoragePath(storagePath);
+			config.setStoragePath(storagePath.toString());
+			config.setTempPath(tempPath.toString());
 			// Set cache to true for cache purpose
-			config.setUseCache(false);
+			config.setCachePath(tempPath.toString());
+			config.setUseCache(true);
 			return config;
 
 		} catch (Exception exp) {
