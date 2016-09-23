@@ -271,7 +271,7 @@
                         '</div>' +
                         '<div class="fileOpenDialogWrapper" style="display: none"></div>' +
                         '<div class="viewer_mainwrapper ' + browserDependentCssClass + '">' +
-                        '<div id="document_name" , ellipsis: true" class="ellipses" style="max-width: 700px; font-size:18px; font-family: Verdana, Geneva, sans-serif;   text-align: left;">' + settings.filePath + '</div>' +
+                        '<div id="document_name" , ellipsis: true" class="ellipses" style=" max-width: 700px; background : none repeat scroll 0 0 rgba(255,255,255,0.8); border: 1px solid #f2f2f2; color: #125389; font-size : 18px; font-weight : bold; margin-left : 20px; padding : 10px; position: absolute; z-index : 50; border-radius : 10 px;">' + settings.filePath + '</div>' +
                         '   <div id=' + settings.docViewerId + ' class="doc_viewer" data-bind="event: { scroll: function(item, e) { this.ScrollDocView(item, e); }, scrollstop: function(item, e) { this.ScrollDocViewEnd(item, e);e.returnValue = false;return true; } }">' +
                         '   </div>' +
                         '   <div class="doc_viewer_wrapper_page_flip" style="overflow: auto; top: -50000px; position: absolute;height: 100%">' +
