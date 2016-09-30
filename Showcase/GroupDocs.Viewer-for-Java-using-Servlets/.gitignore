@@ -5,3 +5,6 @@
 Thumbs.db
 .settings
 *.lic
+
+src/main/webapp/storage/temp
+
