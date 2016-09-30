@@ -1,1 +1,10 @@
 /target/
+/.idea/
+*.iml
+.DS_Store
+Thumbs.db
+.settings
+*.lic
+
+src/main/webapp/storage/temp/
+
