@@ -15,7 +15,7 @@ import java.io.InputStream;
 
 @WebServlet("/GetResourceForHtml")
 public class GetResourceForHtml extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String resourceName = request.getParameter("resourceName");
         int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -33,9 +33,5 @@ public class GetResourceForHtml extends HttpServlet {
 
 
         ViewerUtils.copyStream(stream, response.getOutputStream());
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
