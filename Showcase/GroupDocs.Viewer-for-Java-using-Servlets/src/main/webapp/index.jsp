@@ -6,48 +6,51 @@
 
 <html>
 <head>
-<meta charset ="utf-8">
-<meta name = "viewport" content="width=device-width, initial-scale=1.0">
-<title>GroupDocs.Viewer for Java</title>
-<c:url value="Scripts/jquery-1.9.1.min.js" var="jquery" />
-<c:url value="Scripts/jquery-ui-1.10.3.min.js" var="jquery2" />
-<c:url value="Scripts/knockout-3.2.0.js" var="knockout" />
-<c:url value="Scripts/turn.min.js" var="turn" />
-<c:url value="Scripts/modernizr.2.6.2.Transform2d.min.js" var="transform2d" />
-<c:url value="Scripts/installableViewer.js" var="installableViewer" />
-<c:url value="Scripts/GroupdocsViewer.all.js" var="GroupDocsViewer" />
-<c:url value="Content/CSS/bootstrap.css" var="bootstrapCss" />
-<c:url value="Content/CSS/groupdocsViewer.all.css" var="GroupDocsViewerCss" />
-<c:url value="Content/CSS/dialog.css" var="dialogCss" />
 
-<script src="${jquery}"></script>
-<script src="${jquery2}"></script>
-<script src="${knockout}"></script>
+    <meta charset ="utf-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroupDocs.Viewer for Java</title>
 
-<script src="${turn}"></script>
-<script src="${transform2d}"></script>
-<script src="${installableViewer}"></script>
+    <%-- jQuery --%>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-<script type='text/javascript'>
-	$.ui.groupdocsViewer.prototype.applicationPath = 'http://localhost:8080';
-</script>
-<script type='text/javascript'>
-	$.ui.groupdocsViewer.prototype.useHttpHandlers = false;
-</script>
-<script src="${GroupDocsViewer}"></script>
+    <%-- jQuery UI--%>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
 
-<link href="${bootstrapCss}" rel="stylesheet" />
-<link href="${GroupDocsViewerCss}" rel="stylesheet" />
-<link href="${dialogCss}" rel="stylesheet" />
+    <%-- Knockout --%>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" integrity="sha256-ly8TiTtwVsBWdjekTqTJlLGz3Rsg4YXr80eK6QhtdMs=" crossorigin="anonymous"></script>
+
+    <%-- Turn.js --%>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js" integrity="sha256-VjaAExWWIpIWfnyKgdCYYZbmWGHeNkSzkZyoXxHcdHY=" crossorigin="anonymous"></script>
+
+    <%-- Modernizr --%>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha256-0rguYS0qgS6L4qVzANq4kjxPLtvnp5nn2nB5G1lWRv4=" crossorigin="anonymous"></script>
+
+    <%-- Twitter Bootstrap --%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4=" crossorigin="anonymous" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+
+    <%-- Local --%>
+    <script src="Scripts/installableViewer.js"></script>
+    <script>
+        $.ui.groupdocsViewer.prototype.applicationPath = 'http://localhost:8080';
+        $.ui.groupdocsViewer.prototype.useHttpHandlers = false;
+    </script>
+    <script src="Scripts/GroupdocsViewer.all.js"></script>
+    <link href="Content/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="Content/CSS/groupdocsViewer.all.css" rel="stylesheet" />
+    <link href="Content/CSS/dialog.css" rel="stylesheet" />
 
 </head>
 <body>
 	<center>
 		<h2>GroupDocs.Viewer for Java (using Servlet API)</h2>
-		<div id="docViewer" style="width: 800; height: 900"></div>
+		<div id="docViewer" style="width: 800px; height: 900px"></div>
 	</center>
 	<script>
-		$(function() {
+        $(function() {
 			var viewerSyle = {
 				ScrollView : 1,
 				DoublePageFlip : 2,
@@ -59,15 +62,15 @@
 			$('#docViewer').groupdocsViewer({
 				filePath : 'demo.docx',
 				zoomToFitWidth : true,
-				zoomToFitHeight : true,
+//				zoomToFitHeight : true,
 				showFolderBrowser : true,
 				showHeader : true,
 				showZoom : true,
 				showPaging : true,
 				showThumbnails : true,
-				width : 650,
-				height : 900,
-				useHtmlBasedEngine : false,
+//				width : 650,
+//				height : 900,
+				useHtmlBasedEngine : true,
 				showDownload : true,
 				downloadPdfFile : true,
 				showPrint : true,
@@ -76,7 +79,7 @@
 				preloadPagesCount : 1,
 				showFolderBrowser : true,
 				viewerStyle : viewerSyle.ScrollView,
-			
+
 			//Layout type
 			});
 

@@ -235,7 +235,7 @@ public class ViewDocument extends HttpServlet {
 
         List<PageHtml> htmlPages = null;
         try {
-            ViewerUtils.getViewerHtmlHandler().getPages(filePath, htmlOptions);
+            htmlPages = ViewerUtils.getViewerHtmlHandler().getPages(filePath, htmlOptions);
         } catch (Exception x) {
             throw new ServletException(x);
         }
@@ -288,6 +288,7 @@ public class ViewDocument extends HttpServlet {
 
                         // if file doesnt exists, then create it
                         if (!file.exists()) {
+                            file.getParentFile().mkdirs();
                             file.createNewFile();
                         }
 

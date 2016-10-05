@@ -22,6 +22,8 @@ public class ViewDocumentParameters extends WatermarkedDocumentParameters
     private String password;
     private boolean SaveFontsInAllFormats;
     private String Callback;
+	private String userId;
+	private String privateKey;
 
 	public String getPassword() {
 		return password;
@@ -148,7 +150,22 @@ public class ViewDocumentParameters extends WatermarkedDocumentParameters
 	public void setCallback(String callback) {
 		Callback = callback;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getPrivateKey() {
+		return privateKey;
+	}
+
+	public void setPrivateKey(String privateKey) {
+		this.privateKey = privateKey;
+	}
 }
 
  abstract class WatermarkedDocumentParameters extends DocumentParameters
