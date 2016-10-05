@@ -118,6 +118,7 @@ public class GetDocumentPageHtml extends HttpServlet {
 
                         // if file doesnt exists, then create it
                         if (!file.exists()) {
+                            file.getParentFile().mkdirs();
                             file.createNewFile();
                         }
 
