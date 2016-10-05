@@ -415,7 +415,7 @@ public class ViewGenerator {
 
 			// Get pages
 			List<PageImage> pages = imageHandler.getPages(fileStream,
-					"./Data/Storage/tempfile." + Utilities.getFileExtension(fileName));
+					"./Data/Strage/tempfile." + Utilities.getFileExtension(fileName));
 			for (PageImage page : pages) {
 				Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
 			}
@@ -1544,7 +1544,7 @@ public class ViewGenerator {
 			ViewerConfig config = Utilities.getConfiguration();
 			 
 			// Add custom fonts directories to FontDirectories list
-			config.getFontDirectories().add("D://fonts//");
+		      //config.getFontDirectories().add("D://fonts//");
 
 			// Init viewer handler with config
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);

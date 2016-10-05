@@ -25,7 +25,7 @@ public class MainClass {
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		//Utilities.applyLicenseFromFile("D:\\GroupDocs.Viewer.Java.lic");
+		Utilities.applyLicenseFromFile();
 
 		//// Get document information
 		//ViewGenerator.renderDocumentInformation("demo.docx");
@@ -48,7 +48,7 @@ public class MainClass {
 		//ViewGenerator.renderDocumentAsImage("word.docx", "test watermark");
 		 
 		//// Render document as html
-		//ViewGenerator.renderDocumentAsHtml("utf.docx");
+		ViewGenerator.renderDocumentAsHtml("utf.docx");
 		 
 		//// Get html resource stream
 		//ViewGenerator.getDocumentHtmlResourceStream("utf.docx");
