@@ -34,7 +34,7 @@ public class ViewDocument extends HttpServlet {
     private static String _locales = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
     final ReentrantLock lock = new ReentrantLock();
     private final ConvertImageFileType _convertImageFileType = ConvertImageFileType.JPG;
-    public String _licensePath = "Z:\\GroupDocs.Viewer.Java.lic";
+    public String _licensePath = "D:\\GroupDocs.Total.Java.lic";
     List<String> temp_cssList;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -71,7 +71,7 @@ public class ViewDocument extends HttpServlet {
             result.setFileType(docInfo.getFileType());
 
             HtmlOptions htmlOptions = new HtmlOptions();
-            htmlOptions.setResourcesEmbedded(false);
+            htmlOptions.setResourcesEmbedded(true);
 
             htmlOptions.setHtmlResourcePrefix("/GetResourceForHtml?documentPath=" + params.getPath() + "&pageNumber={page-number}&resourceName=");
 
