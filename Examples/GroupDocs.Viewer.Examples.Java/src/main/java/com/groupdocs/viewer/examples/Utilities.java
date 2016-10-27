@@ -7,13 +7,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
 
 import com.groupdocs.viewer.config.ViewerConfig;
+import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.handler.ViewerImageHandler;
 
 public class Utilities {
 
@@ -278,5 +282,37 @@ public class Utilities {
 			return null;
 		}
 	}
+	public static void GetDocumentRepresentationFromUri() throws Throwable
+	{
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = new ViewerConfig();
+		config.setStoragePath("C:\\storage");
+		 
+		// Create image handler
+		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+		URI uri = new URI("http://groupdocs.com/images/banner/carousel2/signature.png");
+		 
+		// Get pages by absolute path
+		List<PageImage> pages = imageHandler.getPages(uri);
+		System.out.println("Page count: " + pages.size());
+	}
+	
+	public static void GetDocumentRepresentationFromInputStream() throws Throwable
+	{
+
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = new ViewerConfig();
+		config.setStoragePath("C:\\storage");
+		 
+		// Create image handler
+		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+		 
+		FileInputStream fileStream = new FileInputStream("C:\\storage\\word.doc");
+		 
+		// Get pages by absolute path
+		List<PageImage> pages = imageHandler.getPages(fileStream, "word.doc");
+		System.out.println("Page count: " + pages.size());
+	}
+
 	// ExEnd:GetConfiguration
 }
