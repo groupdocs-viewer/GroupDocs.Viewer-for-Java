@@ -25,7 +25,7 @@ public class MainClass {
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		Utilities.applyLicenseFromFile();
+		//Utilities.applyLicenseFromFile();
 
 		//// Get document information
 		//ViewGenerator.renderDocumentInformation("demo.docx");

@@ -1,5 +1,4 @@
 package com.groupdocs.ui;
-
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.domain.html.PageHtml;
