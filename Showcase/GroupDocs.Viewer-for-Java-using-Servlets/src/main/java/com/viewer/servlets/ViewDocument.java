@@ -67,6 +67,11 @@ public class ViewDocument extends HttpServlet {
             result.setUrl(GetFileUrl(params));
             result.setPath(params.getPath());
             result.setName(params.getPath());
+            try {
+                result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).Serialize(false));
+            } catch (ParseException x) {
+                throw new ServletException(x);
+            }
             result.setDocType(docInfo.getDocumentType());
             result.setFileType(docInfo.getFileType());
 
@@ -243,21 +248,15 @@ public class ViewDocument extends HttpServlet {
 
         for (PageHtml page : htmlPages) {
 
-            int indexOfBodyOpenTag = page.getHtmlContent().indexOf("<body>");
-
-            if (indexOfBodyOpenTag > 0) {
-                page.setHtmlContent(page.getHtmlContent().substring(indexOfBodyOpenTag + "<body>".length()));
+            String fullHtml = page.getHtmlContent();
+            String strippedHtml = "";
+            if (fullHtml.indexOf("</title>") > 0 && fullHtml.indexOf("</head>") > 0) {
+                strippedHtml += fullHtml.substring(fullHtml.indexOf("</title>") + "</title>".length(), fullHtml.indexOf("</head>"));
             }
-
-            int indexOfBodyCloseTag = page.getHtmlContent().indexOf("</body>");
-
-            if (indexOfBodyCloseTag > 0) {
-                page.setHtmlContent(page.getHtmlContent().substring(0, indexOfBodyCloseTag));
+            if (fullHtml.indexOf("<body>") > 0 && fullHtml.indexOf("</body>") > 0) {
+                strippedHtml += fullHtml.substring(fullHtml.indexOf("<body>") + "<body>".length(), fullHtml.indexOf("</body>"));
             }
-
-            /////////////////////////
-
-            List<HtmlResource> test = page.getHtmlResources();
+            page.setHtmlContent(strippedHtml);
 
             for (HtmlResource resource : page.getHtmlResources()) {
 
