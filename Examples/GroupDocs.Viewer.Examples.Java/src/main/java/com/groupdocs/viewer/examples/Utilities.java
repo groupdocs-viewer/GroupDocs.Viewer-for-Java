@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -26,6 +27,7 @@ public class Utilities {
 	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
 	public static final Path tempPath = FileSystems.getDefault().getPath(System.getProperty("java.io.tmpdir"));
 	public static final Path licensePath = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
+	public static final List<String> customFontDirs = Arrays.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
 	//Generated html files will be saved in Html folder with name starting with output_
 	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
 	//Generated image files will be saved in Images folder with name starting with output_
@@ -227,7 +229,6 @@ public class Utilities {
 			exp.printStackTrace();
 			return null;
 		}
-
 	}
 
 	// ExEnd:GetFileExtension
@@ -273,7 +274,11 @@ public class Utilities {
 			config.setTempPath(tempPath.toString());
 			// Set cache to true for cache purpose
 			config.setCachePath(tempPath.toString());
+			// Add custom fonts directories to FontDirectories list
+			config.setFontDirectories(customFontDirs);
 			config.setUseCache(true);
+			//Set default Font Name
+			config.setDefaultFontName("Calibri");
 			return config;
 
 		} catch (Exception exp) {
