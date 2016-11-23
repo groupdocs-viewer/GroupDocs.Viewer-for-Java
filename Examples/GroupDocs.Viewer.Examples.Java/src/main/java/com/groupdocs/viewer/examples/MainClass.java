@@ -33,7 +33,7 @@ public class MainClass {
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		Utilities.applyLicenseFromFile();
+		//Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
 		//ViewGenerator.renderDocumentInformationByGuid("bf9c9ae9-3cc9-4e21-956f-34ecbd96494d.docx");
