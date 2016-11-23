@@ -54,15 +54,14 @@ public class GetDocumentPageHtml extends HttpServlet {
         }
 
 
-        String pageHtml = htmlPages.size() > 0 ? htmlPages.get(0).getHtmlContent() : null;
-        String[] pageCss = temp_cssList.size() > 0 ? new String[]{String.join(" ", temp_cssList)} : null;
+        String pageHtml = htmlPages.size() > 0 ? htmlPages.get(0).getHtmlContent() : "";
+        String[] pageCss = temp_cssList.size() > 0 ? new String[]{String.join(" ", temp_cssList)} : new String[]{};
 
         Map<String, Object> a = new HashMap<String, Object>();
         a.put("pageHtml", pageHtml);
         a.put("pageCss", pageCss);
 
-        String result = String.join(pageHtml, pageCss);
-        new ObjectMapper().writeValue(response.getOutputStream(), result);
+        new ObjectMapper().writeValue(response.getOutputStream(), a);
     }
 ///////////////////////
 
@@ -73,21 +72,15 @@ public class GetDocumentPageHtml extends HttpServlet {
 
         for (PageHtml page : htmlPages) {
 
-            int indexOfBodyOpenTag = page.getHtmlContent().indexOf("<body>");
-
-            if (indexOfBodyOpenTag > 0) {
-                page.setHtmlContent(page.getHtmlContent().substring(indexOfBodyOpenTag + "<body>".length()));
+            String fullHtml = page.getHtmlContent();
+            String strippedHtml = "";
+            if (fullHtml.indexOf("</title>") > 0 && fullHtml.indexOf("</head>") > 0) {
+                strippedHtml += fullHtml.substring(fullHtml.indexOf("</title>") + "</title>".length(), fullHtml.indexOf("</head>"));
             }
-
-            int indexOfBodyCloseTag = page.getHtmlContent().indexOf("</body>");
-
-            if (indexOfBodyCloseTag > 0) {
-                page.setHtmlContent(page.getHtmlContent().substring(0, indexOfBodyCloseTag));
+            if (fullHtml.indexOf("<body>") > 0 && fullHtml.indexOf("</body>") > 0) {
+                strippedHtml += fullHtml.substring(fullHtml.indexOf("<body>") + "<body>".length(), fullHtml.indexOf("</body>"));
             }
-
-            /////////////////////////
-
-            List<HtmlResource> test = page.getHtmlResources();
+            page.setHtmlContent(strippedHtml);
 
             for (HtmlResource resource : page.getHtmlResources()) {
 
