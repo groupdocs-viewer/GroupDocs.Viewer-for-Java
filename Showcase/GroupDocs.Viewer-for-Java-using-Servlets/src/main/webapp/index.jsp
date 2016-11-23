@@ -60,7 +60,7 @@
 			};
 
 			$('#docViewer').groupdocsViewer({
-				filePath : 'bfe.png',
+				filePath : 'demo.docx',
 				zoomToFitWidth : true,
 //				zoomToFitHeight : true,
 				showFolderBrowser : true,
