@@ -12,6 +12,7 @@ import java.util.Date;
 import com.microsoft.azure.storage.blob.*;
 import com.microsoft.azure.storage.*;
 import com.groupdocs.viewer.domain.FileDescription;
+import com.groupdocs.viewer.domain.cache.CachedDocumentDescription;
 import com.groupdocs.viewer.domain.options.FileTreeOptions;
 import com.groupdocs.viewer.exception.GroupDocsException;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
@@ -140,5 +141,11 @@ public class AzureInputDataHandler implements IInputDataHandler {
         Date emptyDate = new Date(1, 1, 1);
         return dateTimeOffset != null ? dateTimeOffset : emptyDate;
     }
+
+	@Override
+	public void saveDocument(CachedDocumentDescription arg0, InputStream arg1) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }
 //ExEnd: AzureInputDataHandler

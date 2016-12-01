@@ -1,5 +1,13 @@
 package com.groupdocs.viewer.examples;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.List;
+
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.converter.options.ImageOptions;
@@ -20,19 +28,61 @@ public class MainClass {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		
 		/*
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
 		//Utilities.applyLicenseFromFile();
 
-		//// Get document information
-		//ViewGenerator.renderDocumentInformation("demo.docx");
-		 
+		//// Get document information by Guid
+		//ViewGenerator.renderDocumentInformationByGuid("bf9c9ae9-3cc9-4e21-956f-34ecbd96494d.docx");
+		
+		////Get document information by Stream
+		//ViewGenerator.renderDocumentInformationByStream("demo.docx");
+		
+		////Get document information by Stream and Document Name
+		//ViewGenerator.renderDocumentInformationByStreamAndDocumentName("demo.docx");
+		
+		////Get document information by Uri
+		//ViewGenerator.renderDocumentInformationByUri("http://calibre-ebook.com/downloads/demos/demo.docx");
+		
+		////Get document information by Uri with Windows Authentication Credential
+		//ViewGenerator.renderDocumentInformationByUriWithWindowsAuthenticationCredential("http://calibre-ebook.com/downloads/demos/demo.docx", "", "");
+		
+		////Get attachment document information by Email document
+		//ViewGenerator.renderAttachmentsInformation("DEPOSIT.eml");
+		
+		////Render email attahcment document as Html 
+		//ViewGenerator.renderDocumentAsHtmlFromEmailAttachment("DEPOSIT.eml"); 
+		
+		////Render email attahcment document as Image
+		//ViewGenerator.renderDocumentAsImageFromEmailAttachment("Top 400 Law Firms.msg");
+		
+		////Render Excel Document as Html with link prefix
+		//ViewGenerator.renderExcelAsHtmlWithHyperLinkPrefix("samplehl.xlsx", "www.bing.com.pk");
+		
+		////Render Visio document as Image with Hidden Pages
+		//ViewGenerator.renderVisioAsImagesWithHiddenPages("sample.vdx");
+		
+		////Render Visio document as Html with Hidden Pages
+		//ViewGenerator.renderVisioAsHtmlWithHiddenPages("sample.vdx");
+		
+		////Render Pdf as Html with Layered Content
+		//ViewGenerator.renderPdfAsHtmlWithLayers("sample.pdf");
+		
+		////Render DIagram Document as Html with Default Font
+		//ViewGenerator.renderDiagramAsHtmlWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
+		
+		////Render DIagram Document as Pdf with Default Font
+		//ViewGenerator.renderDiagramAsPdfWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
+		
+		////Render DIagram Document as Image with Default Font
+		//ViewGenerator.renderDiagramAsImageWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
+		
 		//// Render document as image
-		//ViewGenerator.renderDocumentAsImage("word.docx");
-		 
+		//ViewGenerator.renderDocumentAsImage("doc.pptx");
+		
 		//// Render n consecutive pages as image
 		//ViewGenerator.renderDocumentAsImage("word.docx", 1, 1);
 		 
@@ -47,8 +97,8 @@ public class MainClass {
 		//// Render as image with watermark
 		//ViewGenerator.renderDocumentAsImage("word.docx", "test watermark");
 		 
-		//// Render document as html
-		ViewGenerator.renderDocumentAsHtml("utf.docx");
+		// Render document as html
+		//ViewGenerator.renderDocumentAsHtml("f1.pdf");
 		 
 		//// Get html resource stream
 		//ViewGenerator.getDocumentHtmlResourceStream("utf.docx");
@@ -83,7 +133,7 @@ public class MainClass {
 		//ViewGenerator.getOriginalFile("word.docx");
 		 
 		//// Get original pdf file
-		//ViewGenerator.getOriginalFileAsPdf("word.docx");
+		//ViewGenerator.getOriginalFileAsPdf("Wordfile.docx");
 		 
 		//// Get original pdf file with watermark
 		//ViewGenerator.getOriginalFileAsPdfWithWatermark("word.docx", "test watermark");
@@ -145,8 +195,8 @@ public class MainClass {
 		//// Render as html with custom input data handler
 		//ViewGenerator.renderExcelAsHtmlWithGridLines("sample.xlsx") ;
 
-		//// Render as html with multiple sheets per page
-		//ViewGenerator.renderExcelAsHtmlWithMultiplePagesPerSheet("sample.xlsx") ;
+		//// Render as Images with multiple sheets per page
+		//ViewGenerator.renderExcelAsImagesWithMultiplePagesPerSheet("samplexc.xlsx") ;
 
 		//// Get all supported formats 
 		//ViewGenerator.getAllSupportedFormats() ;
@@ -162,5 +212,6 @@ public class MainClass {
 
 		//// Set documents encoding 
 		//ViewGenerator.setDocumentEncoding();
+		
 	}
 }

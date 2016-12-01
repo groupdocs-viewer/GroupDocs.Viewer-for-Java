@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.net.ftp.*;
 
 import com.groupdocs.viewer.domain.FileDescription;
+import com.groupdocs.viewer.domain.cache.CachedDocumentDescription;
 import com.groupdocs.viewer.domain.options.FileTreeOptions;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
 
@@ -84,5 +85,11 @@ public class FTPInputDataHandler implements IInputDataHandler {
         }
         return fileDescriptions;
     }
+
+	@Override
+	public void saveDocument(CachedDocumentDescription arg0, InputStream arg1) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }
 //ExEnd: FTPInputDataHandler
