@@ -205,7 +205,7 @@
 
                 container.each(function () {
                     $(
-                    '<div dir="ltr" class="groupdocs_viewer_wrapper grpdx ' + classWithNumber + /*browserDependentCssClass + */'">' +
+                        '<div dir="ltr" class="groupdocs_viewer_wrapper grpdx ' + classWithNumber + /*browserDependentCssClass + */'">' +
                         '<div class="viewer_header header_sidescroll" ' + headerStyle + '>' +
                         '   <div class="viewer_header_wrapper">' +
                         '      <a class="btnOpen new_head_tools_btn h_t_i_browser" data-tooltip="Open File" data-localize-tooltip="OpenFile"></a>' +
@@ -266,7 +266,7 @@
                         '      <a name="rotateClockwise" class="h_t_i_rotatecl new_head_tools_btn" data-tooltip="Rotate Clockwise" data-localize-tooltip="RotateClockwise"></a>' +
                         '      <a name="rotateCounterClockwise" class="h_t_i_rotatecon new_head_tools_btn" data-tooltip="Rotate Counter-Clockwise" data-localize-tooltip="RotateCounterClockwise"></a>' +
                         '</div>'
-                        : "") +
+                            : "") +
                         '   </div>' +
                         '</div>' +
                         '<div class="fileOpenDialogWrapper" style="display: none"></div>' +
@@ -278,7 +278,7 @@
                         '   </div>' +
                         (settings.showThumbnails ? '   <a class="thumbs_btn" href="#"></a>' : '') +
                         '</div>' +
-                    //'<a class="thumbs_btn" href="#"></a>' +
+                        //'<a class="thumbs_btn" href="#"></a>' +
                         '<div name="jGDerror" class="modal_dialog_wrapper jerrorwrapper">' +
                         '   <div class="modal_dialog_overlay">' +
                         '       &nbsp;' +
@@ -318,7 +318,7 @@
                         '   </div>' +
                         '</div>' +
 
-                    '</div>'
+                        '</div>'
                     ).appendTo($(this));
                 });
             }
@@ -425,17 +425,17 @@
             style = "";
             if (settings.searchHighlightColor) {
                 style += "." + classWithNumber + " .search_highlight_html, ." + classWithNumber + " .search-highlight " +
-                        "{background-color:" + settings.searchHighlightColor +
-                        "; fill:" + settings.searchHighlightColor +
-                        "}";
+                    "{background-color:" + settings.searchHighlightColor +
+                    "; fill:" + settings.searchHighlightColor +
+                    "}";
             }
 
             if (settings.currentSearchHighlightColor) {
                 //style += "#" + settings.docViewerId + " .current_search_highlight {background-color:" + settings.currentSearchHighlightColor + " !important}";
                 style += ".grpdx." + classWithNumber + " .current_search_highlight {" +
-                         "background-color:" + settings.currentSearchHighlightColor +
-                         "; fill:" + settings.currentSearchHighlightColor +
-                         "}";
+                    "background-color:" + settings.currentSearchHighlightColor +
+                    "; fill:" + settings.currentSearchHighlightColor +
+                    "}";
             }
 
             //if (settings.showOnePageInRow || settings.viewerStyle == window.groupdocs.OnePageInRow) {
@@ -479,8 +479,8 @@
             var thumbnailQuality;
             if (settings.useHtmlBasedEngine)
                 thumbnailQuality = 20;
-             else
-                 thumbnailQuality = settings.quality;
+            else
+                thumbnailQuality = settings.quality;
 
             var thumbnailsOptions = {
                 createHtml: true,
@@ -807,11 +807,11 @@
                         var downloadUrl = jGroupdocs.stringExtensions.trimEnd(settings.applicationPath, '/') + '/GetFile' +
                             (settings.handlerUrlSuffix || '') + '?path=' + filePath + '&getPdf=false';
                         messageHeaderDownloadLink.html('<a href="'+downloadUrl+'" target="_blank">Download original file "'+filePath+'"</a>');
-                        
+
                     } else {
                         messageHeaderDownloadLink.remove();
                     }
-                    
+
                     var dialogWidth, dialogHeight;
                     if (msg.substring(0, 1) == "<") {
                         //jerrorElement.html(msg);
@@ -945,7 +945,7 @@
                 } else {
                     finalDownloadUrl = this.downloadUrl;
                 }
-                
+
                 downloadButton.attr('href', finalDownloadUrl);
                 var targetValue;
                 switch(this.downloadButtonMode) {
@@ -962,15 +962,15 @@
                 downloadButton.attr('target', targetValue);
                 onlyFireEventsInClickHandlerFlag = true;
             }
-            
+
             downloadButton.bind({
                 click: function () {
                     self._downloadDocument(onlyFireEventsInClickHandlerFlag);
                     return onlyFireEventsInClickHandlerFlag;
                 }
             });
-            
-            
+
+
             //var printFrameLoaded = false;
             printButton.bind({
                 click: function () {
@@ -1031,7 +1031,7 @@
             // Get the scrollbar width
             scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
 
-            // Delete the DIV 
+            // Delete the DIV
             document.body.removeChild(scrollDiv);
             return scrollbarWidth;
         },
@@ -1111,9 +1111,9 @@
             this.fileOpenDialogWrapper.show();
 
             this.backdrop = $('<div class="modal-backdrop fade" />').appendTo(this.groupdocsViewerWrapper),
-            this.backdrop.click(function () {
-                self._hideFileOpenDialog();
-            });
+                this.backdrop.click(function () {
+                    self._hideFileOpenDialog();
+                });
             this.backdrop.addClass("in");
         },
 
@@ -1287,7 +1287,7 @@
                 }
                 else {
                     message = this._getLocalizedString("Getting a printable version of the document",
-                                                           "GettingPrintableVersionOfDocument");
+                        "GettingPrintableVersionOfDocument");
                     title = this._getLocalizedString("Printing", "Printing");
 
                     this._showMessageDialog(message, title, 0);
@@ -1572,10 +1572,10 @@
                                     callback, errorCallback, locale) {
 
             this._portalService.getImageUrlsAsync(
-                                              null, null, documentPath, /*width*/null, null, 0, /*imageCount*/null, quality, supportTextSelection, /*this.fileVersion*/null,
-                                              watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
-                                              ignoreDocumentAbsence,
-                                              useHtmlBasedEngine, /*supportPageRotation*/false,
+                null, null, documentPath, /*width*/null, null, 0, /*imageCount*/null, quality, supportTextSelection, /*this.fileVersion*/null,
+                watermarkText, watermarkColor, watermarkPosition, watermarkWidth,
+                ignoreDocumentAbsence,
+                useHtmlBasedEngine, /*supportPageRotation*/false,
                 function (response) {
                     callback.apply(this, [response.data.imageUrls]);
                 },
