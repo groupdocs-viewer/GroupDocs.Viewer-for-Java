@@ -28,10 +28,17 @@ public class GetResourceForHtml extends HttpServlet {
         resource.setResourceType(Utils.GetResourceType(resourceName));
         resource.setDocumentPageNumber(pageNumber);
 
-        InputStream stream = ViewerUtils.getViewerHtmlHandler().getResource(request.getParameter("documentPath"), resource);
-        response.addHeader("Content-Type", Utils.GetImageMimeTypeFromFilename(resourceName));
+        InputStream stream;
+		try {
+			stream = ViewerUtils.getViewerHtmlHandler().getResource(request.getParameter("documentPath"), resource);
+
+	        response.addHeader("Content-Type", Utils.GetImageMimeTypeFromFilename(resourceName));
 
 
-        ViewerUtils.copyStream(stream, response.getOutputStream());
+	        ViewerUtils.copyStream(stream, response.getOutputStream());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
