@@ -61,7 +61,7 @@
 			};
 
 			$('#docViewer').groupdocsViewer({
-				filePath : 'demo.docx',
+				filePath : 'ppp.png',
 			
 				zoomToFitWidth : true,
 				zoomToFitHeight : true,

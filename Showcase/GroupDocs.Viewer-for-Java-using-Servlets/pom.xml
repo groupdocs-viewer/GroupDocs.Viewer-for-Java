@@ -17,7 +17,7 @@
 		<dependency>
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
-            <version>3.2.2</version>
+            <version>3.7.0</version>
         </dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>

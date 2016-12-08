@@ -68,15 +68,19 @@ public class MainClass {
 		////Render Visio document as Html with Hidden Pages
 		//ViewGenerator.renderVisioAsHtmlWithHiddenPages("sample.vdx");
 		
+		//Note: In order to run this function please import ASPOSE PDF JAR
 		////Render Pdf as Html with Layered Content
 		//ViewGenerator.renderPdfAsHtmlWithLayers("sample.pdf");
 		
+		//Note: In order to run this function please import ASPOSE Diagram JAR
 		////Render DIagram Document as Html with Default Font
 		//ViewGenerator.renderDiagramAsHtmlWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
 		
+		//Note: In order to run this function please import ASPOSE Diagram JAR
 		////Render DIagram Document as Pdf with Default Font
 		//ViewGenerator.renderDiagramAsPdfWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
 		
+		//Note: In order to run this function please import ASPOSE Diagram JAR
 		////Render DIagram Document as Image with Default Font
 		//ViewGenerator.renderDiagramAsImageWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
 		
