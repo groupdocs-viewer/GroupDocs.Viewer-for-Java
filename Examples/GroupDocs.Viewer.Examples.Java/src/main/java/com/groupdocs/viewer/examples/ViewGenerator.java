@@ -7,19 +7,10 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
-
-import com.aspose.diagram.Diagram;
-import com.aspose.diagram.HTMLSaveOptions;
-import com.aspose.diagram.ImageSaveOptions;
-import com.aspose.diagram.PdfSaveOptions;
-import com.aspose.pdf.Document;
-import com.aspose.pdf.HtmlSaveOptions;
-import com.aspose.words.HtmlFixedSaveOptions;
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.converter.options.ImageOptions;
 import com.groupdocs.viewer.domain.AttachmentBase;
-import com.groupdocs.viewer.domain.EmailAttachment;
 import com.groupdocs.viewer.domain.FileDescription;
 import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.Transformation;
@@ -31,7 +22,6 @@ import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileTreeContainer;
 import com.groupdocs.viewer.domain.containers.PrintableHtmlContainer;
-import com.groupdocs.viewer.domain.containers.RotatePageContainer;
 import com.groupdocs.viewer.domain.html.HtmlResource;
 import com.groupdocs.viewer.domain.html.PageHtml;
 import com.groupdocs.viewer.domain.image.PageImage;
@@ -41,7 +31,6 @@ import com.groupdocs.viewer.domain.options.PdfFileOptions;
 import com.groupdocs.viewer.domain.options.PrintableHtmlOptions;
 import com.groupdocs.viewer.domain.options.ReorderPageOptions;
 import com.groupdocs.viewer.domain.options.RotatePageOptions;
-import com.groupdocs.viewer.handler.ViewerHandler;
 import com.groupdocs.viewer.handler.ViewerHtmlHandler;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
@@ -109,7 +98,6 @@ public class ViewGenerator {
 			// Get document information
 			DocumentInfoOptions options = new DocumentInfoOptions();
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(guid, options);
-			 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
 			System.out.println("DocumentType: " + documentInfo.getDocumentType());
 			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
@@ -1276,12 +1264,13 @@ public class ViewGenerator {
 	}
 	
 	/**
+	 * Note: In order to run this function, please import ASPOSE PDF JAR.
 	 * Gets Html of a PDF document with layered content
 	 * 
 	 * @param fileName
 	 *            name of the source document
 	 */
-	public static void renderPdfAsHtmlWithLayers(String fileName) {
+	/*public static void renderPdfAsHtmlWithLayers(String fileName) {
 		// ExStart:GetHtmlRepresentationOfPdfWithLayers
 		try {
 			//Get Guid of the pdf dcument
@@ -1290,7 +1279,7 @@ public class ViewGenerator {
 			//Set Html Options
 			HtmlSaveOptions saveOptions = new HtmlSaveOptions();
 			
-			//Setting Default Font
+			//Setting Marked Content to Layers while Converting
 			saveOptions.setConvertMarkedContentToLayers(true);
 			
 			//Saving document as HTML
@@ -1301,9 +1290,10 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		// ExEnd:GetGetHtmlRepresentationOfPdfWithLayers
-	}
+	}*/
 	
 	/**
+	 *  Note: In order to run this function, please import ASPOSE Diagram JAR.
 	 * Gets Image of a Diagram document
 	 * 
 	 * @param fileName
@@ -1312,7 +1302,7 @@ public class ViewGenerator {
 	 * @param DefaultFont
 	 *            name of the Font to use as default font in the diagram
 	 */
-	public static void renderDiagramAsImageWithDefaultFont(String fileName, String DefaultFont) {
+	/*public static void renderDiagramAsImageWithDefaultFont(String fileName, String DefaultFont) {
 		// ExStart:GetImageRepresentationOfDiagramWithDefaultFont
 		try {
 			//Get Guid of the Diagram dcument
@@ -1332,9 +1322,10 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		// ExEnd:GetImageRepresentationOfDiagramWithDefaultFont
-	}
+	}*/
 	
 	/**
+	 * Note: In order to run this function, please import ASPOSE Diagram JAR.
 	 * Gets Html of a Diagram document
 	 * 
 	 * @param fileName
@@ -1343,7 +1334,7 @@ public class ViewGenerator {
 	 * @param DefaultFont
 	 *            name of the Font to use as default font in the diagram
 	 */
-	public static void renderDiagramAsHtmlWithDefaultFont(String fileName, String DefaultFont) {
+	/*public static void renderDiagramAsHtmlWithDefaultFont(String fileName, String DefaultFont) {
 		// ExStart:GetHtmlRepresentationOfDiagramWithDefaultFont
 		try {
 			//Get Guid of the Diagram dcument
@@ -1363,9 +1354,10 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		// ExEnd:GetHtmlRepresentationOfDiagramWithDefaultFont
-	}
+	}*/
 	
 	/**
+	 * Note: In order to run this function, please import ASPOSE Diagram JAR.
 	 * Gets PDF of a Diagram document
 	 * 
 	 * @param fileName
@@ -1374,7 +1366,7 @@ public class ViewGenerator {
 	 * @param DefaultFont
 	 *            name of the Font to use as default font in the diagram
 	 */
-	public static void renderDiagramAsPdfWithDefaultFont(String fileName, String DefaultFont) {
+	/*public static void renderDiagramAsPdfWithDefaultFont(String fileName, String DefaultFont) {
 		// ExStart:GetPdfRepresentationOfDiagramWithDefaultFont
 		try {
 			//Get Guid of the pdf dcument
@@ -1394,7 +1386,7 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		// ExEnd:GetPdfRepresentationOfDiagramWithDefaultFont
-	}
+	}*/
 
 	
 	/**
