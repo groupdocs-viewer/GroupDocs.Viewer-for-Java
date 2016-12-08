@@ -21,9 +21,14 @@ public class GetPdfWithPrintDialog extends HttpServlet {
         options.setGuid(request.getParameter("path"));
         options.setAddPrintAction(true);
 
-        FileContainer result = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
-
-        ViewerUtils.copyStream(result.getStream(), response.getOutputStream());
+        FileContainer result;
+		try {
+			result = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
+			ViewerUtils.copyStream(result.getStream(), response.getOutputStream());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 }
