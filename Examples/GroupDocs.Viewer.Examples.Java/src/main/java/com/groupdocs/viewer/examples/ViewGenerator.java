@@ -2007,7 +2007,7 @@ public class ViewGenerator {
 			ImageOptions options = new ImageOptions();
 			options.getCellsOptions().setShowHiddenSheets(true);
 			
-			DocumentInfoContainer container = imageHandler.getDocumentInfo(new DocumentInfoOptions(guid));
+			DocumentInfoContainer container = imageHandler.getDocumentInfo(guid, new DocumentInfoOptions());
 			 
 			for (PageData page : container.getPages())
 			 System.out.println(String.format("Page number: %d, Page Name: %s, IsVisible: %s", page.getNumber(), page.getName(), page.isVisible()));
@@ -2080,19 +2080,19 @@ public class ViewGenerator {
 			List<PageImage> emailDocumentPages = viewerImageHandler.getPages(emailDocumentGuid, imageOptions);
 			
 			//Get words document info with encoding
-			DocumentInfoOptions wordsDocumentInfoOptions = new DocumentInfoOptions(wordsDocumentGuid);
+			DocumentInfoOptions wordsDocumentInfoOptions = new DocumentInfoOptions();
 			wordsDocumentInfoOptions.getWordsOptions().setEncoding(encoding);
-			DocumentInfoContainer wordsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(wordsDocumentInfoOptions);
+			DocumentInfoContainer wordsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(wordsDocumentGuid, wordsDocumentInfoOptions);
 			 
 			//Get cells document info with encoding
-			DocumentInfoOptions cellsDocumentInfoOptions = new DocumentInfoOptions(cellsDocumentGuid);
+			DocumentInfoOptions cellsDocumentInfoOptions = new DocumentInfoOptions();
 			cellsDocumentInfoOptions.getCellsOptions().setEncoding(encoding);
-			DocumentInfoContainer cellsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(cellsDocumentInfoOptions);
+			DocumentInfoContainer cellsDocumentInfoContainer = viewerImageHandler.getDocumentInfo(cellsDocumentGuid, cellsDocumentInfoOptions);
 			 
 			//Get email document info with encoding
-			DocumentInfoOptions emailDocumentInfoOptions = new DocumentInfoOptions(emailDocumentGuid);
+			DocumentInfoOptions emailDocumentInfoOptions = new DocumentInfoOptions();
 			emailDocumentInfoOptions.getEmailOptions().setEncoding(encoding);
-			DocumentInfoContainer emailDocumentInfoContainer = viewerImageHandler.getDocumentInfo(emailDocumentInfoOptions);
+			DocumentInfoContainer emailDocumentInfoContainer = viewerImageHandler.getDocumentInfo(emailDocumentGuid, emailDocumentInfoOptions);
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
