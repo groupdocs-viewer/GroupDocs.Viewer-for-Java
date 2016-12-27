@@ -90,24 +90,30 @@ public class ViewDocument extends HttpServlet {
 
             RefObject<ArrayList<String>> tempRef_cssList = new RefObject<ArrayList<String>>(cssList);
 
-            List<PageHtml> htmlPages = GetHtmlPages(params.getPath(), htmlOptions);
-            cssList = tempRef_cssList.argValue;
+            List<PageHtml> htmlPages;
+			try {
+				htmlPages = GetHtmlPages(params.getPath(), htmlOptions);
+				cssList = tempRef_cssList.argValue;
 
-            ArrayList<String> pagesContent = new ArrayList<String>();
-            for (PageHtml page : htmlPages) {
-                pagesContent.add(page.getHtmlContent());
-            }
-            String[] htmlContent = pagesContent.toArray(new String[0]);
-            result.setPageHtml(htmlContent);
-            result.setPageCss(new String[]{String.join(" ", temp_cssList)});
+	            ArrayList<String> pagesContent = new ArrayList<String>();
+	            for (PageHtml page : htmlPages) {
+	                pagesContent.add(page.getHtmlContent());
+	            }
+	            String[] htmlContent = pagesContent.toArray(new String[0]);
+	            result.setPageHtml(htmlContent);
+	            result.setPageCss(new String[]{String.join(" ", temp_cssList)});
 
-            for (int i = 0; i < result.getPageHtml().length; i++) {
-                String html = result.getPageHtml()[i];
-                int indexOfScript = html.indexOf("script");
-                if (indexOfScript > 0) {
-                    result.getPageHtml()[i] = html.substring(0, indexOfScript);
-                }
-            }
+	            for (int i = 0; i < result.getPageHtml().length; i++) {
+	                String html = result.getPageHtml()[i];
+	                int indexOfScript = html.indexOf("script");
+	                if (indexOfScript > 0) {
+	                    result.getPageHtml()[i] = html.substring(0, indexOfScript);
+	                }
+	            }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
         } else {
 
@@ -236,7 +242,7 @@ public class ViewDocument extends HttpServlet {
                 false, false);
     }
 
-    private List<PageHtml> GetHtmlPages(String filePath, HtmlOptions htmlOptions) throws ServletException, IOException {
+    private List<PageHtml> GetHtmlPages(String filePath, HtmlOptions htmlOptions) throws Exception {
 
         List<PageHtml> htmlPages = null;
         try {

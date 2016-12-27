@@ -138,7 +138,7 @@ public class AzureInputDataHandler implements IInputDataHandler {
  
     private Date getDateTimeOrEmptyDate(Date dateTimeOffset)
     {
-        Date emptyDate = new Date(1, 1, 1);
+        Date emptyDate = new Date();
         return dateTimeOffset != null ? dateTimeOffset : emptyDate;
     }
 

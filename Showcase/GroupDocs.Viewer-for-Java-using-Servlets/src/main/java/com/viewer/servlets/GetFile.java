@@ -34,7 +34,12 @@ public class GetFile extends HttpServlet {
 
 
         FileContainer pdfFileResponse = null;
-        pdfFileResponse = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
+        try {
+			pdfFileResponse = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=\"" + displayName + "\"");
