@@ -339,27 +339,21 @@ public class ViewGenerator {
 		try {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig viewerConfig = Utilities.getConfiguration();
-			
-			// Init viewer html handler
+
+			// Init viewer image handler
 			ViewerImageHandler handler = new ViewerImageHandler(viewerConfig);
-			
-			//Clear files from cache
-			handler.clearCache();
-			
+
+			// Clear files from cache
+			// handler.clearCache();
+
 			DocumentInfoContainer info = handler.getDocumentInfo(emailFile);
-			
 			// Iterate over the attachments collection
-			for(AttachmentBase attachment : info.getAttachments())
-			{
-			    System.out.println("Attach name: " + attachment.getName() + ", size: " + attachment.getFileType());
-			 
-			    // Get attachment document html representation
-			    List<PageImage> pages = handler.getPages(attachment);
-			    for(PageImage page : pages)
-			    {
-			        System.out.println("	Page: " + page.getPageNumber());
-			        Utilities.saveAsImage(page.getPageNumber() + "_" + attachment.getName(), "png", page.getStream());
-			    }
+			for (AttachmentBase attachment : info.getAttachments()) {
+
+				List<PageImage> pages = handler.getPages(attachment);
+				for (PageImage page : pages) {
+					Utilities.saveAsImage(page.getPageNumber() + "_" + attachment.getName(),"png", page.getStream());
+				}
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
@@ -807,40 +801,31 @@ public class ViewGenerator {
 	 */
 	public static void renderDocumentAsHtmlFromEmailAttachment(String emailFile) {
 		// ExStart:GetHtmlRepresentationOfTheAttachment
-		
+
 		try {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig viewerConfig = Utilities.getConfiguration();
+
+			// Init viewer html handler
+			ViewerHtmlHandler handler = new ViewerHtmlHandler(viewerConfig);
+
+			// Clear files from cache
+			//handler.clearCache();
 			
 			// Setup html conversion options
 			HtmlOptions htmlOptions = new HtmlOptions();
 			htmlOptions.setResourcesEmbedded(false);
-			  
-			// Init viewer html handler
-			ViewerHtmlHandler handler = new ViewerHtmlHandler(viewerConfig);
-			
-			//Clear files from cache
-			handler.clearCache();
 			
 			DocumentInfoContainer info = handler.getDocumentInfo(emailFile);
-			
 			// Iterate over the attachments collection
 			for(AttachmentBase attachment : info.getAttachments())
 			{
-			    System.out.println("Attach name: " + attachment.getName() + ", size: " + attachment.getFileType());
-			 
-			    // Get attachment document html representation
-			    List<PageHtml> pages = handler.getPages(attachment, htmlOptions);
-			    for(PageHtml page : pages)
-			    {
-			        System.out.println("	Page: " + page.getPageNumber() + ", size: "+ page.getHtmlContent().length());
-			        for(HtmlResource htmlResource : page.getHtmlResources())
-			        {
-			        	InputStream resourceStream = handler.getResource(attachment, htmlResource);
-			        	Utilities.saveAsHtml(page.getPageNumber() + "_" + attachment.getName(), page.getHtmlContent());
-			            System.out.println("	Resource: " + htmlResource.getResourceName());
-			        }
-			    }
+		            
+		            List<PageHtml> pages = handler.getPages(attachment, htmlOptions);
+		            for(PageHtml page : pages)
+		            {
+		            	Utilities.saveAsHtml(page.getPageNumber() + "_" + attachment.getName(), page.getHtmlContent());
+		            }
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
