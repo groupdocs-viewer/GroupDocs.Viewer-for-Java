@@ -5861,9 +5861,7 @@ console.log(1113, oldWidth);
         triggerImageLoadedEvent: function (pageIndex) {
             if ($.browser.msie) {
                 if (!this.pages()[pageIndex - 1].visible()) {
-                    $("img#img-" + pageIndex).load(function () {
-                        $(this).trigger("onPageImageLoaded");
-                    });
+                    $("img#img-" + pageIndex).trigger("onPageImageLoaded");
                 }
             }
         },
