@@ -4,14 +4,14 @@
     <title>GroupDocs.Viewer for Java</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto+Condensed:400,700">
     <link rel='stylesheet' href='style.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
@@ -55,9 +55,9 @@
             <div ng-controller="PagesController">
                 <md-card ng-repeat="item in pages">
                     <a name="page-view-{{ item.number }}"></a>
-                    <iframe ng-src="{{ createPageUrl(selectedFile, item.number) }}"
-                            width="100%"
-                            frameborder="0"></iframe>
+                    <iframe ng-src="{{ createPageUrl(item.number) }}"
+                            onload="iframe_auto_height(this)"
+                    ></iframe>
                 </md-card>
             </div>
         </md-content>
@@ -67,7 +67,7 @@
                     <md-content role="navigation">
                         <div ng-controller="ThumbnailsController">
                             <md-card ng-repeat="item in pages">
-                                <img ng-src="{{ createThumbnailUrl(selectedFile, item.number) }}"
+                                <img ng-src="{{ createThumbnailUrl(item.number) }}"
                                      ng-click="onThumbnailClick($event, item)"
                                      class="md-card-image page-thumbnail"/>
                             </md-card>
