@@ -143,9 +143,19 @@ public class AzureInputDataHandler implements IInputDataHandler {
     }
 
 	@Override
-	public void saveDocument(CachedDocumentDescription arg0, InputStream arg1) throws Exception {
+	public void saveDocument(CachedDocumentDescription arg0, InputStream arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void addFile(String arg0, InputStream arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<FileDescription> getEntities(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 //ExEnd: AzureInputDataHandler

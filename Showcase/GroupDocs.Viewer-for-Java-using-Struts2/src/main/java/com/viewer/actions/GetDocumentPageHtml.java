@@ -51,7 +51,7 @@ public class GetDocumentPageHtml {
 
         HtmlOptions htmlOptions = new HtmlOptions();
         htmlOptions.setPageNumber(parameters.getPageIndex() + 1);
-        htmlOptions.setCountPagesToConvert(1);
+        htmlOptions.setCountPagesToRender(1);
         htmlOptions.setResourcesEmbedded(false);
         htmlOptions.setHtmlResourcePrefix(
                 "/GetResourceForHtml?documentPath=" + parameters.getPath() + "&pageNumber={page-number}&resourceName=");

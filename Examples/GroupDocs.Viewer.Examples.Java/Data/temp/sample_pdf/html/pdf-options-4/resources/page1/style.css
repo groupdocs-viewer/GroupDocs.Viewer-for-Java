@@ -1,0 +1,145 @@
+sup {
+	position: relative;
+	top: -0.4em;
+	vertical-align: baseline;
+}
+sub {
+	position: relative;
+	top: 0.4em;
+	vertical-align: baseline;
+}
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+@media screen and (min-device-pixel-ratio:0), (-webkit-min-device-pixel-ratio:0), (min--moz-device-pixel-ratio: 0) {.pg1-5b86kl1f-view{ font-size:10em; transform:scale(0.1); -moz-transform:scale(0.1); -webkit-transform:scale(0.1); -moz-transform-origin:top left; -webkit-transform-origin:top left; } }
+.layer { }.ie { font-size: 1pt; }
+.ie body { font-size: 12em; }
+.pg1-5b86kl1f-01 {
+	position: absolute;
+	white-space: nowrap;
+}
+.pg1-5b86kl1f-02 {
+	height: 66em;
+	width: 51em;
+	margin: 0em;
+	line-height: 0.0em;
+	border-style: none;
+	font-size: 1em;
+	display: block;
+}
+
+@supports(-ms-ime-align:auto) { .pg1-5b86kl1f-02 {width: auto; overflow: hidden;}}
+.pg1-5b86kl1f-03 {
+	position: relative;
+}
+.pg1-5b86kl1f-04 {
+	position: absolute;
+	pointer-events: none;
+	width: 100%;
+	clip: rect(3.920171em,48.81703em,56.24167em,3.719867em);
+}
+.pg1-5b86kl1f-05 {
+	position: relative;
+	width: 51em;
+}
+.pg1-5b86kl1f-06 {
+	height: 6.6em;
+}
+.ie .pg1-5b86kl1f-06 {
+	height: 66em;
+}
+.pg1-5b86kl1f-07 {
+	-moz-transform: scale(1,1.001937);
+	-webkit-transform: scale(1,1.001937);
+	transform: scale(1,1.001937);
+	-o-transform: scale(1,1.001937);
+	-ms-transform: matrix(1,0,0,1.001937,0,-1.112046);
+}
+@font-face {
+	font-family:"IDTMWF+Helvetica";
+	src:url("D:\GitRepos\GroupDocs.Viewer-for-Java\Examples\GroupDocs.Viewer.Examples.Java\Data\temp\sample_pdf\html\pdf-options-4\resources\page1\36a60b89-0000-0000-0000-000000000000.woff") format("woff");
+}
+.pg1-5b86kl1f-08 {
+	line-height: 1.252304em;
+	font-size: 0.75em;
+	font-family: "IDTMWF+Helvetica";
+	color: #000000;
+}
+.pg1-5b86kl1f-09 {
+	-moz-transform: scale(1,1.001937);
+	-webkit-transform: scale(1,1.001937);
+	transform: scale(1,1.001937);
+	-o-transform: scale(1,1.001937);
+	-ms-transform: matrix(1,0,0,1.001937,0,-1.1);
+}
+.pg1-5b86kl1f-10 {
+	-moz-transform: scale(1,1.001937);
+	-webkit-transform: scale(1,1.001937);
+	transform: scale(1,1.001937);
+	-o-transform: scale(1,1.001937);
+	-ms-transform: matrix(1,0,0,1.001937,0,-1.128214);
+}
+@font-face {
+	font-family:"GSOORI+Helvetica-Bold";
+	src:url("D:\GitRepos\GroupDocs.Viewer-for-Java\Examples\GroupDocs.Viewer.Examples.Java\Data\temp\sample_pdf\html\pdf-options-4\resources\page1\c2485609-0000-0000-0000-000000000000.woff") format("woff");
+}
+.pg1-5b86kl1f-11 {
+	line-height: 1.270512em;
+	font-size: 0.75em;
+	font-family: "GSOORI+Helvetica-Bold";
+	color: #9A0000;
+}
+.pg1-5b86kl1f-12 {
+	letter-spacing: -0.01em;
+}
+.pg1-5b86kl1f-13 {
+	letter-spacing: 0em;
+}
+.pg1-5b86kl1f-14 {
+	-moz-transform: scale(1,1.001934);
+	-webkit-transform: scale(1,1.001934);
+	transform: scale(1,1.001934);
+	-o-transform: scale(1,1.001934);
+	-ms-transform: matrix(1,0,0,1.001934,0,-1.05274);
+}
+.pg1-5b86kl1f-15 {
+	line-height: 1.253262em;
+	font-size: 0.71em;
+	font-family: "IDTMWF+Helvetica";
+	color: #9A0000;
+}
+.pg1-5b86kl1f-16 {
+	-moz-transform: scale(1,1.001914);
+	-webkit-transform: scale(1,1.001914);
+	transform: scale(1,1.001914);
+	-o-transform: scale(1,1.001914);
+	-ms-transform: matrix(1,0,0,1.001914,0,-1.919506);
+}
+@font-face {
+	font-family:"OHNVSL+Times-Roman";
+	src:url("D:\GitRepos\GroupDocs.Viewer-for-Java\Examples\GroupDocs.Viewer.Examples.Java\Data\temp\sample_pdf\html\pdf-options-4\resources\page1\d6a9efe5-0000-0000-0000-000000000000.woff") format("woff");
+}
+.pg1-5b86kl1f-17 {
+	line-height: 1.211809em;
+	font-size: 1.33em;
+	font-family: "OHNVSL+Times-Roman";
+	color: #000000;
+}
+.pg1-5b86kl1f-18 {
+	line-height: 1.211809em;
+	font-size: 1.33em;
+	font-family: "OHNVSL+Times-Roman";
+	color: #FF9A00;
+}
+.pg1-5b86kl1f-19 {
+	-moz-transform: scale(1,1.001914);
+	-webkit-transform: scale(1,1.001914);
+	transform: scale(1,1.001914);
+	-o-transform: scale(1,1.001914);
+	-ms-transform: matrix(1,0,0,1.001914,0,-1.482762);
+}
+.pg1-5b86kl1f-20 {
+	line-height: 1.248116em;
+	font-size: 1em;
+	font-family: "IDTMWF+Helvetica";
+	color: #000000;
+}

@@ -1,46 +1,57 @@
-'use strict';
+(function () {
+    'use strict';
 
-var ngApp = angular.module('GroupDocsViewer', ['ngMaterial', 'ngResource']);
+    var VIEWER_DEFAULT_FILE = 'candy.pdf';
 
-ngApp.factory('FilesFactory', function ($resource) {
-    return $resource('/files', {}, {
-        query: {
-            method: 'GET',
-            isArray: true
-        }
-    });
-});
+    angular
+        .module('GroupDocsViewer', ['ngMaterial', 'ngResource'])
+        .factory('FilesFactory', FilesFactory)
+        .factory('DocumentInfoFactory', DocumentInfoFactory)
+        .factory('DocumentPagesFactory', DocumentPagesFactory)
+        .controller('ToolbarController', ToolbarController)
+        .controller('ThumbnailsController', ThumbnailsController)
+        .controller('PagesController', PagesController)
+        .controller('AvailableFilesController', AvailableFilesController)
+    ;
 
-ngApp.factory('DocumentInfoFactory', function ($resource) {
-    return $resource('/document/info?file=:filename', {}, {
-        get: {
-            method: 'GET'
-        }
-    });
-});
-
-ngApp.factory('DocumentPagesFactory', function ($resource) {
-    return $resource('/document/pages?file=:filename', {}, {
-        query: {
-            method: 'GET',
-            isArray: true
-        }
-    });
-});
-
-ngApp.controller('ToolbarController', function ToolbarController($rootScope, $scope, $mdSidenav) {
-    $scope.toggleLeft = function () {
-        $mdSidenav('left').toggle().then(function () {
-            $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+    function FilesFactory($resource) {
+        return $resource('/files', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
         });
-    };
+    }
 
-    $scope.$on('selected-file-changed', function ($event, selectedFile) {
-        $scope.selectedFile = selectedFile;
-    });
-});
+    function DocumentInfoFactory($resource) {
+        return $resource('/document/info?file=:filename', {}, {
+            get: {
+                method: 'GET'
+            }
+        });
+    }
 
-ngApp.controller('ThumbnailsController',
+    function DocumentPagesFactory($resource) {
+        return $resource('/document/pages?file=:filename', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
+
+    function ToolbarController($rootScope, $scope, $mdSidenav) {
+        $scope.toggleLeft = function () {
+            $mdSidenav('left').toggle().then(function () {
+                $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+            });
+        };
+
+        $scope.$on('selected-file-changed', function ($event, selectedFile) {
+            $scope.selectedFile = selectedFile;
+        });
+    }
+
     function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory) {
 
         $scope.isLeftSidenavVislble = false;
@@ -63,17 +74,15 @@ ngApp.controller('ThumbnailsController',
             });
         };
 
-        $scope.createThumbnailUrl = function (selectedFile, itemNumber) {
+        $scope.createThumbnailUrl = function (pageNumber) {
             if ($scope.isLeftSidenavVislble) {
-                return $sce.trustAsResourceUrl('/page/image?width=300&file=' + selectedFile + '&page=' + itemNumber);
+                return $sce.trustAsResourceUrl('/page/image?width=300&file=' + $scope.selectedFile + '&page=' + pageNumber);
             }
         };
 
     }
-);
 
-ngApp.controller('PagesController',
-    function ThumbnailsController($scope, $sce, $document, DocumentPagesFactory) {
+    function PagesController($scope, $sce, DocumentPagesFactory) {
         $scope.$on('selected-file-changed', function (event, selectedFile) {
             $scope.selectedFile = selectedFile;
             $scope.pages = DocumentPagesFactory.query({
@@ -81,39 +90,42 @@ ngApp.controller('PagesController',
             });
         });
 
-        $scope.createPageUrl = function (selectedFile, itemNumber) {
-            return $sce.trustAsResourceUrl('/page/html?file=' + selectedFile + '&page=' + itemNumber);
-        };
-
-        $scope.onLoad = function () {
+        $scope.createPageUrl = function (pageNumber) {
+            return $sce.trustAsResourceUrl('/page/html?file=' + $scope.selectedFile + '&page=' + pageNumber);
         };
     }
-);
 
-ngApp.controller('AvailableFilesController', function AvailableFilesController($rootScope, $scope, FilesFactory) {
-    $scope.onOpen = function () {
-        $scope.list = FilesFactory.query();
-    };
+    function AvailableFilesController($rootScope, $scope, FilesFactory) {
+        $scope.onOpen = function () {
+            $scope.list = FilesFactory.query();
+        };
 
-    $scope.onChange = function ($event) {
-        $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
-    };
-});
+        $scope.onChange = function ($event) {
+            $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
+        };
 
-setInterval(function () {
-    var list = document.getElementsByTagName('iframe');
-    for (var i = 0; i < list.length; i++) {
-        var iframe = list[i],
-            body = iframe.contentWindow.document.body,
-            html = iframe.contentWindow.document.documentElement,
-            height = Math.max(
-                body.scrollHeight,
-                body.offsetHeight,
-                html.clientHeight,
-                html.scrollHeight,
-                html.offsetHeight
-            );
+        setTimeout(function () {
+            if (VIEWER_DEFAULT_FILE) {
+                $scope.list = [VIEWER_DEFAULT_FILE];
+                $scope.selectedFile = $scope.list[0];
+                $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
+            }
+        }, 1000);
 
-        iframe.style.height = height + 'px';
     }
-}, 1572);
+
+})();
+
+function iframe_auto_height(iframe) {
+    var body = iframe.contentWindow.document.body,
+        html = iframe.contentWindow.document.documentElement,
+        height = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        );
+
+    iframe.parentNode.style.height = height + 'px';
+}

@@ -29,9 +29,9 @@ public class PageResourceServlet
 
         HtmlOptions o = new HtmlOptions();
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        o.setPageNumbersToConvert(Arrays.asList(pageNumber));
+        o.setPageNumbersToRender(Arrays.asList(pageNumber));
         o.setPageNumber(pageNumber);
-        o.setCountPagesToConvert(1);
+        o.setCountPagesToRender(1);
 
         String filename = request.getParameter("file");
         String resourceName = request.getParameter("resource");

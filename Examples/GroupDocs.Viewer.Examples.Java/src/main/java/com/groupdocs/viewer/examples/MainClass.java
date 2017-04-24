@@ -26,20 +26,21 @@ import com.groupdocs.viewer.handler.ViewerImageHandler;
 public class MainClass {
 	/**
 	 * @param args
+	 * @throws Throwable 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		
 		/*
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		//Utilities.applyLicenseFromFile();
+		Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
-		//ViewGenerator.renderDocumentInformationByGuid("bf9c9ae9-3cc9-4e21-956f-34ecbd96494d.docx");
+		//ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
 		
 		////Get document information by Stream
-		//ViewGenerator.renderDocumentInformationByStream("demo.docx");
+		//ViewGenerator.renderDocumentInformationByStream("sample.xlsx");
 		
 		////Get document information by Stream and Document Name
 		//ViewGenerator.renderDocumentInformationByStreamAndDocumentName("demo.docx");
@@ -51,10 +52,22 @@ public class MainClass {
 		//ViewGenerator.renderDocumentInformationByUriWithWindowsAuthenticationCredential("http://calibre-ebook.com/downloads/demos/demo.docx", "", "");
 		
 		////Get attachment document information by Email document
-		//ViewGenerator.renderAttachmentsInformation("DEPOSIT.eml");
+		//ViewGenerator.renderAttachmentsInformation("sample.xlsx");
 		
 		////Render email attahcment document as Html 
 		//ViewGenerator.renderDocumentAsHtmlFromEmailAttachment("DEPOSIT.eml"); 
+		
+		//Multiple pages per sheet for Excel files in Html mode
+		//ViewGenerator.multiplePagesPerSheetForExcelHtmlMode("sample.xlsx");
+		
+		//Multiple pages per sheet for Excel files in Image mode
+		//ViewGenerator.multiplePagesPerSheetForExcelImageMode("sample.xlsx");
+		
+		//Preventing glyphs grouping when rendering Pdf to Html
+		//ViewGenerator.preventGlyphs("sample.pdf");
+		
+		//render content with RenderLayersSeparately enabled
+		ViewGenerator.renderContentWithRenderLayersSeparately("sample.pdf");
 		
 		////Render email attahcment document as Image
 		//ViewGenerator.renderDocumentAsImageFromEmailAttachment("Top 400 Law Firms.msg");
@@ -85,7 +98,7 @@ public class MainClass {
 		//ViewGenerator.renderDiagramAsImageWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
 		
 		//// Render document as image
-		//ViewGenerator.renderDocumentAsImage("doc.pptx");
+		//ViewGenerator.renderDocumentAsImage("197Seiten.docx");
 		
 		//// Render n consecutive pages as image
 		//ViewGenerator.renderDocumentAsImage("word.docx", 1, 1);
@@ -102,7 +115,7 @@ public class MainClass {
 		//ViewGenerator.renderDocumentAsImage("word.docx", "test watermark");
 		 
 		// Render document as html
-		//ViewGenerator.renderDocumentAsHtml("f1.pdf");
+		//ViewGenerator.renderDocumentAsHtml("Tutorials_and_Practice_Classes.pdf");
 		 
 		//// Get html resource stream
 		//ViewGenerator.getDocumentHtmlResourceStream("utf.docx");

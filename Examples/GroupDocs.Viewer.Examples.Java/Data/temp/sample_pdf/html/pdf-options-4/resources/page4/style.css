@@ -1,0 +1,62 @@
+sup {
+	position: relative;
+	top: -0.4em;
+	vertical-align: baseline;
+}
+sub {
+	position: relative;
+	top: 0.4em;
+	vertical-align: baseline;
+}
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+@media screen and (min-device-pixel-ratio:0), (-webkit-min-device-pixel-ratio:0), (min--moz-device-pixel-ratio: 0) {.pg4-rLxxukSC-view{ font-size:10em; transform:scale(0.1); -moz-transform:scale(0.1); -webkit-transform:scale(0.1); -moz-transform-origin:top left; -webkit-transform-origin:top left; } }
+.layer { }.ie { font-size: 1pt; }
+.ie body { font-size: 12em; }
+.pg4-rLxxukSC-01 {
+	position: absolute;
+	white-space: nowrap;
+}
+.pg4-rLxxukSC-02 {
+	height: 66em;
+	width: 51em;
+	margin: 0em;
+	line-height: 0.0em;
+	border-style: none;
+	font-size: 1em;
+	display: block;
+}
+
+@supports(-ms-ime-align:auto) { .pg4-rLxxukSC-02 {width: auto; overflow: hidden;}}
+.pg4-rLxxukSC-03 {
+	position: relative;
+}
+.pg4-rLxxukSC-04 {
+	position: absolute;
+	pointer-events: none;
+	width: 100%;
+	clip: rect(2.055033em,47.86766em,52.76894em,3.072503em);
+}
+.pg4-rLxxukSC-05 {
+	position: relative;
+	width: 51em;
+}
+.pg4-rLxxukSC-06 {
+	height: 6.6em;
+}
+.ie .pg4-rLxxukSC-06 {
+	height: 66em;
+}
+@font-face {
+	font-family:"BKSUJS+Times-Roman";
+	src:url("D:\GitRepos\GroupDocs.Viewer-for-Java\Examples\GroupDocs.Viewer.Examples.Java\Data\temp\sample_pdf\html\pdf-options-4\resources\page4\7006105f-0000-0000-0000-000000000000.woff") format("woff");
+}
+.pg4-rLxxukSC-07 {
+	line-height: 1.21707em;
+	font-size: 1em;
+	font-family: "BKSUJS+Times-Roman", "Times New Roman";
+	color: #000000;
+}
+.pg4-rLxxukSC-08 {
+	letter-spacing: -0.01em;
+}

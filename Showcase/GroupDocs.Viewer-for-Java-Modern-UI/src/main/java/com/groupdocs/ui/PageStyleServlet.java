@@ -32,9 +32,9 @@ public class PageStyleServlet
 
         HtmlOptions o = new HtmlOptions();
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        o.setPageNumbersToConvert(Arrays.asList(pageNumber));
+        o.setPageNumbersToRender(Arrays.asList(pageNumber));
         o.setPageNumber(pageNumber);
-        o.setCountPagesToConvert(1);
+        o.setCountPagesToRender(1);
 
         List<PageHtml> list = Utils.loadPageHtmlList(handler, filename, o);
         list.stream().filter(pageHtml -> pageHtml.getPageNumber() == pageNumber).findAny().ifPresent(pageHtml -> {

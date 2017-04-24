@@ -25,8 +25,8 @@ public class Utilities {
 	// ExStart:CommonProperties
 	
 	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
-	public static final Path tempPath = FileSystems.getDefault().getPath(System.getProperty("java.io.tmpdir"));
-	public static final Path licensePath = getProjectBaseDir().resolve("E:/GroupDocs.Total.Java.lic");
+	public static final Path tempPath = getProjectBaseDir().resolve("Data/temp");
+	public static final Path licensePath = getProjectBaseDir().resolve("D:/GroupDocs.Total.Java.lic");
 	public static final List<String> customFontDirs = Arrays.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
 	//Generated html files will be saved in Html folder with name starting with output_
 	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
