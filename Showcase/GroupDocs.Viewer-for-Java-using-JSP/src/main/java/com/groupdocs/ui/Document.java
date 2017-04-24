@@ -18,9 +18,9 @@ public class Document {
         License license = new License();
         if (Files.isReadable(FileSystems.getDefault().getPath(Utils.getProjectProperty("license.path")))) {
             license.setLicense(Utils.getProjectProperty("license.path"));
-            if (!License.isValidLicense()) {
-                throw new RuntimeException("License is not valid");
-            }
+//            if (!License.isValidLicense()) {
+//                throw new RuntimeException("License is not valid");
+//            }
         }
 
         ViewerConfig config = new ViewerConfig();
@@ -42,7 +42,7 @@ public class Document {
 
     public String getHtmlContent() {
         HtmlOptions options = new HtmlOptions();
-        options.setResourcesEmbedded(true);
+        options.setResourcesEmbedded(false);
         options.setPageNumber(this.pageNumber);
 
         List<PageHtml> pages;

@@ -53,7 +53,7 @@ public class Utils {
         }
     }
 
-    public synchronized static List<PageHtml> loadPageHtmlList(ViewerHtmlHandler handler, String filename, HtmlOptions options) {
+    public static List<PageHtml> loadPageHtmlList(ViewerHtmlHandler handler, String filename, HtmlOptions options) {
         try {
             return handler.getPages(filename, options);
         } catch (Exception x) {
@@ -65,9 +65,7 @@ public class Utils {
         License l = new License();
         if (Files.exists(FileSystems.getDefault().getPath(getProjectProperty("license.path")))) {
             l.setLicense(getProjectProperty("license.path"));
-            if (!License.isValidLicense()) {
-                throw new RuntimeException("Invalid license found.");
-            }
+            
         }
     }
 

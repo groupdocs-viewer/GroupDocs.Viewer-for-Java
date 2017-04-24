@@ -31,7 +31,7 @@ public class ViewDocument {
     List<String> temp_cssList;
     private InputStream result;
 
-    public String execute() throws Exception {
+    public String execute() throws Throwable {
 
         HttpServletRequest request = ServletActionContext.getRequest();
         ViewDocumentParameters params = new ObjectMapper().readValue(request.getInputStream(), ViewDocumentParameters.class);
@@ -64,7 +64,7 @@ public class ViewDocument {
             if (!DotNetToJavaStringHelper.isNullOrEmpty(params.getPreloadPagesCount().toString())
                     && params.getPreloadPagesCount().intValue() > 0) {
                 htmlOptions.setPageNumber(1);
-                htmlOptions.setCountPagesToConvert(params.getPreloadPagesCount().intValue());
+                htmlOptions.setCountPagesToRender(params.getPreloadPagesCount().intValue());
             }
 
             String[] cssList = null;
@@ -216,7 +216,7 @@ public class ViewDocument {
                 false, false);
     }
 
-    private List<PageHtml> GetHtmlPages(String filePath, HtmlOptions htmlOptions) throws ServletException, IOException {
+    private List<PageHtml> GetHtmlPages(String filePath, HtmlOptions htmlOptions) throws Throwable {
 
         List<PageHtml> htmlPages = null;
         try {

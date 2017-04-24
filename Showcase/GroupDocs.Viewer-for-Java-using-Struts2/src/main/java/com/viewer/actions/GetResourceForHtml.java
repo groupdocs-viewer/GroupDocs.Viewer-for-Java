@@ -16,7 +16,7 @@ public class GetResourceForHtml {
     private InputStream result;
     private String contentType;
 
-    public String execute() {
+    public String execute() throws Throwable {
 
         HttpServletRequest request = ServletActionContext.getRequest();
 

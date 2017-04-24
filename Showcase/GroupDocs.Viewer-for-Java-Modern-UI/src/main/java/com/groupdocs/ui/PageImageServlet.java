@@ -30,9 +30,9 @@ public class PageImageServlet
 
         ImageOptions o = new ImageOptions();
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        o.setPageNumbersToConvert(Arrays.asList(pageNumber));
+        o.setPageNumbersToRender(Arrays.asList(pageNumber));
         o.setPageNumber(pageNumber);
-        o.setCountPagesToConvert(1);
+        o.setCountPagesToRender(1);
         if (request.getParameterMap().containsKey("width")) {
             o.setWidth(Integer.valueOf(request.getParameter("width")));
         }

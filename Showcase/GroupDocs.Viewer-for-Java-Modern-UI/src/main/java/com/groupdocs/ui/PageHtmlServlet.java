@@ -1,6 +1,8 @@
 package com.groupdocs.ui;
 
 import com.groupdocs.viewer.converter.options.HtmlOptions;
+import com.groupdocs.viewer.domain.Watermark;
+import com.groupdocs.viewer.domain.WatermarkPosition;
 import com.groupdocs.viewer.domain.html.PageHtml;
 import com.groupdocs.viewer.handler.ViewerHtmlHandler;
 
@@ -9,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.awt.Color;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Arrays;
@@ -31,10 +35,19 @@ public class PageHtmlServlet
         ViewerHtmlHandler handler = Utils.createViewerHtmlHandler();
 
         HtmlOptions o = new HtmlOptions();
+    	Watermark watermark = new Watermark("atirtahir");
+		//Set color for watermark with values Red, Green, Blue and Alpha(Transparency) 
+		Color watermarkColor = new Color(200, 85, 75, 100);
+		watermark.setColor(watermarkColor);
+		watermark.setPosition(WatermarkPosition.BottomRight);
+		watermark.setWidth(50f); 
+		
+		o.setWatermark(watermark);
+
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        o.setPageNumbersToConvert(Arrays.asList(pageNumber));
+        o.setPageNumbersToRender(Arrays.asList(pageNumber));
         o.setPageNumber(pageNumber);
-        o.setCountPagesToConvert(1);
+        o.setCountPagesToRender(1);
         o.setHtmlResourcePrefix(String.format(
                 "/page/resource?file=%s&page=%d&resource=",
                 filename,

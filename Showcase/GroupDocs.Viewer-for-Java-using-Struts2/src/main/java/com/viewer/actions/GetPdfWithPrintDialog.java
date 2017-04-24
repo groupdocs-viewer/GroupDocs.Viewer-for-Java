@@ -13,7 +13,7 @@ public class GetPdfWithPrintDialog {
 
     private InputStream result;
 
-    public String execute() {
+    public String execute() throws Throwable {
 
         HttpServletRequest request = ServletActionContext.getRequest();
 

@@ -24,7 +24,7 @@ import java.util.Properties;
 public class ViewerUtils {
 
     public static final String STORAGE_PATH = getProjectBaseDir().resolve("src/main/webapp/storage").toString();
-    public static final String TEMP_PATH = System.getProperty("java.io.tmpdir");
+    public static final String TEMP_PATH = getProjectBaseDir().resolve("src/main/webapp/storage/temp").toString();
     public static final Path LICENSE_PATH = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
     private static ViewerHtmlHandler _htmlHandler;
     private static ViewerImageHandler _imageHandler;

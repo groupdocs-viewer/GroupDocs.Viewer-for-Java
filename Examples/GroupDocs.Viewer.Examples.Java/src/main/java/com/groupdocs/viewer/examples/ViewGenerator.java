@@ -2,6 +2,7 @@ package com.groupdocs.viewer.examples;
 
 import java.awt.Color;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
@@ -42,6 +43,7 @@ public class ViewGenerator {
 	 * 
 	 * @param emailFile
 	 *            name of the source email document
+	 * @throws Throwable 
 	 */
 	public static void renderAttachmentsInformation(String emailFile){		
 		try{
@@ -80,6 +82,7 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Fetches complete information of the source document by guid
@@ -386,7 +389,7 @@ public class ViewGenerator {
 			// from pageNumber
 			ImageOptions options = new ImageOptions();
 			options.setPageNumber(pageNumber);
-			options.setCountPagesToConvert(countPagesToConvert);
+			options.setCountPagesToRender(countPagesToConvert);
 
 			// Get pages
 			List<PageImage> pages = imageHandler.getPages(guid, options);
@@ -421,7 +424,7 @@ public class ViewGenerator {
 
 			// Options to convert 1, 3, 5, 6, 8 page numbers
 			ImageOptions options = new ImageOptions();
-			options.setPageNumbersToConvert(listPagesToConvert);
+			options.setPageNumbersToRender(listPagesToConvert);
 
 			List<PageImage> pages = imageHandler.getPages(guid, options);
 
@@ -545,6 +548,7 @@ public class ViewGenerator {
 			List<PageImage> pages = imageHandler.getPages(guid, imageOptions);
 			int pageNumberCount = 1;
 			for (PageImage page : pages) {
+				System.out.println("\t\tPage number: " + page.getPageNumber());
 				Utilities.saveAsImage(pageNumberCount + "_" + fileName, "png", page.getStream());
 				pageNumberCount++;
 			}
@@ -794,6 +798,78 @@ public class ViewGenerator {
 	}
 	
 	/**
+	 * Preventing glyphs grouping when rendering Pdf to Html
+	 * @throws Throwable 
+	 */
+	public static void preventGlyphs(String fileName) throws Throwable{
+		//ExStart:preventGlyphs
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = Utilities.getConfiguration();
+		// Create html handler
+        ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+		String guid = fileName;
+		// Set pdf options to render content without glyphs grouping
+		HtmlOptions options = new HtmlOptions();
+		options.setResourcesEmbedded(true);
+		options.getPdfOptions().setPreventGlyphsGrouping(true); // Default value is false
+		// Get pages
+		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+		for (PageHtml page : pages) {
+			Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+		}  
+		//ExEnd:preventGlyphs
+	}
+
+	/**
+	 * Multiple pages per sheet for Excel files in Html mode
+	 * @throws Throwable 
+	 */
+	public static void multiplePagesPerSheetForExcelHtmlMode(String fileName) throws Throwable{
+		//ExStart:multiplePagesPerSheetForExcel
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = Utilities.getConfiguration();
+		// Create html handler
+	    ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+		String guid = fileName;
+		// Set OnePagePerSheet = false to render multiple pages per sheet
+		HtmlOptions htmlOptions = new HtmlOptions();
+		htmlOptions.getCellsOptions().setOnePagePerSheet(false);
+		// Set count rows to render into one page. Default value is 50.
+		htmlOptions.getCellsOptions().setCountRowsPerPage(50);
+		 
+		// Get pages
+		List<PageHtml> pages = htmlHandler.getPages(guid, htmlOptions);
+		for (PageHtml page : pages) {
+			Utilities.saveAsHtml(page.getPageNumber() + "_" + fileName, page.getHtmlContent());
+		}
+		//System.out.println("Pages count: " + pages.size());
+		//ExEnd:multiplePagesPerSheetForExcel
+	}
+	/**
+	 * Multiple pages per sheet for Excel files in Image mode
+	 * @param fileName
+	 * @throws Throwable
+	 */
+	public static void multiplePagesPerSheetForExcelImageMode(String fileName) throws Throwable{
+		//ExStart:multiplePagesPerSheetForExcelImageMode
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = Utilities.getConfiguration();
+		// Create html handler
+		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+		String guid = fileName;
+		// Set OnePagePerSheet = false to render multiple pages per sheet. By default OnePagePerSheet = true.
+		ImageOptions imageOptions = new ImageOptions();
+		imageOptions.getCellsOptions().setOnePagePerSheet(false);
+		 
+		//Get pages
+		List<PageImage> pages = imageHandler.getPages(guid, imageOptions);
+		for (PageImage page : pages) {
+			Utilities.saveAsImage(page.getPageNumber() + "_" + fileName, "png", page.getStream());
+		}
+		//ExEnd:multiplePagesPerSheetForExcelImageMode
+	}
+	
+	/**
 	 * Gets HTML representation of the attached documents with an email file
 	 * 
 	 * @param emailFile
@@ -814,7 +890,7 @@ public class ViewGenerator {
 			
 			// Setup html conversion options
 			HtmlOptions htmlOptions = new HtmlOptions();
-			htmlOptions.setResourcesEmbedded(false);
+			htmlOptions.setResourcesEmbedded(true);
 			
 			DocumentInfoContainer info = handler.getDocumentInfo(emailFile);
 			// Iterate over the attachments collection
@@ -857,7 +933,7 @@ public class ViewGenerator {
 			// from pageNumber
 			HtmlOptions options = new HtmlOptions();
 			options.setPageNumber(pageNumber);
-			options.setCountPagesToConvert(countPagesToConvert);
+			options.setCountPagesToRender(countPagesToConvert);
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
 			for (PageHtml page : pages) {
@@ -870,6 +946,31 @@ public class ViewGenerator {
 		// ExEnd:GetHtmlRepresentationOfNConsecutiveDocs
 	}
 
+	/**
+	 * render content with RenderLayersSeparately enabled
+	 * @throws Throwable 
+	 */
+	public static void renderContentWithRenderLayersSeparately(String fileName) throws Throwable	{
+		//ExStart:renderContentWithRenderLayersSeparately
+		// Setup GroupDocs.Viewer config
+		ViewerConfig config = Utilities.getConfiguration();
+		// Create html handler
+		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+		String guid = fileName;
+		// Set pdf options to render pdf layers into separate html elements
+		HtmlOptions options = new HtmlOptions();
+		options.getPdfOptions().setRenderLayersSeparately(true); // Default value is false
+		 
+		// Get pages
+		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+		 
+		for (PageHtml page : pages)
+		{
+		    System.out.println("Page number: " + page.getPageNumber());
+		    System.out.println("Html content: " + page.getHtmlContent());
+		} 
+		//ExEnd:renderContentWithRenderLayersSeparately
+	}
 	/**
 	 * Gets html representation of custom page numbers
 	 * 
@@ -889,7 +990,7 @@ public class ViewGenerator {
 
 			// Options to convert 1, 3, 5, 6, 8 page numbers
 			HtmlOptions options = new HtmlOptions();
-			options.setPageNumbersToConvert(listPagesToConvert);
+			options.setPageNumbersToRender(listPagesToConvert);
 
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
@@ -1963,7 +2064,7 @@ public class ViewGenerator {
 				System.out.println("Page number: " + page.getPageNumber());
 			  
 			   // Page Html stream
-			   InputStream HtmlContent = page.getStream();
+			   //InputStream HtmlContent = page.getStream();
 			}
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
