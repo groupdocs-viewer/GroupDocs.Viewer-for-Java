@@ -784,7 +784,6 @@ public class ViewGenerator {
 			HtmlOptions options = new HtmlOptions();
 			options.setResourcesEmbedded(true);
 			
-			
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
 			for (PageHtml page : pages) {
