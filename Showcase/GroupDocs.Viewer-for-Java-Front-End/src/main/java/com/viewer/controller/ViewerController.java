@@ -185,7 +185,7 @@ public class ViewerController {
 			if (!DotNetToJavaStringHelper.isNullOrEmpty(params.getPreloadPagesCount().toString())
 					&& params.getPreloadPagesCount().intValue() > 0) {
 				htmlOptions.setPageNumber(1);
-				htmlOptions.setCountPagesToConvert(params.getPreloadPagesCount().intValue());
+				htmlOptions.setCountPagesToRender(params.getPreloadPagesCount().intValue());
 			}
 
 			String[] cssList = null;
