@@ -34,7 +34,7 @@ public class MainClass {
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		Utilities.applyLicenseFromFile();
+		//Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
 		//ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
@@ -67,7 +67,7 @@ public class MainClass {
 		//ViewGenerator.preventGlyphs("sample.pdf");
 		
 		//render content with RenderLayersSeparately enabled
-		ViewGenerator.renderContentWithRenderLayersSeparately("sample.pdf");
+		//ViewGenerator.renderContentWithRenderLayersSeparately("sample.pdf");
 		
 		////Render email attahcment document as Image
 		//ViewGenerator.renderDocumentAsImageFromEmailAttachment("Top 400 Law Firms.msg");
@@ -98,7 +98,7 @@ public class MainClass {
 		//ViewGenerator.renderDiagramAsImageWithDefaultFont("sample.vsd", "tahoma"); - Not Working Correctly
 		
 		//// Render document as image
-		//ViewGenerator.renderDocumentAsImage("197Seiten.docx");
+		//ViewGenerator.renderDocumentAsImage("demo.docx");
 		
 		//// Render n consecutive pages as image
 		//ViewGenerator.renderDocumentAsImage("word.docx", 1, 1);
@@ -115,7 +115,7 @@ public class MainClass {
 		//ViewGenerator.renderDocumentAsImage("word.docx", "test watermark");
 		 
 		// Render document as html
-		//ViewGenerator.renderDocumentAsHtml("Tutorials_and_Practice_Classes.pdf");
+		//ViewGenerator.renderDocumentAsHtml("sample.pdf");
 		 
 		//// Get html resource stream
 		//ViewGenerator.getDocumentHtmlResourceStream("utf.docx");

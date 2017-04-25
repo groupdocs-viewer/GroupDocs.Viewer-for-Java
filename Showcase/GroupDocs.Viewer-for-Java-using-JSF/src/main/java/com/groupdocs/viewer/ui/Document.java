@@ -104,7 +104,7 @@ public class Document implements Serializable {
         return new DefaultStreamedContent(loader.getInputStream(), "application/octet-stream", loader.getGuid());
     }
 
-    public StreamedContent getPdf() {
+    public StreamedContent getPdf() throws Throwable {
         PdfFileOptions o = new PdfFileOptions();
         o.setGuid(loader.getGuid());
 

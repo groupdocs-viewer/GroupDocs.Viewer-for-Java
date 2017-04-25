@@ -36,7 +36,7 @@
         <dependency>
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
-            <version>3.2.2</version>
+            <version>17.2.0</version>
         </dependency>
 
         <!-- Required by some application servers like Jetty and Tomcat -->
