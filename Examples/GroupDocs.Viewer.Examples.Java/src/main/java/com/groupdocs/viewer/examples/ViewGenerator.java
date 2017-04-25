@@ -456,10 +456,10 @@ public class ViewGenerator {
 			String guid = fileName;
 
 			// Set rotation angle for page number 3
-			RotatePageOptions rotateOptions = new RotatePageOptions(guid, 3, rotationAngle);
+			RotatePageOptions rotateOptions = new RotatePageOptions(3, rotationAngle);
 
 			// Perform page rotation
-			imageHandler.rotatePage(rotateOptions);
+			imageHandler.rotatePage(guid, rotateOptions);
 
 			// Set image options to include Rotate transformations
 			ImageOptions imageOptions = new ImageOptions();
@@ -539,8 +539,8 @@ public class ViewGenerator {
 			String guid = fileName;
 
 			// Perform page reorder
-			ReorderPageOptions options = new ReorderPageOptions(guid, pageNumber, newPosition);
-			imageHandler.reorderPage(options);
+			ReorderPageOptions options = new ReorderPageOptions(pageNumber, newPosition);
+			imageHandler.reorderPage(guid, options);
 
 			ImageOptions imageOptions = new ImageOptions();
 			imageOptions.setTransformations(Transformation.Reorder);
@@ -729,15 +729,15 @@ public class ViewGenerator {
 			// Create image handler
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			String guid = fileName;
-
+			RotatePageOptions rotatePage = new RotatePageOptions(rotationPageNumber, rotationAngle);
 			// Rotate page
-			imageHandler.rotatePage(new RotatePageOptions(guid, rotationPageNumber, rotationAngle));
+			imageHandler.rotatePage(guid, rotatePage);
 
 			// Rotate second page 180 degrees
 			// imageHandler.rotatePage(new RotatePageOptions(guid, 2, 180));
-
+			ReorderPageOptions reorderPage = new ReorderPageOptions(reorderPageNumber, reorderNewPosition);
 			// Reorder pages
-			imageHandler.reorderPage(new ReorderPageOptions(guid, reorderPageNumber, reorderNewPosition));
+			imageHandler.reorderPage(guid, reorderPage);
 
 			// Set options to include rotate and reorder transformations
 			ImageOptions options = new ImageOptions();
@@ -1021,10 +1021,10 @@ public class ViewGenerator {
 			String guid = fileName;
 
 			// Set rotation angle 90 for page number 1
-			RotatePageOptions rotateOptions = new RotatePageOptions(guid, 3, rotationAngle);
+			RotatePageOptions rotateOptions = new RotatePageOptions(3, rotationAngle);
 
 			// Perform page rotation
-			htmlHandler.rotatePage(rotateOptions);
+			htmlHandler.rotatePage(guid, rotateOptions);
 			// Set html options to include rotate transformation
 			HtmlOptions options = new HtmlOptions();
 			options.setTransformations(Transformation.Rotate);
@@ -1068,8 +1068,8 @@ public class ViewGenerator {
 			String guid = fileName;
 
 			// Perform page reorder
-			ReorderPageOptions options = new ReorderPageOptions(guid, pageNumber, newPosition);
-			htmlHandler.reorderPage(options);
+			ReorderPageOptions options = new ReorderPageOptions(pageNumber, newPosition);
+			htmlHandler.reorderPage(guid, options);
 
 			// Set image options to include reorder transformations
 			HtmlOptions htmlOptions = new HtmlOptions();
@@ -1275,15 +1275,16 @@ public class ViewGenerator {
 			// Create html handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 			String guid = fileName;
-
+			RotatePageOptions rotatePage = new RotatePageOptions(rotationPageNumber, rotationAngle);
 			// Rotate page
-			htmlHandler.rotatePage(new RotatePageOptions(guid, rotationPageNumber, rotationAngle));
+			htmlHandler.rotatePage(guid, rotatePage);
 
+			RotatePageOptions rotatePageOp = new RotatePageOptions(2, 180);
 			// Rotate second page 180 degrees
-			htmlHandler.rotatePage(new RotatePageOptions(guid, 2, 180));
-
+			htmlHandler.rotatePage(guid, rotatePageOp);
+			ReorderPageOptions reorderPageOp = new ReorderPageOptions(reorderPageNumber, reorderNewPosition);
 			// Reorder pages
-			htmlHandler.reorderPage(new ReorderPageOptions(guid, reorderPageNumber, reorderNewPosition));
+			htmlHandler.reorderPage(guid, reorderPageOp);
 
 			// Set options to include rotate and reorder transformations
 			HtmlOptions options = new HtmlOptions();
@@ -1621,12 +1622,12 @@ public class ViewGenerator {
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			 
 			// Perform page rotation
-			RotatePageOptions rotatePageOptions = new RotatePageOptions(fileName, 1, 90);
-			imageHandler.rotatePage(rotatePageOptions);
+			RotatePageOptions rotatePageOptions = new RotatePageOptions(1, 90);
+			imageHandler.rotatePage(fileName, rotatePageOptions);
 			 
 			// Reorder pages, move 1 page to the 2 position, it is assumed that "word.doc" document has at least two pages
-			ReorderPageOptions reorderPageOptions = new ReorderPageOptions(fileName, 1, 2);
-			imageHandler.reorderPage(reorderPageOptions);
+			ReorderPageOptions reorderPageOptions = new ReorderPageOptions(1, 2);
+			imageHandler.reorderPage(fileName, reorderPageOptions);
 			 
 			// Set apply rotate and reorder transformations
 			PdfFileOptions options = new PdfFileOptions();
