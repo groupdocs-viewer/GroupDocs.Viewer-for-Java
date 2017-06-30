@@ -67,7 +67,7 @@
                     <md-content role="navigation">
                         <div ng-controller="ThumbnailsController">
                             <md-card ng-repeat="item in pages">
-                                <img ng-src="{{ createThumbnailUrl(item.number) }}"
+                                <img ng-src="{{createThumbnailUrl(item.number)}}"
                                      ng-click="onThumbnailClick($event, item)"
                                      class="md-card-image page-thumbnail"/>
                             </md-card>

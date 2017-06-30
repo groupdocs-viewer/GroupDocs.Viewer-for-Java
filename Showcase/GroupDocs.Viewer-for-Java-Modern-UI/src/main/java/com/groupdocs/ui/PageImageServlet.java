@@ -1,17 +1,21 @@
 package com.groupdocs.ui;
 
-import com.groupdocs.viewer.converter.options.ImageOptions;
-import com.groupdocs.viewer.domain.image.PageImage;
-import com.groupdocs.viewer.handler.ViewerImageHandler;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import javax.swing.text.Utilities;
+
+import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.handler.ViewerImageHandler;
 
 /**
  * Query String parameters:
@@ -46,7 +50,8 @@ public class PageImageServlet
         list.stream().filter(
                 predicate -> predicate.getPageNumber() == pageNumber
         ).findAny().ifPresent(pageImage -> {
-            Utils.writeToResponse(pageImage.getStream(), response);
+        	Utils.writeToResponse(pageImage.getStream(), response);
+        	
         });
     }
 }

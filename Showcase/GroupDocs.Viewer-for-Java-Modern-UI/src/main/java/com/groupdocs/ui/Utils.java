@@ -1,16 +1,5 @@
 package com.groupdocs.ui;
 
-import com.groupdocs.viewer.config.ViewerConfig;
-import com.groupdocs.viewer.converter.options.HtmlOptions;
-import com.groupdocs.viewer.converter.options.ImageOptions;
-import com.groupdocs.viewer.domain.html.PageHtml;
-import com.groupdocs.viewer.domain.image.PageImage;
-import com.groupdocs.viewer.handler.ViewerHtmlHandler;
-import com.groupdocs.viewer.handler.ViewerImageHandler;
-import com.groupdocs.viewer.licensing.License;
-import org.apache.commons.io.IOUtils;
-
-import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +8,19 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Properties;
+
+import javax.servlet.ServletResponse;
+
+import org.apache.commons.io.IOUtils;
+
+import com.groupdocs.viewer.config.ViewerConfig;
+import com.groupdocs.viewer.converter.options.HtmlOptions;
+import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.domain.html.PageHtml;
+import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.handler.ViewerHtmlHandler;
+import com.groupdocs.viewer.handler.ViewerImageHandler;
+import com.groupdocs.viewer.licensing.License;
 
 public class Utils {
     static {
@@ -31,7 +33,7 @@ public class Utils {
         cfg.setStoragePath(getProjectProperty("storage.path"));
         cfg.setCachePath(getProjectProperty("cache.path"));
         cfg.setTempPath(getProjectProperty("temp.path"));
-        cfg.setUseCache(false);
+        cfg.setUseCache(true);
         return cfg;
     }
 
@@ -43,6 +45,14 @@ public class Utils {
     public static ViewerHtmlHandler createViewerHtmlHandler() {
         ViewerHtmlHandler handler = new ViewerHtmlHandler(createViewerConfig());
         return handler;
+    }
+    
+    public synchronized static List<PageImage> loadPageImageList(ViewerImageHandler handler, String filename) {
+        try {
+            return handler.getPages(filename);
+        } catch (Exception x) {
+            throw new RuntimeException(x);
+        }
     }
 
     public synchronized static List<PageImage> loadPageImageList(ViewerImageHandler handler, String filename, ImageOptions options) {
