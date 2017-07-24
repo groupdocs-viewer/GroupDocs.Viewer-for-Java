@@ -7,11 +7,12 @@
         .module('GroupDocsViewer', ['ngMaterial', 'ngResource'])
         .factory('FilesFactory', FilesFactory)
         .factory('DocumentInfoFactory', DocumentInfoFactory)
-        .factory('DocumentPagesFactory', DocumentPagesFactory)
         .controller('ToolbarController', ToolbarController)
         .controller('ThumbnailsController', ThumbnailsController)
         .controller('PagesController', PagesController)
         .controller('AvailableFilesController', AvailableFilesController)
+        .constant('FilePath', 'http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf')
+    	.constant('Watermark',{Text: 'Watermark Text',Color: '16711680',Position: 'Diagonal',Width: '50'});
     ;
 
     function FilesFactory($resource) {
@@ -24,27 +25,27 @@
     }
 
     function DocumentInfoFactory($resource) {
-        return $resource('/document/info?file=:filename', {}, {
-            get: {
-                method: 'GET'
-            }
-        });
-    }
-
-    function DocumentPagesFactory($resource) {
         return $resource('/document/pages?file=:filename', {}, {
             query: {
                 method: 'GET',
-                isArray: true
+                //isArray: true
+                isArray: false
             }
         });
     }
 
-    function ToolbarController($rootScope, $scope, $mdSidenav) {
+    function ToolbarController($rootScope, $scope, $mdSidenav,Watermark) {
         $scope.toggleLeft = function () {
             $mdSidenav('left').toggle().then(function () {
                 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
             });
+        };
+        
+        $scope.watermark = {
+        		Text: Watermark.Text,
+        		Color: Watermark.Color, 
+        		Position: Watermark.Position,
+        		Width: Watermark.Width
         };
 
         $scope.$on('selected-file-changed', function ($event, selectedFile) {
@@ -52,13 +53,20 @@
         });
     }
 
-    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentPagesFactory) {
+    function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentInfoFactory,FilePath,Watermark) {
 
         $scope.isLeftSidenavVislble = false;
 
+        if (FilePath) {
+        	 $scope.selectedFile = FilePath;
+        	 $scope.docInfo = DocumentInfoFactory.query({
+        		 filename: FilePath
+        	 });
+        }
+        
         $scope.$on('selected-file-changed', function (event, selectedFile) {
             $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $scope.docInfo = DocumentInfoFactory.query({
                 filename: selectedFile
             });
         });
@@ -74,29 +82,81 @@
             });
         };
 
+        $scope.onAttachmentThumbnailClick = function ($event,name,number) {
+        	 $mdSidenav('left').toggle().then(function () {
+        		 location.hash = 'page-view-'+name+'-'+number;
+        		 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
+        	 });
+        };
+        
         $scope.createThumbnailUrl = function (pageNumber) {
             if ($scope.isLeftSidenavVislble) {
-                return $sce.trustAsResourceUrl('/page/image?width=300&file=' + $scope.selectedFile + '&page=' + pageNumber);
+                return $sce.trustAsResourceUrl('/page/image?width=300&file=' + $scope.selectedFile
+                		+ '&page=' + pageNumber
+                		+ '&watermarkText=' + Watermark.Text
+                		+ '&watermarkColor=' + Watermark.Color
+                		+ '&watermarkPosition=' + Watermark.Position
+                		+ '&watermarkWidth=' + Watermark.Width);
             }
+        };
+        
+        $scope.createAttachmentThumbnailPageUrl = function (selectedFile,attachment,itemNumber) {
+        	if ($scope.isLeftSidenavVislble) {
+        		return $sce.trustAsResourceUrl('/attachment/image?width=300&file=' + selectedFile
+        				+ '&attachment=' + attachment 
+        				+ '&page=' + itemNumber
+                		+ '&watermarkText=' + Watermark.Text
+                		+ '&watermarkColor=' + Watermark.Color
+                		+ '&watermarkPosition=' + Watermark.Position
+                		+ '&watermarkWidth=' + Watermark.Width);
+        	}
         };
 
     }
 
-    function PagesController($scope, $sce, DocumentPagesFactory) {
-        $scope.$on('selected-file-changed', function (event, selectedFile) {
+    function PagesController($scope, $sce, DocumentInfoFactory,FilePath,Watermark) {
+    	if (FilePath) {
+       	 	$scope.selectedFile = FilePath;
+       	 	$scope.docInfo = DocumentInfoFactory.query({
+       		 filename: FilePath
+       	 	});
+        }
+    	$scope.$on('selected-file-changed', function (event, selectedFile) {
             $scope.selectedFile = selectedFile;
-            $scope.pages = DocumentPagesFactory.query({
+            $scope.docInfo = DocumentInfoFactory.query({
                 filename: selectedFile
             });
         });
 
         $scope.createPageUrl = function (pageNumber) {
-            return $sce.trustAsResourceUrl('/page/html?file=' + $scope.selectedFile + '&page=' + pageNumber);
+            return $sce.trustAsResourceUrl('/page/html?file=' + $scope.selectedFile
+            		+ '&page=' + pageNumber
+            		+ '&watermarkText=' + Watermark.Text
+            		+ '&watermarkColor=' + Watermark.Color
+            		+ '&watermarkPosition=' + Watermark.Position
+            		+ '&watermarkWidth=' + Watermark.Width);
+        };
+        
+        $scope.createAttachmentPageUrl = function (selectedFile,attachmentName, itemNumber) {
+        	 return $sce.trustAsResourceUrl('/attachment/html?file=' + selectedFile
+        			 + '&attachment=' + attachmentName
+        			 + '&page=' + itemNumber
+        			 + '&watermarkText=' + Watermark.Text
+        			 + '&watermarkColor=' + Watermark.Color
+        			 + '&watermarkPosition=' + Watermark.Position
+        			 + '&watermarkWidth=' + Watermark.Width);
         };
     }
 
-    function AvailableFilesController($rootScope, $scope, FilesFactory) {
-        $scope.onOpen = function () {
+    function AvailableFilesController($rootScope, $scope, FilesFactory,DocumentInfoFactory, FilePath) {
+    	if (FilePath) {
+    		$scope.selectedFile = FilePath;
+    		$scope.docInfo = DocumentInfoFactory.query({
+    			filename: FilePath
+    		});
+        }
+    	
+    	$scope.onOpen = function () {
             $scope.list = FilesFactory.query();
         };
 

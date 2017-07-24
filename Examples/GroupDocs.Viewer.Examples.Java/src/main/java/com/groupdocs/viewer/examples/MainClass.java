@@ -34,7 +34,7 @@ public class MainClass {
 		 * Set license.
 		 * Uncomment following code if you have license file
 		 */
-		//Utilities.applyLicenseFromFile();
+		Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
 		//ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
@@ -56,6 +56,8 @@ public class MainClass {
 		
 		////Render email attahcment document as Html 
 		//ViewGenerator.renderDocumentAsHtmlFromEmailAttachment("DEPOSIT.eml"); 
+		
+		ViewGenerator.renderDocumentAsHtmlFromEmailAttachment("sample.msg"); 
 		
 		//Multiple pages per sheet for Excel files in Html mode
 		//ViewGenerator.multiplePagesPerSheetForExcelHtmlMode("sample.xlsx");

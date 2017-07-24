@@ -26,7 +26,7 @@ public class Utilities {
 	
 	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
 	public static final Path tempPath = getProjectBaseDir().resolve("Data/temp");
-	public static final Path licensePath = getProjectBaseDir().resolve("D:/GroupDocs.Total.Java.lic");
+	public static final Path licensePath = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
 	public static final List<String> customFontDirs = Arrays.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
 	//Generated html files will be saved in Html folder with name starting with output_
 	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
@@ -276,7 +276,7 @@ public class Utilities {
 			config.setCachePath(tempPath.toString());
 			// Add custom fonts directories to FontDirectories list
 			config.setFontDirectories(customFontDirs);
-			config.setUseCache(true);
+			config.setUseCache(false);
 			//Set default Font Name
 			config.setDefaultFontName("Calibri");
 			return config;

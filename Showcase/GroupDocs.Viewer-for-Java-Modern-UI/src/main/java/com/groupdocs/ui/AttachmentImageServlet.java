@@ -1,7 +1,7 @@
 package com.groupdocs.ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.domain.AttachmentBase;
+import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.image.PageImage;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 
@@ -21,39 +23,43 @@ import com.groupdocs.viewer.handler.ViewerImageHandler;
  * height: Integer: The height of output image.
  * page: Integer: The page number that needs to be viewed.
  */
-@WebServlet("/page/image")
-public class PageImageServlet
+@WebServlet("/attachment/image")
+public class AttachmentImageServlet
         extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("image/png");
         ViewerImageHandler handler = Utils.createViewerImageHandler();
-        
+
         ImageOptions o = new ImageOptions();
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        /*o.setPageNumbersToRender(Arrays.asList(pageNumber));
-        o.setPageNumber(pageNumber);
-        o.setCountPagesToRender(1);
-        if (request.getParameterMap().containsKey("width")) 
-            o.setWidth(Integer.valueOf(request.getParameter("width")));        
-        if (request.getParameterMap().containsKey("height")) 
+        /*if (request.getParameterMap().containsKey("width"))
+            o.setWidth(Integer.valueOf(request.getParameter("width")));
+        if (request.getParameterMap().containsKey("height"))
             o.setHeight(Integer.valueOf(request.getParameter("height")));*/
         String watermarkText = request.getParameter("watermarkText");
         if(watermarkText!=null && watermarkText.length()>0)
         	o.setWatermark(Utils.getWatermark(watermarkText,request.getParameter("watermarkColor"),
         			request.getParameter("watermarkPosition"),request.getParameter("watermarkWidth")));
-
+        
         String filename = request.getParameter("file");
-        if (Utils.isValidUrl(filename))
-        	filename = Utils.downloadToStorage(filename);
-
-        List<PageImage> list = Utils.loadPageImageList(handler, filename, o);
-        list.stream().filter(
-                predicate -> predicate.getPageNumber() == pageNumber
-        ).findAny().ifPresent(pageImage -> {
-        	Utils.writeToResponse(pageImage.getStream(), response);
-        	
-        });
+        String attachmentName = request.getParameter("attachment");  
+		try {
+			DocumentInfoContainer documentInfo = handler.getDocumentInfo(filename);			
+			List<AttachmentBase> attachments = documentInfo.getAttachments();
+			attachments.stream().filter(attachmentBase  -> attachmentBase.getName().equalsIgnoreCase(attachmentName)
+					).findAny().ifPresent(attachment ->{
+		        List<PageImage> pages = Utils.loadPageImageListFromAttachment(handler,attachment, o);
+		        pages.stream().filter(
+		                predicate -> predicate.getPageNumber() == pageNumber
+		        ).findAny().ifPresent(pageImage -> {
+		        	Utils.writeToResponse(pageImage.getStream(), response);		        	
+		        });
+			});
+			
+		} catch (Exception e) {
+			throw new FileNotFoundException();
+		}
     }
 }
 
