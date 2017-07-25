@@ -35,7 +35,7 @@ public class PageResourceServlet
 
         String filename = request.getParameter("file");
         String resourceName = request.getParameter("resource");
-
+        System.out.println("resourceName:"+resourceName);
         List<PageHtml> list = Utils.loadPageHtmlList(handler, filename, o);
         list.stream().filter(
                 pageHtml -> pageHtml.getPageNumber() == pageNumber
