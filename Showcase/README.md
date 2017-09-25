@@ -5,4 +5,7 @@ In GroupDocs.Viewer 3.x the Front-End has been disintegrated. So the GroupDocs.V
 
 Directory | Description
 --------- | -----------
-[Front End](https://github.com/aliahmedgroupdocs/GroupDocs.Viewer-for-Java/tree/master/Showcase/GroupDocs.Viewer-for-Java-Front-End)  | This application allows user to view document in Html and Image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
+[Front End (Spring MVC)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcase/GroupDocs.Viewer-for-Java-Front-End)  | This UI Example demonstrate the integration of GroupDocs.Viewer for Java 3.x API with Spring MVC Framework. The application allows user to view document in Html and Image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
+[Front End (Simple Servlet)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcase/GroupDocs.Viewer-for-Java-using-Servlets)  | This UI Example has been developed for the developers who want to see the Viewer API in action while developing their simple Servlet based app.
+[Front End (Struts2)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcase/GroupDocs.Viewer-for-Java-using-Struts2)  | Ultimate solution for the Java developers who like to do work in Struts2 framework.
+[Front End (JSP)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcase/GroupDocs.Viewer-for-Java-using-JSP)  | Experience more secure document view using JSP front end.

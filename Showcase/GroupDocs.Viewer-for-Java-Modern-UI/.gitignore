@@ -1,0 +1,9 @@
+/target/
+/.idea/
+*.iml
+
+.DS_Store
+Thumbs.db
+
+/storage/[Tt]emp/
+*.lic
