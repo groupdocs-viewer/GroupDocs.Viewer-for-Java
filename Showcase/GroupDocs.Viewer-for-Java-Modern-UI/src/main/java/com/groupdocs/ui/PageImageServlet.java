@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.domain.Transformation;
 import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.domain.options.RotatePageOptions;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 
 /**
@@ -31,13 +33,10 @@ public class PageImageServlet
         
         ImageOptions o = new ImageOptions();
         int pageNumber = Integer.valueOf(request.getParameter("page"));
-        /*o.setPageNumbersToRender(Arrays.asList(pageNumber));
+        o.setPageNumbersToRender(Arrays.asList(pageNumber));
         o.setPageNumber(pageNumber);
         o.setCountPagesToRender(1);
-        if (request.getParameterMap().containsKey("width")) 
-            o.setWidth(Integer.valueOf(request.getParameter("width")));        
-        if (request.getParameterMap().containsKey("height")) 
-            o.setHeight(Integer.valueOf(request.getParameter("height")));*/
+
         String watermarkText = request.getParameter("watermarkText");
         if(watermarkText!=null && watermarkText.length()>0)
         	o.setWatermark(Utils.getWatermark(watermarkText,request.getParameter("watermarkColor"),
@@ -47,7 +46,8 @@ public class PageImageServlet
         if (Utils.isValidUrl(filename))
         	filename = Utils.downloadToStorage(filename);
 
-        List<PageImage> list = Utils.loadPageImageList(handler, filename, o);
+
+              List<PageImage> list = Utils.loadPageImageList(handler, filename, o);
         list.stream().filter(
                 predicate -> predicate.getPageNumber() == pageNumber
         ).findAny().ifPresent(pageImage -> {
