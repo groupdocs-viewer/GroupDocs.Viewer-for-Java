@@ -59,7 +59,6 @@
             $scope.isImage = !$scope.isImage;
         };
         $scope.nextDocument = function () {
-            debugger;
             if ($rootScope.list.indexOf($rootScope.selectedFile) + 1 == $rootScope.list.length) {
                 $rootScope.$broadcast('selected-file-changed', $rootScope.list[0]);
             }
