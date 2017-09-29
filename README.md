@@ -22,12 +22,12 @@ Directory | Description
 
 <ul>
 <li><strong>Website:</strong> <a href="http://www.groupdocs.com">www.groupdocs.com</a></li>
-<li><strong>Product Home:</strong> <a href="http://groupdocs.com/Community/files/9/java-libraries/groupdocs_viewer_for_java/entry12651.aspx">GroupDocs.Viewer for Java</a></li>
-<li><strong>Product API:</strong> <a href="http://groupdocs.com/Community/files/9/java-libraries/groupdocs_viewer_for_java/entry12651.aspx">API of GroupDocs.Viewer for Java</a></li>
-<li><strong>Download:</strong> <a href="http://groupdocs.com/Community/files/9/java-libraries/groupdocs_viewer_for_java/entry12651.aspx">Download GroupDocs.Viewer for Java</a></li>
-<li><strong>Documentation:</strong> <a href="http://groupdocs.com/docs/display/viewerjava/Home">GroupDocs.Viewer for Java Documentation</a></li>
-<li><strong>Forum:</strong> <a href="http://groupdocs.com/Community/forums/groupdocs.viewer-product-family/4/showforum.aspx">GroupDocs.Viewer for Java Forum</a></li>
-<li><strong>Blog:</strong> <a href="http://groupdocs.com/blog/">GroupDocs.Viewer for Java Blog</a></li>
+<li><strong>Product Home:</strong> <a href="https://groupdocs.com/products/viewer/java">GroupDocs.Viewer for Java</a></li>
+<li><strong>Product API:</strong> <a href="https://apireference.groupdocs.com/java/viewer">API of GroupDocs.Viewer for Java</a></li>
+<li><strong>Download:</strong> <a href="https://downloads.groupdocs.com/viewer/java">Download GroupDocs.Viewer for Java</a></li>
+<li><strong>Documentation:</strong> <a href="https://docs.groupdocs.com/display/viewerjava/Home">GroupDocs.Viewer for Java Documentation</a></li>
+<li><strong>Forum:</strong> <a href="https://forum.groupdocs.com/c/viewer">GroupDocs.Viewer for Java Forum</a></li>
+<li><strong>Blog:</strong> <a href="http://blog.groupdocs.com/">GroupDocs.Viewer for Java</a></li>
 </ul>
 </article>
   </div>
