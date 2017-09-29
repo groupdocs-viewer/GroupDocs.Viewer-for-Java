@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-   // var VIEWER_DEFAULT_FILE = 'candy.pdf';
+    var VIEWER_DEFAULT_FILE = 'candy.pdf';
 
     angular
         .module('GroupDocsViewer', ['ngMaterial', 'ngResource'])
@@ -203,13 +203,13 @@
             $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
         };
 
-        // setTimeout(function () {
-        //     if (VIEWER_DEFAULT_FILE) {
-        //         $scope.list = [VIEWER_DEFAULT_FILE];
-        //         $scope.selectedFile = $scope.list[0];
-        //         $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
-        //     }
-        // }, 1000);
+         setTimeout(function () {
+             if (VIEWER_DEFAULT_FILE) {
+                 $scope.list = [VIEWER_DEFAULT_FILE];
+                 $scope.selectedFile = $scope.list[0];
+                 $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
+             }
+         }, 1000);
 
     }
 
