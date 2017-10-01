@@ -11,7 +11,10 @@
         .controller('ThumbnailsController', ThumbnailsController)
         .controller('PagesController', PagesController)
         .controller('AvailableFilesController', AvailableFilesController)
-        .constant('FilePath', 'http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf')
+        .constant('FilePath', '')
+    .constant('isImage', false)
+    .constant('Rotate', 0)
+    .constant('Zoom', 0)
     	.constant('Watermark',{Text: 'Watermark Text',Color: '16711680',Position: 'Diagonal',Width: '50'});
     ;
 
@@ -34,7 +37,7 @@
         });
     }
 
-    function ToolbarController($rootScope, $scope, $mdSidenav,Watermark) {
+    function ToolbarController($rootScope, $scope, $mdSidenav,Watermark,FilePath) {
         $scope.toggleLeft = function () {
             $mdSidenav('left').toggle().then(function () {
                 $rootScope.$broadcast('md-sidenav-toggle-complete', $mdSidenav('left'));
@@ -47,10 +50,30 @@
         		Position: Watermark.Position,
         		Width: Watermark.Width
         };
-
+        $scope.isImage = false;
         $scope.$on('selected-file-changed', function ($event, selectedFile) {
-            $scope.selectedFile = selectedFile;
+            $rootScope.selectedFile = selectedFile;
         });
+        $scope.togelToImageDocument = function () {
+            $rootScope.$broadcast('toggle-file', $rootScope.selectedFile);
+            $scope.isImage = !$scope.isImage;
+        };
+        $scope.nextDocument = function () {
+            if ($rootScope.list.indexOf($rootScope.selectedFile) + 1 == $rootScope.list.length) {
+                $rootScope.$broadcast('selected-file-changed', $rootScope.list[0]);
+            }
+            else {
+                $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.indexOf($rootScope.selectedFile) + 1]);
+            }
+        };
+        $scope.previousDocument = function () {
+            if ($rootScope.list.indexOf($rootScope.selectedFile) - 1 == -1) {
+                $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.length - 1]);
+            }
+            else {
+                $rootScope.$broadcast('selected-file-changed', $rootScope.list[$rootScope.list.indexOf($rootScope.selectedFile) - 1]);
+            }
+        };
     }
 
     function ThumbnailsController($rootScope, $scope, $sce, $mdSidenav, DocumentInfoFactory,FilePath,Watermark) {
@@ -114,12 +137,13 @@
 
     }
 
-    function PagesController($scope, $sce, DocumentInfoFactory,FilePath,Watermark) {
+    function PagesController($scope, $sce, DocumentInfoFactory,FilePath,Watermark, isImage,Rotate,Zoom) {
     	if (FilePath) {
        	 	$scope.selectedFile = FilePath;
        	 	$scope.docInfo = DocumentInfoFactory.query({
        		 filename: FilePath
        	 	});
+            isImage = $scope.isImage;
         }
     	$scope.$on('selected-file-changed', function (event, selectedFile) {
             $scope.selectedFile = selectedFile;
@@ -127,8 +151,21 @@
                 filename: selectedFile
             });
         });
-
+        $scope.$on('toggle-file', function (event, selectedFile) {
+            $scope.selectedFile = selectedFile;
+            Rotate = 0;
+            isImage = !isImage;
+        });
         $scope.createPageUrl = function (pageNumber) {
+            if (isImage)
+                return $sce.trustAsResourceUrl('/page/image?width=400&file=' + $scope.selectedFile
+                    + '&page=' + pageNumber
+                    + '&watermarkText=' + Watermark.Text
+                    + '&watermarkColor=' + Watermark.Color
+                    + '&watermarkPosition=' + Watermark.Position
+                    + '&watermarkWidth=' + Watermark.Width
+                    + '&rotate=' + Rotate
+                    + '&zoom=' + Zoom);
             return $sce.trustAsResourceUrl('/page/html?file=' + $scope.selectedFile
             		+ '&page=' + pageNumber
             		+ '&watermarkText=' + Watermark.Text
@@ -149,7 +186,8 @@
     }
 
     function AvailableFilesController($rootScope, $scope, FilesFactory,DocumentInfoFactory, FilePath) {
-    	if (FilePath) {
+        $rootScope.list = FilesFactory.query();
+        if (FilePath) {
     		$scope.selectedFile = FilePath;
     		$scope.docInfo = DocumentInfoFactory.query({
     			filename: FilePath
@@ -164,13 +202,13 @@
             $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
         };
 
-        setTimeout(function () {
-            if (VIEWER_DEFAULT_FILE) {
-                $scope.list = [VIEWER_DEFAULT_FILE];
-                $scope.selectedFile = $scope.list[0];
-                $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
-            }
-        }, 1000);
+         setTimeout(function () {
+             if (VIEWER_DEFAULT_FILE) {
+                 $scope.list = [VIEWER_DEFAULT_FILE];
+                 $scope.selectedFile = $scope.list[0];
+                 $rootScope.$broadcast('selected-file-changed', $scope.selectedFile);
+             }
+         }, 1000);
 
     }
 
@@ -189,3 +227,21 @@ function iframe_auto_height(iframe) {
 
     iframe.parentNode.style.height = height + 'px';
 }
+
+setInterval(function () {
+    var list = document.getElementsByTagName('iframe');
+    for (var i = 0; i < list.length; i++) {
+        var iframe = list[i],
+            body = iframe.contentWindow.document.body,
+            html = iframe.contentWindow.document.documentElement,
+            height = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight
+            );
+
+        iframe.style.height = height + 'px';
+    }
+}, 1572);
