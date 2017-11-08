@@ -1,7 +1,7 @@
 
 # GroupDocs.Viewer-for-Java
 
-This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/) for [GroupDocs.Viewer for Java](https://groupdocs.com/products/viewer/java) that will help you in understanding the API's working and writing your own applications.
+This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/) for [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) that will help you in understanding the API's working and writing your own applications.
 
 GroupDocs.Viewer for Java is an API which provides the technology to create powerful document viewer component that allows you to display over 50 document formats in your Java applications. The viewer can both rasterize documents and convert them to SVG+HTML+CSS, delivering true-text high-fidelity rendering. Supported file formats include: Microsoft Office, Visio, Project, and Outlook documents, PDFs, AutoCAD, image files (TIFF, JPG, BMP, GIF, TIFF, etc.) and more. 
 
@@ -22,7 +22,7 @@ Directory | Description
 
 <ul>
 <li><strong>Website:</strong> <a href="http://www.groupdocs.com">www.groupdocs.com</a></li>
-<li><strong>Product Home:</strong> <a href="https://groupdocs.com/products/viewer/java">GroupDocs.Viewer for Java</a></li>
+<li><strong>Product Home:</strong> <a href="https://products.groupdocs.com/viewer/java">GroupDocs.Viewer for Java</a></li>
 <li><strong>Product API:</strong> <a href="https://apireference.groupdocs.com/java/viewer">API of GroupDocs.Viewer for Java</a></li>
 <li><strong>Download:</strong> <a href="https://downloads.groupdocs.com/viewer/java">Download GroupDocs.Viewer for Java</a></li>
 <li><strong>Documentation:</strong> <a href="https://docs.groupdocs.com/display/viewerjava/Home">GroupDocs.Viewer for Java Documentation</a></li>
