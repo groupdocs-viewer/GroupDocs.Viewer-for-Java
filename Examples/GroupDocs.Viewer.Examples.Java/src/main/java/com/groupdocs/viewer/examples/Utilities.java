@@ -19,20 +19,25 @@ import javax.imageio.ImageIO;
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.domain.image.PageImage;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
+import com.groupdocs.viewer.metered.Metered;
 
 public class Utilities {
 
 	// ExStart:CommonProperties
-	
+
 	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
 	public static final Path tempPath = getProjectBaseDir().resolve("Data/temp");
 	public static final Path licensePath = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
-	public static final List<String> customFontDirs = Arrays.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
-	//Generated html files will be saved in Html folder with name starting with output_
+	public static final List<String> customFontDirs = Arrays
+			.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
+	// Generated html files will be saved in Html folder with name starting with
+	// output_
 	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
-	//Generated image files will be saved in Images folder with name starting with output_
+	// Generated image files will be saved in Images folder with name starting
+	// with output_
 	public static final Path outputImagePath = getProjectBaseDir().resolve("Data/Output/Images/output_");
-	//Generated files will be saved in Output folder with name starting with output_
+	// Generated files will be saved in Output folder with name starting with
+	// output_
 	public static final Path outputPath = getProjectBaseDir().resolve("Data/Output/output_");
 
 	// ExEnd:CommonProperties
@@ -52,19 +57,6 @@ public class Utilities {
 			exp.printStackTrace();
 		}
 	}
-
-	public static Path getProjectBaseDir() {
-		Properties props = new Properties();
-		try {
-			InputStream i = Utilities.class.getResourceAsStream("/project.properties");
-			props.load(i);
-		} catch (IOException x) {
-			throw new RuntimeException(x);
-		}
-		return FileSystems.getDefault().getPath(props.getProperty("project.basedir"));
-	}
-
-	// ExEnd:ApplyLicenseFromFile
 
 	// ExStart:ApplyLicenseFromStreamObj
 	/**
@@ -87,7 +79,37 @@ public class Utilities {
 	}
 
 	// ExEnd:ApplyLicenseFromStreamObj
+	public static Path getProjectBaseDir() {
+		Properties props = new Properties();
+		try {
+			InputStream i = Utilities.class.getResourceAsStream("/project.properties");
+			props.load(i);
+		} catch (IOException x) {
+			throw new RuntimeException(x);
+		}
+		return FileSystems.getDefault().getPath(props.getProperty("project.basedir"));
+	}
 
+	// ExEnd:ApplyLicenseFromFile
+
+	// ExStart:UseMeteredLicense
+		/**
+		 * This method uses Metered license
+		 * 
+		 */
+		public static void applyMeteredLicense() {
+
+			try {
+				// Set metered key
+				Metered metered = new Metered();
+				metered.setMeteredKey("public_key","private_key");
+				
+			} catch (Exception exp) {
+				System.out.println("Exception: " + exp.getMessage());
+				exp.printStackTrace();
+			}
+		}
+		
 	// ExStart:SaveAsImage
 	/**
 	 * This method writes input stream to output image file
@@ -125,8 +147,8 @@ public class Utilities {
 		try {
 
 			// Initialize PrintWriter for output file
-			PrintWriter out = new PrintWriter(outputHtmlPath.toString() + getFileNameWithoutExtension(outputFileName) + ".html",
-					"UTF-8");
+			PrintWriter out = new PrintWriter(
+					outputHtmlPath.toString() + getFileNameWithoutExtension(outputFileName) + ".html", "UTF-8");
 
 			// Write file content in
 			out.println(fileContent);
@@ -277,7 +299,7 @@ public class Utilities {
 			// Add custom fonts directories to FontDirectories list
 			config.setFontDirectories(customFontDirs);
 			config.setUseCache(false);
-			//Set default Font Name
+			// Set default Font Name
 			config.setDefaultFontName("Calibri");
 			return config;
 
@@ -287,33 +309,32 @@ public class Utilities {
 			return null;
 		}
 	}
-	public static void GetDocumentRepresentationFromUri() throws Throwable
-	{
+
+	public static void GetDocumentRepresentationFromUri() throws Throwable {
 		// Setup GroupDocs.Viewer config
 		ViewerConfig config = new ViewerConfig();
 		config.setStoragePath("C:\\storage");
-		 
+
 		// Create image handler
 		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 		URI uri = new URI("http://groupdocs.com/images/banner/carousel2/signature.png");
-		 
+
 		// Get pages by absolute path
 		List<PageImage> pages = imageHandler.getPages(uri);
 		System.out.println("Page count: " + pages.size());
 	}
-	
-	public static void GetDocumentRepresentationFromInputStream() throws Throwable
-	{
+
+	public static void GetDocumentRepresentationFromInputStream() throws Throwable {
 
 		// Setup GroupDocs.Viewer config
 		ViewerConfig config = new ViewerConfig();
 		config.setStoragePath("C:\\storage");
-		 
+
 		// Create image handler
 		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-		 
+
 		FileInputStream fileStream = new FileInputStream("C:\\storage\\word.doc");
-		 
+
 		// Get pages by absolute path
 		List<PageImage> pages = imageHandler.getPages(fileStream, "word.doc");
 		System.out.println("Page count: " + pages.size());

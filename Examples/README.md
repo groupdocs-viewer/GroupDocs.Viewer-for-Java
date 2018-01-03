@@ -27,6 +27,6 @@ You may find following resources helpful:
 
 Follow below steps if you have product license
 
-1. Open Utilities.java.
-2. Set "licensePath" variable to your license path.
+1. Open Utilities.java
+2. Set "licensePath" variable to your license path
 3. Call applyLicenseFromFile method from MainClass
