@@ -12,7 +12,7 @@ import org.apache.commons.net.ftp.*;
 
 import com.groupdocs.viewer.domain.FileDescription;
 import com.groupdocs.viewer.domain.cache.CachedDocumentDescription;
-import com.groupdocs.viewer.domain.options.FileTreeOptions;
+import com.groupdocs.viewer.domain.options.FileListOptions;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
 
 //ExStart: FTPInputDataHandler
@@ -67,8 +67,8 @@ public class FTPInputDataHandler implements IInputDataHandler {
         return null;
     }
  
-    @Override
-    public List<FileDescription> loadFileTree(FileTreeOptions fileTreeOptions) {
+    
+    public List<FileDescription> loadFileTree(FileListOptions fileTreeOptions) {
         List<FileDescription> fileDescriptions = new ArrayList<FileDescription>();
         try {
             FTPClient ftpClient = new FTPClient();
@@ -86,7 +86,6 @@ public class FTPInputDataHandler implements IInputDataHandler {
         return fileDescriptions;
     }
 
-	@Override
 	public void saveDocument(CachedDocumentDescription arg0, InputStream arg1) {
 		// TODO Auto-generated method stub
 		
