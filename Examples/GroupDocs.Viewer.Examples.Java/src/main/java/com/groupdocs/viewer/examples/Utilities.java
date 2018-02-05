@@ -24,21 +24,21 @@ import com.groupdocs.viewer.metered.Metered;
 public class Utilities {
 
 	// ExStart:CommonProperties
-
-	public static final Path storagePath = getProjectBaseDir().resolve("Data/Storage");
-	public static final Path tempPath = getProjectBaseDir().resolve("Data/temp");
-	public static final Path licensePath = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
+	public static final String TEST_BUCKET = "usman-aziz-test-bucket";
+	public static final String ACCESS_KEY = "xxxxxxxxxxxxxxx";
+	public static final String SECRET_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	
+	public static final Path STORAGE_PATH = getProjectBaseDir().resolve("Data/Storage");
+	public static final Path TEMP_PATH = getProjectBaseDir().resolve("Data/temp");
+	public static final Path LICENSE_PATH = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
 	public static final List<String> customFontDirs = Arrays
 			.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
-	// Generated html files will be saved in Html folder with name starting with
-	// output_
-	public static final Path outputHtmlPath = getProjectBaseDir().resolve("Data/Output/Html/output_");
-	// Generated image files will be saved in Images folder with name starting
-	// with output_
-	public static final Path outputImagePath = getProjectBaseDir().resolve("Data/Output/Images/output_");
-	// Generated files will be saved in Output folder with name starting with
-	// output_
-	public static final Path outputPath = getProjectBaseDir().resolve("Data/Output/output_");
+	// Generated html files will be saved in Html folder with name starting with output_
+	public static final Path OUTPUT_HTML_PATH = getProjectBaseDir().resolve("Data/Output/Html/output_");
+	// Generated image files will be saved in Images folder with name starting with output_
+	public static final Path OUTPUT_IMAGE_PATH = getProjectBaseDir().resolve("Data/Output/Images/output_");
+	// Generated files will be saved in Output folder with name starting with output_
+	public static final Path OUTPUT_PATH = getProjectBaseDir().resolve("Data/Output/output_");
 
 	// ExEnd:CommonProperties
 
@@ -51,7 +51,7 @@ public class Utilities {
 		try {
 			// Setup license
 			com.groupdocs.viewer.licensing.License lic = new com.groupdocs.viewer.licensing.License();
-			lic.setLicense(licensePath.toString());
+			lic.setLicense(LICENSE_PATH.toString());
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -124,7 +124,7 @@ public class Utilities {
 		try {
 			// Write input stream to output file
 			ImageIO.write(ImageIO.read(inputStream), imageFormat,
-					new File(outputImagePath + getFileNameWithoutExtension(fileName) + "." + imageFormat));
+					new File(OUTPUT_IMAGE_PATH + getFileNameWithoutExtension(fileName) + "." + imageFormat));
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -148,7 +148,7 @@ public class Utilities {
 
 			// Initialize PrintWriter for output file
 			PrintWriter out = new PrintWriter(
-					outputHtmlPath.toString() + getFileNameWithoutExtension(outputFileName) + ".html", "UTF-8");
+					OUTPUT_HTML_PATH.toString() + getFileNameWithoutExtension(outputFileName) + ".html", "UTF-8");
 
 			// Write file content in
 			out.println(fileContent);
@@ -177,7 +177,7 @@ public class Utilities {
 		try {
 
 			// Create stream for output file
-			OutputStream outputStream = new FileOutputStream(outputPath + fileName);
+			OutputStream outputStream = new FileOutputStream(OUTPUT_PATH + fileName);
 			int read = 0;
 			byte[] bytes = new byte[1024];
 
@@ -212,7 +212,7 @@ public class Utilities {
 
 			// Create stream for output file
 			OutputStream outputStream = new FileOutputStream(
-					outputPath + getFileNameWithoutExtension(fileName) + fileExtension);
+					OUTPUT_PATH + getFileNameWithoutExtension(fileName) + fileExtension);
 			int read = 0;
 			byte[] bytes = new byte[1024];
 
@@ -292,10 +292,9 @@ public class Utilities {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig config = new ViewerConfig();
 			// Set storage path
-			config.setStoragePath(storagePath.toString());
-			config.setTempPath(tempPath.toString());
+			config.setStoragePath(STORAGE_PATH.toString()); 
 			// Set cache to true for cache purpose
-			config.setCachePath(tempPath.toString());
+			config.setCachePath(TEMP_PATH.toString());
 			// Add custom fonts directories to FontDirectories list
 			config.setFontDirectories(customFontDirs);
 			config.setUseCache(false);
