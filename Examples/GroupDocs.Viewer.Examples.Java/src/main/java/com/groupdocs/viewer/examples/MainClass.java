@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.List;
 
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3Client; 
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.converter.options.ImageOptions;
@@ -33,7 +35,7 @@ public class MainClass {
 		/*
 		 * Set license. Uncomment following code if you have license file
 		 */
-		//Utilities.applyLicenseFromFile();
+		 Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
 		// ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
@@ -240,5 +242,21 @@ public class MainClass {
 		//// Set documents encoding
 		// ViewGenerator.setDocumentEncoding();
 
+		// Render document from Amazon S3
+		/*
+		 * @SuppressWarnings("deprecation") AmazonS3Client amazonS3Client = new
+		 * AmazonS3Client(new BasicAWSCredentials(Utilities.ACCESS_KEY,
+		 * Utilities.SECRET_KEY));
+		 * 
+		 * ViewerHtmlHandler htmlHandler = new
+		 * ViewerHtmlHandler(Utilities.getConfiguration(), null, null, new
+		 * S3DataStore(amazonS3Client)); List<PageHtml> pages;
+		 * 
+		 * try { pages = htmlHandler.getPages("candy.PDF");
+		 * System.out.println(pages.size()); } catch (Exception e) {
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
+		 
+		 System.out.println("Done...");
 	}
 }
