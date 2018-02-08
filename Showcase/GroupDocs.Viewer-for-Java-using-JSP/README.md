@@ -2,6 +2,9 @@
 
 This application allows user to view document in browser and the good thing about this project is, it has made document view more secure. User cannot download the rendered document.
 
+## Important Note
+> We suggest you to explore our latest - [Document Viewer Front-End (Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-App) with many features and also support & maintenance for this app is available and will be continued.
+
 # Pre-Requisites
 
 * Java development kit (JDK) 1.8
