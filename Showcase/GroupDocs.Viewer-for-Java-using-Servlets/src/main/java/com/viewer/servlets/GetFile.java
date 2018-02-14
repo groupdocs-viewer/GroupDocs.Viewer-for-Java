@@ -30,12 +30,12 @@ public class GetFile extends HttpServlet {
         displayName = newFile.getPath();
 
         PdfFileOptions options = new PdfFileOptions();
-        options.setGuid(request.getParameter("path"));
+        //options.set.setGuid(request.getParameter("path"));
 
 
         FileContainer pdfFileResponse = null;
         try {
-			pdfFileResponse = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
+			pdfFileResponse = ViewerUtils.getViewerHtmlHandler().getPdfFile(request.getParameter("path"),options);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -19,7 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 @WebServlet("/GetDocumentPageImage")
 public class GetDocumentPageImage extends HttpServlet {
-    private final ConvertImageFileType DEFAULT_IMAGE_TYPE = ConvertImageFileType.JPG;
+    private final int DEFAULT_IMAGE_TYPE = ConvertImageFileType.JPG;
     private final ReentrantLock lock = new ReentrantLock();
 
     @Override
@@ -34,7 +34,7 @@ public class GetDocumentPageImage extends HttpServlet {
         int pageindex = Integer.valueOf(request.getParameter("pageindex"));
 //        int quality = Integer.valueOf(request.getParameter("quality"));
 
-        response.addHeader("ContentType", ViewerUtils.getContentTypeByExtention(DEFAULT_IMAGE_TYPE));
+        response.addHeader("ContentType", ViewerUtils.getContentTypeByExtenString(DEFAULT_IMAGE_TYPE));
 
 
         int pageIndex = pageindex;

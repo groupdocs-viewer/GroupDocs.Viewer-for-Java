@@ -1,5 +1,6 @@
 package com.viewer.servlets;
 
+import com.groupdocs.viewer.converter.options.PdfOptions;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.options.PdfFileOptions;
 import com.viewer.ViewerUtils;
@@ -18,12 +19,10 @@ public class GetPdfWithPrintDialog extends HttpServlet {
         response.addHeader("Content-Type", "application/pdf");
 
         PdfFileOptions options = new PdfFileOptions();
-        options.setGuid(request.getParameter("path"));
-        options.setAddPrintAction(true);
 
         FileContainer result;
 		try {
-			result = ViewerUtils.getViewerHtmlHandler().getPdfFile(options);
+			result = ViewerUtils.getViewerHtmlHandler().getPdfFile(request.getParameter("path"),options);
 			ViewerUtils.copyStream(result.getStream(), response.getOutputStream());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

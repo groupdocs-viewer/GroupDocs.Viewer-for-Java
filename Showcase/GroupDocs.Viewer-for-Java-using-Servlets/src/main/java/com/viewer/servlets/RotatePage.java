@@ -3,7 +3,6 @@ package com.viewer.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
-import com.groupdocs.viewer.domain.containers.RotatePageContainer;
 import com.groupdocs.viewer.domain.options.RotatePageOptions;
 import com.viewer.ViewerUtils;
 import com.viewer.model.RotatePageParameters;
@@ -35,18 +34,16 @@ public class RotatePage extends HttpServlet {
         pageList = documentInfoContainer.getPages();
         int pageNumber = pageList.indexOf(pageIndex);
 
-        RotatePageOptions rotatePageOptions = new RotatePageOptions(guid, 1, parameters.getRotationAmount());
-        RotatePageContainer rotatePageContainer = null;
-
+        RotatePageOptions rotatePageOptions = new RotatePageOptions(1, parameters.getRotationAmount(),guid);
 
         try {
-            rotatePageContainer = ViewerUtils.getViewerImageHandler().rotatePage(rotatePageOptions);
+            ViewerUtils.getViewerImageHandler().rotatePage(guid,rotatePageOptions);
         } catch (Exception x) {
             throw new ServletException(x);
         }
 
 
-        int currentPage = rotatePageContainer.getCurrentRotationAngle();
+        int currentPage = pageList.get(pageNumber).getAngle();
 
         RotatePageResponse result = new RotatePageResponse();
         result.setResultAngle(currentPage);
@@ -54,5 +51,4 @@ public class RotatePage extends HttpServlet {
         new ObjectMapper().writeValue(response.getOutputStream(), result);
 
     }
-
 }

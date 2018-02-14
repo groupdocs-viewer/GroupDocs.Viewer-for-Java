@@ -4,11 +4,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 import com.groupdocs.viewer.converter.options.FileDataOptions;
-import com.groupdocs.viewer.domain.ContentControl;
 import com.groupdocs.viewer.domain.FileData;
 import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.RowData;
-import com.groupdocs.viewer.domain.WordsFileData;
 import com.viewer.model.helper.*;
 
 public class FileDataJsonSerializer
@@ -40,13 +38,6 @@ public class FileDataJsonSerializer
 		}
 		 public final String Serialize(boolean isDefault) throws ParseException
 		 {
-					WordsFileData wordsFileData = (WordsFileData)((_fileData instanceof WordsFileData) ? _fileData : null);
-					if (wordsFileData != null)
-					{
-						return SerializeWords(wordsFileData);
-					}
-
-		
 					return SerializeDefault();
 		 }
 		 private String SerializeDefault() throws ParseException
@@ -92,59 +83,10 @@ public class FileDataJsonSerializer
 
 		 			return json.toString();
 		 }
-		 private String SerializeWords(WordsFileData wordsFileData) throws ParseException
-		 {
-					StringBuilder json = new StringBuilder();
 
-					json.append(String.format("{\"maxPageHeight\":%1$s,\"widthForMaxHeight\":%2$s", _fileData.getMaxHeight(), _fileData.getMaxHeight()));
-					json.append(",\"pages\":[");
-
-					int pageCount = wordsFileData.getPages().size();
-					for (int i = 0; i < pageCount; i++)
-					{
-						PageData pageData = wordsFileData.getPages().get(i);
-
-						boolean needSeparator = pageData.getNumber() >= 1;
-						if (needSeparator)
-						{
-							json.append(",");
-						}
-
-						AppendPage(pageData, json);
-
-						json.append("}"); // page
-					}
-					json.append("]"); // pages
-
-					boolean includeContentControls = _options.getUsePdf() && wordsFileData.getContentControls().size() > 0;
-					if (includeContentControls)
-					{
-						json.append(", \"contentControls\":[");
-						boolean needSeparator = false;
-						for (ContentControl contentControl : wordsFileData.getContentControls())
-						{
-							if (needSeparator)
-							{
-								json.append(',');
-							}
-
-							AppendContentControl(contentControl, json);
-
-							needSeparator = true;
-						}
-						json.append("]"); //contentControls
-					}
-					json.append("}"); //document
-
-					return json.toString();
-		 }
 		 private void AppendPage(PageData pageData, StringBuilder json) throws ParseException
 		 {
 		 			json.append(String.format("{\"w\":%1$s,\"h\":%2$s,\"number\":%3$s", NumberFormat.getNumberInstance().parse(""+pageData.getWidth()), NumberFormat.getNumberInstance().parse(""+pageData.getHeight()), NumberFormat.getNumberInstance().parse(""+(pageData.getNumber() - 1))));
-		 }
-		 private void AppendContentControl(ContentControl contentControl, StringBuilder json) throws ParseException
-		 {
-		 			json.append(String.format("{\"title\":\"%1$s\", \"startPage\":%2$s, \"endPage\":%3$s}", JsonEncode(contentControl.getTitle()), NumberFormat.getNumberInstance().parse(contentControl.getStartPageNumber()+""), NumberFormat.getNumberInstance().parse(""+contentControl.getEndPageNumber())));
 		 }
 		 private String JsonEncode(String text)
 		 {

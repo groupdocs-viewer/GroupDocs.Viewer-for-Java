@@ -74,7 +74,7 @@ public class Utils {
 		return tempVar;
 	}
 
-	private static com.groupdocs.viewer.domain.WatermarkPosition ToWatermarkPosition(
+	private static int ToWatermarkPosition(
 			WatermarkPosition watermarkPosition) {
 		if (watermarkPosition == null) {
 			return com.groupdocs.viewer.domain.WatermarkPosition.Diagonal;

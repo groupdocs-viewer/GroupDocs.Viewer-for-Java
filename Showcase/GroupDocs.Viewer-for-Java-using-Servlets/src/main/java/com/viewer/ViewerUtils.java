@@ -1,7 +1,6 @@
 package com.viewer;
 
 import com.groupdocs.viewer.config.ViewerConfig;
-import com.groupdocs.viewer.converter.options.ConvertImageFileType;
 import com.groupdocs.viewer.domain.FileData;
 import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
@@ -20,6 +19,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
 import java.util.Properties;
+
+import static com.groupdocs.viewer.converter.options.ConvertImageFileType.JPG;
+import static com.groupdocs.viewer.converter.options.ConvertImageFileType.PNG;
+import static com.groupdocs.viewer.internal.c.a.d.SaveFileFormat.BMP;
 
 public class ViewerUtils {
 
@@ -76,7 +79,7 @@ public class ViewerUtils {
     public static FileData factoryFileData(String path) throws ServletException {
         DocumentInfoContainer docInfo = null;
         try {
-            docInfo = ViewerUtils.getViewerHtmlHandler().getDocumentInfo(new DocumentInfoOptions(path));
+            docInfo = ViewerUtils.getViewerHtmlHandler().getDocumentInfo(path);
         } catch (Exception x) {
             throw new ServletException(x);
         }
@@ -102,9 +105,8 @@ public class ViewerUtils {
     }
 
     public static DocumentInfoContainer factoryDocumentInfoContainerFromImageHandler(String guid) {
-        DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
         try {
-            return ViewerUtils.getViewerImageHandler().getDocumentInfo(documentInfoOptions);
+            return ViewerUtils.getViewerImageHandler().getDocumentInfo(guid);
         } catch (Exception x) {
             throw new RuntimeException(x);
         }
@@ -112,16 +114,15 @@ public class ViewerUtils {
     }
 
     public static DocumentInfoContainer factoryDocumentInfoContainerFromHtmlHandler(String guid) {
-        DocumentInfoOptions documentInfoOptions = new DocumentInfoOptions(guid);
         try {
-            return ViewerUtils.getViewerHtmlHandler().getDocumentInfo(documentInfoOptions);
+            return ViewerUtils.getViewerHtmlHandler().getDocumentInfo(guid);
         } catch (Exception x) {
             throw new RuntimeException(x);
         }
 
     }
 
-    public static String getContentTypeByExtention(ConvertImageFileType convertImageFileType) {
+    public static String getContentTypeByExtenString(int convertImageFileType) {
         String contentType;
         switch (convertImageFileType) {
             case JPG:
