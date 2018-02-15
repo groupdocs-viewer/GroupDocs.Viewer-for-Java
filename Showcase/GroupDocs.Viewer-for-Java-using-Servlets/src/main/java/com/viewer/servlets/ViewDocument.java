@@ -33,7 +33,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ViewDocument extends HttpServlet {
     private static String _locales = (System.getProperty("user.dir") + "\\src\\main\\webapp\\storage\\temp\\").replace("\\", "/");
     final ReentrantLock lock = new ReentrantLock();
-    private final ConvertImageFileType _convertImageFileType = ConvertImageFileType.JPG;
+    private final int _convertImageFileType = ConvertImageFileType.JPG;
     public String _licensePath = "D:\\GroupDocs.Total.Java.lic";
     List<String> temp_cssList;
 
@@ -49,13 +49,13 @@ public class ViewDocument extends HttpServlet {
 
         try {
             result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).Serialize(false));
-        } catch (ParseException x) {
+        } catch (Exception x) {
             throw new ServletException(x);
         }
 
         if (params.getUseHtmlBasedEngine()) {
             try {
-                docInfo = ViewerUtils.getViewerHtmlHandler().getDocumentInfo(new DocumentInfoOptions(params.getPath()));
+                docInfo = ViewerUtils.getViewerHtmlHandler().getDocumentInfo(params.getPath());
             } catch (Exception x) {
                 throw new ServletException(x);
             }
@@ -69,7 +69,7 @@ public class ViewDocument extends HttpServlet {
             result.setName(params.getPath());
             try {
                 result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).Serialize(false));
-            } catch (ParseException x) {
+            } catch (Exception x) {
                 throw new ServletException(x);
             }
             result.setDocType(docInfo.getDocumentType());
@@ -83,7 +83,7 @@ public class ViewDocument extends HttpServlet {
             if (!DotNetToJavaStringHelper.isNullOrEmpty(params.getPreloadPagesCount().toString())
                     && params.getPreloadPagesCount().intValue() > 0) {
                 htmlOptions.setPageNumber(1);
-                htmlOptions.setCountPagesToConvert(params.getPreloadPagesCount().intValue());
+                htmlOptions.setCountPagesToRender(params.getPreloadPagesCount().intValue());
             }
 
             String[] cssList = null;
@@ -119,7 +119,7 @@ public class ViewDocument extends HttpServlet {
 
 
             try {
-                docInfo = ViewerUtils.getViewerImageHandler().getDocumentInfo(new DocumentInfoOptions(params.getPath()));
+                docInfo = ViewerUtils.getViewerImageHandler().getDocumentInfo(params.getPath());
             } catch (Exception x) {
                 throw new ServletException(x);
             }

@@ -2,8 +2,10 @@ package com.viewer.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.groupdocs.viewer.domain.FileDescription;
-import com.groupdocs.viewer.domain.containers.FileTreeContainer;
-import com.groupdocs.viewer.domain.options.FileTreeOptions;
+import com.groupdocs.viewer.domain.PageData;
+import com.groupdocs.viewer.domain.containers.FileListContainer;
+import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.domain.options.FileListOptions;
 import com.viewer.ViewerUtils;
 import com.viewer.model.FileBrowserTreeDataResponse;
 import com.viewer.model.LoadFileBrowserTreeDataParameters;
@@ -30,12 +32,11 @@ public class LoadFileBrowserTreeData extends HttpServlet {
             if (parameters.getPath() != null && !parameters.getPath().isEmpty())
                 path = path + parameters.getPath();
 
-            FileTreeOptions options = new FileTreeOptions(path);
-            FileTreeContainer tree = ViewerUtils.getViewerImageHandler().loadFileTree(options);
+            FileListContainer tree = ViewerUtils.getViewerImageHandler().getFileList(new FileListOptions(path));
 
             FileBrowserTreeDataResponse result = new FileBrowserTreeDataResponse();
-            result.setNodes(Utils.ToFileTreeNodes(parameters.getPath(), tree.getFileTree()));
-            List<FileDescription> mytree = tree.getFileTree();
+            result.setNodes(Utils.ToFileTreeNodes(parameters.getPath(), tree.getFiles()));
+            List<FileDescription> mytree = tree.getFiles();
             result.setCount(mytree.size());
             new ObjectMapper().writeValue(response.getOutputStream(), result);
 
