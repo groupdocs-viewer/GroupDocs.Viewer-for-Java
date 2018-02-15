@@ -48,7 +48,7 @@ public class ViewDocument extends HttpServlet {
         DocumentInfoContainer docInfo = null;
 
         try {
-            result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).toString());
+            result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).Serialize(false));
         } catch (Exception x) {
             throw new ServletException(x);
         }
@@ -68,7 +68,7 @@ public class ViewDocument extends HttpServlet {
             result.setPath(params.getPath());
             result.setName(params.getPath());
             try {
-                result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).toString());
+                result.setDocumentDescription((new FileDataJsonSerializer(fileData, new FileDataOptions())).Serialize(false));
             } catch (Exception x) {
                 throw new ServletException(x);
             }
