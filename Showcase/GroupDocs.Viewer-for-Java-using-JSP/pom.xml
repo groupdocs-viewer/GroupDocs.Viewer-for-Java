@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
-            <version>17.2.0</version>
+            <version>17.5.0</version>
         </dependency>
 
         <!-- Automated tests with Selenium -->

@@ -5,6 +5,8 @@ This application allows user to view document in Html and Image representation. 
 ## Important Note
 > We have **stopped the support & maintenance for this app** and we encourage you to **explore our latest - [Document Viewer Front-End App (Modern UI)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-App)** with many features and also support & maintenance for this app is available and will be continued.
 
+![GroupDocs Viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/blob/master/Showcase/GroupDocs.Viewer-for-Java-using-Servlets/GroupDocs-for-Java-Servlets-API-App.png)
+
 # Pre-Requisites
 
 * Java development kit (JDK) 1.8
