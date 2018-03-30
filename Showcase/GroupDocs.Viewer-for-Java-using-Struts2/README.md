@@ -1,3 +1,5 @@
+> ## *Showcases in this directory are not updated and maintained anymore. The source code is kept here for reference only. For latest updates, checkout our [new and feature-rich sample applications](https://github.com/groupdocs-viewer).*
+
 # GroupDocs.Viewer for Java using Struts2
 
 This application allows user to view document in Html and Image representation. User can view thumbnails, view pagination, zoom in, zoom out, download and print document.
