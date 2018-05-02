@@ -11,7 +11,6 @@
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>commons-net</groupId>
@@ -65,6 +64,7 @@
 			<url>http://artifact.groupdocs.com/repo/</url>
 		</repository>
 	</repositories>
+
 	<build>
 		<resources>
 			<resource>
