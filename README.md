@@ -23,7 +23,7 @@ Directory | Description
 <ul>
 <li><strong>Website:</strong> <a href="http://www.groupdocs.com">www.groupdocs.com</a></li>
 <li><strong>Product Home:</strong> <a href="https://products.groupdocs.com/viewer/java">GroupDocs.Viewer for Java</a></li>
-<li><strong>API Reference:</strong> <a href="https://apireference.groupdocs.com/java/viewer">GroupDocs.Viewer for Java API Reference</a></li>
+<li><strong>API Reference:</strong> <a href="https://apireference.groupdocs.com/java/viewer">GroupDocs.Viewer for Java API Reference Guide</a></li>
 <li><strong>Download:</strong> <a href="https://artifact.groupdocs.com/repo/com/groupdocs/groupdocs-viewer/">Download GroupDocs.Viewer for Java</a></li>
 <li><strong>Documentation:</strong> <a href="https://docs.groupdocs.com/display/viewerjava/Home">GroupDocs.Viewer for Java Documentation</a></li>
 <li><strong>Free Support:</strong> <a href="https://forum.groupdocs.com/c/viewer">GroupDocs.Viewer for Java Free Support Forum</a></li>
