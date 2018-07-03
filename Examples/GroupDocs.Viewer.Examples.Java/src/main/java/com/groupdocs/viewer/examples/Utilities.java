@@ -308,36 +308,28 @@ public class Utilities {
 			return null;
 		}
 	}
+    // ExEnd:GetConfiguration
+	
+	/**
+	 * Cleans up temp files
+	 */
+	public static void cleanupTempFiles() {
+		try {
+			// ExStart:cleanupTempFiles
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = new ViewerConfig();
+			config.setStoragePath(STORAGE_PATH.toString());
+			   
+			// Create image or HTML handler
+			ViewerImageHandler handler = new ViewerImageHandler(config);
+			  
+			// Cleanup temporary files
+			handler.clearTempFiles();
+			// ExEnd:cleanupTempFiles
 
-	public static void GetDocumentRepresentationFromUri() throws Throwable {
-		// Setup GroupDocs.Viewer config
-		ViewerConfig config = new ViewerConfig();
-		config.setStoragePath("C:\\storage");
-
-		// Create image handler
-		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-		URI uri = new URI("http://groupdocs.com/images/banner/carousel2/signature.png");
-
-		// Get pages by absolute path
-		List<PageImage> pages = imageHandler.getPages(uri);
-		System.out.println("Page count: " + pages.size());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace(); 
+		}
 	}
-
-	public static void GetDocumentRepresentationFromInputStream() throws Throwable {
-
-		// Setup GroupDocs.Viewer config
-		ViewerConfig config = new ViewerConfig();
-		config.setStoragePath("C:\\storage");
-
-		// Create image handler
-		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
-
-		FileInputStream fileStream = new FileInputStream("C:\\storage\\word.doc");
-
-		// Get pages by absolute path
-		List<PageImage> pages = imageHandler.getPages(fileStream, "word.doc");
-		System.out.println("Page count: " + pages.size());
-	}
-
-	// ExEnd:GetConfiguration
 }
