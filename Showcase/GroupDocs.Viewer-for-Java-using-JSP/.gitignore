@@ -1,9 +1,0 @@
-/target/
-/.idea/
-*.iml
-
-.DS_Store
-Thumbs.db
-
-*.lic
-/storage/[Tt]emp/
