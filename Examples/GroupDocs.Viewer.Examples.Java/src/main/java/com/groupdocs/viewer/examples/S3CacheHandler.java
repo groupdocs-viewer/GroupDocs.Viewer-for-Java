@@ -10,6 +10,8 @@ import com.groupdocs.viewer.domain.cache.CachedPageResourceDescription;
 import com.groupdocs.viewer.handler.cache.ICacheDataHandler;
   
 
+
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +59,7 @@ public class S3CacheHandler implements ICacheDataHandler {
     }
 
     
-    public Date getLastModificationDate(CacheFileDescription cacheFileDescription) throws Exception {
+    public Date getLastModificationDate(CacheFileDescription cacheFileDescription) {
         String guid = cacheFileDescription.getGuid();
         String baseName = cacheFileDescription.getBaseName();
         String extension = cacheFileDescription.getFileType();
@@ -72,17 +74,17 @@ public class S3CacheHandler implements ICacheDataHandler {
 }
 
    
-    public String getHtmlPageResourcesFolder(CachedPageDescription cachedPageDescription) throws Exception {
+    public String getHtmlPageResourcesFolder(CachedPageDescription cachedPageDescription) {
         return null;
     }
 
     
-    public List<CachedPageResourceDescription> getHtmlPageResources(CachedPageDescription cachedPageDescription) throws Exception {
+    public List<CachedPageResourceDescription> getHtmlPageResources(CachedPageDescription cachedPageDescription) {
         return null;
     }
 
      
-    public String getFilePath(CacheFileDescription cacheFileDescription) throws Exception {
+    public String getFilePath(CacheFileDescription cacheFileDescription) {
         return null;
     }
 
@@ -90,7 +92,16 @@ public class S3CacheHandler implements ICacheDataHandler {
     public void clearCache(long l) throws Exception {
 
     }
+    public void ClearCache()
+    {
+        
+    }
 
+    
+    public void ClearCache(String guid)
+    {
+        //_fileManager.DeleteDirectory(CacheFolderName + "/" + ToRelativeDirectoryName(guid));
+    }
     /**
      * Tests whether a file exists based on its key.
      */
@@ -147,4 +158,16 @@ public class S3CacheHandler implements ICacheDataHandler {
             amazonS3Client.putObject(request.withCannedAcl(CannedAccessControlList.Private));
         }
     }
+
+	@Override
+	public void clearCache() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearCache(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

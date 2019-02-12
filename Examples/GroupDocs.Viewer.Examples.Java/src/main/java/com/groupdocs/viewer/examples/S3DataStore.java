@@ -5,17 +5,22 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.domain.FileData;
 import com.groupdocs.viewer.domain.FileDescription;
-import com.groupdocs.viewer.helper.IFileDataStore;
+import com.groupdocs.viewer.domain.cache.CacheFileDescription;
+import com.groupdocs.viewer.domain.cache.CachedPageDescription;
+import com.groupdocs.viewer.domain.cache.CachedPageResourceDescription;
+import com.groupdocs.viewer.handler.cache.ICacheDataHandler;
+
 
 import java.io.*;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Aleksey Permyakov (27.12.2016)
  */
-public class S3DataStore implements IFileDataStore {
+public class S3DataStore implements ICacheDataHandler {
     private final AmazonS3Client amazonS3Client;
 
     public S3DataStore(AmazonS3Client amazonS3Client) {
@@ -78,4 +83,60 @@ public class S3DataStore implements IFileDataStore {
         }
         return builder.deleteCharAt(builder.length() - 1).toString();
     }
+
+	@Override
+	public void clearCache() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearCache(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean exists(CacheFileDescription arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String getFilePath(CacheFileDescription arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CachedPageResourceDescription> getHtmlPageResources(
+			CachedPageDescription arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getHtmlPageResourcesFolder(CachedPageDescription arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InputStream getInputStream(CacheFileDescription arg0)
+			throws InterruptedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Date getLastModificationDate(CacheFileDescription arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OutputStream getOutputSaveStream(CacheFileDescription arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

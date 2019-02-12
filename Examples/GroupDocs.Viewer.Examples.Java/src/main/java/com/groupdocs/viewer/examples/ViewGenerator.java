@@ -2,16 +2,20 @@ package com.groupdocs.viewer.examples;
 
 import java.awt.Color;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.converter.options.PageSize;
 import com.groupdocs.viewer.converter.options.TextOverflowMode;
+import com.groupdocs.viewer.converter.options.TimeUnit;
+import com.groupdocs.viewer.domain.Attachment;
 import com.groupdocs.viewer.domain.AttachmentBase;
 import com.groupdocs.viewer.domain.FileDescription;
 import com.groupdocs.viewer.domain.PageData;
@@ -24,6 +28,7 @@ import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileListContainer;
 import com.groupdocs.viewer.domain.containers.PrintableHtmlContainer;
+import com.groupdocs.viewer.domain.containers.ProjectDocumentInfoContainer;
 import com.groupdocs.viewer.domain.html.HtmlResource;
 import com.groupdocs.viewer.domain.html.PageHtml;
 import com.groupdocs.viewer.domain.image.PageImage;
@@ -36,6 +41,8 @@ import com.groupdocs.viewer.domain.options.RotatePageOptions;
 import com.groupdocs.viewer.handler.ViewerHtmlHandler;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
 import com.groupdocs.viewer.handler.input.IInputDataHandler;
+import com.groupdocs.viewer.internal.c.a.e.system.DateTime;
+import com.groupdocs.viewer.internal.c.a.ms.System.IO.Path;
 import com.groupdocs.viewer.utils.CultureInfo;
 
 public class ViewGenerator {
@@ -131,7 +138,7 @@ public class ViewGenerator {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig config = Utilities.getConfiguration();
 
-			// Create html handler
+			// Create html or image handler
 			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 
 			// Get document stream
@@ -773,7 +780,7 @@ public class ViewGenerator {
 			String guid = fileName;
 
 			HtmlOptions options = new HtmlOptions();
-			options.setResourcesEmbedded(true);
+			options.setEmbedResources(true);
 
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
 
@@ -805,9 +812,9 @@ public class ViewGenerator {
 			// Set pdf options to render content in a precise mode
 			HtmlOptions options = new HtmlOptions();
 			options.getPdfOptions().setEnablePreciseRendering(true); // Default
-																		// value
-																		// is
-																		// false
+			// value
+			// is
+			// false
 
 			// Get pages
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
@@ -961,7 +968,7 @@ public class ViewGenerator {
 
 			// Setup html conversion options
 			HtmlOptions htmlOptions = new HtmlOptions();
-			htmlOptions.setResourcesEmbedded(true);
+			htmlOptions.setEmbedResources(true);
 
 			DocumentInfoContainer info = handler.getDocumentInfo(emailFile);
 			// Iterate over the attachments collection
@@ -1030,8 +1037,8 @@ public class ViewGenerator {
 		// Set pdf options to render pdf layers into separate html elements
 		HtmlOptions options = new HtmlOptions();
 		options.getPdfOptions().setRenderLayersSeparately(true); // Default
-																	// value is
-																	// false
+		// value is
+		// false
 
 		// Get pages
 		List<PageHtml> pages = htmlHandler.getPages(guid, options);
@@ -1442,8 +1449,8 @@ public class ViewGenerator {
 			// Set Html options
 			HtmlOptions options = new HtmlOptions();
 			options.getWordsOptions().setShowTrackedChanges(true); // Default
-																	// value is
-																	// false
+			// value is
+			// false
 
 			// Get pages
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
@@ -1477,8 +1484,8 @@ public class ViewGenerator {
 			// Set Html options
 			ImageOptions options = new ImageOptions();
 			options.getWordsOptions().setShowTrackedChanges(true); // Default
-																	// value is
-																	// false
+			// value is
+			// false
 
 			// Get pages
 			List<PageImage> pages = imageHandler.getPages(guid, options);
@@ -1512,9 +1519,9 @@ public class ViewGenerator {
 			// Set pdf options to get pdf file with tracked changes
 			PdfFileOptions pdfFileOptions = new PdfFileOptions();
 			pdfFileOptions.getWordsOptions().setShowTrackedChanges(true); // Default
-																			// value
-																			// is
-																			// false
+			// value
+			// is
+			// false
 
 			// Get pdf document with tracked changes
 			FileContainer fileContainer = imageHandler.getPdfFile(guid, pdfFileOptions);
@@ -1741,10 +1748,10 @@ public class ViewGenerator {
 			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
 			// Set pdf options to get original file without annotations
 			PdfFileOptions pdfFileOptions = new PdfFileOptions();
-			pdfFileOptions.getPdfOptions().setDeleteAnnotations(true); // Default
-																		// value
-																		// is
-																		// false
+			//pdfFileOptions.getPdfOptions().setDeleteAnnotations(true); // Default
+			// value
+			// is
+			// false
 
 			String guid = fileName;
 
@@ -1958,8 +1965,9 @@ public class ViewGenerator {
 
 			// Load file list sorted by Name and ordered Ascending for custom
 			// path
-			FileListOptions options = new FileListOptions(customPath, FileListOptions.FileListSortBy.Name,
-					FileListOptions.FileListOrderBy.Ascending);
+			//19.1 change
+			FileListOptions options = new FileListOptions(customPath, FileListOptions.FileListSortBy.NAME,
+					FileListOptions.FileListOrderBy.ASCENDING);
 
 			// Load file list
 			FileListContainer container = imageHandler.getFileList(options);
@@ -2233,7 +2241,8 @@ public class ViewGenerator {
 
 			// Set image options to show hidden pages
 			ImageOptions options = new ImageOptions();
-			options.getDiagramOptions().setShowHiddenPages(true);
+			// Removed in 19.1
+			//options.getDiagramOptions().setShowHiddenPages(true);
 
 			DocumentInfoContainer container = imageHandler.getDocumentInfo(guid);
 
@@ -2277,8 +2286,10 @@ public class ViewGenerator {
 
 			// Set html options to show grid lines
 			HtmlOptions options = new HtmlOptions();
-			options.setResourcesEmbedded(true);
-			options.getDiagramOptions().setShowHiddenPages(true);
+			// 19.1 change
+			options.setEmbedResources(true);
+			//Removed in 19.1
+			//options.getDiagramOptions().setShowHiddenPages(true);
 
 			DocumentInfoContainer container = htmlHandler.getDocumentInfo(guid);
 
@@ -2318,7 +2329,8 @@ public class ViewGenerator {
 
 			// Set image options to show grid lines
 			ImageOptions options = new ImageOptions();
-			options.getCellsOptions().setShowHiddenSheets(true);
+			//Removed in 19.1
+			//options.getCellsOptions().setShowHiddenSheets(true);
 
 			DocumentInfoContainer container = imageHandler.getDocumentInfo(guid, new DocumentInfoOptions());
 
@@ -2493,8 +2505,9 @@ public class ViewGenerator {
 
 			// Set pdf options to render content without annotations
 			HtmlOptions options = new HtmlOptions();
-			options.getPdfOptions().setDeleteAnnotations(true); // Default value
-																// is false
+			//Removed in 19.1
+			//options.getPdfOptions().setDeleteAnnotations(true); // Default value
+			// is false
 
 			// Get pages
 			List<PageHtml> pages = htmlHandler.getPages(guid, options);
@@ -2606,4 +2619,652 @@ public class ViewGenerator {
 		}
 		// ExEnd: setCustomFontDirectory
 	}
+
+	/**
+	 * Renders Presentation document into Html along with the slide notes
+	 * 
+	 */
+
+	public static void renderPresentationDocumentWithNotes(String DocumentName)
+	{
+		//ExStart:RenderPresentationDocumentWithNotes_19.1
+
+		try {
+			// Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+			// Create html handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+			// Set guid
+			String guid = DocumentName;
+
+			// Instantiate HtmlOptions object
+			HtmlOptions options = new HtmlOptions();
+			//(Starting from 19.1)
+			options.getSlidesOptions().setRenderNotes(true); // Default value is false
+
+			// Get document pages in Html form
+			List<PageHtml> pages= htmlHandler.getPages(guid, options);
+
+
+			for (PageHtml page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderPresentationDocumentWithNotes_19.1
+	}
+
+	/**
+	 * Renders MS Project document into Html with ProjectOptions setting
+	 * 
+	 */
+	public static void renderProjectDocumentAsHtmlWithProjectOptions(String DocumentName)
+	{
+		//ExStart:RenderProjectDocumentAsHtmlWithProjectOptions_19.1
+		try{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create html handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			//Instantiate the HtmlOptions object
+			HtmlOptions options = new HtmlOptions();
+
+			options.getProjectOptions().setPageSize(PageSize.A2);
+			options.getProjectOptions().setTimeUnit(TimeUnit.Days);
+
+			//Get document pages in html form
+			List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+			for (PageHtml page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderProjectDocumentAsHtmlWithProjectOptions_19.1
+	}
+	/**
+	 * Renders MS Project document into Images with ProjectOptions setting
+	 * 
+	 */
+	public static void renderProjectDocumentAsImageWithProjectOptions(String DocumentName)
+	{
+		//ExStart:RenderProjectDocumentAsImageWithProjectOptions_19.1
+		try{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			//Instantiate the ImageOptions object
+			ImageOptions options = new ImageOptions();
+
+			options.getProjectOptions().setPageSize(PageSize.A2);
+			options.getProjectOptions().setTimeUnit(TimeUnit.Days);
+
+			//Get document pages in html form
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+
+			for (PageImage page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName, "png", page.getStream());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderProjectDocumentAsImageWithProjectOptions_19.1
+	}
+	/**
+	 * Renders MS Project document as PDF with ProjectOptions setting
+	 * 
+	 */
+	public static void renderProjectDocumentAsPDFWithProjectOptions(String DocumentName)
+	{
+		//ExStart:RenderProjectDocumentAsPDFWithProjectOptions_19.1
+
+		try{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			// Set Project options to render content with a specified size and time unit.
+			PdfFileOptions options = new PdfFileOptions();
+			options.getProjectOptions().setPageSize(PageSize.A2);
+			options.getProjectOptions().setTimeUnit(TimeUnit.Days);
+
+			// Get PDF file 
+			FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+
+			// Set file name
+			String filename = Path.getFileNameWithoutExtension(DocumentName) + ".pdf";
+
+			//Save file at disk
+			Utilities.saveAsFile(filename, fileContainer.getStream());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderProjectDocumentAsPDFWithProjectOptions_19.1
+	}
+	/**
+	 * Renders part of MS Project document with time interval as PDF
+	 * 
+	 */
+
+	@SuppressWarnings("deprecation")
+	public static void renderMSProjectDocumentAsPDFWithSpecifiedTimeInterval(String DocumentName)
+	{
+		//ExStart:RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			String guid = DocumentName;
+
+			// Create Image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			// Set Project options to render tasks from year 2018 only.
+			PdfFileOptions options = new PdfFileOptions();
+			options.getProjectOptions().setStartDate(new Date(2018, 01, 01));
+			options.getProjectOptions().setEndDate(new Date(2018, 12, 31));
+
+			// Get PDF file 
+			FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+
+			// Set file name
+			String filename = Path.getFileNameWithoutExtension(DocumentName) + ".pdf";
+
+			//Save file at disk
+			Utilities.saveAsFile(filename, fileContainer.getStream());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderMSProjectDocumentAsPDFWithSpecifiedTimeInterval_19.1
+	}
+	/**
+	 * Renders part of MS Project document with time interval
+	 * 
+	 */
+
+	@SuppressWarnings("deprecation")
+	public static void renderMSProjectDocumentWithSpecifiedTimeInterval(String DocumentName)
+	{
+		//ExStart:RenderMSProjectDocumentWithSpecifiedTimeInterval_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			String guid = DocumentName;
+
+			// Create html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			// Set Project options to render tasks from year 2018 only
+			ImageOptions options = new ImageOptions();
+			options.getProjectOptions().setStartDate(new Date(2018, 01, 01));
+			options.getProjectOptions().setEndDate(new Date(2018, 12, 31));
+
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+
+			for (PageImage page : pages)
+			{
+				// Save each image at disk
+				Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName, "png", page.getStream());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderMSProjectDocumentWithSpecifiedTimeInterval_19.1
+	}
+	/**
+	 * Obtains start and end dates from MS Project document
+	 * 
+	 */
+
+	public static void obtainStartAndEndDateFromMSProjectDocument(String DocumentName)
+	{
+		//ExStart:ObtainStartAndEndDateFromMSProjectDocument_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Set guid
+			String guid = DocumentName;
+
+			// Create html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			ProjectDocumentInfoContainer documentInfo = (ProjectDocumentInfoContainer)imageHandler.getDocumentInfo(guid);
+
+			// Output document start and end dates
+			System.out.println("Project start date: "+ documentInfo.getStartDate());
+			System.out.println("Project end date: "+ documentInfo.getEndDate());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:ObtainStartAndEndDateFromMSProjectDocument_19.1
+	}
+	/**
+	 * Renders document as HTML with force password validation settings
+	 * 
+	 */
+	public static void renderDocumentWithPasswordValidation(String DocumentName)
+	{
+		//ExStart:RenderDocumentAsHtmlWithPasswordValidation_19.1
+		try
+		{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			//Set the password to be validated on every call
+			config.setForcePasswordValidation(true);
+
+			// Create html handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			//Instantiate the HtmlOptions object
+			HtmlOptions options = new HtmlOptions();
+
+			// Set document password. The method is same for ImageOptions
+			options.setPassword("password");
+
+			//Get document pages in html form
+			List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+			for (PageHtml page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderDocumentAsHtmlWithPasswordValidation_19.1
+	}
+
+	/**
+	 * Renders document as HTML with force password validation settings
+	 * 
+	 */
+	public static void renderDocumentWithForcePasswordValidation(String DocumentName)
+	{
+		//ExStart:RenderDocumentAsHtmlWithForcePasswordValidation_19.1
+		try
+		{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			//Set the password to be validated on every call
+			config.setForcePasswordValidation(true);
+
+			// Create html handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+			htmlHandler.clearCache();
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			//Instantiate the HtmlOptions object
+			HtmlOptions options = new HtmlOptions();
+
+			// Set document password
+			options.setPassword("password");
+
+			//Get document pages in html form
+			List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+			for (PageHtml page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderDocumentAsHtmlWithForcePasswordValidation_19.1
+	}
+	/**
+	 * Gets image attachment of email message
+	 * 
+	 */
+
+	public static void getEmailAttachments(String DocumentName)
+	{
+		//ExStart:GetEmailAttachments_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create image handler
+			ViewerImageHandler handler = new ViewerImageHandler(config);
+
+
+			//Instantiate Attachment 
+			Attachment attachment = new Attachment(DocumentName, "attachment-image.png");
+
+			// Get attachment original file
+			FileContainer container = handler.getFile(attachment); 
+
+			System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
+			System.out.println("Attach stream lenght: "+ container.getStream().available());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:GetEmailAttachments_19.1
+	}
+	/**
+	 * Gets html representation of attachment files
+	 * 
+	 */
+
+
+	public static void renderEmailAttachmentHTMLRepresentation(String DocumentName)
+	{
+		//ExStart:GetEmailAttachmentHTMLRepresentation_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Setup html conversion options
+			HtmlOptions htmlOptions = new HtmlOptions();
+			htmlOptions.setEmbedResources(false);
+
+			// Init viewer html handler
+			ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+			DocumentInfoContainer info = handler.getDocumentInfo(DocumentName);
+
+			// Iterate over the attachments collection
+			for (AttachmentBase attachment : info.getAttachments())
+			{
+				System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
+
+				// Get attachment document html representation
+				List<PageHtml> pages = handler.getPages(attachment, htmlOptions);
+				for (PageHtml page : pages)
+				{
+					System.out.println("  Page: "+page.getPageNumber()+", size: "+ page.getHtmlContent().length());
+					for (HtmlResource htmlResource : page.getHtmlResources())
+					{
+						InputStream resourceStream = handler.getResource(attachment, htmlResource);
+						System.out.println("     Resource: "+htmlResource.getResourceName()+", size: "+ resourceStream.available() );
+					}
+				}
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:GetEmailAttachmentHTMLRepresentation_19.1
+	}
+	/**
+	 * Gets html representation of attachment files from Stream
+	 * 
+	 */
+
+	public static void renderEmailAttachmentHTMLRepresentationFromStream(String DocumentName)
+	{
+		//ExStart:GetEmailAttachmentHTMLRepresentationFromStream_19.1
+		try
+		{
+
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Setup html conversion options
+			HtmlOptions htmlOptions = new HtmlOptions();
+			htmlOptions.setEmbedResources(false);
+
+			FileInputStream fileStream = Utilities.getDocumentStream(DocumentName);
+			// Init viewer html handler
+			ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+			DocumentInfoContainer info = handler.getDocumentInfo(fileStream);
+
+			// Iterate over the attachments collection
+			for (AttachmentBase attachment : info.getAttachments())
+			{
+				System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
+
+				// Get HTML representation of the attachment
+				List<PageHtml> pages = handler.getPages( attachment, htmlOptions);
+				for (PageHtml page : pages)
+				{
+					System.out.println("  Page: "+page.getPageNumber()+", size: "+ page.getHtmlContent().length());
+					for (HtmlResource htmlResource : page.getHtmlResources())
+					{
+						InputStream resourceStream = handler.getResource(attachment, htmlResource);
+						System.out.println("     Resource: "+htmlResource.getResourceName()+", size: "+ resourceStream.available() );
+					}
+				}
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:GetEmailAttachmentHTMLRepresentationFromStream_19.1
+	}
+	/**
+	 * Gets image representation of attachment files
+	 * 
+	 */
+
+	public static void RenderEmailAttachment(String DocumentName)
+	{
+		//ExStart:GetEmailAttachmentImageRepresentation_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Init viewer image handler
+			ViewerImageHandler handler = new ViewerImageHandler(config);
+
+			DocumentInfoContainer info = handler.getDocumentInfo(DocumentName);
+
+			// Iterate over the attachments collection
+			for (AttachmentBase attachment : info.getAttachments())
+			{
+				System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
+
+				// Get attachment document image representation
+				List<PageImage> pages = handler.getPages(attachment);
+				for (PageImage page : pages)
+					System.out.println("  Page: "+page.getPageNumber()+", size: "+ page.getStream().available());
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:GetEmailAttachmentImageRepresentation_19.1
+	}
+	/**
+	 * Renders Outlook Data File documents with limit of items
+	 * 
+	 */
+	public static void renderOutlookDataFileWithLimitOfItems(String DocumentName)
+	{
+		//ExStart:RenderOutlookDataFileWithLimitOfItems_19.1
+		try
+		{
+			//  Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			// Set Outlook options to render content with a specified limit
+			HtmlOptions options = new HtmlOptions();
+			options.getOutlookOptions().setMaxItemsInFolder(1000);
+
+			// Get pages 
+			List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+			for (PageHtml page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+			}
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderOutlookDataFileWithLimitOfItems_19.1
+	}
+
+	/**
+	 *  Renders Outlook Data File documents with limit of items as PDF
+	 * 
+	 */
+	public static void renderOutlookDataFileWithLimitOfItemsAsPDF(String DocumentName)
+	{
+		//ExStart:RenderOutlookDataFileWithLimitOfItemsAsPDF_19.1
+		try
+		{
+			//Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+			// Guid implies that unique document name 
+			String guid = DocumentName;
+
+			// Set Project options to render number of items
+			PdfFileOptions options = new PdfFileOptions();
+			options.getOutlookOptions().setMaxItemsInFolder(1000);
+
+			// Get PDF file 
+			FileContainer fileContainer = htmlHandler.getPdfFile(guid, options);
+
+			//Save file
+			Utilities.saveAsFile(guid, fileContainer.getStream());
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:RenderOutlookDataFileWithLimitOfItemsAsPDF_19.1
+	}
+	/**
+	 *  Gets email messages from Outlook Data Files
+	 * 
+	 */
+
+	public static void getEmailAttachmentsFromOutlookDataFile(String DocumentName)
+	{
+		//ExStart:GetEmailAttachmentFromOutlookDataFile_19.1
+		try
+		{
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Init viewer image handler
+			ViewerImageHandler handler = new ViewerImageHandler(config);
+
+			DocumentInfoContainer info = handler.getDocumentInfo(DocumentName);
+
+			// Iterate over the attachments collection
+			for (AttachmentBase attachment : info.getAttachments())
+			{
+				// Print attachment name and file type
+				System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
+
+				// Get attachment's original file and print Stream's length
+				FileContainer fileContainer = handler.getFile(attachment);
+
+				System.out.println("Attach stream lenght: "+ fileContainer.getStream().available());
+
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		//ExEnd:GetEmailAttachmentFromOutlookDataFile_19.1
+	}
+	/**
+	 *  Renders email messages from Outlook Data Files
+	 * 
+	 */
+	
+    public static void renderEmailAttachmentsFromOutlookDataFile(String DocumentName)
+    {
+    	//ExStart:RenderEmailAttachmentFromOutlookDataFile_19.1
+    	try
+        {
+           // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.getConfiguration();
+
+            // Init HTML handler
+            ViewerHtmlHandler handler = new ViewerHtmlHandler(config);
+
+            // Get document info
+            DocumentInfoContainer info = handler.getDocumentInfo(DocumentName);
+
+            // Iterate over the attachments collection
+            for (AttachmentBase attachment : info.getAttachments())
+            {
+                // Get attachment's HTML representation
+                List<PageHtml> pages = handler.getPages(attachment);
+
+                // Iterate over the page collection
+                for (PageHtml page : pages)
+                {
+                    // Save each page as HTML file
+                    Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+                }
+            }
+            
+        } catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+      //ExEnd:RenderEmailAttachmentFromOutlookDataFile_19.1
+    }
+    
+    
+   
+
 }

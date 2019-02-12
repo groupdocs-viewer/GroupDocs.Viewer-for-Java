@@ -18,8 +18,9 @@ import javax.imageio.ImageIO;
 
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.domain.image.PageImage;
+import com.groupdocs.viewer.exception.FileNotFoundException;
 import com.groupdocs.viewer.handler.ViewerImageHandler;
-import com.groupdocs.viewer.metered.Metered;
+import com.groupdocs.viewer.licensing.metered.Metered;
 
 public class Utilities {
 
@@ -297,9 +298,8 @@ public class Utilities {
 			config.setCachePath(TEMP_PATH.toString());
 			// Add custom fonts directories to FontDirectories list
 			config.setFontDirectories(customFontDirs);
-			config.setUseCache(false);
-			// Set default Font Name
-			config.setDefaultFontName("Calibri");
+			config.setEnableCaching(false);
+			
 			return config;
 
 		} catch (Exception exp) {
@@ -332,4 +332,42 @@ public class Utilities {
 			exp.printStackTrace(); 
 		}
 	}
+	/**
+	 * Get document stream
+	 */
+	  public static FileInputStream getDocumentStream(String DocumentName)
+      {
+          try
+          {
+              //ExStart:GetDocumentStream
+        	  FileInputStream fsSource = new FileInputStream(STORAGE_PATH + DocumentName);
+
+              // Read the source file into a byte array.
+              byte[] bytes = new byte[fsSource.available()];
+              int numBytesToRead = (int)fsSource.available();
+              int numBytesRead = 0;
+              while (numBytesToRead > 0)
+              {
+                  // Read may return anything from 0 to numBytesToRead.
+                  int n = fsSource.read(bytes, numBytesRead, numBytesToRead);
+
+                  // Break when the end of the file is reached.
+                  if (n == 0)
+                      break;
+
+                  numBytesRead += n;
+                  numBytesToRead -= n;
+              }
+              numBytesToRead = bytes.length;
+
+              return fsSource;
+
+
+              //ExEnd:GetDocumentStream
+          } catch (Exception exp) {
+  			System.out.println("Exception: " + exp.getMessage());
+  			exp.printStackTrace();
+  			return null;
+  		}
+      }
 }

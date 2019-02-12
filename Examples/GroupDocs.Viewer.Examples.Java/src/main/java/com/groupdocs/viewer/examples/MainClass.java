@@ -241,7 +241,58 @@ public class MainClass {
 
 		//// Set documents encoding
 		// ViewGenerator.setDocumentEncoding();
-
+		
+		//// Render Presentation document containing slide notes
+		//ViewGenerator.renderPresentationDocumentWithNotes("sample.pptx");
+		
+		////Render MS Project document as Image with PorjectOptions
+		//ViewGenerator.renderProjectDocumentAsImageWithProjectOptions("sample.mpp");
+		
+		////Render MS Project document as Image with PorjectOptions
+		//ViewGenerator.renderProjectDocumentAsHtmlWithProjectOptions("sample.mpp");
+		
+		////Render MS Project document as PDF with PorjectOptions
+		//ViewGenerator.renderProjectDocumentAsPDFWithProjectOptions("sample.mpp");
+		
+		////Renders part of MS Project document with time interval as PDF
+		//ViewGenerator.renderMSProjectDocumentAsPDFWithSpecifiedTimeInterval("sample.mpp");
+		
+		////Obtains start and end dates from MS Project document
+		//ViewGenerator.obtainStartAndEndDateFromMSProjectDocument("sample.mpp");
+		
+		////Renders part of MS Project document with time interval
+		//ViewGenerator.renderMSProjectDocumentWithSpecifiedTimeInterval("sample.mpp");
+		
+		////Renders document as HTML with force password validation settings
+		//ViewGenerator.renderDocumentWithPasswordValidation("sample.docx");
+		
+		////Renders document as HTML with force password validation settings
+		//ViewGenerator.renderDocumentWithForcePasswordValidation("sample.docx");
+		
+		////Gets image attachment of email message
+		//ViewGenerator.getEmailAttachments("sample.msg");
+		
+		////Gets html representation of attachment files
+		//ViewGenerator.renderEmailAttachmentHTMLRepresentation("sample.msg");
+		
+		//// Gets html representation of attachment files from Stream
+		//ViewGenerator.renderEmailAttachmentHTMLRepresentationFromStream("sample.msg");
+		
+		////Gets image representation of attachment files
+		//ViewGenerator.RenderEmailAttachment("sample.msg");
+		
+		////Renders Outlook Data File documents with limit of items
+		//ViewGenerator.renderOutlookDataFileWithLimitOfItems("sample.ost");
+		
+		////Renders Outlook Data File documents with limit of items as PDF
+		//ViewGenerator.renderOutlookDataFileWithLimitOfItemsAsPDF("sample.ost");
+		
+		////Gets email messages from Outlook Data Files
+		//ViewGenerator.getEmailAttachmentsFromOutlookDataFile("sample.pst");
+		
+		////Renders email messages from Outlook Data Files
+		//ViewGenerator.renderEmailAttachmentsFromOutlookDataFile("sample.pst");
+		
 		// Render document from Amazon S3
 		/*
 		 * @SuppressWarnings("deprecation") AmazonS3Client amazonS3Client = new
