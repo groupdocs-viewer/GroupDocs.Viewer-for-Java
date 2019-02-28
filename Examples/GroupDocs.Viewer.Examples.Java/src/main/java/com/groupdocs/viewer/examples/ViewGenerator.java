@@ -6,12 +6,15 @@ import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.groupdocs.viewer.config.ViewerConfig;
+import com.groupdocs.viewer.converter.options.EmailField;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
 import com.groupdocs.viewer.converter.options.ImageOptions;
+import com.groupdocs.viewer.converter.options.ImageQuality;
 import com.groupdocs.viewer.converter.options.PageSize;
 import com.groupdocs.viewer.converter.options.TextOverflowMode;
 import com.groupdocs.viewer.converter.options.TimeUnit;
@@ -23,6 +26,7 @@ import com.groupdocs.viewer.domain.Transformation;
 import com.groupdocs.viewer.domain.Watermark;
 import com.groupdocs.viewer.domain.WatermarkPosition;
 import com.groupdocs.viewer.domain.WindowsAuthenticationCredential;
+import com.groupdocs.viewer.domain.containers.CadDocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.DocumentFormatsContainer;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
@@ -3263,8 +3267,797 @@ public class ViewGenerator {
 		}
       //ExEnd:RenderEmailAttachmentFromOutlookDataFile_19.1
     }
-    
-    
-   
+    /**
+	 *  Gets layers' information of CAD documents
+	 * 
+	 */
+    public static void getLayersInfoForCadDcouments(String DocumentName)
+    {
+        try
+        {
+            //ExStart:GetLayersInfoForCadDcouments_updated_19.1
+            // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.getConfiguration();
 
+            // Create image handler
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+            String guid = DocumentName;
+
+            CadDocumentInfoContainer documentInfo = (CadDocumentInfoContainer)imageHandler.getDocumentInfo(guid);
+
+            // Loop through all layers contained in the drawing 
+            for (String layer : documentInfo.getLayers())
+            	System.out.println("Layer name: "+ layer);
+            //ExEnd:GetLayersInfoForCadDcouments_updated_19.1
+        } catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+    }
+    
+    /**
+	 *  Renders specific layer from CAD document
+	 * 
+	 */
+  
+    public static void renderSpecificLayerOfCADDocument(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderSpecificLayerOfCadDocument_19.1
+    		// Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    		String guid = DocumentName;
+
+    		// Set CAD options to render two Layers
+    		HtmlOptions options = new HtmlOptions();
+    		options.getCadOptions().getLayers().add("electrical");
+    		options.getCadOptions().getLayers().add("walls");
+
+    		// Get pages 
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderSpecificLayerOfCadDocument_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+	 *  Renders document into Html with Enable Minification setting
+	 * 
+	 */
+    
+    public static void renderDocumentWithEnableMinification(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderDocumentAsHtmlWithEnableMinification_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		//Instantiate the HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		options.setEnableMinification(true);
+
+    		//Get document pages in html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderDocumentAsHtmlWithEnableMinification_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+	 *  Renders document into responsive html
+	 * 
+	 */
+  
+    public static void renderDocumentAsResponsiveHtml(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderDocumentAsResponsiveHtml_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		//Instantiate the HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		//to get html representations of pages with embedded resources
+    		options.setEmbedResources(true);
+    		options.setEnableResponsiveRendering(true);
+
+    		//Get document pages in html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderDocumentAsResponsiveHtml_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+	 *  Renders print area only in Excel document
+	 * 
+	 */
+
+    public static void renderPrintAreaOnlyInExcel(String DocumentName)
+    {
+    	try
+    	{
+
+    		//ExStart:RenderPrintAreaOnlyInExcel_19.1
+    		// Setup GroupDocs.Viewer config
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// File guid
+    		String guid = DocumentName;
+
+    		// Enable redering of print area
+    		HtmlOptions options = new HtmlOptions();
+    		options.getCellsOptions().setRenderPrintAreaOnly(true);
+
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderPrintAreaOnlyInExcel_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+	 *  Renders print area only in Excel document
+	 * 
+	 */
+    
+    public static void renderPrintAreaOnlyAsImageInExcel(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderPrintAreaOnlyAsImageInExcel_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		// Enable redering of print area
+    		ImageOptions options = new ImageOptions();
+    		options.getCellsOptions().setRenderPrintAreaOnly(true);
+
+    		// Get pages 
+    		List<PageImage> pages = imageHandler.getPages(guid, options);
+
+    		for (PageImage page : pages)
+    		{
+    			// Save each image at disk
+    			Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName,"png", page.getStream());
+    		}
+    		//ExEnd:RenderPrintAreaOnlyAsImageInExcel_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders print area only in Excel documents as PDF
+   	 * 
+   	 */
+    
+    public static void renderPrintAreasInExcelAsPDF(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderPrintAreasInExcelAsPDF_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		// Enable redering of print area
+    		PdfFileOptions options = new PdfFileOptions();
+    		options.getCellsOptions().setRenderPrintAreaOnly(true);
+
+    		// Get PDF file 
+    		FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+
+    		// Set file name
+    		String filename = Path.getFileNameWithoutExtension(DocumentName) + ".pdf";
+
+    		//Save file at disk
+    		Utilities.saveAsFile(filename, fileContainer.getStream());
+    		//ExEnd:RenderPrintAreasInExcelAsPDF_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders hidden columsn and rows in Excel document
+   	 * 
+   	 */
+    
+    public static void renderHiddenContentInExcel(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderHiddenContentInExcel_19.1
+    		// Setup GroupDocs.Viewer config
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// File guid
+    		String guid = DocumentName;
+
+    		// Enable redering of hidden rows and columns
+    		HtmlOptions options = new HtmlOptions();
+    		options.getCellsOptions().setShowHiddenRows(true);
+    		options.getCellsOptions().setShowHiddenColumns(true);
+
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderHiddenContentInExcel_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders hidden column and rows in Excel document As Image
+   	 * 
+   	 */
+  
+    public static void renderHiddenContentAsImageInExcel(String DocumentName)
+    {
+    	try{
+    		//ExStart:RenderHiddenContentAsImageInExcel_19.1
+    		// Setup GroupDocs.Viewer config
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		// File guid
+    		String guid = DocumentName;
+
+    		// Enable redering of hidden rows and columns
+    		ImageOptions options = new ImageOptions();
+    		options.getCellsOptions().setShowHiddenRows(true);
+    		options.getCellsOptions().setShowHiddenColumns(true);
+
+    		// Get pages 
+    		List<PageImage> pages = imageHandler.getPages(guid, options);
+
+    		for (PageImage page : pages)
+    		{
+    			// Save each image at disk
+    			Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName,"png", page.getStream());
+    		}
+    		//ExEnd:RenderHiddenContentAsImageInExcel_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders hidden column and rows in Excel document As PDF
+   	 * 
+   	 */
+    public static void renderHiddenContentInExcelAsPDF(String DocumentName)
+    {
+    	try{
+    		//ExStart:RenderHiddenContentInExcelAsPDF_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		// Enable redering of hidden rows and columns
+    		PdfFileOptions options = new PdfFileOptions();
+    		options.getCellsOptions().setShowHiddenRows(true);
+    		options.getCellsOptions().setShowHiddenColumns(true);
+
+    		// Get PDF file 
+    		FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+
+    		// Set file name
+    		String filename = Path.getFileNameWithoutExtension(DocumentName) + ".pdf";
+
+    		//Save file at disk
+    		Utilities.saveAsFile(filename, fileContainer.getStream());
+    		//ExEnd:RenderHiddenContentInExcelAsPDF_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders PDF document into Html with image quality settings
+   	 * 
+   	 */
+  
+    public static void renderPDFDocumentWithImageQuality(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderPDFDocumentAsHtmlWithImageQuality_19.1
+    		// Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// Set guid
+    		String guid = DocumentName;
+
+    		// Instantiate HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		//Set desired image quality in the output HTML document
+    		HtmlOptions htmlOptions = new HtmlOptions();
+    		htmlOptions.getPdfOptions().setImageQuality(ImageQuality.High);
+
+    		// Get document pages in Html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderPDFDocumentAsHtmlWithImageQuality_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Sets field labels when rendering email documents
+   	 * 
+   	 */
+    public static void renderEmailMessageWithCustomFieldLabels(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:ChangeFieldLabelsWhenRenderingEmailMessage_19.1
+    		// Setup GroupDocs.Viewer config
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// File guid
+    		String guid = DocumentName;
+
+    		// Set field labels 
+    		HtmlOptions htmlOptions = new HtmlOptions();
+
+    		//Initialize maps to set field labels 
+    		Map<String,String> from=new HashMap<String, String>(){{put(EmailField.FROM,"Sender");}};
+    		Map<String,String> to=new HashMap<String, String>(){{put(EmailField.TO,"Receiver");}};
+    		Map<String,String> sent=new HashMap<String, String>(){{put(EmailField.SENT,"Date");}};
+    		Map<String,String> subject=new HashMap<String, String>(){{put(EmailField.SUBJECT,"Topic");}};
+
+    		htmlOptions.getEmailOptions().setFieldLabels(from);
+    		htmlOptions.getEmailOptions().setFieldLabels(to);
+    		htmlOptions.getEmailOptions().setFieldLabels(sent);
+    		htmlOptions.getEmailOptions().setFieldLabels(subject);
+
+    		// Render document with custom field labels
+    		List<PageHtml> pages = htmlHandler.getPages(guid, htmlOptions);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:ChangeFieldLabelsWhenRenderingEmailMessage_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders .msg file as image with page size settings
+   	 * 
+   	 */
+  
+    public static void renderEmailDocumentWithPageSizeSettings(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderEmailDocumentAsImageWithPageSizeSettings_19.1
+    		// Setup GroupDocs.Viewer config
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		// File guid
+    		String guid = DocumentName;
+
+    		// Set page size
+    		ImageOptions options = new ImageOptions();
+    		options.getEmailOptions().setPageSize(PageSize.A4);
+
+    		// Get pages 
+    		List<PageImage> pages = imageHandler.getPages(guid, options);
+
+    		for (PageImage page : pages)
+    		{
+    			// Save each image at disk
+    			Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName,"png", page.getStream());
+    		}
+    		//ExEnd:RenderEmailDocumentAsImageWithPageSizeSettings_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders .msg file as PDF with page size settings
+   	 * 
+   	 */
+ 
+    public static void renderEmailDocumentAsPDFWithPageSizeSettings(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderEmailDocumentAsPDFWithPageSizeSettings_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+    		String guid = DocumentName;
+
+    		// Set page size
+    		PdfFileOptions options = new PdfFileOptions();
+    		options.getEmailOptions().setPageSize( PageSize.A4);
+
+    		// Get PDF file 
+    		FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+
+    		// Set file name
+    		String filename = Path.getFileNameWithoutExtension(DocumentName) + ".pdf";
+
+    		//Save file at disk
+    		Utilities.saveAsFile(filename, fileContainer.getStream());
+    		//ExEnd:RenderEmailDocumentAsPDFWithPageSizeSettings_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders document into html excluding fonts
+   	 * 
+   	 */
+ 
+    public static void renderDocumentExcludingFonts(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderDocumentAsHtmlExcludingFonts
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		//Instantiate the HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		options.setExcludeFonts(true);
+
+    		//Get document pages in html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderDocumentAsHtmlExcludingFonts
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders document into html excluding fonts list that are possibly installed on the underlying machine
+   	 * 
+   	 */
+    
+    public static void renderDocumentExcludingFontsList(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderDocumentAsHtmlExcludingFontsList_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		// Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		//Instantiate the HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		options.getExcludeFontsList().add("Times New Roman");
+    		options.getExcludeFontsList().add("Arial");
+
+    		//Get document pages in html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderDocumentAsHtmlExcludingFontsList_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders Excel file as Html ignoring the empty rows
+   	 * 
+   	 */
+ 
+    public static void renderExcelIgnoringEmptyRows(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderExcelAsHtmlIgnoringEmptyRows_19.1
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    		String guid = DocumentName;
+
+    		// Set Cells options to ignore empty rows
+    		HtmlOptions options = new HtmlOptions();
+    		options.getCellsOptions().setIgnoreEmptyRows(true); // default value is false
+
+    		// Get pages
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderExcelAsHtmlIgnoringEmptyRows_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Render a document into html specifying resource prefix
+   	 * 
+   	 */
+  
+    public static void RenderDocumentWithResourcePrefix(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderDocumentAsHtmlWithResourcePrefix_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		//Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+    		//Guid implies that unique document name 
+    		String guid = DocumentName;
+
+    		//Instantiate the HtmlOptions object
+    		HtmlOptions options = new HtmlOptions();
+
+    		//To get html representations of pages with embedded resources
+    		options.setEmbedResources( false);
+
+    		//Set resource prefix
+    		options.setHtmlResourcePrefix("http://example.com/api/pages/{page-number}/resources/{resource-name}");
+    		//The {page-number} and {resource-name} patterns will be replaced with current processing page number and resource name accordingly.
+
+    		//To ignore resource prefix in CSS 
+    		options.setIgnorePrefixInResources(true);
+
+    		//Get document pages in html form
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderDocumentAsHtmlWithResourcePrefix_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+
+    }
+    /**
+   	 *  Render a document into html specifying resource prefix
+   	 * 
+   	 */
+  
+    public static void renderHiddenSlidesOfPowerPoint(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderHiddenSlidesOfPowerPointAsHtml_19.1
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    		String guid = DocumentName;
+
+    		// Set html options to render hidden slides
+    		HtmlOptions options = new HtmlOptions();
+    		options.setShowHiddenPages(true);
+
+    		DocumentInfoContainer container = htmlHandler.getDocumentInfo(guid);
+
+    		for (PageData page : container.getPages())
+    			System.out.println("Page number: "+page.getNumber()+", Page Name: "+page.getName()+", IsVisible: "+page.isVisible());
+
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderHiddenSlidesOfPowerPointAsHtml_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+
+    }
+    /**
+   	 *  Renders hidden pages of Visio file as html
+   	 * 
+   	 */
+  
+    public static void renderHiddenPagesOfVisio(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderHiddenPagesInVisioAsHtml_19.1
+    		//Get Configurations
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		// Create html handler
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    		String guid = DocumentName;
+
+    		// Set html options to render hidden pages
+    		HtmlOptions options = new HtmlOptions();
+    		options.setShowHiddenPages(true);
+
+    		DocumentInfoContainer container = htmlHandler.getDocumentInfo(guid);
+
+    		for (PageData page : container.getPages())
+    			System.out.println("Page number: "+page.getNumber()+", Page Name: "+page.getName()+", IsVisible: "+page.isVisible());
+
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderHiddenPagesInVisioAsHtml_19.1
+
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Shows hidden sheets for Excel files in image representation
+   	 * 
+   	 */
+  
+    public static void renderHiddenSheetsInExcel(String DocumentName)
+    {
+    	try
+    	{
+    	//ExStart:RenderHiddenSheetsInExcel_19.1
+    	// Setup GroupDocs.Viewer config
+        ViewerConfig config = Utilities.getConfiguration();
+
+        ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+        // File guid
+        String guid = DocumentName;
+
+        // Set html options to render hidden sheets
+        HtmlOptions options = new HtmlOptions();
+        //do same while using ImageOptions
+        options.setShowHiddenPages(true);
+
+        List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+        for (PageHtml page : pages)
+        {
+            //Save each page at disk
+            Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+        }
+      //ExEnd:RenderHiddenSheetsInExcel_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    
 }
