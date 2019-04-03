@@ -35,10 +35,10 @@ public class MainClass {
 		/*
 		 * Set license. Uncomment following code if you have license file
 		 */
-		 //Utilities.applyLicenseFromFile();
+		Utilities.applyLicenseFromFile();
 
 		//// Get document information by Guid
-		 //ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
+		//ViewGenerator.renderDocumentInformationByGuid("sample.xlsx");
 
 		//// Get document information by Stream
 		// ViewGenerator.renderDocumentInformationByStream("sample.xlsx");
@@ -106,7 +106,7 @@ public class MainClass {
 		// "tahoma");
 
 		//// Render document as image
-		// ViewGenerator.renderDocumentAsImage("demo.docx");
+		//ViewGenerator.renderDocumentAsImage("demo.docx");
 
 		//// Render n consecutive pages as image
 		// ViewGenerator.renderDocumentAsImage("word.docx", 1, 1);
@@ -171,6 +171,9 @@ public class MainClass {
 
 		//// Get original pdf file with transformations
 		// ViewGenerator.getOriginalFileAsPdfWithTransformation("word.docx");
+
+		////Check if source PDF document has restriction on printing
+		ViewGenerator.checkPrintingRestriction("sample.pdf");
 
 		//// Render as image from absolute path
 		// ViewGenerator.renderDocumentAsImageFromAbsolutePath("D:/storage/word.docx");
@@ -241,58 +244,58 @@ public class MainClass {
 
 		//// Set documents encoding
 		// ViewGenerator.setDocumentEncoding();
-		
+
 		//// Render Presentation document containing slide notes
 		//ViewGenerator.renderPresentationDocumentWithNotes("sample.pptx");
-		
+
 		////Render MS Project document as Image with PorjectOptions
 		//ViewGenerator.renderProjectDocumentAsImageWithProjectOptions("sample.mpp");
-		
+
 		////Render MS Project document as Image with PorjectOptions
 		//ViewGenerator.renderProjectDocumentAsHtmlWithProjectOptions("sample.mpp");
-		
+
 		////Render MS Project document as PDF with PorjectOptions
 		//ViewGenerator.renderProjectDocumentAsPDFWithProjectOptions("sample.mpp");
-		
+
 		////Renders part of MS Project document with time interval as PDF
 		//ViewGenerator.renderMSProjectDocumentAsPDFWithSpecifiedTimeInterval("sample.mpp");
-		
+
 		////Obtains start and end dates from MS Project document
 		//ViewGenerator.obtainStartAndEndDateFromMSProjectDocument("sample.mpp");
-		
+
 		////Renders part of MS Project document with time interval
 		//ViewGenerator.renderMSProjectDocumentWithSpecifiedTimeInterval("sample.mpp");
-		
+
 		////Renders document as HTML with force password validation settings
 		//ViewGenerator.renderDocumentWithPasswordValidation("sample.docx");
-		
+
 		////Renders document as HTML with force password validation settings
 		//ViewGenerator.renderDocumentWithForcePasswordValidation("sample.docx");
-		
+
 		////Gets image attachment of email message
 		//ViewGenerator.getEmailAttachments("sample.msg");
-		
+
 		////Gets html representation of attachment files
 		//ViewGenerator.renderEmailAttachmentHTMLRepresentation("sample.msg");
-		
+
 		//// Gets html representation of attachment files from Stream
 		//ViewGenerator.renderEmailAttachmentHTMLRepresentationFromStream("sample.msg");
-		
+
 		////Gets image representation of attachment files
 		//ViewGenerator.RenderEmailAttachment("sample.msg");
-		
+
 		////Renders Outlook Data File documents with limit of items
 		//ViewGenerator.renderOutlookDataFileWithLimitOfItems("sample.ost");
-		
+
 		////Renders Outlook Data File documents with limit of items as PDF
 		//ViewGenerator.renderOutlookDataFileWithLimitOfItemsAsPDF("sample.ost");
-		
+
 		////Gets email messages from Outlook Data Files
 		//ViewGenerator.getEmailAttachmentsFromOutlookDataFile("sample.pst");
-		
+
 		////Renders email messages from Outlook Data Files
 		//ViewGenerator.renderEmailAttachmentsFromOutlookDataFile("sample.pst");
-		
+
 		// Render document from Amazon S3
 		/*
 		 * @SuppressWarnings("deprecation") AmazonS3Client amazonS3Client = new
@@ -307,7 +310,7 @@ public class MainClass {
 		 * System.out.println(pages.size()); } catch (Exception e) {
 		 * Auto-generated catch block e.printStackTrace(); }
 		 */
-		 
-		 System.out.println("Done...");
+
+		System.out.println("Done...");
 	}
 }

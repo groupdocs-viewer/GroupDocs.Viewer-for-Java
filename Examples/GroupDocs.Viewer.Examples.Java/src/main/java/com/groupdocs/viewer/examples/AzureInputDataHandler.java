@@ -83,7 +83,6 @@ public class AzureInputDataHandler implements IInputDataHandler {
         }
     }
  
-    @Override
     public Date getLastModificationDate(String guid) {
         FileDescription fileDescription = getFileDescription(guid);
         return fileDescription.getLastModificationDate();

@@ -43,7 +43,6 @@ public class FTPInputDataHandler implements IInputDataHandler {
         return new ByteArrayInputStream(arrayOutputStream.toByteArray());
     }
  
-    @Override
     public Date getLastModificationDate(String guid) {
         FTPClient ftpClient = new FTPClient();
         try {

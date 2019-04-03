@@ -31,7 +31,7 @@ public class Utilities {
 	
 	public static final Path STORAGE_PATH = getProjectBaseDir().resolve("Data/Storage");
 	public static final Path TEMP_PATH = getProjectBaseDir().resolve("Data/temp");
-	public static final Path LICENSE_PATH = getProjectBaseDir().resolve("GroupDocs.Total.Java.lic");
+	public static final String LICENSE_PATH = "D:\\GroupDocs.Total.Java.lic";
 	public static final List<String> customFontDirs = Arrays
 			.asList(getProjectBaseDir().resolve("Data/Fonts").toString());
 	// Generated html files will be saved in Html folder with name starting with output_
@@ -52,7 +52,7 @@ public class Utilities {
 		try {
 			// Setup license
 			com.groupdocs.viewer.licensing.License lic = new com.groupdocs.viewer.licensing.License();
-			lic.setLicense(LICENSE_PATH.toString());
+			lic.setLicense(LICENSE_PATH);
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();

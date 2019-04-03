@@ -31,6 +31,7 @@ import com.groupdocs.viewer.domain.containers.DocumentFormatsContainer;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileListContainer;
+import com.groupdocs.viewer.domain.containers.PdfDocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.PrintableHtmlContainer;
 import com.groupdocs.viewer.domain.containers.ProjectDocumentInfoContainer;
 import com.groupdocs.viewer.domain.html.HtmlResource;
@@ -1882,6 +1883,46 @@ public class ViewGenerator {
 		}
 		// ExEnd:GetOriginalPdfDocWithTransformation
 	}
+	/**
+	 * Check if source PDF document has restriction on printing
+	 * 
+	 *
+	 */
+	public static void checkPrintingRestriction(String fileName) {
+		try {
+			//ExStart:CheckPDFPrintingRestriction_19.3
+			
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+			
+			// Create image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			
+			//Document Name
+			String guid = fileName;
+			
+			// Retrieve document information
+			PdfDocumentInfoContainer documentInfo = (PdfDocumentInfoContainer)imageHandler.getDocumentInfo(guid);
+			
+			// check if printing restrictions are existed or not
+			boolean printingAllowed = documentInfo.getPrintingAllowed();
+			
+			if (printingAllowed)
+	        {
+				System.out.println("The PDF is ready for printing.");
+	        }
+	        else
+	        {
+	        	System.out.println("Restricted file: The printing is not allowed");
+	        }
+			//ExEnd:CheckPDFPrintingRestriction_19.3
+			
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * Loads file tree list for the storage path
@@ -2986,7 +3027,7 @@ public class ViewGenerator {
 			FileContainer container = handler.getFile(attachment); 
 
 			System.out.println("Attach name: "+ attachment.getName() +"Type: "+ attachment.getFileType());
-			System.out.println("Attach stream lenght: "+ container.getStream().available());
+			System.out.println("Attach stream length: "+ container.getStream().available());
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
@@ -3218,7 +3259,7 @@ public class ViewGenerator {
 				// Get attachment's original file and print Stream's length
 				FileContainer fileContainer = handler.getFile(attachment);
 
-				System.out.println("Attach stream lenght: "+ fileContainer.getStream().available());
+				System.out.println("Attach stream length: "+ fileContainer.getStream().available());
 
 			}
 
