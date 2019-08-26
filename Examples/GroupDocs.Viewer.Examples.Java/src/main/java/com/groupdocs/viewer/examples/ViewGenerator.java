@@ -17,6 +17,7 @@ import com.groupdocs.viewer.converter.options.ImageOptions;
 import com.groupdocs.viewer.converter.options.ImageQuality;
 import com.groupdocs.viewer.converter.options.PageSize;
 import com.groupdocs.viewer.converter.options.TextOverflowMode;
+import com.groupdocs.viewer.converter.options.Tile;
 import com.groupdocs.viewer.converter.options.TimeUnit;
 import com.groupdocs.viewer.domain.Attachment;
 import com.groupdocs.viewer.domain.AttachmentBase;
@@ -31,7 +32,8 @@ import com.groupdocs.viewer.domain.containers.DocumentFormatsContainer;
 import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileListContainer;
-import com.groupdocs.viewer.domain.containers.PdfDocumentInfoContainer;
+import com.groupdocs.viewer.domain.containers.OutlookDocumentInfoContainer;
+//import com.groupdocs.viewer.domain.containers.PdfDocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.PrintableHtmlContainer;
 import com.groupdocs.viewer.domain.containers.ProjectDocumentInfoContainer;
 import com.groupdocs.viewer.domain.html.HtmlResource;
@@ -58,6 +60,7 @@ public class ViewGenerator {
 	 *            name of the source email document
 	 * @throws Throwable
 	 */
+	@SuppressWarnings("deprecation")
 	public static void renderAttachmentsInformation(String emailFile) {
 		try {
 			// Setup GroupDocs.Viewer config
@@ -70,10 +73,8 @@ public class ViewGenerator {
 			DocumentInfoContainer documentInfo = handler.getDocumentInfo(emailFile, options);
 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -100,6 +101,7 @@ public class ViewGenerator {
 	 * @param guid
 	 *            guid of the source document
 	 */
+	@SuppressWarnings("deprecation")
 	public static void renderDocumentInformationByGuid(String guid) {
 		try {
 			// Setup GroupDocs.Viewer config
@@ -112,10 +114,9 @@ public class ViewGenerator {
 			DocumentInfoOptions options = new DocumentInfoOptions();
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(guid, options);
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+			
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -138,6 +139,7 @@ public class ViewGenerator {
 	 * @param fileName
 	 *            Name of the source document
 	 */
+	@SuppressWarnings("deprecation")
 	public static void renderDocumentInformationByStream(String fileName) {
 		try {
 			// Setup GroupDocs.Viewer config
@@ -153,10 +155,9 @@ public class ViewGenerator {
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(stream, options);
 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+			
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -195,10 +196,9 @@ public class ViewGenerator {
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(stream, fileName, options);
 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+			
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -221,6 +221,7 @@ public class ViewGenerator {
 	 * @param uri
 	 *            Uri of the source document
 	 */
+	@SuppressWarnings("deprecation")
 	public static void renderDocumentInformationByUri(String URL) {
 		try {
 			// Setup GroupDocs.Viewer config
@@ -236,10 +237,9 @@ public class ViewGenerator {
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(uri, options);
 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+			
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -267,6 +267,7 @@ public class ViewGenerator {
 	 * @param passWord
 	 *            password for Windows Authentication Credential.
 	 */
+	@SuppressWarnings("deprecation")
 	public static void renderDocumentInformationByUriWithWindowsAuthenticationCredential(String URL, String userName,
 			String password) {
 		try {
@@ -283,10 +284,9 @@ public class ViewGenerator {
 			DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(uri, credential, options);
 
 			System.out.println("DateCreated: " + documentInfo.getDateCreated());
-			System.out.println("DocumentType: " + documentInfo.getDocumentType());
-			System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+			
 			System.out.println("Extension: " + documentInfo.getExtension());
-			System.out.println("FileType: " + documentInfo.getFileType());
+			System.out.println("FileType: " + documentInfo.getFileFormat());
 			System.out.println("Guid: " + documentInfo.getGuid());
 			System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
 			System.out.println("Name: " + documentInfo.getName());
@@ -1888,7 +1888,7 @@ public class ViewGenerator {
 	 * 
 	 *
 	 */
-	public static void checkPrintingRestriction(String fileName) {
+	/*public static void checkPrintingRestriction(String fileName) {
 		try {
 			//ExStart:CheckPDFPrintingRestriction_19.3
 			
@@ -1922,7 +1922,7 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		
-	}
+	}*/
 
 	/**
 	 * Loads file tree list for the storage path
@@ -1945,7 +1945,7 @@ public class ViewGenerator {
 							+ " | LastModificationDate: " + node.getLastModificationDate());
 				} else {
 					System.out.println("Guid: " + node.getGuid() + " | Name: " + node.getName() + " | Document type: "
-							+ node.getDocumentType() + " | File type: " + node.getFileType() + " | Extension: "
+							+ node.getFileFormat() + " | File type: " + node.getFileFormat() + " | Extension: "
 							+ node.getExtension() + " | Size: " + node.getSize() + " | LastModificationDate: "
 							+ node.getLastModificationDate());
 				}
@@ -1982,7 +1982,7 @@ public class ViewGenerator {
 							+ " | LastModificationDate: " + node.getLastModificationDate());
 				} else {
 					System.out.println("Guid: " + node.getGuid() + " | Name: " + node.getName() + " | Document type: "
-							+ node.getDocumentType() + " | File type: " + node.getFileType() + " | Extension: "
+							+ node.getFileFormat() + " | File type: " + node.getFileFormat() + " | Extension: "
 							+ node.getExtension() + " | Size: " + node.getSize() + " | LastModificationDate: "
 							+ node.getLastModificationDate());
 				}
@@ -2023,7 +2023,7 @@ public class ViewGenerator {
 							+ " | LastModificationDate: " + node.getLastModificationDate());
 				} else {
 					System.out.println("Guid: " + node.getGuid() + " | Name: " + node.getName() + " | Document type: "
-							+ node.getDocumentType() + " | File type: " + node.getFileType() + " | Extension: "
+							+ node.getFileFormat() + " | File type: " + node.getFileFormat() + " | Extension: "
 							+ node.getExtension() + " | Size: " + node.getSize() + " | LastModificationDate: "
 							+ node.getLastModificationDate());
 				}
@@ -2432,6 +2432,7 @@ public class ViewGenerator {
 		}
 		// ExEnd: renderCADDocumentWithCustomDocumentSize_17.5
 	}
+	
 
 	/**
 	 * Renders Model and all non empty layouts from CAD document
@@ -2532,7 +2533,118 @@ public class ViewGenerator {
 		}
 		// ExEnd:getListOfLayoutInCADDocument_17.5
 	}
+	/*Renders CAD document with tiled rendering
+	 * 
+	 * @param fileName
+	 */
+	public static void tiledRenderingOfCADDocuments(String fileName) {
+		// ExStart:tiledRenderingOfCADDocuments_19.1
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
 
+			// Create image or html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			String guid = fileName;
+
+			// Get DocumentInfoContainer and iterate through pages
+			DocumentInfoContainer docInfo = imageHandler.getDocumentInfo(guid);
+
+			int width = docInfo.getPages().get(0).getWidth();
+			int height = docInfo.getPages().get(0).getHeight();
+
+			// Set tile width and height as a half of image total width
+			int tileWidth = width / 2;
+			int tileHeight = height / 2;
+
+			int pointX = 0;
+			int pointY = 0;
+			
+			//Create image options and add four tiles, one for each quarter
+			ImageOptions options = new ImageOptions();
+			Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+			options.getCadOptions().getTiles().add(tile);
+			pointX += tileWidth;
+			tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+			options.getCadOptions().getTiles().add(tile);
+
+			pointX = 0;
+			pointY += tileHeight;
+			tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+			options.getCadOptions().getTiles().add(tile);
+
+			pointX += tileWidth;
+			tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+			options.getCadOptions().getTiles().add(tile);
+
+			//Get document pages in html form
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+
+			for (PageImage page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsImage(page.getPageNumber() + "_" + guid, "png", page.getStream());
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd:tiledRenderingOfCADDocuments_19.1
+	}
+	/*Tiled rendering of CAD documents with manual settings
+	 * 
+	 * @param fileName
+	 */
+	public static void tiledRenderingOfCADDocumentsWithManualSizeSetting(String fileName) {
+		// ExStart:tiledRenderingOfCADDocumentsWithManualSizeSetting_19.1
+		try {
+			// Setup GroupDocs.Viewer config
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create image or html handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+
+			String guid = fileName;
+
+			//Set same ScaleFactor or Width and Height properties as used for GetPages method
+			DocumentInfoOptions docInfoOptions = new DocumentInfoOptions();
+			docInfoOptions.getCadOptions().setScaleFactor(100);
+
+			// Get width and height
+			DocumentInfoContainer docInfo = imageHandler.getDocumentInfo(guid, docInfoOptions);
+			int width = docInfo.getPages().get(0).getWidth();
+			int height = docInfo.getPages().get(0).getHeight();
+
+			// Set tile width and height as a half of image total width
+			int tileWidth = width / 2;
+			int tileHeight = height / 2;
+
+			int pointX = 0;
+			int pointY = 0;
+
+			//Create image options and add tile
+			ImageOptions options = new ImageOptions();
+			options.getCadOptions().setScaleFactor(100);
+			Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+			options.getCadOptions().getTiles().add(tile);
+
+
+			//Get document pages in html form
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+
+			for (PageImage page : pages)
+			{
+				//Save each page at disk
+				Utilities.saveAsImage(page.getPageNumber() + "_" + guid, "png", page.getStream());
+			}
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+		// ExEnd:tiledRenderingOfCADDocumentsWithManualSizeSetting_19.1
+	}
 	/**
 	 * Renders PDF document without annotations
 	 * 
@@ -3309,10 +3421,261 @@ public class ViewGenerator {
       //ExEnd:RenderEmailAttachmentFromOutlookDataFile_19.1
     }
     /**
+	 * Rendering Outlook Data File documents with limit of items
+     */    
+    public static void renderOutlookDataFileWithLimit(String DocumentName)
+    {
+    	//ExStart:renderOutlookDataFileWithLimit_19.8
+    	try
+        {
+           // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.getConfiguration();
+
+            // Init HTML handler
+            ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+         // Set Outlook options to render content with a specified limit.
+            HtmlOptions options = new HtmlOptions();
+            options.getOutlookOptions().setMaxItemsInFolder(1000);
+             
+            // Get pages 
+            List<PageHtml> pages = htmlHandler.getPages(DocumentName, options);
+             
+            for (PageHtml page : pages) {
+                System.out.println("Page content: " + page.getHtmlContent());
+            }
+        
+        } catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+      //ExEnd:renderOutlookDataFileWithLimit_19.8
+    }
+    	/**
+   	 	* Get PDF representation of Outlook documents with specified limit of items
+        */    
+       public static void getPDFRepresentationOfOutlookDataFilesWithLimit(String DocumentName)
+       {
+       	//ExStart:getPDFRepresentationOfOutlookDataFilesWithLimit_19.8
+       	try
+           {
+              // Setup GroupDocs.Viewer config
+               ViewerConfig config = Utilities.getConfiguration();
+
+            // Create image handler
+               ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+               
+                
+               // Set Outlook options to render content with a specified size and time unit.
+               PdfFileOptions options = new PdfFileOptions();
+               options.getOutlookOptions().setMaxItemsInFolder(1000);
+                
+               // Get PDF file 
+               FileContainer fileContainer = imageHandler.getPdfFile(DocumentName, options);
+                
+               // Access PDF file stream.
+               InputStream pdfFileStream = fileContainer.getStream();
+               // Close stream
+               pdfFileStream.close();
+           
+           } catch (Exception exp) {
+   			System.out.println("Exception: " + exp.getMessage());
+   			exp.printStackTrace();
+   		}
+      //ExStart:getPDFRepresentationOfOutlookDataFilesWithLimit_19.8
+       }
+       /**
+   	 	* Retrieving the list of root folders from Outlook Data File documents
+        */    
+       public static void getOutlookDataFileListOfFolders(String DocumentName)
+       {
+       	//ExStart:getOutlookDataFileListOfFolders_19.8
+       	try
+           {
+              // Setup GroupDocs.Viewer config
+               ViewerConfig config = Utilities.getConfiguration();
+
+               // Init HTML handler
+               ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+               OutlookDocumentInfoContainer documentInfoContainer = (OutlookDocumentInfoContainer) htmlHandler.getDocumentInfo(DocumentName);
+               
+               for (String folderName : documentInfoContainer.getFolders()) {
+                   System.out.println("Folder name: " + folderName);
+               }
+           
+           } catch (Exception exp) {
+   			System.out.println("Exception: " + exp.getMessage());
+   			exp.printStackTrace();
+   		}
+         //ExEnd:getOutlookDataFileListOfFolders_19.8
+       }
+       /**
+  	 	* Retrieving the list of sub folders from specified folder within Outlook Data File documents
+       */    
+      public static void getOutlookDataFileListOfSubFolders(String DocumentName)
+      {
+      	//ExStart:getOutlookDataFileListOfSubFolders_19.8
+      	try
+          {
+             // Setup GroupDocs.Viewer config
+              ViewerConfig config = Utilities.getConfiguration();
+
+              // Init HTML handler
+              ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+
+              // Create option object with specified folder name
+              DocumentInfoOptions options = new DocumentInfoOptions();
+              options.getOutlookOptions().setFolderName("Inbox");
+              // Get outlook document info
+              OutlookDocumentInfoContainer documentInfoContainer = (OutlookDocumentInfoContainer) htmlHandler.getDocumentInfo(DocumentName, options);
+               
+              for (String folderName : documentInfoContainer.getFolders()) {
+                  System.out.println("Folder name: " + folderName);
+              }
+          
+          } catch (Exception exp) {
+  			System.out.println("Exception: " + exp.getMessage());
+  			exp.printStackTrace();
+  		}
+        //ExEnd:getOutlookDataFileListOfSubFolders_19.8
+      }
+      /**
+	 	* Rendering specified folder into image (or HTML)
+     */    
+    public static void renderingSpecifiedFolder(String DocumentName)
+    {
+    	//ExStart:renderingSpecifiedFolder_19.8
+    	try
+        {
+           // Setup GroupDocs.Viewer config
+            ViewerConfig config = Utilities.getConfiguration();
+
+            // Create image handler or use ViewerHtmlHandler to render into HTML
+            ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+           
+             
+            // Create image options with specified folder name (use HtmlOptions to render into HTML)
+            ImageOptions options = new ImageOptions();
+            options.getOutlookOptions().setFolderName("Inbox\\Sub_Folder_1");
+             
+            // Render document into image (List<PageHtml> is returned when rendering into HTML)
+            List<PageImage> pages = imageHandler.getPages(DocumentName, options);
+             
+            for (PageImage page : pages) {
+                // use page.Stream to work with rendering result
+            	  System.out.println("Page Number: " + page.getPageNumber());
+            	  System.out.println("Use page.Stream to work with rendering result");
+            }
+        
+        } catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+      //ExEnd:renderingSpecifiedFolder_19.8
+    }
+    /**
+	 * Rendering specified folder into PDF
+   */    
+  public static void renderingSpecifiedFolderIntoPDF(String DocumentName)
+  {
+  	//ExStart:renderingSpecifiedFolderIntoPDF_19.8
+  	try
+      {
+         // Setup GroupDocs.Viewer config
+          ViewerConfig config = Utilities.getConfiguration();
+
+          // Create image handler
+          ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+          
+           
+          // Create pdf options with specified folder name
+          PdfFileOptions options = new PdfFileOptions();
+          options.getOutlookOptions().setFolderName("Inbox");
+           
+          // Get pdf document
+          FileContainer fileContainer = imageHandler.getPdfFile(DocumentName, options);
+           
+          // Access result PDF document using fileContainer.getStream() method
+      
+      } catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+    //ExEnd:renderingSpecifiedFolderIntoPDF_19.8
+  }  
+  /**
+ 	* Filtering messages that are rendered into image or HTML
+ */    
+public static void renderFilterngMessagesIntoImageOrHTML(String DocumentName)
+{
+	//ExStart:renderFilterngMessagesIntoImageOrHTML_19.8
+	try
+    {
+       // Setup GroupDocs.Viewer config
+        ViewerConfig config = Utilities.getConfiguration();
+
+        // Create image handler or use ViewerHtmlHandler to render into HTML
+        ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+        
+         
+        // Create image options with specified folder name (use HtmlOptions to render into HTML)
+        ImageOptions options = new ImageOptions();
+        options.getOutlookOptions().setTextFilter("Susan");
+         
+        // Render document into image (List<PageHtml> is returned when rendering into HTML)
+        List<PageImage> pages = imageHandler.getPages(DocumentName, options);
+         
+        for (PageImage page : pages) {
+            // use page.Stream to work with rendering result
+        	System.out.println("Page Number: " + page.getPageNumber());
+      	  	System.out.println("Use page.Stream to work with rendering result");
+        }
+    
+    } catch (Exception exp) {
+		System.out.println("Exception: " + exp.getMessage());
+		exp.printStackTrace();
+	}
+  //ExEnd:renderFilterngMessagesIntoImageOrHTML_19.8
+}
+/**
+	* Filtering messages that are rendered into PDF
+*/    
+public static void renderFilterngMessagesIntoPDF(String DocumentName)
+{
+//ExStart:renderFilterngMessagesIntoImageOrHTML_19.8
+try
+{
+   // Setup GroupDocs.Viewer config
+    ViewerConfig config = Utilities.getConfiguration();
+
+    // Create image handler or use ViewerHtmlHandler to render into HTML
+    ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+    
+     
+ // Create pdf options with specified address filter
+    PdfFileOptions options = new PdfFileOptions();
+    options.getOutlookOptions().setAddressFilter("susan");
+     
+    // Get pdf document
+    FileContainer fileContainer = imageHandler.getPdfFile(DocumentName, options);
+     
+    // Access result PDF document using fileContainer.getStream() method
+    System.out.println("Access result PDF document using fileContainer.getStream() method");
+
+} catch (Exception exp) {
+	System.out.println("Exception: " + exp.getMessage());
+	exp.printStackTrace();
+}
+//ExEnd:renderFilterngMessagesIntoImageOrHTML_19.8
+} 
+  
+  
+    /**
 	 *  Gets layers' information of CAD documents
 	 * 
 	 */
-    public static void getLayersInfoForCadDcouments(String DocumentName)
+   /* public static void getLayersInfoForCadDcouments(String DocumentName)
     {
         try
         {
@@ -3334,7 +3697,7 @@ public class ViewGenerator {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
 		}
-    }
+    }*/
     
     /**
 	 *  Renders specific layer from CAD document
@@ -3933,6 +4296,39 @@ public class ViewGenerator {
     			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
     		}
     		//ExEnd:RenderExcelAsHtmlIgnoringEmptyRows_19.1
+    	} catch (Exception exp) {
+    		System.out.println("Exception: " + exp.getMessage());
+    		exp.printStackTrace();
+    	}
+    }
+    /**
+   	 *  Renders Excel file as Html ignoring the empty Columns
+   	 * 
+   	 */
+ 
+    public static void renderExcelIgnoringEmptyColumns(String DocumentName)
+    {
+    	try
+    	{
+    		//ExStart:RenderExcelAsHtmlIgnoringEmptyColumns_19.8
+    		ViewerConfig config = Utilities.getConfiguration();
+
+    		ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    		String guid = DocumentName;
+
+    		// Set Cells options to ignore empty rows
+    		HtmlOptions options = new HtmlOptions();
+    		options.getCellsOptions().setIgnoreEmptyRows(true); // default value is false
+
+    		// Get pages
+    		List<PageHtml> pages = htmlHandler.getPages(guid, options);
+
+    		for (PageHtml page : pages)
+    		{
+    			//Save each page at disk
+    			Utilities.saveAsHtml(page.getPageNumber() + "_" + DocumentName, page.getHtmlContent());
+    		}
+    		//ExEnd:RenderExcelAsHtmlIgnoringEmptyColumns_19.8
     	} catch (Exception exp) {
     		System.out.println("Exception: " + exp.getMessage());
     		exp.printStackTrace();

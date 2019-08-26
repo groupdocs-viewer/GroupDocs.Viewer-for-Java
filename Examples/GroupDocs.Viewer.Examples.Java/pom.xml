@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>com.groupdocs</groupId>
 			<artifactId>groupdocs-viewer</artifactId>
-			<version>19.3</version>
+			<version>19.8</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 		<dependency>

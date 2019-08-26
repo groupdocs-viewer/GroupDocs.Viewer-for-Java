@@ -72,7 +72,7 @@ public class S3DataStore implements ICacheDataHandler {
 
     private String makeStoreName(FileDescription cacheFileDescription) {
         return combine("S3Store",
-                        cacheFileDescription.getDocumentType(),
+                        cacheFileDescription.getFileFormat(),
                         cacheFileDescription.getGuid());
     }
 

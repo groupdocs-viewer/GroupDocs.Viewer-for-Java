@@ -42,7 +42,13 @@ public class MainClass {
 
 		//// Get document information by Stream
 		// ViewGenerator.renderDocumentInformationByStream("sample.xlsx");
-
+		
+		////Renders Excel file as Html ignoring the empty rows
+		// ViewGenerator.renderExcelIgnoringEmptyRows("sample.xlsx");
+		
+		////Renders Excel file as Html ignoring the empty columns
+		// ViewGenerator.renderExcelIgnoringEmptyColumns("sample.xlsx");
+		
 		//// Get document information by Stream and Document Name
 		// ViewGenerator.renderDocumentInformationByStreamAndDocumentName("demo.docx");
 
@@ -57,25 +63,46 @@ public class MainClass {
 		//// Get email attachment's document information
 		// ViewGenerator.renderAttachmentsInformation("sample.xlsx");
 
-		// Render email attachment document as Html
+		//// Render email attachment document as Html
 		// ViewGenerator.renderDocumentAsHtmlFromEmailAttachment("DEPOSIT.eml");
 
-		// Render multiple pages per sheet for Excel files in Html mode
+		//// Render multiple pages per sheet for Excel files in Html mode
 		// ViewGenerator.multiplePagesPerSheetForExcelHtmlMode("sample.xlsx");
 
-		// Render multiple pages per sheet for Excel files in Image mode
+		//// Render multiple pages per sheet for Excel files in Image mode
 		// ViewGenerator.multiplePagesPerSheetForExcelImageMode("sample.xlsx");
 
-		// Render Pdf to Html in precise mode
+		//// Render Pdf to Html in precise mode
 		// ViewGenerator.renderPDFDocumentInPreciseMode("sample.pdf");
 
-		// Render content with RenderLayersSeparately enabled
+		//// Render content with RenderLayersSeparately enabled
 		// ViewGenerator.renderContentWithRenderLayersSeparately("sample.pdf");
 
-		// Render email attachment as Image
+		//// Render email attachment as Image
 		// ViewGenerator.renderDocumentAsImageFromEmailAttachment("Top 400 Law
 		// Firms.msg");
-
+		
+		//// Rendering Outlook Data File documents with limit of items
+		// ViewGenerator.renderOutlookDataFileWithLimitOfItems("Top 400 Law Firms.msg");
+		
+		//// Rendering Outlook Data File documents with limit of items
+		// ViewGenerator.renderOutlookDataFileWithLimitOfItemsAsPDF("Top 400 Law Firms.msg");
+		
+		//// Rendering Outlook Data File documents with limit of items
+		// ViewGenerator.renderOutlookDataFileWithLimitOfItemsAsPDF("Top 400 Law Firms.msg");
+		
+		//// Retrieving the list of root folders from Outlook Data File documents
+		// ViewGenerator.getOutlookDataFileListOfFolders("Top 400 Law Firms.msg");
+		
+		//// Retrieving the list of sub folders from specified folder within Outlook Data File documents
+		// ViewGenerator.getOutlookDataFileListOfSubFolders("Top 400 Law Firms.msg");
+		
+		//// Rendering specified folder into image (or HTML)
+		// ViewGenerator.renderingSpecifiedFolder("Top 400 Law Firms.msg");
+		
+		//// Rendering specified folder into PDF
+		// ViewGenerator.renderingSpecifiedFolderIntoPDF("Top 400 Law Firms.msg");
+		
 		// Render Excel document as Html with link prefix
 		// ViewGenerator.renderExcelAsHtmlWithHyperLinkPrefix("samplehl.xlsx",
 		// "www.bing.com.pk");
@@ -173,7 +200,7 @@ public class MainClass {
 		// ViewGenerator.getOriginalFileAsPdfWithTransformation("word.docx");
 
 		////Check if source PDF document has restriction on printing
-		ViewGenerator.checkPrintingRestriction("sample.pdf");
+		//ViewGenerator.checkPrintingRestriction("sample.pdf");
 
 		//// Render as image from absolute path
 		// ViewGenerator.renderDocumentAsImageFromAbsolutePath("D:/storage/word.docx");
@@ -186,7 +213,23 @@ public class MainClass {
 
 		//// Render as image from input stream
 		// ViewGenerator.renderDocumentAsImageFromInputStream("word.docx");
-
+		
+		/* Working with CAD Documents*/
+		
+		//Renders CAD document with tiled rendering
+		//ViewGenerator.tiledRenderingOfCADDocuments("sample.dwg");
+		
+		//Tiled rendering of CAD documents with manual settings
+		//ViewGenerator.tiledRenderingOfCADDocumentsWithManualSizeSetting("sample.dwg");
+		
+		//Gets list of layouts in a CAD document
+		//ViewGenerator.getListOfLayoutInCADDocument("sample.dwg");
+		
+		// Renders specific layout from CAD document
+		//ViewGenerator.renderSpecificLayoutOfCADDocument("sample.dwg");
+		
+		
+		
 		//// Render as image excluding transformation
 		// ViewGenerator.renderDocumentAsImage("word.docx", true);
 

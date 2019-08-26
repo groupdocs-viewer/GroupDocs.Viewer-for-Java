@@ -32,16 +32,16 @@ public class S3CacheHandler implements ICacheDataHandler {
 
     public boolean exists(CacheFileDescription cacheFileDescription) {
         String guid = cacheFileDescription.getGuid();
-        String baseName = cacheFileDescription.getBaseName();
-        String extension = cacheFileDescription.getFileType();
+        String baseName = cacheFileDescription.getName();
+        String extension = cacheFileDescription.getFileFormat();
 
         return doesObjectExist(guid);
     }
  
     public InputStream getInputStream(CacheFileDescription cacheFileDescription) {
         String guid = cacheFileDescription.getGuid();
-        String baseName = cacheFileDescription.getBaseName();
-        String extension = cacheFileDescription.getFileType();
+        String baseName = cacheFileDescription.getName();
+        String extension = cacheFileDescription.getFileFormat();
 
         final S3Object object = amazonS3Client.getObject(new GetObjectRequest(TEXT_BUCKET, guid));
 
@@ -51,8 +51,8 @@ public class S3CacheHandler implements ICacheDataHandler {
     
     public OutputStream getOutputSaveStream(CacheFileDescription cacheFileDescription) {
         String guid = cacheFileDescription.getGuid();
-        String baseName = cacheFileDescription.getBaseName();
-        String extension = cacheFileDescription.getFileType();
+        String baseName = cacheFileDescription.getName();
+        String extension = cacheFileDescription.getFileFormat();
 
         AmazonS3OutputStream outputStream = new AmazonS3OutputStream(cacheFileDescription, guid);
         return outputStream;
@@ -61,8 +61,8 @@ public class S3CacheHandler implements ICacheDataHandler {
     
     public Date getLastModificationDate(CacheFileDescription cacheFileDescription) {
         String guid = cacheFileDescription.getGuid();
-        String baseName = cacheFileDescription.getBaseName();
-        String extension = cacheFileDescription.getFileType();
+        String baseName = cacheFileDescription.getName();
+        String extension = cacheFileDescription.getFileFormat();
 
         try {
             final ObjectMetadata object = amazonS3Client.getObjectMetadata(new GetObjectMetadataRequest(TEXT_BUCKET, guid));
