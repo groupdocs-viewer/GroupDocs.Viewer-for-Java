@@ -33,7 +33,7 @@ import com.groupdocs.viewer.domain.containers.DocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.FileContainer;
 import com.groupdocs.viewer.domain.containers.FileListContainer;
 import com.groupdocs.viewer.domain.containers.OutlookDocumentInfoContainer;
-//import com.groupdocs.viewer.domain.containers.PdfDocumentInfoContainer;
+import com.groupdocs.viewer.domain.containers.PdfDocumentInfoContainer;
 import com.groupdocs.viewer.domain.containers.PrintableHtmlContainer;
 import com.groupdocs.viewer.domain.containers.ProjectDocumentInfoContainer;
 import com.groupdocs.viewer.domain.html.HtmlResource;
@@ -1888,7 +1888,7 @@ public class ViewGenerator {
 	 * 
 	 *
 	 */
-	/*public static void checkPrintingRestriction(String fileName) {
+	public static void checkPrintingRestriction(String fileName) {
 		try {
 			//ExStart:CheckPDFPrintingRestriction_19.3
 			
@@ -1922,7 +1922,7 @@ public class ViewGenerator {
 			exp.printStackTrace();
 		}
 		
-	}*/
+	}
 
 	/**
 	 * Loads file tree list for the storage path
@@ -3675,7 +3675,8 @@ try
 	 *  Gets layers' information of CAD documents
 	 * 
 	 */
-   /* public static void getLayersInfoForCadDcouments(String DocumentName)
+/*    
+public static void getLayersInfoForCadDcouments(String DocumentName)
     {
         try
         {
@@ -3697,7 +3698,8 @@ try
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
 		}
-    }*/
+    }
+    */
     
     /**
 	 *  Renders specific layer from CAD document
