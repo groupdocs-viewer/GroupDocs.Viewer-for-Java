@@ -228,7 +228,8 @@ public class MainClass {
 		// Renders specific layout from CAD document
 		//ViewGenerator.renderSpecificLayoutOfCADDocument("sample.dwg");
 		
-		
+		// Renders specific layout from CAD document
+		//ViewGenerator.getLayersInfoForCadDcouments("sample.dwg");
 		
 		//// Render as image excluding transformation
 		// ViewGenerator.renderDocumentAsImage("word.docx", true);

@@ -21,6 +21,7 @@ import com.groupdocs.viewer.converter.options.Tile;
 import com.groupdocs.viewer.converter.options.TimeUnit;
 import com.groupdocs.viewer.domain.Attachment;
 import com.groupdocs.viewer.domain.AttachmentBase;
+import com.groupdocs.viewer.domain.CadLayer;
 import com.groupdocs.viewer.domain.FileDescription;
 import com.groupdocs.viewer.domain.PageData;
 import com.groupdocs.viewer.domain.Transformation;
@@ -3675,7 +3676,7 @@ try
 	 *  Gets layers' information of CAD documents
 	 * 
 	 */
-/*    
+    
 public static void getLayersInfoForCadDcouments(String DocumentName)
     {
         try
@@ -3691,15 +3692,15 @@ public static void getLayersInfoForCadDcouments(String DocumentName)
             CadDocumentInfoContainer documentInfo = (CadDocumentInfoContainer)imageHandler.getDocumentInfo(guid);
 
             // Loop through all layers contained in the drawing 
-            for (String layer : documentInfo.getLayers())
-            	System.out.println("Layer name: "+ layer);
+            for (CadLayer layer : documentInfo.getLayers())
+            	System.out.println("Layer name: "+ layer.getName());
             //ExEnd:GetLayersInfoForCadDcouments_updated_19.1
         } catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());
 			exp.printStackTrace();
 		}
     }
-    */
+    
     
     /**
 	 *  Renders specific layer from CAD document
