@@ -1,6 +1,7 @@
 package com.groupdocs.viewer.examples;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
@@ -10,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.groupdocs.viewer.config.ViewerConfig;
 import com.groupdocs.viewer.converter.options.EmailField;
 import com.groupdocs.viewer.converter.options.HtmlOptions;
@@ -66,6 +70,7 @@ public class ViewGenerator {
 		try {
 			// Setup GroupDocs.Viewer config
 			ViewerConfig viewerConfig = Utilities.getConfiguration();
+
 
 			// Init viewer html handler
 			ViewerImageHandler handler = new ViewerImageHandler(viewerConfig);
@@ -4499,5 +4504,45 @@ public static void getLayersInfoForCadDcouments(String DocumentName)
     		exp.printStackTrace();
     	}
     }
+    public static void GetHtmlPagesFromAmazonS3FileStorage(String filePath, String bucketName) throws Exception
+    {
+        //TODO: set your Amazon S3 credentials in app.config file
+        String FileName = "sample.doc";
+        String BucketName = "your-bucket-name";
+        UploadFile(FileName, BucketName);
+
+        // Initailize AmazonS3Client and AmazonS3FileStorage
+        @SuppressWarnings("deprecation")
+		AmazonS3Client amazonS3Client = new  AmazonS3Client();
+        AmazonS3FileStorage fileManager = new AmazonS3FileStorage(amazonS3Client, bucketName);
+
+        // Initialize ViewerHtmlHandler
+        ViewerHtmlHandler handler = new ViewerHtmlHandler(fileManager);
+
+        // Get pages
+        List<PageHtml> pages = handler.getPages(filePath);
+
+        for (PageHtml page : pages)
+        {
+            //TODO: save pages
+        }
+
+        fileManager.dispose();
+    }
+
+	private static void UploadFile(String fileName, String bucketName) {
+		// TODO Auto-generated method stub
+		AmazonS3Client amazonS3Client = new AmazonS3Client();
+		
+		String Key = "files/" + fileName;
+		
+		File file = new File(fileName);
+	    
+	    PutObjectRequest request = new PutObjectRequest(bucketName,Key,file);
+	    
+	    amazonS3Client.putObject(request);
+	    
+		
+	}
     
 }
