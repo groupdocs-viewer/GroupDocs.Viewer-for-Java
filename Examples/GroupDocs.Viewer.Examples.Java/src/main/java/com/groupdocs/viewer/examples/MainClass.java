@@ -247,7 +247,7 @@ public class MainClass {
 		// ViewGenerator.loadFileTreeListWithOrder("D:/storage");
 
 		//// Render as printable Html
-		// ViewGenerator.renderDocumentAsHtmlForPrint("word.docx");
+		 //ViewGenerator.renderDocumentAsHtmlForPrint("word.docx");
 
 		//// Render as Html with watermark
 		// ViewGenerator.renderDocumentAsHtmlForPrint("word.docx", "test");
@@ -339,6 +339,9 @@ public class MainClass {
 
 		////Renders email messages from Outlook Data Files
 		//ViewGenerator.renderEmailAttachmentsFromOutlookDataFile("sample.pst");
+		
+		////Render Archive Folder List
+		ViewGenerator.renderArchiveFolderList("sample.zip");
 
 		// Render document from Amazon S3
 		/*
