@@ -4386,7 +4386,7 @@ public class ViewGenerator {
 
 		fileManager.dispose();
 	}
-
+	
 	private static void UploadFile(String fileName, String bucketName) {
 		// TODO Auto-generated method stub
 		AmazonS3Client amazonS3Client = new AmazonS3Client();
@@ -4400,7 +4400,10 @@ public class ViewGenerator {
 		amazonS3Client.putObject(request);
 
 	}
-
+	/**
+	 * Retrieving the list of root folders from archive documents
+	 * 
+	 */
 	public static void renderArchiveFolderList(String DocumentName) {
 		try {
 			// ExStart:renderArchiveFolderList_19.11
@@ -4419,6 +4422,99 @@ public class ViewGenerator {
 			    System.out.println("Folder name: " + folderName);
 			}
 			// ExEnd:renderArchiveFolderList_19.11
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+	}
+	/**
+	 * Retrieving the list of folders from the certain folder inside the archive
+	 * 
+	 */
+	public static void retrieveCertainArchiveFolderList(String DocumentName) {
+		try {
+			// ExStart:retrieveCertainArchiveFolderList_19.11
+			// Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create HTML or image handler
+			ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+			String guid = DocumentName;
+			  
+			// set option to retrieve list of folders from certain folder.
+			DocumentInfoOptions options = new DocumentInfoOptions();
+			options.getArchiveOptions().setFolderName("FirstLevelFolder/SecondLevelFolder");
+			// Get archive document info
+			ArchiveDocumentInfoContainer documentInfoContainer = (ArchiveDocumentInfoContainer) htmlHandler.getDocumentInfo(guid, options);
+			  
+			for (String folderName : documentInfoContainer.getFolders())
+			{
+			    System.out.println("Folder name: " + folderName);
+			}
+			// ExEnd:retrieveCertainArchiveFolderList_19.11
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+	}
+	/**
+	 * Rendering specified folder into image (or HTML)
+	 * 
+	 */
+	public static void renderCertainArchiveFolder(String DocumentName) {
+		try {
+			// ExStart:renderCertainArchiveFolder_19.11
+			// Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create HTML or image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			String guid = "archive.zip";
+			  
+			// Set option to retrieve list of folders from certain folder.
+			ImageOptions options = new ImageOptions();
+			options.getArchiveOptions().setFolderName("FirstLevelFolder1");
+			 
+			// Render document into image 
+			List<PageImage> pages = imageHandler.getPages(guid, options);
+			for (PageImage page : pages) {
+				// Save each image at disk
+				Utilities.saveAsImage(page.getPageNumber() + "_" + DocumentName, "png", page.getStream());
+			}
+			// ExEnd:renderCertainArchiveFolder_19.11
+
+		} catch (Exception exp) {
+			System.out.println("Exception: " + exp.getMessage());
+			exp.printStackTrace();
+		}
+	}
+	/**
+	 * Rendering specified folder into PDF
+	 * 
+	 */
+	public static void renderCertainArchiveFolderToPDF(String DocumentName) {
+		try {
+			// ExStart:renderCertainArchiveFolderToPDF_19.11
+			// Get Configurations
+			ViewerConfig config = Utilities.getConfiguration();
+
+			// Create HTML or image handler
+			ViewerImageHandler imageHandler = new ViewerImageHandler(config);
+			String guid = DocumentName;
+			  
+			// Set option to retrieve list of folders from certain folder.
+			PdfFileOptions options = new PdfFileOptions();
+			options.getArchiveOptions().setFolderName("FirstLevelFolder1");
+			 
+			// Get PDF document
+			FileContainer fileContainer = imageHandler.getPdfFile(guid, options);
+			
+			// Save file
+			Utilities.saveAsFile("result", fileContainer.getStream(), ".pdf");
+			
+			// ExEnd:renderCertainArchiveFolderToPDF_19.11
 
 		} catch (Exception exp) {
 			System.out.println("Exception: " + exp.getMessage());

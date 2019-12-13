@@ -341,7 +341,16 @@ public class MainClass {
 		//ViewGenerator.renderEmailAttachmentsFromOutlookDataFile("sample.pst");
 		
 		////Render Archive Folder List
-		ViewGenerator.renderArchiveFolderList("sample.zip");
+		//ViewGenerator.renderArchiveFolderList("sample.zip");
+		
+		////Retrieving the list of folders from the certain folder inside the archive
+		//ViewGenerator.retrieveCertainArchiveFolderList("sample.zip");
+		
+		////Rendering specified folder into image (or HTML)
+		//ViewGenerator.renderCertainArchiveFolder("sample.zip");
+		
+		////Rendering specified folder into PDF
+		//ViewGenerator.renderCertainArchiveFolderToPDF("sample.zip");
 
 		// Render document from Amazon S3
 		/*
