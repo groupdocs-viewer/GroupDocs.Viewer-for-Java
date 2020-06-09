@@ -5,13 +5,21 @@
 	
 	<groupId>GroupDocs.Viewer.Examples.Java</groupId>
 	<artifactId>GroupDocs.Viewer.Examples.Java</artifactId>
-	<version>20.1.0</version>
+	<version>20.1.1</version>
 
 	<properties>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<repositories>
+    	<repository>
+    	  <id>groupdocs-artifact-repository</id>
+    	  <name>groupdocs-artifact-repository</name>
+    	  <url>https://repository.groupdocs.com/repo/</url>
+    	</repository>
+  	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -32,17 +40,9 @@
 		<dependency>
 			<groupId>com.groupdocs</groupId>
 			<artifactId>groupdocs-viewer</artifactId>
-			<version>20.1</version>
+			<version>20.1.1</version>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>GroupDocsArtifactRepository</id>
-			<name>GroupDocs Artifact Repository</name>
-			<url>http://repository.groupdocs.com/repo/</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<resources>
