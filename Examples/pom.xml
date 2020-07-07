@@ -67,6 +67,7 @@
 				   </executions>
 				   <configuration>
 					   <mainClass>com.groupdocs.viewer.examples.RunExamples</mainClass>
+					   <cleanupDaemonThreads>false</cleanupDaemonThreads>
 				   </configuration>
 			   </plugin>
 			</plugins>

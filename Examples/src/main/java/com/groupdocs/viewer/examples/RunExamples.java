@@ -39,8 +39,9 @@ public class RunExamples {
         HelloWorld.run();
 
         // Basic Usage
-        //GetSupportedFileFormats.run(); 
-        //GetViewInfo.run(); 
+        //GetSupportedFileFormats.run();
+        //HowToDetermineFileType.fromFileExtension();
+        //GetViewInfo.run();
 
         // Processing attachments
         //RetrieveAndPrintDocumentAttachments.run(); 
@@ -139,7 +140,7 @@ public class RunExamples {
         //LoadDocumentFromLocalDisk.run(); 
         //LoadDocumentFromStream.run(); 
         //LoadDocumentFromUrl.run(); 
-        //LoadDocumentFromFtp.run();
+//        LoadDocumentFromFtp.run();
 
         System.out.println();
         System.out.println("All done.");
