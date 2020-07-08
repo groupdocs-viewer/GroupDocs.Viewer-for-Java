@@ -428,8 +428,8 @@ Public API and Backward Incompatible Changes
     htmlOptions.setIgnoreResourcePrefixForCss(true);
     ```
     
-8.  [How to set default font name]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/replace-missing-font.md" >}})
-9.  [Show hidden pages for Visio files]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/show-hidden-pages.md" >}})
+8.  [How to set default font name]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/replace-missing-font.md" >}})
+9.  [Show hidden pages for Visio files]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/show-hidden-pages.md" >}})
 10.  How to specify internal hyperlink prefix for Excel files
 11.  Mark CachedPageDescription redundant constructor as Obsolete  
     1.  Class com.groupdocs.viewer.domain.CachedPageDescription constructor public CachedPageDescription(String guid, CacheFileType cacheFileType) marked as deprecated
@@ -444,7 +444,7 @@ Public API and Backward Incompatible Changes
     6.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_CACHE\_FILE\_NOT\_FOUND
     7.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_GUID\_NOT\_SPECIFIED
     8.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_TRANSFORMATION\_FAILED\_PAGE\_NOT\_EXIST
-14.  [Ability to set default font when rendering Diagram documents]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/replace-missing-font.md" >}})
+14.  [Ability to set default font when rendering Diagram documents]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/replace-missing-font.md" >}})
 15.  The ability to show and hide PDF layers
 16.  Starting from version 3.7.0 GroupDocs.Viewer the rendering Pdf documents into html representation was improved. It is possible to work with layers in html representation of Pdf document (e.g. show\\hide) with help of javascript. Each layer is separated into <div> tag which has Html data tag "data-pdflayer" and its value contains layer name. For example Pdf document has layer with name "Backgroung" so output html will contain tag
 17.    
