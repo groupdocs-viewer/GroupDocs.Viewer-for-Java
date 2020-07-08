@@ -207,7 +207,7 @@ This constructor is deprecated and will be removed after v19.10.
 
 This interface is deperecated and will be removed after v19.10.
 
-**string GetString(string key) method set as deperecated**
+**String getString(String key) method set as deperecated**
 
 This method is deperecated and will be removed after v19.10.
 
@@ -215,7 +215,7 @@ This method is deperecated and will be removed after v19.10.
 
 **public class LocalizedStringKeys set as deprecated**
 
-This class and all of it constants are deprecated and will be removed after v19.10.
+This class and all of its constants are deprecated and will be removed after v19.10.
 
   
 
