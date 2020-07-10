@@ -10,9 +10,9 @@ hideChildren: False
 ---
 ## What Is GroupDocs.Viewer?
 
-GroupDocs.Viewer is a powerful [file viewer](https://en.wikipedia.org/wiki/File_viewer) API that allows you to display over 140 document types in your applications. The main purpose of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) product is an ability to render documents into HTML, Image or PDF representations fast and with high quality.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) is a powerful [file viewer](https://en.wikipedia.org/wiki/File_viewer) API that allows you to display over 140 document types in your applications. The main purpose of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) product is an ability to render documents into HTML, Image or PDF representations fast and with high quality.
 
-## Why Use GroupDocs.Viewer as a Developer?
+## Why use GroupDocs.Viewer as a Developer?
 
 *   No additional software is required to render documents into HTML5, Image or PDF;    
 *   Great variety of rendering options provided to customize output;    

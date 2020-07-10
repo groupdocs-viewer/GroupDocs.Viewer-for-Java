@@ -11,11 +11,11 @@ hideChildren: False
   
 ## Document viewer
 
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) main feature is an ability to view documents by rendering them into an HTML, Image or PDF using [ViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions) class, so that documents of different types can be easily displayed inside your application without any additional software installed, such as Microsoft Office, Apache Open Office, Adobe Acrobat Reader, etc.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) main feature is an ability to view documents by rendering them into an HTML, Image or PDF using [ViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ViewOptions) class, so that documents of different types can be easily displayed inside your application without any additional software installed, such as Microsoft Office, Apache Open Office, Adobe Acrobat Reader, etc.
 
-Choosing the most appropriate [ViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions)depends on your application type, specifics and requirements.
+Choosing the most appropriate [ViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ViewOptions) depends on your application type, specifics and requirements.
 
-Let’s review in detail what are the differences between [ViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions) and how to choose the most suitable for your case.  
+Let’s review in detail what are the differences between [ViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ViewOptions) and how to choose the most suitable for your case.  
 
 #### Document viewer - HTML Viewer
 
@@ -79,7 +79,7 @@ Documents cache is saved to a local disk by default. However, document viewer A
 
 ## Document text extraction
 
-When using Image Viewer with [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), document text can be extracted along with separate words coordinates.
+When using Image Viewer with [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), document text can be extracted along with separate words coordinates.
 
 This may be helpful when you want to add selectable text layer over the page image.
   

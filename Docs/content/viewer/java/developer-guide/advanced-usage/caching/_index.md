@@ -13,8 +13,8 @@ To enable caching you have to:
 
 *   Instantiate desired cache object (for example [FileCache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/filecache) will store document rendering results at the local drive)
 *   Instantiate [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object with cache object;
-*   Pass [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object to constructor of a [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class.
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method of [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class.
+*   Pass [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object to constructor of a [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
 
 Here is a code that demonstrates how to enable caching for GroupDocs.Viewer. 
 

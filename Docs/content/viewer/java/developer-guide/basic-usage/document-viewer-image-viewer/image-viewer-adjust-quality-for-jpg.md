@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-When rendering documents and files to JPG with [GroupDocs.Viewer](https://products.groupdocs.com/viewer) you can adjust quality of the output images by setting [Quality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/quality) property of [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) class. The supported values range of [Quality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/quality) is from 1 to 100. Default value is 90.
+When rendering documents and files to JPG with [GroupDocs.Viewer](https://products.groupdocs.com/viewer) you can adjust quality of the output images by setting [setQuality(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setQuality(byte)) property of [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) class. The supported values range of [setQuality(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setQuality(byte)) is from 1 to 100. Default value is 90.
 
 This example demonstrates how to adjust quality of the output JPG image.
 

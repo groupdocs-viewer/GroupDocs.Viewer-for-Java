@@ -10,10 +10,10 @@ hideChildren: False
 ---
 GroupDocs.Viewer allows rendering the items in Outlook Data Files (OST/PST). [OutlookOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions) is used to set rendering options for OST and PST formats. The following steps are to be followed when rendering the items in Outlook Data Files.
 
-*   Create [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object;
-*   Create [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) object;
+*   Create [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object;
+*   Create [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) object;
 *   Set Outlook options i.e. [HtmlViewOptions.OutlookOptions.MaxItemsInFolder](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/maxitemsinfolder)*;*
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code samples show how to render the items in an Outlook Data File by setting a maximum limit.
 

@@ -8,15 +8,15 @@ keywords: Show notes when viewer documents with GroupDocs.Viewer Java API
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) does not include notes in the rendering results. However, you can choose between to show or hide the notes in the output. If you want to see notes in your rendering result, use [RenderNotes](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/baseviewoptions/properties/rendernotes) property of the [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) class and pass it to [Viewer 's](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method. 
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) does not include notes in the rendering results. However, you can choose between to show or hide the notes in the output. If you want to see notes in your rendering result, use [RenderNotes](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/baseviewoptions/properties/rendernotes) property of the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class and pass it to [Viewer 's](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method. 
 
 ![](viewer/java/images/show-document-notes.png)
 
 The following are the steps to include the notes in the rendering result.
 
-*   Initialize the object of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions)
-*   Set [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) object[RenderNotes](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/baseviewoptions/properties/rendernotes) property to *true*
-*   Pass [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) object to [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method
+*   Initialize the object of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions)
+*   Set [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) object[RenderNotes](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/baseviewoptions/properties/rendernotes) property to *true*
+*   Pass [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) object to [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method
 
 The following code sample renders Presentation with notes.
 

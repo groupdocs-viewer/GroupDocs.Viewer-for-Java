@@ -8,13 +8,13 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) renders *Model* layout of CAD drawing by default. To render specific layout from a CAD drawing the API provides[CadOptions.LayoutName](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/layoutname) property of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) class. When this property is set, [CadOptions.RenderLayouts](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/renderlayouts) property will be ignored.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) renders *Model* layout of CAD drawing by default. To render specific layout from a CAD drawing the API provides[CadOptions.LayoutName](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/layoutname) property of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class. When this property is set, [CadOptions.RenderLayouts](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/renderlayouts) property will be ignored.
 
 Following are the steps to render specific layout in CAD drawing.
 
-*   Create [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) object.
-*   Set [CadOptions.LayoutName](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/layoutname) of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions). 
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Create [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) object.
+*   Set [CadOptions.LayoutName](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/layoutname) of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions). 
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code sample shows how to render a specific layout.
 

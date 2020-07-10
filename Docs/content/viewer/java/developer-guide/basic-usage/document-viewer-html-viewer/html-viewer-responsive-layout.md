@@ -12,7 +12,7 @@ hideChildren: False
 
 ![](viewer/java/images/html-viewer-responsive-layout.jpg)
 
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also enables you to make your rendering into HTML look well across all types of devices. To achieve this, the API provides [RenderResponsive](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions/properties/renderresponsive) property of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) class as shown in below sample code.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also enables you to make your rendering into HTML look well across all types of devices. To achieve this, the API provides [setRenderResponsive(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions#setRenderResponsive(boolean)) property of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) class as shown in below sample code.
 
 ```java
     Viewer viewer = new Viewer("sample.docx");

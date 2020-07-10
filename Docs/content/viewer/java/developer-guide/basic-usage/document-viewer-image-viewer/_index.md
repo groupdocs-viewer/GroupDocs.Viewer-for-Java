@@ -10,12 +10,12 @@ hideChildren: True
 ---
 Document viewer can operate in different rendering modes, HTML, Image and PDF (see [Features Overview]({{< ref "viewer/java/getting-started/features-overview.md" >}}) for more information). This article will describe on how to view documents in Image mode with Image Viewer.
 
-Image Viewer provides [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) and [JpgViewOptions ](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) classes to set specific options for rendering the document into desired image format.
+Image Viewer provides [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) and [JpgViewOptions ](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) classes to set specific options for rendering the document into desired image format.
 
 Here are the steps for rendering into image with [GroupDocs.Viewer](https://products.groupdocs.com/viewer) API:
-*   Create new instance of [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class and pass source document path as a constructor parameter.    
-*   Instantiate the [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) or [JpgViewOptions ](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) object according to your requirements and specify saving path format for rendered document pages.    
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method of [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class instance and pass [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) or [JpgViewOptions ](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) to it.
+*   Create new instance of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class and pass source document path as a constructor parameter.    
+*   Instantiate the [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) or [JpgViewOptions ](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) object according to your requirements and specify saving path format for rendered document pages.    
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class instance and pass [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) or [JpgViewOptions ](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) to it.
     
 
 ## Document Viewer - Image Viewer (PNG)
@@ -34,13 +34,13 @@ This example shows how to render each document page into PNG image.
 This example shows how to render each document page into JPG image.
 
 ```java
-Viewer viewer = new Viewer("sample.docx");
+    Viewer viewer = new Viewer("sample.docx");
     JpgViewOptions viewOptions= new JpgViewOptions();                  
     viewer.view(viewOptions);
     viewer.close();
 ```
 
-{{< alert style="info" >}}GroupDocs.Viewer also provides an ability to customize rendering to image by setting additional options. To learn more about caching customization please refer to the following guides:Image Viewer - Add text overlay over imagesImage Viewer - Adjust image sizeImage Viewer - Adjust quality for JPGImage Viewer - Get text coordinates{{< /alert >}}
+{{< alert style="info" >}}[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also provides an ability to customize rendering to image by setting additional options. To learn more about caching customization please refer to the following guides: [Image Viewer - Add text overlay over images]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-add-text-overlay-over-images.md" >}}), [Image Viewer - Adjust image size]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-adjust-image-size.md" >}}), [Image Viewer - Adjust quality for JPG]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-adjust-quality-for-jpg.md" >}}) and [Image Viewer - Get text coordinates]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-get-text-coordinates.md" >}}){{< /alert >}}
 
 ## More resources
 ### Advanced Usage Topics

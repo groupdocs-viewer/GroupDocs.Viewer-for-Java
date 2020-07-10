@@ -14,7 +14,7 @@ The following are the steps to render password-protected documents.
 
 *   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/htmlviewoptions) (or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/pngviewoptions), or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/jpgviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/pdfviewoptions)) object;
 *   Set password in [HtmlViewOptions.Password](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/loadoptions/properties/password) property;
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code sample shows how to render password-protected documents.
 

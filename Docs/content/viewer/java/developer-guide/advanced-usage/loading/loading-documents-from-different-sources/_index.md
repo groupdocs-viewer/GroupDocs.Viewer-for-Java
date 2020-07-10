@@ -12,4 +12,4 @@ hideChildren: False
  also enables you to render of remotely located documents. The rendering of the document would be similar to [Load document from Stream]({{< ref "viewer/java/developer-guide/advanced-usage/loading/loading-documents-from-different-sources/load-document-from-stream.md" >}}). In order to render a remotely located document, below steps can be followed.
 
 *   Specify the method to obtain remotely located document stream; 
-*   Pass method's name to [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class constructor.
+*   Pass method's name to [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class constructor.

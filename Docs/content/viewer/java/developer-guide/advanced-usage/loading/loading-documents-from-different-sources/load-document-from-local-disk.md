@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-When document is located on the local disk [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to render the by passing path to the file [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class constructor. Viewer will open file for reading only when any method of [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) will be called.
+When document is located on the local disk [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to render the by passing path to the file [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class constructor. Viewer will open file for reading only when any method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) will be called.
 
 Following code snippet shows how to load document from local disk.
 

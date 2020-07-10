@@ -8,9 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-Image Viewer allows you to set custom output image size in pixels through [Width](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/width) and [Height](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/height) properties in [JpgViewOptions ](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) and [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) classes.
+Image Viewer allows you to set custom output image size in pixels through [setWidth(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setWidth(int)) and [setHeight(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setHeight(int)) properties in [JpgViewOptions ](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) and [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) classes.
 
-Keep in mind that aspect ratio is automatically applied when you set [Width](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/width) or [Height](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions/properties/height) only.
+Keep in mind that aspect ratio is automatically applied when you set [setWidth(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setWidth(int)) or [setHeight(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions#setHeight(int)) only.
 
 This example demonstrates how to set output image size
 

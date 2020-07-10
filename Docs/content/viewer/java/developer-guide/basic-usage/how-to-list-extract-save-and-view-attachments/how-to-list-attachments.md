@@ -14,8 +14,8 @@ hideChildren: False
 
 Follow these steps to get a list of all attachments:
 
-*   Instantiate [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object for the file that contains attachment(s);
-*   Call [GetAttachments](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getattachments) method which will return document attachments collection;
+*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object for the file that contains attachment(s);
+*   Call [getAttachments()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getAttachments()) method which will return document attachments collection;
 *   Iterate through attachments collection.
 
 Following example demonstrates on how to get all attachments from MSG file.

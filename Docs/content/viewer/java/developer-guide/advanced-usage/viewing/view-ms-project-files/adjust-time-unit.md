@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-When rendering MS Project documents [GroupDocs.Viewer](https://products.groupdocs.com/viewer) tries to find optimal output size and time unit depending on the project's overall length. In case you need to set your own page size or time unit, you can set [ProjectManagementOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/projectmanagementoptions) class properties of corresponding [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) class as shown in code samples below. Time unit refers to the smallest unit (days, third of a month or month) used in timescale bar. When the *TimeUnit.Days* is selected, you will get the most detailed view of your tasks. Whereas, when *TimeUnit.Month* is selected, you will get the more general representation of tasks.
+When rendering MS Project documents [GroupDocs.Viewer](https://products.groupdocs.com/viewer) tries to find optimal output size and time unit depending on the project's overall length. In case you need to set your own page size or time unit, you can set [ProjectManagementOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/projectmanagementoptions) class properties of corresponding [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class as shown in code samples below. Time unit refers to the smallest unit (days, third of a month or month) used in timescale bar. When the *TimeUnit.Days* is selected, you will get the most detailed view of your tasks. Whereas, when *TimeUnit.Month* is selected, you will get the more general representation of tasks.
 
 The [TimeUnit](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/timeunit) enumeration contains the following members:
 
@@ -19,9 +19,9 @@ The [TimeUnit](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.
 
 The following are the steps to be followed to set time interval:
 
-*   Create [HtmlViewOption](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) / [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) / [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) / [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions) object;
+*   Create [HtmlViewOption](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) / [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) / [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) / [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions) object;
 *   Set [ProjectManagementOptions.TimeUnit](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/projectmanagementoptions/properties/timeunit) property;
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code samples show how to render MS Project document by time intervals.
 

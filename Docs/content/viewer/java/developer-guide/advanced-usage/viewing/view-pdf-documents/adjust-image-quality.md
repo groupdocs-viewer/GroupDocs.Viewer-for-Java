@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to adjust quality of output images contained by the source PDF document. To adjust image quality use [PdfOptions.ImageQuality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/imagequality)option of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) class.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to adjust quality of output images contained by the source PDF document. To adjust image quality use [PdfOptions.ImageQuality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/imagequality)option of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) class.
 
 [PdfOptions.ImageQuality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/imagequality) can be set to:
 

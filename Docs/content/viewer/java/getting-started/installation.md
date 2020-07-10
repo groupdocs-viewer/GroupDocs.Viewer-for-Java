@@ -47,4 +47,4 @@ You can follow the steps below to reference [GroupDocs.Viewer for Java](https://
 1.  Unpack zip archive .
 2.  Switch to **lib** folder.
 3.  Run **install.bat** (for Windows) or **install.sh** (for Linux) file to install the library in your local maven repository.
-4.  After this you should add the GroupDocs.Viewer for Java **dependency** block to your .pom.xml project file.
+4.  After this you should add the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) **dependency** block to your .pom.xml project file.

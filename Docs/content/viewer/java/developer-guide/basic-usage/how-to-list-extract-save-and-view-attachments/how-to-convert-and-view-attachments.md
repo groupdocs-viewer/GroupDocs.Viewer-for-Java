@@ -10,7 +10,7 @@ hideChildren: False
 ---
 View email/file attachments in the same way as you would view any other documents.
 
-There are many different use cases when you need to view/preview attachments form an emails, save attachments to specific location, parse or extract attachments. So we made this process easy and simple with GroupDocs.Viewer for Java API.
+There are many different use cases when you need to view/preview attachments form an emails, save attachments to specific location, parse or extract attachments. So we made this process easy and simple with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API.
 
 [GroupDocs.Viewer](https://products.groupdocs.com/viewer) supports attachments from following formats:
 
@@ -21,11 +21,11 @@ There are many different use cases when you need to view/preview attachments for
 
 To view attachments just follow steps below:
 
-*   Instantiate [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object for the file that contains attachment(s);
-*   Call [SaveAttachment](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/saveattachment) method and save attachment (to local disk, memory stream, etc);
-*   Instantiate new [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object with previously saved attachment;
-*   Specify view options depending on desired output format - [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) / [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions) / [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions) / [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions);
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object for the file that contains attachment(s);
+*   Call [saveAttachment(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#saveAttachment(java.lang.String,%20java.io.OutputStream)) method and save attachment (to local disk, memory stream, etc);
+*   Instantiate new [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object with previously saved attachment;
+*   Specify view options depending on desired output format - [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) / [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) / [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) / [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions);
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 Following code snippet demonstrates on how to view attachments from MSG file.
 

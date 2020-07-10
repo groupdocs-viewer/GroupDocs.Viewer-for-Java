@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Supported Java Versions
 
-[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) supports Java versions listed below. For more platform support please check [GroupDocs.Viewer](https://products.groupdocs.com/viewer).
+[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) supports Java versions listed below. For more platform support please check [GroupDocs.Viewer](https://products.groupdocs.com/viewer) page.
 
 *   J2SE 7.0 (1.7)
 *   J2SE 8.0 (1.8)

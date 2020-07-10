@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Introduction
 
-[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API enables you to get file type and pages count with [GetViewInfo](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer/viewer/methods/getviewinfo) method that returns a [ViewInfo](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.results/viewinfo) object.
+[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API enables you to get file type and pages count with [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method that returns a [ViewInfo](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.results/ViewInfo) object.
 
 For the following document types [GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information:
 

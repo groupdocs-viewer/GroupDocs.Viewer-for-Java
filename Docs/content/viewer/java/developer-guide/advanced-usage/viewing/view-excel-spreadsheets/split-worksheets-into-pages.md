@@ -12,9 +12,9 @@ There might be the case when you do not want to render the whole Spreadsheet on 
 
 The following steps are required for partial rendering of large Excel sheets.
 
-*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) object
+*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) object
 *   Instantiate [SpreadsheetOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions) object by calling [SpreadsheetOptions.ForSplitSheetIntoPages](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions/methods/forsplitsheetintopages) method and specifying desired *countRowsPerPage* parameter.
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 ```java
     Viewer viewer = new Viewer("sample.xlsx");

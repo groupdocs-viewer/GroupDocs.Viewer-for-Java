@@ -12,4 +12,4 @@ This section is about the main features of [GroupDocs.Viewer for Java](https://p
 
 ## Articles in this section
 
-Let’s review common usage scenarios when source document "sample.docx" is stored at a local drive and you want to convert it to HTML, PNG, JPG, or PDF.
+Let’s review common usage scenarios when source document `sample.docx` is stored at a local drive and you want to convert it to HTML, PNG, JPG, or PDF.

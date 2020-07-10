@@ -18,8 +18,8 @@ The following steps should be followed.
 *   Create CustomCache class which implements [Cache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/icache) interface.
 *   Instantiate the *CustomCache* class.
 *   Pass the reference of the *RedisCache* class instance into the constructor of [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) classinstance.
-*   Instantiate [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class with [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object.
-*   Call [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method of [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class.
+*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class with [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object.
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
 
 Below is the code that demonstrates how to use custom caching for GroupDocs.Viewer:
 

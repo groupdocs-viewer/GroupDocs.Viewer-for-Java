@@ -13,7 +13,7 @@ There might be the case when your document is not physically located on the disk
 The following are the steps to be followed:
 
 *   Specify the method to obtain document stream; 
-*   Pass method's name to [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) class constructor.
+*   Pass method's name to [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class constructor.
 
 Following code snippet serves this purpose.
 

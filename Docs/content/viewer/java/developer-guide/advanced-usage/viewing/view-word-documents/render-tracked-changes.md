@@ -8,13 +8,13 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-GroupDocs.Viewer does not render tracked changes of Word Processing documents by default. If you want to see tracked changes in your rendering result, use [WordProcessingOptions.RenderTrackedChanges](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/wordprocessingoptions/properties/rendertrackedchanges) property of [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) (or [JpgViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/jpgviewoptions), or [PngViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfviewoptions)) class and pass it to [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object constructor.
+GroupDocs.Viewer does not render tracked changes of Word Processing documents by default. If you want to see tracked changes in your rendering result, use [WordProcessingOptions.RenderTrackedChanges](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/wordprocessingoptions/properties/rendertrackedchanges) property of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class and pass it to [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object constructor.
 
 Follow below steps to render WordProcessing document with tracked changes.
 
-*   Initialize the [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) object.
+*   Initialize the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) object.
 *   Set [WordProcessingOptions.RenderTrackedChanges](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/wordprocessingoptions/properties/rendertrackedchanges) to *true.*
-*   Pass [HtmlViewOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/htmlviewoptions) object to [View](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Pass [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) object to [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code sample shows how to render a Word document including tracked changes.
 

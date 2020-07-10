@@ -10,15 +10,15 @@ hideChildren: False
 ---
 ## Processing attachments
 
-Some files such as Email documents, Outlook data files, Archives and PDF documents may contain attachments, those attachments can be viewed, extracted or printed with help of GroupDocs.Viewer for Java API.
+Some files such as Email documents, Outlook data files, Archives and PDF documents may contain attachments, those attachments can be viewed, extracted or printed with help of [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API.
 
-In order to access document attachment use [GetAttachments](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getattachments) methodof [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object. Just follow steps below:
+In order to access document attachment use [getAttachments()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getAttachments()) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object. Just follow steps below:
 
-*   Instantiate [Viewer](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer) object for the file that contains attachment(s);
-*   Call [GetAttachments](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getattachments) method which will return document attachments collection;
+*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) object for the file that contains attachment(s);
+*   Call [getAttachments()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getAttachments()) method which will return document attachments collection;
 *   Process attachments according to your needs (print a list of attachment names, save or view attachments, etc.)
 
-See following examples on how to process document attachments in more details:
+See following examples on how to process document attachments in more details: [How to convert and view attachments]({{< ref "viewer/java/developer-guide/basic-usage/how-to-list-extract-save-and-view-attachments/how-to-convert-and-view-attachments.md" >}}), [How to extract and save attachments]({{< ref "viewer/java/developer-guide/basic-usage/how-to-list-extract-save-and-view-attachments/how-to-extract-and-save-attachments.md" >}}) and [How to list attachments]({{< ref "viewer/java/developer-guide/basic-usage/how-to-list-extract-save-and-view-attachments/how-to-list-attachments.md" >}})
 
 ## More resources
 ### Advanced Usage Topics
