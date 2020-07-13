@@ -16,7 +16,7 @@ Text files contain plain unformatted text. Text files can be opened by text-edit
 
 The following Text Files are supported by the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
 
-Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) can determine the type of the Text file by analyzing file contents.
+Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/viewer) can determine the type of the Text file by analyzing file contents.
 
 | File Extension | File Type | Auto Detection |
 | --- | --- | --- |
@@ -48,7 +48,6 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | .LOG | Log File |   |
 | .M | Objective-C Implementation File |   |
 | .MAKE | Xcode Makefile Script |   |
-| .MD | Markdown Documentation File |   |
 | .ML | ML Source Code File |   |
 | .MM | Objective-C++ Source File |   |
 | .PHP | PHP Source Code File |   |
@@ -66,6 +65,8 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | .SQL | Structured Query Language Data File |   |
 | .VIM | Vim Settings File |   |
 | .YAML | YAML Document |   |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 
 ## In this section
 

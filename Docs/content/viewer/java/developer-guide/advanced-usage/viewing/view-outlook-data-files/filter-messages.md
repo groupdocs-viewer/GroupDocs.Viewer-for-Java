@@ -12,12 +12,12 @@ hideChildren: False
 
 ![](viewer/java/images/filter-messages.png)
 
-GroupDocs.Viewer also allows filtering the rendered messages using the following filters:
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also allows filtering the rendered messages using the following filters:
 
-*   Filter by subject and content using [OutlookOptions.TextFilter](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/textfilter)*;*
-*   Filter by the sender's and recipient's email addresses using [OutlookOptions.](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/addressfilter)[AddressFilter](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/addressfilter)*;*
+*   Filter by subject and content using [setTextFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setTextFilter(java.lang.String))
+*   Filter by the sender's and recipient's email addresses using [setAddressFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setAddressFilter(java.lang.String))
 
-As an example, when setting [OutlookOptions.TextFilter](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/textfilter)as 'Microsoft'  the API will render all messages that contain the text 'Microsoft' in the message's subject or body. Whereas, setting [OutlookOptions.](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/addressfilter)[AddressFilter](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/outlookoptions/properties/addressfilter)as 'susan' will filter messages that contain 'susan' as a part of the sender's or recipient's address. The following code samples show how to filter the messages.
+As an example, when setting [setTextFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setTextFilter(java.lang.String)) as `Microsoft` the API will render all messages that contain the text `Microsoft` in the message's subject or body. Whereas, setting [setAddressFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setAddressFilter(java.lang.String)) as `susan` will filter messages that contain `susan` as a part of the sender's or recipient's address. The following code samples show how to filter the messages.
 
 ```java
     Viewer viewer = new Viewer("sample.ost");

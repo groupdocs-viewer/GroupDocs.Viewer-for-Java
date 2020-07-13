@@ -161,3 +161,5 @@ Please refer to the following supported formats list for more information:
 | [VCF](https://wiki.fileformat.com/specification/email/vcf/) | Electronic Business Card (vCard) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) |   |
 | OXPS | OpenXPS File | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) |   |
 | SXC | StarOffice Calc Spreadsheet | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) | ![(tick)](viewer/java/images/check.png) |   |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_

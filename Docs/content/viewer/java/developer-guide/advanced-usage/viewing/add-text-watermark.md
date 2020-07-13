@@ -8,14 +8,14 @@ keywords: Add watermark with GroupDocs.Viewer for Java API
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-GroupDocs.Viewer enables you to apply a watermark on the output pages (HTML / Image / PDF). 
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to apply a watermark on the output pages (HTML / Image / PDF). 
 
 Here is the recipe: 
 
 *   Create instance of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) class (or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [JpgViewOption](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions));
-*   Create a [Watermark](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/watermark) object and populate its properties;
-*   Assign [Watermark](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/watermark) object to [HtmlViewOptions.Watermark](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions/properties/watermark) (or [PngViewOptions.Watermark](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions/properties/watermark), or [JpgViewOptions.](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions/properties/watermark)[Watermark](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PdfViewOptions.Watermark](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/viewoptions/properties/watermark)) property;
-*   Call [View ](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/view) method.
+*   Create a [Watermark](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/Watermark) object and populate its properties;
+*   Assign [Watermark](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/Watermark) object to [setWatermark(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ViewOptions#setWatermark(com.groupdocs.viewer.options.Watermark)) property of class [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions), [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), [JpgViewOption](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions);
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 The following code sample shows how to apply the watermark to the output pages.
 

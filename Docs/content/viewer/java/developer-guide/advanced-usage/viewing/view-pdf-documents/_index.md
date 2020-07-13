@@ -25,6 +25,8 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.XPS](https://wiki.fileformat.com/page-description-language/xps) | [Microsoft XML Paper Specification (XPS)](https://wiki.fileformat.com/page-description-language/xps) | Yes |
 | .OXPS | OpenXPS File | Yes |
 
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
+
 ## In this section
 
 The articles given in this section describes the usage of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) to convert Page Layout files with different available options.

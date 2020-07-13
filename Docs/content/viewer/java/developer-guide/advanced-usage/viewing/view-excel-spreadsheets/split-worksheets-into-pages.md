@@ -8,12 +8,12 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-There might be the case when you do not want to render the whole Spreadsheet on a single page and limit the number of rows that would be rendered on each output page. In this situation, the [GroupDocs.Viewer](https://products.groupdocs.com/viewer) allows you to specify the number of rows in an Spreadsheet to be rendered on each page.
+There might be the case when you do not want to render the whole Spreadsheet on a single page and limit the number of rows that would be rendered on each output page. In this situation, the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) allows you to specify the number of rows in an Spreadsheet to be rendered on each page.
 
 The following steps are required for partial rendering of large Excel sheets.
 
-*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) object
-*   Instantiate [SpreadsheetOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions) object by calling [SpreadsheetOptions.ForSplitSheetIntoPages](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions/methods/forsplitsheetintopages) method and specifying desired *countRowsPerPage* parameter.
+*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions), [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions) object
+*   Instantiate [SpreadsheetOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions) object by calling [forSplitSheetIntoPages(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions#forSplitSheetIntoPages(int)) method and specifying desired `countRowsPerPage` parameter.
 *   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
 
 ```java

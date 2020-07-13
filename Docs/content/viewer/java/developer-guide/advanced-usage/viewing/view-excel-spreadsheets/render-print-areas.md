@@ -18,7 +18,7 @@ Spreadsheet document allows to set a print area if you want to print a specific 
 
 ## The Solution
 
-GroupDocs.Viewerprovides an option to render sections of the worksheet(s) defined as the "print area". It renders each print area in a worksheet as a separate page. The following code samples show how to render only the print areas from worksheets.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides an option to render sections of the worksheet(s) defined as the "print area". It renders each print area in a worksheet as a separate page. The following code samples show how to render only the print areas from worksheets.
 
 ```java
     Viewer viewer = new Viewer("sample.xlsx");

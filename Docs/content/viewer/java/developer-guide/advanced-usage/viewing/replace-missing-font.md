@@ -11,7 +11,7 @@ hideChildren: False
 [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to set default font name which may be useful in following cases:
 
 1.  You want to generally specify the default font to fall back on if a particular font in a document cannot be found during rendering;
-2.  The document uses a font that contains non-English characters and the you want to make sure that any missing font is replaced with one which has the same character set available.
+2.  The document uses a font that contains non-English characters and you want to make sure that any missing font is replaced with one which has the same character set available.
 
 Following code snippet shows how to set default font name.
 

@@ -16,13 +16,15 @@ Project files are used for organizing, tracking, and maintaining projects and cr
 
 The following Project Management formats are supported by the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
 
-Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) can determine the type of the Project Management file by reading the information in the file header.
+Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/viewer) can determine the type of the Project Management file by reading the information in the file header.
 
 | File Extension | File Type | Auto Detection |
 | --- | --- | --- |
 | [.MPP](https://wiki.fileformat.com/project-management/mpp) | [Microsoft Project Document](https://wiki.fileformat.com/project-management/mpp) | Yes |
 | [.MPT](https://wiki.fileformat.com/project-management/mpt) | [Microsoft Project Template](https://wiki.fileformat.com/project-management/mpt) | Yes |
 | [.MPX](https://wiki.fileformat.com/project-management/mpx) | [Microsoft Project Exchange File](https://wiki.fileformat.com/project-management/mpx) | Yes |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 
 ## In this section
 

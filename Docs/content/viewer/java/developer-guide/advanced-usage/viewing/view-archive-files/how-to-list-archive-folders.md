@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Listing archive folders
 
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information such as list of folders when calling [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method. To retrieve view information for Archive File call [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method and cast output result to [ArchiveViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.results/archiveviewinfo) type.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information such as list of folders when calling [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method. To retrieve view information for Archive File call [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method and cast output result to [ArchiveViewInfo](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.results/ArchiveViewInfo) type.
 
 Following example demonstrates how to print out archive contents.
 

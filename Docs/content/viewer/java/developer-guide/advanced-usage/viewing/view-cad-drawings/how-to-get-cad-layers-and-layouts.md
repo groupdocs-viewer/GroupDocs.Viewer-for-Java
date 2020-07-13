@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Retrieving layers and layouts
 
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information about CAD drawings such as list of layouts and layers when calling [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method. To retrieve view information for CAD drawing call [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method and cast output result to [CadViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.results/cadviewinfo) type.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information about CAD drawings such as list of layouts and layers when calling [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method. To retrieve view information for CAD drawing call [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method and cast output result to [CadViewInfo](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.results/CadViewInfo) type.
 
 Following example demonstrates how to retrieve view information for CAD drawing.
 

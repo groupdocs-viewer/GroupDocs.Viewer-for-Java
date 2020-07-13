@@ -24,6 +24,8 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.EMLX](https://wiki.fileformat.com/email/emlx) | [Apple Mail E-mail File](https://wiki.fileformat.com/email/emlx) | Yes |
 | [.MSG](https://wiki.fileformat.com/email/msg) | [Microsoft Outlook E-mail Message](https://wiki.fileformat.com/email/msg) | Yes |
 
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
+
 ## In this section
 
 The articles given in this section describes the usage of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) to convert E-Mail formats with different available options.

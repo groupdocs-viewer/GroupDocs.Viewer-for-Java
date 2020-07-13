@@ -8,9 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-## Checking that sprinting not allowed
+## Checking that printing not allowed
 
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information for PDF documents when calling [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method. To retrieve view information for PDF document call [GetViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewer/methods/getviewinfo) method and cast output result to [PdfViewInfo](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.results/pdfviewinfo) type.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides additional information for PDF documents when calling [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method. To retrieve view information for PDF document call [getViewInfo(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#getViewInfo(com.groupdocs.viewer.options.ViewInfoOptions)) method and cast output result to [PdfViewInfo](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.results/PdfViewInfo) type.
 
 Following example demonstrates how to retrieve view information for PDF document.
 

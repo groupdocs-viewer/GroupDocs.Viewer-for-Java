@@ -11,7 +11,8 @@ hideChildren: False
 ## Introduction
 TXT documents are simple text documents, without additional (font size, paragraphs/text styling) formatting.
 These files can be opened with windows notepad, or Microsoft office/OpenOffice desktop applications.
-In case you need to view a text files in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
+In case you need to view a text files in a browser or in a standard image or PDF viewer application, you can convert it to HTML, JPEG, PNG  PDF format with [GroupDocs.Viewer](https://products.groupdocs.com/viewer). 
+
 ![](viewer/java/images/how-to-convert-and-view-txt-files.png)
 
 ## How to convert Text files

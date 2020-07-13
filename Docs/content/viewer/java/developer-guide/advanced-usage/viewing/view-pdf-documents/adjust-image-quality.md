@@ -8,13 +8,13 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to adjust quality of output images contained by the source PDF document. To adjust image quality use [PdfOptions.ImageQuality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/imagequality)option of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) class.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to adjust quality of output images contained by the source PDF document. To adjust image quality use [setImageQuality(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfOptions#setImageQuality(int)) option of [PdfOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfOptions) class ([getPdfOptions()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/BaseViewOptions#getPdfOptions()) of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) class).
 
-[PdfOptions.ImageQuality](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/imagequality) can be set to:
+[setImageQuality(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfOptions#setImageQuality(int)) can be set to:
 
-*   *Low* - The acceptable quality, best performance and least size of the output image.
-*   *Medium* - Better quality and slower performance.
-*   *High* - Best quality but slow performance.
+*   [ImageQuality.LOW](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ImageQuality#Low) - Best quality but slow performance.
+*   [ImageQuality.MEDIUM](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ImageQuality#Medium) - Better quality and slower performance.
+*   [ImageQuality.HIGH](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/ImageQuality#High) - The acceptable quality, best performance and least size of the output image.
 
 NOTE: this option is supported when rendering to HTML only.
 

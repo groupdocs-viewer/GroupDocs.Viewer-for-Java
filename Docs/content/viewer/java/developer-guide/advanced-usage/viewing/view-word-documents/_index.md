@@ -14,7 +14,7 @@ Text files include plain text e.g. TXT and LOG files and rich text formats e.g. 
 
 ## Supported Text Formats
 
-The following Text formats are supported by the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
+The following Text formats are supported by the [GroupDocs.Viewer](https://products.groupdocs.com/viewer). 
 
 Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) can determine the type of the Text file by reading the information in the file header.
 
@@ -31,7 +31,8 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.RTF](https://wiki.fileformat.com/word-processing/rtf) | [Rich Text Document](https://wiki.fileformat.com/word-processing/rtf) | Yes |
 | [.TXT](https://wiki.fileformat.com/word-processing/txt) | [Plain Text Document](https://wiki.fileformat.com/word-processing/txt) | Yes |
 | .VCF | Electronic Business Card (vCard) | Yes |
-| .VCARD | Electronic Business Card (vCard) | Yes |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 
 ## In this section
 

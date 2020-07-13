@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-To adjust the display of an outline font ([learn more about font hinting](https://en.wikipedia.org/wiki/Font_hinting)) when rendering PDF documents into image GroupDocs.Viewer provides [PdfOptions.EnableFontHinting](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/enablefonthinting) setting as shown below:
+To adjust the display of an outline font ([learn more about font hinting](https://en.wikipedia.org/wiki/Font_hinting)) when rendering PDF documents into image [GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides [setEnableFontHinting(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfOptions#setEnableFontHinting(boolean)) setting as shown below:
 
 NOTE: this option is supported when rendering into PNG and JPG.
 

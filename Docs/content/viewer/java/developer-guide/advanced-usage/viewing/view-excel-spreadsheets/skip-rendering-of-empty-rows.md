@@ -16,7 +16,7 @@ Sometimes Excel document contains information at the beginning of the worksheet 
 
 ## The Solution
 
-To skip rendering of empty rows GroupDocs.Viewer provides [SkipEmptyRows](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions/properties/skipemptyrows) property of [SpreadsheetOptions](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/spreadsheetoptions) class, which allow omitting to render empty rows as shown in the sample below:
+To skip rendering of empty rows [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) provides [setSkipEmptyRows(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions#setSkipEmptyRows(boolean)) property of [SpreadsheetOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions) class, which allows to omit rendering empty rows as shown in the sample below:
 
 ```java
     Viewer viewer = new Viewer("sample.xlsx");

@@ -10,7 +10,7 @@ hideChildren: False
 ---
 ## Introduction
 
-[CAD drawings](https://wiki.fileformat.com/cad/) are vector format images that contain points with x,y, z coordinates, and associated lines definitions. CAD drawings also may contain layers and layouts. 
+[CAD drawings](https://wiki.fileformat.com/cad/) are vector format images that contain points with X, Y and Z coordinates, and associated lines definitions. CAD drawings also may contain layers and layouts. 
 
 ## Background
 

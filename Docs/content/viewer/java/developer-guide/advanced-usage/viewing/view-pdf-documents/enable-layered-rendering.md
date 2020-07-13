@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-When rendering into HTML [GroupDocs.Viewer](https://products.groupdocs.com/viewer) renders text and graphics as a single layer that improves performance and reduces HTML document size. To improve content positioning wen rendering multi-layered PDF document GroupDocs.Viewer provides [EnableLayeredRendering](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pdfoptions/properties/enablelayeredrendering) option that enables rendering of text and graphics according to z-order in original PDF document when rendering into HTML.
+When rendering into HTML [GroupDocs.Viewer](https://products.groupdocs.com/viewer) renders text and graphics as a single layer that improves performance and reduces HTML document size. To improve content positioning when rendering multi-layered PDF document [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) provides [setEnableLayeredRendering(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfOptions#setEnableLayeredRendering(boolean)) option that enables rendering of text and graphics according to z-order in original PDF document when rendering into HTML.
 
 {{< alert style="info" >}}This option is supported when rendering to HTML only.{{< /alert >}}
 

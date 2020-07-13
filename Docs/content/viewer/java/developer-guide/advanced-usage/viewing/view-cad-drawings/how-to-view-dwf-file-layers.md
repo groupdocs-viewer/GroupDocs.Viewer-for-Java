@@ -24,7 +24,7 @@ By default GroupDocs.Viewer renders all layers:
 
 ## How to view only specific layers
 
-If you want to view only specific layers you can set [CadOptions.Layers](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/cadoptions/properties/layers) property of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions) (or [PngView](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions)[Options](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.options/pngviewoptions), or  [JpgView](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions)[Options](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), or[PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class. 
+If you want to view only specific layers you can set [setLayers(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#setLayers(java.util.List)) property of [CadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions) ([getCadOptions()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/BaseViewOptions#getCadOptions()) method of [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions), [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions), [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions) or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions)) class. 
 
 Let's view only "Doors", "Stairs", "Walls" layers, to do that use following code, 
 
@@ -40,7 +40,7 @@ Let's view only "Doors", "Stairs", "Walls" layers, to do that use following cod
     viewer.close();
 ```
 
-Now GroupDocs.Viewer will render only these layers:
+Now [GroupDocs.Viewer](https://products.groupdocs.com/viewer) will render only these layers:
 
 ![](viewer/java/images/how-to-view-dwf-file-layers_2.png)
 

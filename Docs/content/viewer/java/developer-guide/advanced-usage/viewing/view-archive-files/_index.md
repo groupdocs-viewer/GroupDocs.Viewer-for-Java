@@ -16,14 +16,15 @@ The archive files are used to compress files to save space on disk or compress f
 
 The following archive formats are supported by the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
 
-Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) can determine the type of the archive file by reading the information in the file header.
+Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/viewer) can determine the type of the archive file by reading the information in the file header.
 
 | File Extension | File Type | Auto Detection |
 | --- | --- | --- |
 | [.ZIP](https://wiki.fileformat.com/compression/zip) | [Archive file format](https://wiki.fileformat.com/compression/zip) | Yes |
 | [.TAR](https://wiki.fileformat.com/compression/tar) | [Consolidated Unix File Archive](https://wiki.fileformat.com/compression/tar) | Yes |
 | [.BZ2](https://wiki.fileformat.com/compression/bz2) | [Bzip2 compressed file](https://wiki.fileformat.com/compression/bz2) | Yes |
-| [.GZ](https://wiki.fileformat.com/compression/gz) | [Gnu Zipped File](https://wiki.fileformat.com/compression/gz) | Yes |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 
 ## In this section
 

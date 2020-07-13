@@ -10,13 +10,13 @@ hideChildren: False
 ---
 ## Overview
 
-For today there a lot of image files formats that contain pixel bit map with color(or black and white) values, some of them you can find in cameras (like JPEG, CR2) or in FAXes/scanners (TIF, TIFF). Some formats use image compression (like JPEG), for some formats use it optional (TIF/TIFF).
+For today there a lot of image files formats that contain pixel bit map with color (of black and white) values, some of them you can find in cameras (like JPEG, CR2) or in FAXes/scanners (TIF, TIFF). Some formats use image compression (like JPEG), for some formats use it optional (TIF/TIFF).
 
 ## Supported Image Formats
 
 The following image formats are supported by the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
 
-Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) can determine the type of the image file by reading the information in the file header.
+Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/viewer) can determine the type of the image file by reading the information in the file header.
 
 | File Extension | File Type | Auto Detection |
 | --- | --- | --- |
@@ -30,8 +30,6 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.EPS](https://wiki.fileformat.com/page-description-language/eps) | [Encapsulated PostScript](https://wiki.fileformat.com/page-description-language/eps) | Yes |
 | [.GIF](https://wiki.fileformat.com/image/gif) | [Graphics Interchange Format (GIF)](https://wiki.fileformat.com/image/gif) | Yes |
 | [.ICO](https://wiki.fileformat.com/image/ico) | [Windows Icon](https://wiki.fileformat.com/image/ico) | Yes |
-| [.JP2](https://wiki.fileformat.com/image/jp2) | [JPEG 2000 Core Image File](https://wiki.fileformat.com/image/jp2) | Yes |
-| .JPF | JPEG 2000 Image File | Yes |
 | [.JPX](https://wiki.fileformat.com/image/jp2) | [JPEG 2000 Image File](https://wiki.fileformat.com/image/jp2) | Yes |
 | .JPM | JPEG 2000 Image File | Yes |
 | .J2C | JPEG 2000 Code Stream | Yes |
@@ -39,7 +37,6 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.JPC](https://wiki.fileformat.com/image/jp2) | [JPEG 2000 Code Stream](https://wiki.fileformat.com/image/jp2) | Yes |
 | [.JPG, .JPEG](https://wiki.fileformat.com/image/jpeg) | [Joint Photographic Experts Group (JPEG)](https://wiki.fileformat.com/image/jpeg) | Yes |
 | [.ODG](https://wiki.fileformat.com/image/odg) | [Open Document Graphic (ODG)](https://wiki.fileformat.com/image/odg) | Yes |
-| .FODG | Flat XML ODF Template | Yes |
 | [.PCL](https://wiki.fileformat.com/page-description-language/pcl) | [Printer Command Language (PCL)](https://wiki.fileformat.com/page-description-language/pcl) | Yes |
 | [.PNG](https://wiki.fileformat.com/image/png) | [Portable Network Graphics (PNG)](https://wiki.fileformat.com/image/png) | Yes |
 | [.PS](https://wiki.fileformat.com/page-description-language/ps) | [PostScript (PS)](https://wiki.fileformat.com/page-description-language/ps) | Yes |
@@ -49,6 +46,8 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.WEBP](https://wiki.fileformat.com/image/webp) | [WebP Image](https://wiki.fileformat.com/image/webp) | Yes |
 | [.EMF](https://wiki.fileformat.com/image/emf) | [Windows Enhanced Metafile (EMF)](https://wiki.fileformat.com/image/emf)  | Yes |
 | [.WMF](https://wiki.fileformat.com/image/wmf) | [Windows Metafile (WMF)](https://wiki.fileformat.com/image/wmf) | Yes |
+
+*Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 
 ## In this section
 

@@ -41,10 +41,10 @@ The following screenshot shows the output HTML file opened in a browser.
 To convert FODG files to JPG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-Viewer viewer = new Viewer("sample.fodg");
-       JpgViewOptions options = new JpgViewOptions("output.jpg");
-
-       viewer.view(options);
+    Viewer viewer = new Viewer("sample.fodg");
+    JpgViewOptions options = new JpgViewOptions("output.jpg");
+    
+    viewer.view(options);
     viewer.close();
 }
 ```
@@ -58,12 +58,11 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 To convert PLT/HPG files to PNG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-Viewer viewer = new Viewer("sample.fodg");
-       PngViewOptions options = new PngViewOptions("output.png");
-
-       viewer.view(options);
+    Viewer viewer = new Viewer("sample.fodg");
+    PngViewOptions options = new PngViewOptions("output.png");
+    
+    viewer.view(options);
     viewer.close();
-}
 ```
 
 The following screenshot shows the output PNG file opened in a Windows Photo Viewer application.
@@ -75,12 +74,11 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 To convert FODG files to PDF with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-Viewer viewer = new Viewer("sample.fodg");
-       PdfViewOptions options = new PdfViewOptions("output.pdf");
-
-       viewer.view(options);
+    Viewer viewer = new Viewer("sample.fodg");
+    PdfViewOptions options = new PdfViewOptions("output.pdf");
+    
+    viewer.view(options);
     viewer.close();
-}
 ```
 
 The following screenshot shows the output PDF file opened in an Acrobat Reader.
