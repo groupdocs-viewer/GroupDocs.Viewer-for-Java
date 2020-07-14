@@ -8,12 +8,12 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-This article contains information about migration from the legacy API to [GroupDocs.Viewer](https://products.groupdocs.com/viewer) 19.8 or higher.
+This article contains information about migration from the legacy API to [GroupDocs.Viewer](https://products.groupdocs.com/viewer) 20.1 or higher.
 
 
 ## Why To Migrate
 
-Here are the key reasons to use the new updated API provided by **GroupDocs.Viewer for Java** since version **19.8**:
+Here are the key reasons to use the new updated API provided by **[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java)** since version **20.1**:
 *   **Viewer** class introduced as a **single entry point** to manage the document rendering process to any supported file format (instead of **ViewerHtmlHander** / **ViewerImageHander** classes from previous versions).    
 *   The overall **rendering speed improved** dramatically by saving rendered page as soon as it was rendered, not when all pages list were rendered.     
 *   Product architecture was redesigned from scratch in order to **decreased memory usage** (from 10% to 400% approx. depending on document type).    
@@ -59,7 +59,9 @@ Here is a brief comparison of how to display document into HTML form using old a
 **New coding style**
 
 ```java
-    Viewer viewer = new Viewer("sample.docx");
+    LoadOptions loadOptions = new LoadOptions();
+    loadOptions.setPassword("documentPassword");
+    Viewer viewer = new Viewer("sample.docx", loadOptions);
     HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources();
     viewer.view(options);
     viewer.close();

@@ -10,11 +10,6 @@ hideChildren: False
 ---
 There might be the case when your document is not physically located on the disk. Instead, you have the document in the form of a stream. In this case, to avoid the overhead of saving stream as a file on disk, [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to render the file streams directly.
 
-The following are the steps to be followed:
-
-*   Specify the method to obtain document stream; 
-*   Pass method's name to [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class constructor.
-
 Following code snippet serves this purpose.
 
 ```java

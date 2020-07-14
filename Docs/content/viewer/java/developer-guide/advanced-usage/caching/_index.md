@@ -8,15 +8,15 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-In some cases document rendering may be a time-consuming operation (dependent on source document content, structure and complexity). For such situations caching can be a solution - rendered document representation is stored into cache (for example at the local drive) and in a case of repetitive rendering of the document, GroupDocs.Viewer uses cached representation. This thing helps to avoid the processing of the same document again and again.  
+In some cases document rendering may be a time-consuming operation (dependent on source document content, structure and complexity). For such situations caching can be a solution - rendered document representation is stored into cache (for example at the local drive) and in a case of repetitive rendering of the document, [GroupDocs.Viewer](https://products.groupdocs.com/viewer) uses cached representation. This thing helps to avoid the processing of the same document again and again.  
 To enable caching you have to:
 
-*   Instantiate desired cache object (for example [FileCache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/filecache) will store document rendering results at the local drive)
-*   Instantiate [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object with cache object;
-*   Pass [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object to constructor of a [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
+*   Instantiate desired cache object (for example [FileCache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/FileCache) will store document rendering results at the local drive)
+*   Instantiate [ViewerSettings](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/ViewerSettings) object with cache object;
+*   Pass [ViewerSettings](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/ViewerSettings) object to constructor of a [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
 *   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
 
-Here is a code that demonstrates how to enable caching for GroupDocs.Viewer. 
+Here is a code that demonstrates how to enable caching for [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). 
 
 ```java
     String outputDirectory = "C:\\output";
@@ -42,7 +42,7 @@ Here is a code that demonstrates how to enable caching for GroupDocs.Viewer.
     viewer.close();
 ```
 
-{{< alert style="info" >}}GroupDocs.Viewer also provides an ability to customize caching behavior. To learn more about caching customization please refer to Caching guide.{{< /alert >}}
+{{< alert style="info" >}}[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also provides an ability to customize caching behavior. To learn more about caching customization please refer to [Caching guide]({{< ref "viewer/java/developer-guide/advanced-usage/caching/how-to-use-custom-cache-implementation.md" >}}).{{< /alert >}}
 
 ## More resources
 ### GitHub Examples

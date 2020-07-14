@@ -1,14 +1,14 @@
 ---
-id: specify-encoding-when-loading-documents
-url: viewer/java/specify-encoding-when-loading-documents
-title: Specify encoding when loading documents
+id: specify-charset-when-loading-documents
+url: viewer/java/specify-charset-when-loading-documents
+title: Specify charset when loading documents
 weight: 3
-description: "This article explains how to set encoding when loading documents with GroupDocs.Viewer within your Java applications."
+description: "This article explains how to set charset when loading documents with GroupDocs.Viewer within your Java applications."
 keywords: 
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables users to pass encoding when rendering text documents or email messages.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables users to pass charset when rendering text documents or email messages.
 
 This feature is supported for:
 
@@ -17,11 +17,11 @@ This feature is supported for:
 *   [Tab-separated values (.tsv)](https://wiki.fileformat.com/spreadsheet/tsv/)
 *   [E-Mail Message (.eml)](https://wiki.fileformat.com/email/eml/)
 
-Following code snippet sets the document encoding.
+Following code snippet sets the document charset.
 
 ```java
         LoadOptions loadOptions = new LoadOptions();
-        loadOptions.setCharset(Charset.forName("shift_jis"));
+        loadOptions.setCharset(Charset.forName("windows-1251"));
 
         Viewer viewer = new Viewer("sample.txt", loadOptions);
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();

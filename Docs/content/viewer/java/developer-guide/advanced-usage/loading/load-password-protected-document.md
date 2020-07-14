@@ -12,9 +12,10 @@ hideChildren: False
 
 The following are the steps to render password-protected documents.
 
-*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/htmlviewoptions) (or [PngViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/pngviewoptions), or [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/jpgviewoptions), or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/pdfviewoptions)) object;
-*   Set password in [HtmlViewOptions.Password](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/loadoptions/properties/password) property;
-*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
+*   Instantiate the [LoadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/LoadOptions) object;
+*   Set password in [setPassword(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/LoadOptions#setPassword(java.lang.String)) property;
+*   Instantiate the [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) with created [LoadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/LoadOptions) object
+*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method with parameters that you need.
 
 The following code sample shows how to render password-protected documents.
 

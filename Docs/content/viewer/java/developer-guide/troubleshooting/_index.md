@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-This section contains issues that you may face and solutions for them when processing files with GroupDocs.Viewer. Please also check [Known issues]({{< ref "viewer/java/developer-guide/troubleshooting/known-issues/_index.md" >}}) section that contains information about issues that are known and limitations.
+This section contains issues that you may face and solutions for them when processing files with [GroupDocs.Viewer](https://products.groupdocs.com/viewer). Please also check [Known issues]({{< ref "viewer/java/developer-guide/troubleshooting/known-issues/_index.md" >}}) section that contains information about issues that are known and limitations.
 
 
 ## Chinese characters are garbled or rendered as boxes on Linux

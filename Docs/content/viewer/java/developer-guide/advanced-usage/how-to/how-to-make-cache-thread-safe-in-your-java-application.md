@@ -1,14 +1,14 @@
 ---
 id: how-to-make-cache-thread-safe-in-your-java-csharp-application
 url: viewer/java/how-to-make-cache-thread-safe-in-your-java-csharp-application
-title: How to make cache thread-safe in your Java C# application
+title: How to make cache thread-safe in your Java application
 weight: 2
 description: "This article explains how to make cache thread-safe with GroupDocs.Viewer within your Java applications."
 keywords: GroupDocs.Viewer, thread-safe, cache
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-This tutorial will explain how to make cache thread-safe by using [C# lock](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/lock-statement) and [ConcurrentDictionary<,> class](https://docs.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2).
+This tutorial will explain how to make cache thread-safe by using [synchronized](https://docs.oracle.com/javase/tutorial/essential/concurrency/sync.html) block.
 
 ## Introduction
 
@@ -18,11 +18,11 @@ We can say that a method is thread-safe when multiple threads can call it withou
 
 We have a web-application where multiple users can simultaneously view the same file. The web-application uses [GroupDocs.Viewer](https://products.groupdocs.com/viewer) on the server-side and we want to make sure that multiple-threads can safely read from and write to the cache, in other words, make cache thread-safe.
 
-The [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables users to use caching to improve the performance of the application when the same document is processed multiple times ([read more about caching here]({{< ref "viewer/java/developer-guide/advanced-usage/caching/_index.md" >}}).) The [FileCache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/filecache) is a simple implementation of [ICache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/icache) interface that uses a local disk to store the cache files is available from the GroupDocs.Viewer.Caching namespace. The FileCache is not thread-safe, so our task is to make it thread-safe.
+The [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables users to use caching to improve the performance of the application when the same document is processed multiple times ([read more about caching here]({{< ref "viewer/java/developer-guide/advanced-usage/caching/_index.md" >}}).) The [FileCache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/FileCache) is a simple implementation of [Cache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/Cache) interface that uses a local disk to store the cache files is available from the com.groupdocs.viewer.caching package. The [FileCache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/FileCache) is not thread-safe, so our task is to make it thread-safe.
 
 ## The solution
 
-The FileCache class uses a local disk to read and write output file copies, so we need to make reads and writes to disk thread-safe. To do so, we need some kind of the list where we can store key or file ID and associated object that we'll lock around. The simplest way is using [synchronized](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html) block. Let's implement a class which will wrap around not thread-safe class which implements the Cache interface.
+The [FileCache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/FileCache) class uses a local disk to read and write output file copies, so we need to make reads and writes to disk thread-safe. The simplest way is using [synchronized](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html) block. Let's implement a class which will wrap around not thread-safe class which implements the [Cache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/Cache) interface.
 
 ```java
     class ThreadSafeCache implements Cache {
@@ -54,7 +54,7 @@ The FileCache class uses a local disk to read and write output file copies, so w
 
 ## Conclusion
 
-With **lock** statement and **Concurrent Collections**, we can write quite a simple code to achieve thread-safety in our applications as shown in this tutorial. 
+With [synchronized](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html) statement we can write quite a simple code to achieve thread-safety in our applications as shown in this tutorial. 
 
 ## More resources
 ### GitHub Examples

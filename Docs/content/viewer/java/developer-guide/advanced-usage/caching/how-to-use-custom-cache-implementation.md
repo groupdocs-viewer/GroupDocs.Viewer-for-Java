@@ -8,20 +8,20 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-Despite the fact that GroupDocs.Viewer implements caching to local drive out of the box, it also allows you to cache rendering result in your own way. You can do this by using *Cache* interface implementation.  
+Despite the fact that [GroupDocs.Viewer](https://products.groupdocs.com/viewer) implements caching to local drive out of the box, it also allows you to cache rendering result in your own way. You can do this by using *Cache* interface implementation.  
 Let see how to implement some custom cache implementation
 
 ## Using Custom cache (example)
 
 The following steps should be followed.
 
-*   Create CustomCache class which implements [Cache](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer.caching/icache) interface.
-*   Instantiate the *CustomCache* class.
-*   Pass the reference of the *RedisCache* class instance into the constructor of [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) classinstance.
-*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class with [ViewerSettings](https://apireference.groupdocs.com/java/viewer/groupdocs.viewer/viewersettings) object.
+*   Create `CustomCache` class which implements [Cache](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.caching/Cache) interface.
+*   Instantiate the `CustomCache` class.
+*   Pass the reference of the `RedisCache` class instance into the constructor of [ViewerSettings](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/ViewerSettings) class instance.
+*   Instantiate [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class with [ViewerSettings](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/ViewerSettings) object.
 *   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method of [Viewer](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer) class.
 
-Below is the code that demonstrates how to use custom caching for GroupDocs.Viewer:
+Below is the code that demonstrates how to use custom caching for [GroupDocs.Viewer](https://products.groupdocs.com/viewer):
 
 ```java
     String outputDirectory = "C:\\output";

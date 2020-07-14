@@ -12,7 +12,7 @@ The documents may contain external resources such as graphics that should be loa
 
 Before v19.12 default timeout was 100 seconds which may slow down rendering in case a service that provides external resources is down.
 
-In v19.12 we've set default timeout to 30 seconds and enabled users to specify the desired timeout in [LoadOptions](https://apireference.groupdocs.com/viewer/java/groupdocs.viewer.options/loadoptions) class.
+In v19.12 we've set default timeout to 30 seconds and enabled users to specify the desired timeout in [LoadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/LoadOptions) class.
 
 This feature is supported for:
 

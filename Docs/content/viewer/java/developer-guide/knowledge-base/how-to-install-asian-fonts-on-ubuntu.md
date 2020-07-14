@@ -8,7 +8,7 @@ keywords: Ubuntu, Asian Fonts
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-This article will guide you through the installation process of the Asian Fonts on Ubuntu operating system. We'll be installing packages with [apt-get](https://wiki.debian.org/apt-get) utility on the latest (at the moment o writing this article) available version of OS that is [Ubuntu **20.04 LTS**](https://wiki.ubuntu.com/Releases) but the process is quite the same for the previous versions of Ubuntu.
+This article will guide you through the installation process of the Asian Fonts on Ubuntu operating system. We'll be installing packages with [apt-get](https://wiki.debian.org/apt-get) utility on the latest (at the moment of writing this article) available version of OS that is [Ubuntu **20.04 LTS**](https://wiki.ubuntu.com/Releases) but the process is quite the same for the previous versions of Ubuntu.
 
 
 ## Find the required packages
