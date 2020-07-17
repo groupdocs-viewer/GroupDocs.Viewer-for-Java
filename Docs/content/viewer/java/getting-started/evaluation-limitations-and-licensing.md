@@ -46,7 +46,9 @@ license.setLicense(fileStream);
 
 #### Setting Metered License
 
-{{< alert style="info" >}}You can also set Metered license as an alternative to license file. It is a new licensing mechanism that will be used along with the existing licensing method. It is useful for customers who want to be billed based on the usage of the API features. For more details, please refer to Metered Licensing FAQ section.{{< /alert >}}
+{{< alert style="info" >}}
+You can also set [Metered](https://apireference.groupdocs.com/net/viewer/groupdocs.viewer/metered) license as an alternative to license file. It is a new licensing mechanism that will be used along with the existing licensing method. It is useful for customers who want to be billed based on the usage of the API features. For more details, please refer to [Metered Licensing FAQ](https://purchase.groupdocs.com/faqs/licensing/metered) section.
+{{< /alert >}}
 
 Following is the sample code demonstrating how to use `Metered` licensing.
 
