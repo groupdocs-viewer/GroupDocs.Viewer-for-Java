@@ -21,7 +21,7 @@ public class RenderWithCustomFonts {
 
     public static void run() throws IOException {
         FontSource fontSource = 
-            new FolderFontSource(Utils.FONTS_PATH, SearchOption.TopFolderOnly);
+            new FolderFontSource(Utils.FONTS_PATH, SearchOption.TOP_FOLDER_ONLY);
         FontSettings.setFontSources(fontSource);
 
         String outputDirectory = Utils.getOutputDirectoryPath("RenderWithCustomFonts");

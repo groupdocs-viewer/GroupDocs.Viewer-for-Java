@@ -20,7 +20,7 @@ public class AdjustTextOverflowInCells {
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-        viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HideText);
+        viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);
 
         Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_TEXT_OVERFLOW);
         viewer.view(viewOptions);

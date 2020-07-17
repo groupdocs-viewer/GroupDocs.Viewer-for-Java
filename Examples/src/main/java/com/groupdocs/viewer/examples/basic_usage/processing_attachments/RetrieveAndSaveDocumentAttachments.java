@@ -1,10 +1,10 @@
 package com.groupdocs.viewer.examples.basic_usage.processing_attachments;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.common.Path;
 import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.results.Attachment;
+import com.groupdocs.viewer.utils.PathUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +24,7 @@ public class RetrieveAndSaveDocumentAttachments {
 
         List<Attachment> attachments = viewer.getAttachments();
         for (Attachment attachment : attachments) {
-            final File file = new File(Path.combine(outputDirectory, attachment.getFileName()));
+            final File file = new File(PathUtils.combine(outputDirectory, attachment.getFileName()));
             FileOutputStream outputStream = new FileOutputStream(file);
             viewer.saveAttachment(attachment.getId(), outputStream);
         }

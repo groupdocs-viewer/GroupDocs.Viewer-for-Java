@@ -20,7 +20,7 @@ public class AdjustTimeUnit {
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-        viewOptions.getProjectManagementOptions().setTimeUnit(TimeUnit.Days);
+        viewOptions.getProjectManagementOptions().setTimeUnit(TimeUnit.DAYS);
 
         Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP);
         viewer.view(viewOptions);

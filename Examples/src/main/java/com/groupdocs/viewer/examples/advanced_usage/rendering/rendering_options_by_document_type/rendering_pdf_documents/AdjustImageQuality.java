@@ -21,7 +21,7 @@ public class AdjustImageQuality {
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-        int quality = ImageQuality.Medium;
+        ImageQuality quality = ImageQuality.MEDIUM;
         viewOptions.getPdfOptions().setImageQuality(quality);
 
         Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF);
