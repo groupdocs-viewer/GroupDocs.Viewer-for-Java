@@ -17,12 +17,12 @@ Spreadsheet document allows to set a print area if you want to print a specific 
 GroupDocs.Viewerprovides an option to render sections of the worksheet(s) defined as the "print area". It renders each print area in a worksheet as a separate page. The following code samples show how to render only the print areas from worksheets.
 
 ```java
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
-        viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forRenderingPrintArea());
- 
-        Viewer viewer = new Viewer("with_print_areas.xlsx");
-        viewer.view(viewOptions);
-        viewer.close();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forRenderingPrintArea());
+
+Viewer viewer = new Viewer("with_print_areas.xlsx");
+viewer.view(viewOptions);
+viewer.close();
 ```
 
 ## More resources

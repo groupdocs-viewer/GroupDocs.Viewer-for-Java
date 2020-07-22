@@ -13,25 +13,22 @@ hideChildren: False
 Following example demonstrates how to retrieve view information for CAD drawing.
 
 ```java
-           
-		ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
- 
-        Viewer viewer = new Viewer("wiht_layers_and_layouts.dwg");
-        CadViewInfo info = (CadViewInfo) viewer.getViewInfo(viewInfoOptions);
-        viewer.close();
- 
-        System.out.println("Document type is: " + info.getFileType());
-        System.out.println("Pages count: " + info.getPages().size());
- 
-        for (Layout layout : info.getLayouts()) {
-            System.out.println(layout);
-        }
- 
-        for (Layer layer : info.getLayers()) {
-            System.out.println(layer);
-        }
-      
+ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
+Viewer viewer = new Viewer("wiht_layers_and_layouts.dwg");
+CadViewInfo info = (CadViewInfo) viewer.getViewInfo(viewInfoOptions);
+viewer.close();
+
+System.out.println("Document type is: " + info.getFileType());
+System.out.println("Pages count: " + info.getPages().size());
+
+for (Layout layout : info.getLayouts()) {
+    System.out.println(layout);
+}
+
+for (Layer layer : info.getLayers()) {
+    System.out.println(layer);
+}
 ```
 
 ## More resources

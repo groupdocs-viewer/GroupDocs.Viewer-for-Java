@@ -13,12 +13,12 @@ hideChildren: False
 When rendering of a specified folder is required, it can be achieved as shown in the examples below.
 
 ```java
-   			HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
-			options.getArchiveOptions().setFolder("ThirdFolderWithItems");
+HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+options.getArchiveOptions().setFolder("ThirdFolderWithItems");
 
-			Viewer viewer = new Viewer("with_folders.zip");
-			viewer.view(options);
-			viewer.close();
+Viewer viewer = new Viewer("with_folders.zip");
+viewer.view(options);
+viewer.close();
 ```
 
 ## More resources

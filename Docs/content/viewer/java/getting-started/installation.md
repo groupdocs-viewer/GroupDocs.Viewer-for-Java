@@ -19,7 +19,7 @@ First, you need to specify repository configuration/location in your Maven `pom
 	<repository>
 		<id>GroupDocsArtifactRepository</id>
 		<name>GroupDocs Artifact Repository</name>
-		<url>http://repository.groupdocs.com/repo/</url>
+		<url>https://repository.groupdocs.com/repo/</url>
 	</repository>
 </repositories>
 ```

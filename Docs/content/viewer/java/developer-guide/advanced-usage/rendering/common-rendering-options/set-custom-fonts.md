@@ -13,15 +13,14 @@ hideChildren: False
 The following code snippet shows how to set the custom font source.
 
 ```java
-		FolderFontSource customFonts = 
-			new FolderFontSource("./custom_fonts", SearchOption.TopFolderOnly);
-        FontSettings.setFontSources(customFonts);
- 
-        HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources();
-        
-        Viewer viewer = new Viewer("missing_font.docx");
-        viewer.view(options);
-		viewer.close();
+FolderFontSource customFonts = new FolderFontSource("./custom_fonts", SearchOption.TopFolderOnly);
+FontSettings.setFontSources(customFonts);
+
+HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources();
+
+Viewer viewer = new Viewer("missing_font.docx");
+viewer.view(options);
+viewer.close();
 ```
 
 ## More resources

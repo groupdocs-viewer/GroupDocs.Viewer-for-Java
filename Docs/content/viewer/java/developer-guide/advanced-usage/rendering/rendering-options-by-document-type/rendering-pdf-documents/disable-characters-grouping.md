@@ -11,12 +11,12 @@ hideChildren: False
 To improve content positioning when rendering into PDF [GroupDocs.Viewer](https://products.groupdocs.com/viewer/java) provides *htmlViewOptions.getPdfOptions().setDisableCharsGrouping()* as shown below:
 
 ```java
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
-        viewOptions.getPdfOptions().setDisableCharsGrouping(true);
- 
-        Viewer viewer = new Viewer("sample.pdf");
-        viewer.view(viewOptions);
-        viewer.close();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+viewOptions.getPdfOptions().setDisableCharsGrouping(true);
+
+Viewer viewer = new Viewer("sample.pdf");
+viewer.view(viewOptions);
+viewer.close();
 ```
 
 ## More resources

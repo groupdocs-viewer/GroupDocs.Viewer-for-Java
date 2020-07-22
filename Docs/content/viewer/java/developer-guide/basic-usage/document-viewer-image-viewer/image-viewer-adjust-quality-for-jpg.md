@@ -13,15 +13,14 @@ When rendering documents and files to JPG with [GroupDocs.Viewer](https://produ
 This example demonstrates how to adjust quality of the output JPG image.
 
 ```java
- 			
-            String pageFilePathFormat = "page_{0}.jpg";
-            
-            JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-			options.setQuality(50);
+String pageFilePathFormat = "page_{0}.jpg";
 
-			Viewer viewer = new Viewer("sample.docx");
-			viewer.view(options);
-			viewer.close();
+JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
+options.setQuality(50);
+
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(options);
+viewer.close();
 ```
 
 ## More resources

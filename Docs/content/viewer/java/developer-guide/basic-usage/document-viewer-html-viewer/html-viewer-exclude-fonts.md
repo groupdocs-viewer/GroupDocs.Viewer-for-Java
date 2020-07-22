@@ -31,15 +31,14 @@ Embedding fonts increase the size of the rendered result. In order to prevent ad
 *NOTE:  *Currently, it works only for Presentation documents only. However, the support for this feature will be extended for all document types where it is applicable in the upcoming releases.
 
 ```java
-            String pageFilePathFormat = "page_{0}.html";
-                        
-            HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-            options.getFontsToExclude().add("Times New Roman");
- 
-			Viewer viewer = new Viewer("sample.docx");
-            viewer.view(options);
-			viewer.close();
-          
+String pageFilePathFormat = "page_{0}.html";
+            
+HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
+options.getFontsToExclude().add("Times New Roman");
+
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(options);
+viewer.close();          
 ```
 
 ## More resources

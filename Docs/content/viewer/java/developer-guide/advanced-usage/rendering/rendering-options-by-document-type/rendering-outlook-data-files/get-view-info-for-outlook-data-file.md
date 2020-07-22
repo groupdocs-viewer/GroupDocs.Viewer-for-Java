@@ -23,7 +23,7 @@ System.out.println("File type is: " + viewInfo.getFileType());
 System.out.println("Pages count: " + viewInfo.getPages().size());
  
 for (String folder : viewInfo.getFolders()) {
-        System.out.println(folder);
+    System.out.println(folder);
 }      
 ```
 

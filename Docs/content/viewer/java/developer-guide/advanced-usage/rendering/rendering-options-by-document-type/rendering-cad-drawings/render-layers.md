@@ -16,10 +16,10 @@ The following code sample shows how to render a specific layer of a CAD drawing.
 List<Layer> layers = new ArrayList<Layer>();
 layers.add(new Layer("TRIANGLE"));
 layers.add(new Layer("QUADRANT"));
-        
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
 viewOptions.getCadOptions().setLayers(layers);
- 
+
 Viewer viewer = new Viewer("with_layers_and_layouts.dwg");
 viewer.view(viewOptions);
 viewer.close();

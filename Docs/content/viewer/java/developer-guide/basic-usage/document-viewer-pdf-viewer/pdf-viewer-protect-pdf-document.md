@@ -24,19 +24,17 @@ The following steps are to be followed in order to set PDF document permissions.
 Following example demonstrates how to protect output PDF document.
 
 ```java
-		Security security = new Security();
-        security.setDocumentOpenPassword("o123");
-        security.setPermissionsPassword("p123");
-        security.setPermissions(Permissions.AllowAll ^ Permissions.DenyPrinting);
-        
-        PdfViewOptions options = new PdfViewOptions("output.pdf");
-        options.setSecurity(security);
-        
-        Viewer viewer = new Viewer("sample.docx");
-        viewer.view(options);
-        viewer.close();
+Security security = new Security();
+security.setDocumentOpenPassword("o123");
+security.setPermissionsPassword("p123");
+security.setPermissions(Permissions.AllowAll ^ Permissions.DenyPrinting);
 
+PdfViewOptions options = new PdfViewOptions("output.pdf");
+options.setSecurity(security);
 
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(options);
+viewer.close();
 ```
 
 ## More resources

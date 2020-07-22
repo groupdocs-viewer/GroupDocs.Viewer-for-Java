@@ -11,16 +11,14 @@ hideChildren: False
 Following example demonstrates how to render document from URL.
 
 ```java
-        String url = "https://www.example.com/file.docx";
-        InputStream fileStream = new URL(url).openStream();
+String url = "https://www.example.com/file.docx";
+InputStream fileStream = new URL(url).openStream();
 
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
 
-        Viewer viewer = new Viewer(fileStream);
-        viewer.view(viewOptions);
-        viewer.close();
-
-
+Viewer viewer = new Viewer(fileStream);
+viewer.view(viewOptions);
+viewer.close();
 ```
 
 ## More resources

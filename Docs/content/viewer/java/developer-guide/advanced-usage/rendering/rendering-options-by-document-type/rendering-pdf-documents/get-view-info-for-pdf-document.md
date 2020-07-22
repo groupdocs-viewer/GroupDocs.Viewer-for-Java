@@ -13,16 +13,15 @@ hideChildren: False
 The following example demonstrates how to retrieve view information for PDF documents.
 
 ```java
-        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
- 
-        Viewer viewer = new Viewer("sample.pdf");
-        PdfViewInfo viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
-        viewer.close();
- 
-        System.out.println("Document type is: " + viewInfo.getFileType());
-        System.out.println("Pages count: " + viewInfo.getPages().size());
-        System.out.println("Printing allowed: " + viewInfo.isPrintingAllowed());
+ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
+Viewer viewer = new Viewer("sample.pdf");
+PdfViewInfo viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
+viewer.close();
+
+System.out.println("Document type is: " + viewInfo.getFileType());
+System.out.println("Pages count: " + viewInfo.getPages().size());
+System.out.println("Printing allowed: " + viewInfo.isPrintingAllowed());
 ```
 
 ## More resources

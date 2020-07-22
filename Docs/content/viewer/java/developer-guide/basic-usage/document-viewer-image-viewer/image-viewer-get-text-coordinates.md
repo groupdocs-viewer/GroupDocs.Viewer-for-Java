@@ -15,31 +15,27 @@ The *extractText* parameterof [forJpgView()](https://apireference.groupdocs.co
 Following code sample shows how to retrieve and print out text ([getLines()](https://apireference.groupdocs.com/java/viewer/com.groupdocs.viewer.results/Page#getLines()) / [getWords()](https://apireference.groupdocs.com/java/viewer/com.groupdocs.viewer.results/Line#getWords()) / [getCharacters()](https://apireference.groupdocs.com/java/viewer/com.groupdocs.viewer.results/Word#getCharacters())) of each document [page](https://apireference.groupdocs.com/java/viewer/com.groupdocs.viewer.results/Page) with coordinates.
 
 ```java
- 			
-            
-            ViewInfoOptions options = ViewInfoOptions.forPngView(true);
-			
-			Viewer viewer = new Viewer("sample.docx");
-			ViewInfo viewInfo = viewer.getViewInfo(options);
-			viewer.close();
+ViewInfoOptions options = ViewInfoOptions.forPngView(true);
 
-			for(Page page : viewInfo.getPages())
-			{
-    			System.out.println("Page: {page.Number}");
-    			System.out.println("Text lines/words/characters:");
-
-    			for (Line line : page.getLines())
-    			{
-        			System.out.println(line);
-        			for (Word word : line.getWords())
-        			{
-            			System.out.println("\t" + word);
-            			for (Character character : word.getCharacters()){
-                			System.out.println("\t\t" + character);
-            			}
-        			}
-    			}
-			}            
+Viewer viewer = new Viewer("sample.docx");
+ViewInfo viewInfo = viewer.getViewInfo(options);
+viewer.close();
+for(Page page : viewInfo.getPages())
+{
+	System.out.println("Page: {page.Number}");
+	System.out.println("Text lines/words/characters:");
+	for (Line line : page.getLines())
+	{
+		System.out.println(line);
+		for (Word word : line.getWords())
+		{
+			System.out.println("\t" + word);
+			for (Character character : word.getCharacters()){
+    			System.out.println("\t\t" + character);
+			}
+		}
+	}
+}
 ```
 
 ## More resources

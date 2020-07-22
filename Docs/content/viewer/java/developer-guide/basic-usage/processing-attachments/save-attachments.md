@@ -26,7 +26,7 @@ for(Attachment attachment : attachments)
     FileOutputStream fileStream = new FileOutputStream(attachment.getFileName());
     viewer.saveAttachment(attachment.getId(), fileStream);
     fileStream.close();
-}     
+}
 
 viewer.close();
 ```

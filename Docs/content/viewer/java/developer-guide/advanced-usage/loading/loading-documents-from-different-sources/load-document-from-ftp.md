@@ -11,22 +11,19 @@ hideChildren: False
 The following example demonstrates how to render a document from FTP.
 
 ```java
- 		
-        String server = "ftp.example.com";
-        String filePath = "sample.docx";     
+String server = "ftp.example.com";
+String filePath = "sample.docx";
 
-        FTPClient client = new FTPClient();
-        client.connect(server);
-        InputStream fileStream = client.retrieveFileStream(filePath);
+FTPClient client = new FTPClient();
+client.connect(server);
+InputStream fileStream = client.retrieveFileStream(filePath);
 
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-       
-        Viewer viewer = new Viewer(fileStream);
-        viewer.view(viewOptions);
-        viewer.close();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
 
+Viewer viewer = new Viewer(fileStream);
+viewer.view(viewOptions);
+viewer.close();
 
-    
 ```
 
 ## More resources

@@ -29,12 +29,12 @@ The following steps are required to manage text-overflow:
 The following code sample shows how to hide text in case it overflows cell.
 
 ```java
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
-        viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HideText);
- 
-        Viewer viewer = new Viewer("sample.xlsx");
-        viewer.view(viewOptions);
-        viewer.close();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HideText);
+
+Viewer viewer = new Viewer("sample.xlsx");
+viewer.view(viewOptions);
+viewer.close();
 ```
 
 ## More resources

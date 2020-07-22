@@ -13,11 +13,11 @@ When document is located on the local disk [GroupDocs.Viewer](https://products.g
 Following code snippet shows how to load document from local disk.
 
 ```java
-    	HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();    
-	
-		Viewer viewer = new Viewer("sample.docx");
-        viewer.view(viewOptions);
-		viewer.close();
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(viewOptions);
+viewer.close();
 ```
 
 ## More resources

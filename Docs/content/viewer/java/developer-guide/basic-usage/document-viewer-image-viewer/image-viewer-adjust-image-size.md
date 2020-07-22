@@ -15,16 +15,15 @@ Keep in mind that aspect ratio is automatically applied when you call [setWidth
 This example demonstrates how to set output image size
 
 ```java
- 			
-            String pageFilePathFormat = "page_{0}.jpg";
-            			
-            JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-			options.setWidth(600);
-			options.setHeight(800);
+String pageFilePathFormat = "page_{0}.jpg";
+			
+JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
+options.setWidth(600);
+options.setHeight(800);
 
-			Viewer viewer = new Viewer("sample.docx");
-			viewer.view(options);
-			viewer.close();
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(options);
+viewer.close();
 ```
 
 ## More resources

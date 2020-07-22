@@ -16,13 +16,13 @@ The [setExtractText()](https://apireference.groupdocs.com/java/viewer/com.group
 
 This example demonstrates how to render document for display with text.
 
-```java 			
-    PngViewOptions options = new PngViewOptions("page_{0}.png");
-    options.setExtractText(true);
-     
-    Viewer viewer = new Viewer("sample.docx");
-    viewer.view(options);
-    viewe`r.close();           
+```java
+PngViewOptions options = new PngViewOptions("page_{0}.png");
+options.setExtractText(true);
+ 
+Viewer viewer = new Viewer("sample.docx");
+viewer.view(options);
+viewe`r.close();
 ```
 
 ## More resources
