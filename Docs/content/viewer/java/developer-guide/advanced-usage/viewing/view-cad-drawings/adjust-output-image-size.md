@@ -8,7 +8,7 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-![](viewer/java/images/adjust-output-image-size.jpg)
+![Adjust output image size](viewer/java/images/adjust-output-image-size.jpg)
 
 When CAD drawings are rendered, the size of the render result is adjusted by API automatically, the biggest side (width or height depending on which one is bigger) is set 2000 px, another side is set value based on width-to-length ratio. You may adjust the size of resulting document by setting [CadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions) as show in example.
 
@@ -23,7 +23,7 @@ When CAD drawings are rendered, the size of the render result is adjusted by API
 
 When rendering CAD drawings [GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides following options:
 
-1.  When rendering by width or height ([forRenderingByWidth(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByWidth(int)) or [forRenderingByHeight(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByHeight(int))) - value of another side will be calculated from ratio in original document. 
+1.When rendering by width or height ([forRenderingByWidth(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByWidth(int)) or [forRenderingByHeight(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByHeight(int))) - value of another side will be calculated from ratio in original document. 
 2.  When rendering by width and height ([forRenderingByWidthAndHeigh(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByWidthAndHeight(int,%20int))) - the resulting image will have the same size in pixels.
 3.  When rendering by scale factory ([forRenderingByScaleFactor(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions#forRenderingByScaleFactor(float))) - the accepted value `scaleFactor` type is float, values higher than 1 will enlarge resulting image and values between 0 and 1 will make image smaller. If the render result image size is equal to 200 px to 200 px, when `scaleFactor` is equal to 1, then setting this value to 0.1 will provide image with 20 px to 20 px dimension.
 
@@ -31,9 +31,9 @@ When rendering CAD drawings [GroupDocs.Viewer](https://products.groupdocs.com/vi
 
 ## How sizing works for Sheets and Layouts
 
-DWF drawing format consists of sheets, that may have different sizes, DWG and DXF drawing formats consists of the Model and Layouts. Refer to [Adjust output image size]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/view-cad-drawings/adjust-output-image-size.md" >}}) article that describes layouts rendering. Sizing rules described above, work for the drawings that consist of a one sheet or rendered without layouts and provide only one page as an output. In this section we will review how sizing works when the output consist of several pages. Later in this article, for convenience, we will refer to Model and layouts as sheets.
+DWF drawing format consists of sheets, that may have different sizes, DWG and DXF drawing formats consists of the Model and Layouts. Refer to [Adjust output image size]({{< ref "render-all-layouts.md" >}}) article that describes layouts rendering. Sizing rules described above, work for the drawings that consist of a one sheet or rendered without layouts and provide only one page as an output. In this section we will review how sizing works when the output consist of several pages. Later in this article, for convenience, we will refer to Model and layouts as sheets.
 
-By default, when we render DWF format with several sheets, or DWG and DXF formats with layouts,  each sheet is rendered into separate page, that has it's own size. 
+By default, when we render DWF format with several sheets, or DWG and DXF formats with layouts,  each sheet is rendered into separate page, that has it's own size.
 
 If only one of `Height` or `Width` is set, value of another side for every sheet will be calculated from the ratio in size of that sheet. For example if `Height` is set as 600 and the ratio of the height to width in first sheet is 6 to 5 and second sheet is 6 to 4, then the width of the resulting pages will be 500px and 400px respectively.
 

@@ -1,11 +1,11 @@
 ---
 id: how-to-set-background-color-when-converting-cad-drawings
-url: viewer/net/how-to-set-background-color-when-converting-cad-drawings
+url: viewer/java/how-to-set-background-color-when-converting-cad-drawings
 title: How to set background color when converting CAD Drawings
 weight: 7
-description: "This article explains how to set background color when converting CAD Drawings with GroupDocs.Viewer within your .NET / C# applications."
+description: "This article explains how to set background color when converting CAD Drawings with GroupDocs.Viewer within your Java applications"
 keywords: 
-productName: GroupDocs.Viewer for .NET
+productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
 ## Introduction

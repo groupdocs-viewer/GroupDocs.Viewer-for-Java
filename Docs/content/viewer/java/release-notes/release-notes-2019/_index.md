@@ -1,6 +1,6 @@
 ---
 id: release-notes-2019
-url: viewer/net/release-notes-2019
+url: viewer/java/release-notes-2019
 title: Release Notes - 2019
 weight: 1
 description: ""
