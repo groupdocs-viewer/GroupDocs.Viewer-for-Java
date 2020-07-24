@@ -193,14 +193,14 @@ Public API and Backward Incompatible Changes
 **Set custom fonts directory path**
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig config = new ViewerConfig();
-config.StoragePath = @"C:\storage"; 
-// Add custom fonts directories to FontDirectories list
-config.FontDirectories.Add(@"/usr/admin/Fonts");
-config.FontDirectories.Add(@"/home/admin/Fonts"); 
-// Init viewer handler with config
-ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    // Setup GroupDocs.Viewer config
+    ViewerConfig config = new ViewerConfig();
+    config.setStoragePath("C:\\storage");
+    // Add custom fonts directories to FontDirectories list
+    config.getFontDirectories().add("/usr/admin/Fonts");
+    config.getFontDirectories().add("/home/admin/Fonts");
+    // Init viewer handler with config
+    ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 ```
 
 ##### Working with email attachements
@@ -208,185 +208,174 @@ ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
 **Get email attachment original file**
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig config = new ViewerConfig();
-config.StoragePath = @"C:\storage"; 
-// Create image handler
-ViewerImageHandler handler = new ViewerImageHandler(config);
-EmailAttachment attachment = new EmailAttachment("document-with-attachments.msg", "attachment-image.png"); 
-// Get attachment original file
-FileContainer container = imageHandler.GetFile(attachment);
-Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType);
-Console.WriteLine("Attach stream lenght: {0}", fileContainer.Stream.Length);
+    // Setup GroupDocs.Viewer config
+    ViewerConfig config = new ViewerConfig();
+    config.setStoragePath("C:\\storage");
+    // Create image handler
+    ViewerImageHandler handler = new ViewerImageHandler(config);
+    EmailAttachment attachment = new EmailAttachment("document-with-attachments.msg", "attachment-image.png");
+    // Get attachment original file
+    FileContainer container = imageHandler.getFile(attachment);
+    System.out.println("Attach name: " + attachment.getName() + ", size: " + attachment.getFileType());
+    System.out.println("Attach stream lenght: " + fileContainer.getStream().available());
 ```
 
 **Get attachment document html representation**
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig viewerConfig = new ViewerConfig();
-viewerConfig.StoragePath = "c:
-storage";
-viewerConfig.UseCache = true; 
-// Setup html conversion options
-HtmlOptions htmlOptions = new HtmlOptions();
-htmlOptions.IsResourcesEmbedded = false; 
-// Init viewer html handler
-ViewerHtmlHandler handler = new ViewerHtmlHandler(viewerConfig); 
-DocumentInfoContainer info = handler.GetDocumentInfo("document-with-attachments.msg"); 
-// Iterate over the attachments collection
-foreach (AttachmentBase attachment in info.Attachments)
-{
-	Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType); 
-	// Get attachment document html representation
-	List<PageHtml> pages = handler.GetPages(attachment, htmlOptions);
-	foreach (PageHtml page in pages)
-	{
-		Console.WriteLine(" Page: {0}, size: {1}", page.PageNumber, page.HtmlContent.Length);
-		foreach (HtmlResource htmlResource in page.HtmlResources)
-		{
-			Stream resourceStream = handler.GetResource(attachment, htmlResource);
-			Console.WriteLine(" Resource: {0}, size: {1}", htmlResource.ResourceName, resourceStream.Length);
-		}
-	}
-}
+    // Setup GroupDocs.Viewer config
+    ViewerConfig viewerConfig = new ViewerConfig();
+    viewerConfig.setStoragePath("c:\\storage");
+    viewerConfig.setUseCache(true);
+    // Setup html conversion options
+    HtmlOptions htmlOptions = new HtmlOptions();
+    htmlOptions.setResourcesEmbedded(false);
+    // Init viewer html handler
+    ViewerHtmlHandler handler = new ViewerHtmlHandler(viewerConfig);
+    DocumentInfoContainer info = handler.getDocumentInfo("document-with-attachments.msg");
+    // Iterate over the attachments collection
+    for (AttachmentBase attachment : info.getAttachments()) {
+        System.out.println("Attach name: " + attachment.getName() + ", size: " + attachment.getFileType());
+        // Get attachment document html representation
+        List<PageHtml> pages = handler.getPages(attachment, htmlOptions);
+        for (PageHtml page : pages) {
+            System.out.println(" Page: " + page.getPageNumber() + ", size: " + page.getHtmlContent().length());
+            for (HtmlResource htmlResource : page.getHtmlResources()) {
+                InputStream resourceStream = handler.getResource(attachment, htmlResource);
+                System.out.println(" Resource: " + htmlResource.getResourceName() + ", size: " + resourceStream.available());
+            }
+        }
+    }
 ```
 
 **Get attachment document image representation**
 
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig viewerConfig = new ViewerConfig();
-viewerConfig.StoragePath = "c:
-storage";
-viewerConfig.UseCache = true; 
-// Init viewer image handler
-ViewerImageHandler handler = new ViewerImageHandler(viewerConfig); 
-DocumentInfoContainer info = handler.GetDocumentInfo("document-with-attachments.msg"); 
-// Iterate over the attachments collection
-foreach (AttachmentBase attachment in info.Attachments)
-{
-	Console.WriteLine("Attach name: {0}, size: {1}", attachment.Name, attachment.FileType); 
-	// Get attachment document image representation
-	List<PageImage> pages = handler.GetPages(attachment, htmlOptions);
-	foreach (PageImage page in pages)
-	Console.WriteLine(" Page: {0}, size: {1}", page.PageNumber, page.Stream.Length);
-}
+    // Setup GroupDocs.Viewer config
+    ViewerConfig viewerConfig = new ViewerConfig();
+    viewerConfig.setStoragePath("c:\\storage");
+    viewerConfig.setUseCache(true);
+    // Init viewer image handler
+    ViewerImageHandler handler = new ViewerImageHandler(viewerConfig);
+    DocumentInfoContainer info = handler.getDocumentInfo("document-with-attachments.msg");
+    // Iterate over the attachments collection
+    for (AttachmentBase attachment : info.getAttachments()) {
+        System.out.println("Attach name: " + attachment.getName() + ", size: " + attachment.getFileType());
+        // Get attachment document image representation
+        List<PageImage> pages = handler.getPages(attachment, htmlOptions);
+        for (PageImage page : pages) {
+            System.out.println(" Page: " + page.getPageNumber() + ", size: " + page.getStream().available());
+        }
+    }
 ```
 
 **Get document information**
 **Get document information by guid**
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig config = new ViewerConfig();
-config.StoragePath = @"C:\storage"; 
-// Create html handler
-ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
-string guid = "word.doc";
-// Get document information
-DocumentInfoOptions options = new DocumentInfoOptions();
-DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(guid, options); 
-Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-Console.WriteLine("Extension: {0}", documentInfo.Extension);
-Console.WriteLine("FileType: {0}", documentInfo.FileType);
-Console.WriteLine("Guid: {0}", documentInfo.Guid);
-Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
-Console.WriteLine("Name: {0}", documentInfo.Name);
-Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
-Console.WriteLine("Size: {0}", documentInfo.Size); 
-foreach (PageData pageData in documentInfo.Pages)
-{
-	Console.WriteLine("Page number: {0}", pageData.Number);
-	Console.WriteLine("Page name: {0}", pageData.Name);
-}
+    // Setup GroupDocs.Viewer config
+    ViewerConfig config = new ViewerConfig();
+    config.setStoragePath("C:\\storage");
+    // Create html handler
+    ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    String guid = "word.doc";
+    // Get document information
+    DocumentInfoOptions options = new DocumentInfoOptions();
+    DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(guid, options);
+    System.out.println("DateCreated: " + documentInfo.getDateCreated());
+    System.out.println("DocumentType: " + documentInfo.getDocumentType());
+    System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+    System.out.println("Extension: " + documentInfo.getExtension());
+    System.out.println("FileType: " + documentInfo.getFileType());
+    System.out.println("Guid: " + documentInfo.getGuid());
+    System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
+    System.out.println("Name: " + documentInfo.getName());
+    System.out.println("PageCount: " + documentInfo.getPages().size());
+    System.out.println("Size: " + documentInfo.getSize());
+    for (PageData pageData : documentInfo.getPages()) {
+        System.out.println("Page number: " + pageData.getNumber());
+        System.out.println("Page name: ", pageData.getName());
+    }
 ```
 
 **Get document information by stream**
 
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig config = new ViewerConfig();
-config.StoragePath = @"C:\storage"; 
-// Create html handler
-ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
-// Get document stream
-Stream stream = GetDocumentStream();
-// Get document information
-DocumentInfoOptions options = new DocumentInfoOptions();
-DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(stream, options); 
-Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-Console.WriteLine("Extension: {0}", documentInfo.Extension);
-Console.WriteLine("FileType: {0}", documentInfo.FileType);
-Console.WriteLine("Guid: {0}", documentInfo.Guid);
-Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
-Console.WriteLine("Name: {0}", documentInfo.Name);
-Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
-Console.WriteLine("Size: {0}", documentInfo.Size); 
-foreach (PageData pageData in documentInfo.Pages)
-{
-	Console.WriteLine("Page number: {0}", pageData.Number);
-	Console.WriteLine("Page name: {0}", pageData.Name);
-}
+    // Setup GroupDocs.Viewer config
+    ViewerConfig config = new ViewerConfig();
+    config.setStoragePath("C:\\storage");
+    // Create html handler
+    ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    // Get document stream
+    InputStream stream = getDocumentStream();
+    // Get document information
+    DocumentInfoOptions options = new DocumentInfoOptions();
+    DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(stream, options);
+    System.out.println("DateCreated: " + documentInfo.getDateCreated());
+    System.out.println("DocumentType: " + documentInfo.getDocumentType());
+    System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+    System.out.println("Extension: " + documentInfo.getExtension());
+    System.out.println("FileType: " + documentInfo.getFileType());
+    System.out.println("Guid: " + documentInfo.getGuid());
+    System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
+    System.out.println("Name: " + documentInfo.getName());
+    System.out.println("PageCount: " + documentInfo.getPages().size());
+    System.out.println("Size: " + documentInfo.getSize());
+    for (PageData pageData : documentInfo.getPages()) {
+        System.out.println("Page number: " + pageData.getNumber());
+        System.out.println("Page name: ", pageData.getName());
+    }
 ```
 
 **Get document information by Uri**
 ```java
-// Setup GroupDocs.Viewer config
-ViewerConfig config = new ViewerConfig();
-config.StoragePath = @"C:\storage"; 
-// Create html handler
-ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config); 
-Uri uri = new Uri("http://example.com/words.doc"); 
-// Get document information
-DocumentInfoOptions options = new DocumentInfoOptions();
-DocumentInfoContainer documentInfo = htmlHandler.GetDocumentInfo(uri, options); 
-Console.WriteLine("DateCreated: {0}", documentInfo.DateCreated);
-Console.WriteLine("DocumentType: {0}", documentInfo.DocumentType);
-Console.WriteLine("DocumentTypeFormat: {0}", documentInfo.DocumentTypeFormat);
-Console.WriteLine("Extension: {0}", documentInfo.Extension);
-Console.WriteLine("FileType: {0}", documentInfo.FileType);
-Console.WriteLine("Guid: {0}", documentInfo.Guid);
-Console.WriteLine("LastModificationDate: {0}", documentInfo.LastModificationDate);
-Console.WriteLine("Name: {0}", documentInfo.Name);
-Console.WriteLine("PageCount: {0}", documentInfo.Pages.Count);
-Console.WriteLine("Size: {0}", documentInfo.Size); 
-foreach (PageData pageData in documentInfo.Pages)
-{
-	Console.WriteLine("Page number: {0}", pageData.Number);
-	Console.WriteLine("Page name: {0}", pageData.Name);
-} 
+    // Setup GroupDocs.Viewer config
+    ViewerConfig config = new ViewerConfig();
+    config.setStoragePath("C:\\storage");
+    // Create html handler
+    ViewerHtmlHandler htmlHandler = new ViewerHtmlHandler(config);
+    URI uri = new URI("http://example.com/words.doc");
+    // Get document information
+    DocumentInfoOptions options = new DocumentInfoOptions();
+    DocumentInfoContainer documentInfo = htmlHandler.getDocumentInfo(uri, options);
+    System.out.println("DateCreated: " + documentInfo.getDateCreated());
+    System.out.println("DocumentType: " + documentInfo.getDocumentType());
+    System.out.println("DocumentTypeFormat: " + documentInfo.getDocumentTypeFormat());
+    System.out.println("Extension: " + documentInfo.getExtension());
+    System.out.println("FileType: " + documentInfo.getFileType());
+    System.out.println("Guid: " + documentInfo.getGuid());
+    System.out.println("LastModificationDate: " + documentInfo.getLastModificationDate());
+    System.out.println("Name: " + documentInfo.getName());
+    System.out.println("PageCount: " + documentInfo.getPages().size());
+    System.out.println("Size: " + documentInfo.getSize());
+    for (PageData pageData : documentInfo.getPages()) {
+        System.out.println("Page number: " + pageData.getNumber());
+        System.out.println("Page name: ", pageData.getName());
+    }
 ```
 
 **Working with cache files**
 **How to clear all cache files.**
 ```java
-//Init viewer config
-ViewerConfig viewerConfig = new ViewerConfig();
-viewerConfig.StoragePath = "c:
-storage"; 
-// Init viewer image or html handler
-ViewerImageHandler viewerImageHandler = new ViewerImageHandler(viewerConfig); 
-//Clear all cache files 
-viewerImageHandler.ClearCache();
+    //Init viewer config
+    ViewerConfig viewerConfig = new ViewerConfig();
+    viewerConfig.setStoragePath("c:\\storage");
+    // Init viewer image or html handler
+    ViewerImageHandler viewerImageHandler = new ViewerImageHandler(viewerConfig);
+    //Clear all cache files 
+    viewerImageHandler.clearCache();
 ```
 
 **How to clear files from cache older than specified time interval.**
 ```java
-//Init viewer config
-ViewerConfig viewerConfig = new ViewerConfig();
-viewerConfig.StoragePath = "c:
-storage"; 
-// Init viewer image or html handler
-ViewerImageHandler viewerImageHandler = new ViewerImageHandler(viewerConfig); 
-//Clear files from cache older than specified time interval
-TimeSpan olderThanTwoDays = TimeSpan.FromDays(2);
-viewerImageHandler.ClearCache(olderThanTwoDays)
+    //Init viewer config
+    ViewerConfig viewerConfig = new ViewerConfig();
+    viewerConfig.setStoragePath("c:\\storage"); 
+    // Init viewer image or html handler
+    ViewerImageHandler viewerImageHandler = new ViewerImageHandler(viewerConfig);
+    //Clear files from cache older than specified time interval
+    viewerImageHandler.clearCache(24 * 60 * 60 * 1000);
 ```
 
 1.  The PdfFileOptions addPrintAction property is depricated, please use PdfFileOptions Transformations property and Transformation.addPringAction enumeration.
@@ -423,26 +412,24 @@ viewerImageHandler.ClearCache(olderThanTwoDays)
     2.  All exceptions from com.groupdocs.viewer.exception package are derived classes of GroupDocsViewerException.
 7.  How to specify resource prefix  
     HtmlResourcePrefix setting is necessary when every resource name in html document should be prefixed with some string. This may be useful when resources for document are obtained via some REST API method. Please note that css files will also be processed - html resource prefix value will be added to font names in css file.
-    
-    
-    
+
+
     ```java
-    HtmlOptions htmlOptions = new HtmlOptions();
-    htmlOptions.setHtmlResourcePrefix("http://contoso.com/api/getResource?name=");
+        HtmlOptions htmlOptions = new HtmlOptions();
+        htmlOptions.setHtmlResourcePrefix("http://contoso.com/api/getResource?name=");
     ```
     
     If css files should not be processed then IgnoreResourcePrefixForCss setting should be set to true.
-    
-    
-    
+
+
     ```java
     HtmlOptions htmlOptions = new HtmlOptions();
     htmlOptions.setHtmlResourcePrefix("http://contoso.com/api/getResource?name=");
     htmlOptions.setIgnoreResourcePrefixForCss(true);
     ```
     
-8.  [How to set default font name]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/replace-missing-font.md" >}})
-9.  [Show hidden pages for Visio files]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/show-hidden-pages.md" >}})
+8.  [How to set default font name]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/replace-missing-font.md" >}})
+9.  [Show hidden pages for Visio files]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/show-hidden-pages.md" >}})
 10.  How to specify internal hyperlink prefix for Excel files
 11.  Mark CachedPageDescription redundant constructor as Obsolete  
     1.  Class com.groupdocs.viewer.domain.CachedPageDescription constructor public CachedPageDescription(String guid, CacheFileType cacheFileType) marked as deprecated
@@ -457,7 +444,7 @@ viewerImageHandler.ClearCache(olderThanTwoDays)
     6.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_CACHE\_FILE\_NOT\_FOUND
     7.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_GUID\_NOT\_SPECIFIED
     8.  Class com.groupdocs.viewer.localization.LocalizedStringKeys new contant EXC\_TMPL\_TRANSFORMATION\_FAILED\_PAGE\_NOT\_EXIST
-14.  [Ability to set default font when rendering Diagram documents]({{< ref "viewer/java/developer-guide/advanced-usage/rendering/common-rendering-options/replace-missing-font.md" >}})
+14.  [Ability to set default font when rendering Diagram documents]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/replace-missing-font.md" >}})
 15.  The ability to show and hide PDF layers
 16.  Starting from version 3.7.0 GroupDocs.Viewer the rendering Pdf documents into html representation was improved. It is possible to work with layers in html representation of Pdf document (e.g. show\\hide) with help of javascript. Each layer is separated into <div> tag which has Html data tag "data-pdflayer" and its value contains layer name. For example Pdf document has layer with name "Backgroung" so output html will contain tag
 17.    

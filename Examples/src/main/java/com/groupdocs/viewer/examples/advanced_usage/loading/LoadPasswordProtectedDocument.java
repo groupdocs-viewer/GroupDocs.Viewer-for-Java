@@ -1,11 +1,11 @@
 package com.groupdocs.viewer.examples.advanced_usage.loading;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.common.Path;
 import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
+import com.groupdocs.viewer.utils.PathUtils;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class LoadPasswordProtectedDocument {
 
     public static void run() throws IOException {
         String outputDirectory = Utils.getOutputDirectoryPath("LoadPasswordProtectedDocument");
-        String pageFilePathFormat = Path.combine(outputDirectory, "page_{0}.html");
+        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
         String password = "12345";
 
         final LoadOptions loadOptions = new LoadOptions();

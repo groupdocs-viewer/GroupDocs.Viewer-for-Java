@@ -23,7 +23,7 @@ public class ProtectPdfDocument {
         Security security = new Security();
         security.setDocumentOpenPassword("o123");
         security.setPermissionsPassword("p123");
-        security.setPermissions(Permissions.AllowAll ^ Permissions.DenyPrinting);
+        security.setPermissions(Permissions.ALLOW_ALL ^ Permissions.DENY_PRINTING);
 
         PdfViewOptions viewOptions = new PdfViewOptions(filePath);
         viewOptions.setSecurity(security);

@@ -14,7 +14,7 @@ GroupDocs hosts all Java APIs on [GroupDocs Artifact Repository](https://reposi
 
 First, you need to specify repository configuration/location in your Maven `pom.xml` as follows: 
 
-```java
+```xml
 <repositories>
 	<repository>
 		<id>GroupDocsArtifactRepository</id>
@@ -26,25 +26,25 @@ First, you need to specify repository configuration/location in your Maven `pom
 
 ### Define GroupDocs.Viewer for Java API Dependency
 
-Then define GroupDocs.Viewer for Java API dependency in your `pom.xml` as follows:
+Then define [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API dependency in your `pom.xml` as follows:
 
-```java
+```xml
 <dependencies>
     <dependency>
         <groupId>com.groupdocs</groupId>
         <artifactId>groupdocs-viewer</artifactId>
-        <version>20.1</version> 
+        <version>20.7</version> 
     </dependency>
 </dependencies>
 ```
-
-After performing the above-mentioned steps, GroupDocs.Viewer for Java dependency will finally be added to your Maven project.
+  
+After performing the above-mentioned steps, [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) dependency will finally be added to your Maven project.
 
 ## Install from official GroupDocs website
 
-You can follow the steps below to reference GroupDocs.Viewer for Java downloaded from official website [Downloads section](https://downloads.groupdocs.com/viewer/java):
+You can follow the steps below to reference [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) downloaded from official website [Downloads section](https://downloads.groupdocs.com/viewer/java):
 
 1.  Unpack zip archive .
 2.  Switch to **lib** folder.
 3.  Run **install.bat** (for Windows) or **install.sh** (for Linux) file to install the library in your local maven repository.
-4.  After this you should add the GroupDocs.Viewer for Java **dependency** block to your .pom.xml project file.
+4.  After this you should add the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) **dependency** block to your .pom.xml project file.
