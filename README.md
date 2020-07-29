@@ -1,12 +1,8 @@
+# Document Viewer Java Library
 
-# GroupDocs.Viewer-for-Java
+GroupDocs.Viewer for Java is a [Document Viewer API](https://products.groupdocs.com/viewer/java) for Java developers. It supports over 140 document types from popular categories such as Microsoft Office, OpenOffice, AutoCAD, Photoshop, Visio, images, metafiles, programming, archives, messages, PDF & more.
 
-This package contains [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/) for [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) that will help you in understanding the API's working and writing your own applications.
-
-GroupDocs.Viewer for Java is a powerful document viewer API which supports over 140 document types.
-View PDF, DOC, PPT, ODT, OTT, ODP among many other documents in HTML5, Image or PDF modes with fast and high quality rendering.
-Choose your own rendering strategy by processing document page-by-page, entire document at once or a custom pages range.
-Customize document appearance via additional rendering options by adding watermarks, rotating and reordering pages, extracting document text with coordinates and much more!
+View PDF, DOC, PPT, ODT, OTT, ODP among [many other documents](https://docs.groupdocs.com/viewer/java/supported-document-formats/) in HTML5, PDF or image modes with fast and high quality rendering. You may also choose your own rendering strategy by processing the document page-by-page, entire document at once or a custom page range. API also provides the ability to customize document appearance via additional rendering options to add watermarks, rotate or reorder pages, extract document text and much more!
 
 <p align="center">
   <a title="Download complete GroupDocs.Viewer for Java source code" href="https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/archive/master.zip"> 
@@ -16,16 +12,53 @@ Customize document appearance via additional rendering options by adding waterma
 
 Directory | Description
 --------- | -----------
-[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Contains the package of all Java examples and sample files that will help you learn how to use product features. 
-[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcase)  | Our native, simple, fully configurable and optimized web applications which allow you to manipulate documents through GroupDocs APIs without requiring any other commercial application.
+[Docs](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Docs)  | Product documentation containing the Developer's Guide, Release Notes and more.
+[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Java examples and sample documents for you to get started quickly. 
+[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcases)  | Build Document Viewer Applications using GroupDocs.Viewer for Java. 
 
-## Resources
+## View Documents As HTML, PDF or Images
 
-- [Website](https://www.groupdocs.com)
-- [Product Home](https://products.groupdocs.com/viewer/java)
-- [API Reference](https://apireference.groupdocs.com/java/viewer)
-- [Downloads](https://repository.groupdocs.com/repo/com/groupdocs/groupdocs-viewer/)
-- [Documentation](https://docs.groupdocs.com/display/viewerjava/Home)
-- [Free Support - Forum](https://forum.groupdocs.com/c/viewer)
-- [Paid Support - Helpdesk](https://helpdesk.groupdocs.com/)
-- [Blog](https://blog.groupdocs.com/category/groupdocs-viewer-product-family/)
+- Display document content in any web-browser.
+- View document pages separately.
+- Rotate, reorder pages or [add watermarks](https://docs.groupdocs.com/viewer/java/add-text-watermark/).
+- Customizable resource management options for CSS, fonts & images.
+- Render all pages of a document as a single PDF.
+- Boost document loading speed with configurable caching.
+- Extract document text along with words' coordinates.
+- Extract basic information about source documents such as file type, pages count and so on.
+- Auto-detect document type.
+- [Replace missing font](https://docs.groupdocs.com/viewer/java/replace-missing-font/) or use custom fonts for rendering.
+
+## Get Started with GroupDocs.Viewer for Java
+
+GroupDocs.Viewer for Java requires J2SE 7.0 (1.7), J2SE 8.0 (1.8) or above. Please install Java first if you do not have it already. 
+
+GroupDocs hosts all Java APIs on [GroupDocs Artifact Repository](https://artifact.groupdocs.com/webapp/#/artifacts/browse/tree/General/repo/com/groupdocs/groupdocs-viewer), so simply [configure](https://docs.groupdocs.com/viewer/java/installation/) your Maven project to fetch the dependencies automatically.
+
+## Render DOCX As Responsive HTML
+
+```java
+Viewer viewer = new Viewer("sample.docx");
+HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+viewOptions.setRenderResponsive(true);
+viewer.view(viewOptions);
+viewer.close();
+```
+
+## View DOCX As Protected PDF
+
+```java
+Viewer viewer = new Viewer("sample.docx");
+Security security = new Security();
+security.setDocumentOpenPassword("o123");
+security.setPermissionsPassword("p123");
+security.setPermissions(Permissions.ALLOW_ALL ^ Permissions.DENY_PRINTING);
+
+PdfViewOptions viewOptions = new PdfViewOptions(filePath);
+viewOptions.setSecurity(security);
+
+viewer.view(viewOptions);
+viewer.close();
+```
+
+[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/java) | [Documentation](https://docs.groupdocs.com/viewer/java/) | [Demo](https://products.groupdocs.app/viewer/family) | [API Reference](https://apireference.groupdocs.com/java/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
