@@ -23,9 +23,9 @@ public class LoadDocumentFromFtp {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(getFileFromFtp(server, filePath));
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(getFileFromFtp(server, filePath))) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

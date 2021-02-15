@@ -20,9 +20,9 @@ public class RenderHiddenPages {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setRenderHiddenPages(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_PPTX_HIDDEN_PAGE);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PPTX_HIDDEN_PAGE)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

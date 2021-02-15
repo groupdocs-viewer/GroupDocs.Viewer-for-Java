@@ -20,8 +20,8 @@ public class RenderWithCustomFonts {
      */
 
     public static void run() throws IOException {
-        FontSource fontSource = 
-            new FolderFontSource(Utils.FONTS_PATH, SearchOption.TOP_FOLDER_ONLY);
+        FontSource fontSource =
+                new FolderFontSource(Utils.FONTS_PATH, SearchOption.TOP_FOLDER_ONLY);
         FontSettings.setFontSources(fontSource);
 
         String outputDirectory = Utils.getOutputDirectoryPath("RenderWithCustomFonts");
@@ -29,9 +29,9 @@ public class RenderWithCustomFonts {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(SampleFiles.MISSING_FONT_PPTX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.MISSING_FONT_PPTX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

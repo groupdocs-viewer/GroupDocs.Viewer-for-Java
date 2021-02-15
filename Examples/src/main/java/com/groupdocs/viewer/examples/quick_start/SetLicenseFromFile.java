@@ -1,10 +1,9 @@
 package com.groupdocs.viewer.examples.quick_start;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.groupdocs.viewer.License;
 import com.groupdocs.viewer.examples.Utils;
+
+import java.io.File;
 
 public class SetLicenseFromFile {
 
@@ -16,7 +15,7 @@ public class SetLicenseFromFile {
      * additional overload to load a license from a stream, this is useful for
      * instance when the License is stored as an embedded resource.
      */
-    public static void run() throws IOException {
+    public static void run() {
         File licenseFile = new File(Utils.LICENSE_PATH);
 
         if (licenseFile.exists()) {
@@ -28,7 +27,7 @@ public class SetLicenseFromFile {
             System.out.println("\nWe do not ship any license with this example. "
                     + "\nVisit the GroupDocs site to obtain either a temporary or permanent license. "
                     + "\nLearn more about licensing at https://purchase.groupdocs.com/faqs/licensing. "
-                    + "\nLear how to request temporary license at https://purchase.groupdocs.com/temporary-license.");
+                    + "\nLearn how to request temporary license at https://purchase.groupdocs.com/temporary-license.");
         }
     }
 }

@@ -20,16 +20,16 @@ public class RetrieveAndSaveDocumentAttachments {
     public static void run() throws IOException {
         String outputDirectory = Utils.getOutputDirectoryPath("RetrieveAndSaveDocumentAttachments");
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS);
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
 
-        List<Attachment> attachments = viewer.getAttachments();
-        for (Attachment attachment : attachments) {
-            final File file = new File(PathUtils.combine(outputDirectory, attachment.getFileName()));
-            FileOutputStream outputStream = new FileOutputStream(file);
-            viewer.saveAttachment(attachment.getId(), outputStream);
+            List<Attachment> attachments = viewer.getAttachments();
+            for (Attachment attachment : attachments) {
+                final File file = new File(PathUtils.combine(outputDirectory, attachment.getFileName()));
+                FileOutputStream outputStream = new FileOutputStream(file);
+                viewer.saveAttachment(attachment, outputStream);
+            }
+
         }
-
-        viewer.close();
 
         System.out.println("\nAttachments saved successfully.\nCheck output in " + outputDirectory);
     }

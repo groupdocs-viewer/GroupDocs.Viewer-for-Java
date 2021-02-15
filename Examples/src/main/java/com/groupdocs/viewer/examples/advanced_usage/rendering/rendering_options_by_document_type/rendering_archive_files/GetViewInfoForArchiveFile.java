@@ -6,26 +6,24 @@ import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ArchiveViewInfo;
 import com.groupdocs.viewer.results.ViewInfo;
 
-import java.io.FileNotFoundException;
-
 public class GetViewInfoForArchiveFile {
 
     /**
      * This example demonstrates how to get view info for Archive files.
      */
 
-    public static void run() throws FileNotFoundException {
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP_WITH_FOLDERS);
-        ViewInfo viewInfo = viewer.getViewInfo(ViewInfoOptions.forHtmlView());
+    public static void run() {
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP_WITH_FOLDERS)) {
+            ViewInfo viewInfo = viewer.getViewInfo(ViewInfoOptions.forHtmlView());
 
-        System.out.println("File type: " + viewInfo.getFileType());
-        System.out.println("Pages count: " + viewInfo.getPages().size());
-        System.out.println("Folders: ");
-        System.out.println(" - /");
+            System.out.println("File type: " + viewInfo.getFileType());
+            System.out.println("Pages count: " + viewInfo.getPages().size());
+            System.out.println("Folders: ");
+            System.out.println(" - /");
 
-        String rootFolder = "";
-        readFolders(viewer, rootFolder);
-        viewer.close();
+            String rootFolder = "";
+            readFolders(viewer, rootFolder);
+        }
 
         System.out.println("\nView info retrieved successfully.");
     }

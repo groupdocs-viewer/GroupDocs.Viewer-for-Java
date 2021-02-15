@@ -23,9 +23,9 @@ public class LoadDocumentFromUrl {
         InputStream fileStream = new URL(url).openStream();
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(fileStream);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(fileStream)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

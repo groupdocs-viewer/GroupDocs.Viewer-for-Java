@@ -21,7 +21,7 @@ public class RenameEmailFields {
         String outputDirectory = Utils.getOutputDirectoryPath("RenameEmailFields");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
-        Map<Field, String> map = new HashMap<Field, String>();
+        Map<Field, String> map = new HashMap<>();
         map.put(Field.FROM, "Sender");
         map.put(Field.TO, "Receiver");
         map.put(Field.SENT, "Date");
@@ -30,9 +30,9 @@ public class RenameEmailFields {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getEmailOptions().setFieldTextMap(map);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

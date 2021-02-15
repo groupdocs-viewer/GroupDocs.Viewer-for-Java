@@ -22,9 +22,9 @@ public class RenderOutlookDataFileFolder {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getOutlookOptions().setFolder("Входящие");
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST_SUBFOLDERS);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST_SUBFOLDERS)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

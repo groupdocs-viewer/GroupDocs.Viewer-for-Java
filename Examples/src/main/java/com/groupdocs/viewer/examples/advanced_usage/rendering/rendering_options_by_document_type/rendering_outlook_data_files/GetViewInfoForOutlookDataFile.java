@@ -5,20 +5,19 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.OutlookViewInfo;
 
-import java.io.FileNotFoundException;
-
 public class GetViewInfoForOutlookDataFile {
 
     /**
      * This example demonstrates how to get view info for Outlook data file.
      */
 
-    public static void run() throws FileNotFoundException {
+    public static void run() {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST_SUBFOLDERS);
-        OutlookViewInfo viewInfo = (OutlookViewInfo) viewer.getViewInfo(viewInfoOptions);
-        viewer.close();
+        OutlookViewInfo viewInfo;
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST_SUBFOLDERS)) {
+            viewInfo = (OutlookViewInfo) viewer.getViewInfo(viewInfoOptions);
+        }
 
         System.out.println("File type is: " + viewInfo.getFileType());
         System.out.println("Pages count: " + viewInfo.getPages().size());

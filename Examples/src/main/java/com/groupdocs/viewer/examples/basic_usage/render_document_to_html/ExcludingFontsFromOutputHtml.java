@@ -22,9 +22,9 @@ public class ExcludingFontsFromOutputHtml {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getFontsToExclude().add("Arial");
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

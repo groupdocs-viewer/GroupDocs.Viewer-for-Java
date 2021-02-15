@@ -15,7 +15,7 @@ public class AddWatermark {
      * This example demonstrates how to render document and add watermark to each
      * page.
      */
-    
+
     public static void run() throws IOException {
         String outputDirectory = Utils.getOutputDirectoryPath("AddWatermark");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
@@ -23,9 +23,9 @@ public class AddWatermark {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setWatermark(new Watermark("This is a watermark"));
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

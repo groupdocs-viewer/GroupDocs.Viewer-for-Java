@@ -25,19 +25,19 @@ public class UseCacheWhenProcessingDocuments {
         ViewerSettings settings = new ViewerSettings(cache);
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX, settings);
-
         StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        viewer.view(viewOptions);
-        stopWatch.stop();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX, settings)) {
 
-        System.out.println(String.format("Time taken on first call to View method '%s' (ms).",
-                stopWatch.getElapsedMilliseconds()));
+            stopWatch.start();
+            viewer.view(viewOptions);
+            stopWatch.stop();
 
-        stopWatch.restart();
-        viewer.view(viewOptions);
-        viewer.close();
+            System.out.println(String.format("Time taken on first call to View method '%s' (ms).",
+                    stopWatch.getElapsedMilliseconds()));
+
+            stopWatch.restart();
+            viewer.view(viewOptions);
+        }
         stopWatch.stop();
 
         System.out.println(String.format("Time taken on second call to View method '%s' (ms).",

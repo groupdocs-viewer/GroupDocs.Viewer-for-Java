@@ -22,9 +22,9 @@ public class ReplaceMissingFont {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setDefaultFontName("Courier New");
 
-        Viewer viewer = new Viewer(SampleFiles.MISSING_FONT_PPTX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.MISSING_FONT_PPTX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

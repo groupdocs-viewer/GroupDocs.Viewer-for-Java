@@ -20,10 +20,10 @@ public class ReorderPages {
 
         PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        // Pass page numbers in the order you want to render them
-        viewer.view(viewOptions, 2, 1);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            // Pass page numbers in the order you want to render them
+            viewer.view(viewOptions, 2, 1);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

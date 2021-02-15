@@ -21,9 +21,9 @@ public class RenderGridLines {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getSpreadsheetOptions().setRenderGridLines(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX);
-        viewer.view(viewOptions, 1, 2, 3);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
+            viewer.view(viewOptions, 1, 2, 3);
+        }
 
         System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
     }

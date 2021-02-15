@@ -22,9 +22,9 @@ public class AdjustQualityOfJpgImages {
         byte quality = 10;
         viewOptions.setJpgQuality(quality);
 
-        Viewer viewer = new Viewer(SampleFiles.JPG_IMAGE_PPTX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.JPG_IMAGE_PPTX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
     }

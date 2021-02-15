@@ -21,9 +21,9 @@ public class RenderTrackedChanges {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getWordProcessingOptions().setRenderTrackedChanges(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX_WITH_TRACKED_CHANGES);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX_WITH_TRACKED_CHANGES)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

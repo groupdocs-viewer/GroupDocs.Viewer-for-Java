@@ -22,9 +22,9 @@ public class RenderPrintAreas {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forRenderingPrintArea());
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_PRINT_AREAS);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_PRINT_AREAS)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

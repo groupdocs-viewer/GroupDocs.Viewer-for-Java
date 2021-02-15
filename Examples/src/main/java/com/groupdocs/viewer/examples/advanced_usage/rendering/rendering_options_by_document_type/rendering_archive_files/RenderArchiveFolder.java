@@ -21,9 +21,9 @@ public class RenderArchiveFolder {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getArchiveOptions().setFolder("ThirdFolderWithItems");
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP_WITH_FOLDERS);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP_WITH_FOLDERS)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
