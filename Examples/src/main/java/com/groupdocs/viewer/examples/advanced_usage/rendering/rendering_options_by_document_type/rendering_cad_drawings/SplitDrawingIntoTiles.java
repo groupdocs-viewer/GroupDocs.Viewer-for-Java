@@ -23,41 +23,41 @@ public class SplitDrawingIntoTiles {
 
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forPngView(false);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS);
-        ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS)) {
+            ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
 
-        // Get width and height
-        int width = viewInfo.getPages().get(0).getWidth();
-        int height = viewInfo.getPages().get(0).getHeight();
+            // Get width and height
+            int width = viewInfo.getPages().get(0).getWidth();
+            int height = viewInfo.getPages().get(0).getHeight();
 
-        // Set tile width and height as a half of image total width
-        int tileWidth = width / 2;
-        int tileHeight = height / 2;
+            // Set tile width and height as a half of image total width
+            int tileWidth = width / 2;
+            int tileHeight = height / 2;
 
-        int pointX = 0;
-        int pointY = 0;
+            int pointX = 0;
+            int pointY = 0;
 
-        // Create image options and add four tiles, one for each quarter
-        PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
+            // Create image options and add four tiles, one for each quarter
+            PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
 
-        Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-        viewOptions.getCadOptions().getTiles().add(tile);
+            Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            viewOptions.getCadOptions().getTiles().add(tile);
 
-        pointX += tileWidth;
-        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-        viewOptions.getCadOptions().getTiles().add(tile);
+            pointX += tileWidth;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            viewOptions.getCadOptions().getTiles().add(tile);
 
-        pointX = 0;
-        pointY += tileHeight;
-        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-        viewOptions.getCadOptions().getTiles().add(tile);
+            pointX = 0;
+            pointY += tileHeight;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            viewOptions.getCadOptions().getTiles().add(tile);
 
-        pointX += tileWidth;
-        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-        viewOptions.getCadOptions().getTiles().add(tile);
+            pointX += tileWidth;
+            tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+            viewOptions.getCadOptions().getTiles().add(tile);
 
-        viewer.view(viewOptions);
-        viewer.close();
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

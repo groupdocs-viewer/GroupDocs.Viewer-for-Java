@@ -22,9 +22,9 @@ public class EnableLayeredRendering {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getPdfOptions().setEnableLayeredRendering(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF);
-        viewer.view(viewOptions, 1);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF)) {
+            viewer.view(viewOptions, 1);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

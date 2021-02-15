@@ -13,7 +13,7 @@ public class MinifyHtmlDocument {
     /**
      * This example demonstrates how to enable minification of HTML document.
      */
-    
+
     public static void run() throws IOException {
         String outputDirectory = Utils.getOutputDirectoryPath("MinifyHtmlDocument");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
@@ -21,9 +21,9 @@ public class MinifyHtmlDocument {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setMinify(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

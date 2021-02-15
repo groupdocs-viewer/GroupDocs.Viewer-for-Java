@@ -5,20 +5,19 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.PdfViewInfo;
 
-import java.io.FileNotFoundException;
-
 public class GetViewInfoForPdfDocument {
 
     /**
      * This example demonstrates how to get view info for PDF document.
      */
 
-    public static void run() throws FileNotFoundException {
+    public static void run() {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF);
-        PdfViewInfo viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
-        viewer.close();
+        PdfViewInfo viewInfo;
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF)) {
+            viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
+        }
 
         System.out.println("Document type is: " + viewInfo.getFileType());
         System.out.println("Pages count: " + viewInfo.getPages().size());

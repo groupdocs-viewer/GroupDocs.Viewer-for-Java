@@ -21,9 +21,9 @@ public class RenderDocumentWithComments {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setRenderComments(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX_WITH_COMMENT);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX_WITH_COMMENT)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

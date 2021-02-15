@@ -23,9 +23,9 @@ public class AdjustOutputImageSize {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setCadOptions(CadOptions.forRenderingByScaleFactor(0.5f));
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

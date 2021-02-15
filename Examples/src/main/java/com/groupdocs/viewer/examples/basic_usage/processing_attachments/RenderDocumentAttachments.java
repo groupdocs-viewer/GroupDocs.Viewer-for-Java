@@ -1,63 +1,41 @@
 package com.groupdocs.viewer.examples.basic_usage.processing_attachments;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-
-import com.groupdocs.viewer.FileType;
 import com.groupdocs.viewer.Viewer;
+import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
-import com.groupdocs.viewer.options.LoadOptions;
+import com.groupdocs.viewer.results.Attachment;
+import com.groupdocs.viewer.utils.PathUtils;
 
-import org.apache.commons.io.FilenameUtils;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class RenderDocumentAttachments {
 
     /**
      * This example demonstrates how to render attachment into HTML.
      */
-
     public static void run() throws IOException {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderDocumentAttachments");
+        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
 
-        String filePath = SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS;
-        String attachmentName = "attachment-word.doc";
+        Attachment attachment = CacheableFactory.getInstance().newAttachment("attachment-word.doc");
 
-        ByteArrayInputStream attachmentStream = readAttachment(filePath, attachmentName);
-        renderAttachment(attachmentName, attachmentStream, outputDirectory);
-        attachmentStream.close();
+        try (ByteArrayOutputStream attachmentStream = new ByteArrayOutputStream();
+             Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
+            viewer.saveAttachment(attachment, attachmentStream);
 
-        System.out.println("\nAttachments rendered successfully.\nCheck output in " + outputDirectory);
-    }
+            try (InputStream inputStream = new ByteArrayInputStream(attachmentStream.toByteArray());
+                 Viewer attachmentViewer = new Viewer(inputStream)) {
+                HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-    private static void renderAttachment(String attachmentName, ByteArrayInputStream attachmentStream, String outputDirectory)
-            throws IOException {
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
-
-        String extension = "." + FilenameUtils.getExtension(attachmentName);
-        FileType fileType = FileType.fromExtension(extension);
-        LoadOptions loadOptions = new LoadOptions(fileType);
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-        
-        Viewer viewer = new Viewer(attachmentStream, loadOptions);
-        viewer.view(viewOptions);
-        viewer.close();
-    }
-
-    private static ByteArrayInputStream readAttachment(String filePath, String attachmentName) throws IOException {
-        ByteArrayOutputStream attachmentStream = new ByteArrayOutputStream();
-
-        try {
-            Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS);
-            viewer.saveAttachment(attachmentName, attachmentStream);
-            viewer.close();
-
-            return new ByteArrayInputStream(attachmentStream.toByteArray());
-        } finally {
-            attachmentStream.close();
+                attachmentViewer.view(options);
+            }
         }
+
+        System.out.println("\nAttachment rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

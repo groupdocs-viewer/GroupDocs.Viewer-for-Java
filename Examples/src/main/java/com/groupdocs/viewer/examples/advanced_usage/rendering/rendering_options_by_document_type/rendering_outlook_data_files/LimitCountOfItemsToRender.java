@@ -22,9 +22,9 @@ public class LimitCountOfItemsToRender {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getOutlookOptions().setMaxItemsInFolder(3);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

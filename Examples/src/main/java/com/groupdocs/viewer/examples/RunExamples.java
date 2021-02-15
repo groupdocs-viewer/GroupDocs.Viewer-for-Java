@@ -1,23 +1,46 @@
 package com.groupdocs.viewer.examples;
 
-import com.groupdocs.viewer.examples.advanced_usage.caching.*;
-import com.groupdocs.viewer.examples.advanced_usage.loading.*;
-import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.*;
+import com.groupdocs.viewer.examples.advanced_usage.caching.UseCacheWhenProcessingDocuments;
+import com.groupdocs.viewer.examples.advanced_usage.caching.UseCustomCacheImplementation;
+import com.groupdocs.viewer.examples.advanced_usage.loading.LoadDocumentsWithCharset;
+import com.groupdocs.viewer.examples.advanced_usage.loading.LoadPasswordProtectedDocument;
+import com.groupdocs.viewer.examples.advanced_usage.loading.SpecifyFileTypeWhenLoadingDocument;
+import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromLocalDisk;
+import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromStream;
+import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromUrl;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.common_rendering_options.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.*;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.GetViewInfoForArchiveFile;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.RenderArchiveFolder;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.SpecifyFilenameWhenRenderingArchiveFiles;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_cad_drawings.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_email_messages.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files.*;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_email_messages.AdjustPageSize;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_email_messages.RenameEmailFields;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents.AdjustTimeUnit;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents.GetViewInfoForProjectDocument;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents.RenderProjectTimeInterval;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files.FilterMessages;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files.GetViewInfoForOutlookDataFile;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files.LimitCountOfItemsToRender;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files.RenderOutlookDataFileFolder;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_pdf_documents.*;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_presentation_documents.RenderingFodp;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_spreadsheets.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_word_processing_documents.*;
-import com.groupdocs.viewer.examples.basic_usage.*;
-import com.groupdocs.viewer.examples.basic_usage.processing_attachments.*;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_text_documents.RenderingTxt;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_word_processing_documents.RenderTrackedChanges;
+import com.groupdocs.viewer.examples.basic_usage.GetSupportedFileFormats;
+import com.groupdocs.viewer.examples.basic_usage.GetViewInfo;
+import com.groupdocs.viewer.examples.basic_usage.processing_attachments.RenderDocumentAttachments;
+import com.groupdocs.viewer.examples.basic_usage.processing_attachments.RetrieveAndPrintDocumentAttachments;
+import com.groupdocs.viewer.examples.basic_usage.processing_attachments.RetrieveAndSaveDocumentAttachments;
 import com.groupdocs.viewer.examples.basic_usage.render_document_to_html.*;
 import com.groupdocs.viewer.examples.basic_usage.render_document_to_image.*;
-import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.*;
-import com.groupdocs.viewer.examples.quick_start.*;
+import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.AdjustQualityOfJpgImages;
+import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.GetPdfStream;
+import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.ProtectPdfDocument;
+import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.RenderToPdf;
+import com.groupdocs.viewer.examples.howto.HowToDetermineFileType;
+import com.groupdocs.viewer.examples.quick_start.HelloWorld;
+import com.groupdocs.viewer.examples.quick_start.SetLicenseFromFile;
 
 import java.io.IOException;
 
@@ -26,121 +49,174 @@ public class RunExamples {
     /**
      * The main method.
      */
-
     public static void main(String[] args) throws IOException {
 
         System.out.println("Uncomment the example(s) that you want to run in RunExamples.java file.");
         System.out.println("=======================================================================");
 
-        // Quick Start
+        // region Quick Start
         SetLicenseFromFile.run();
-        //SetLicenseFromStream.run();
-        //SetMeteredLicense.run();
+//        SetLicenseFromStream.run();
+//        SetMeteredLicense.run();
         HelloWorld.run();
+        // endregion
 
-        // Basic Usage
-        //GetSupportedFileFormats.run();
-        //HowToDetermineFileType.fromFileExtension();
-        //GetViewInfo.run();
+        // region Basic Usage
+        GetSupportedFileFormats.run();
+        HowToDetermineFileType.fromFileExtension();
+        HowToDetermineFileType.fromMediaType();
+        HowToDetermineFileType.fromStream();
+        GetViewInfo.run();
 
-        // Processing attachments
-        //RetrieveAndPrintDocumentAttachments.run(); 
-        //RetrieveAndSaveDocumentAttachments.run(); 
-        //RenderDocumentAttachments.run(); 
+        // region Processing attachments
+        RetrieveAndPrintDocumentAttachments.run();
+        RetrieveAndSaveDocumentAttachments.run();
+        RenderDocumentAttachments.run();
+        // endregion
 
-        // Render document to HTML
-        //RenderToHtmlWithEmbeddedResources.run(); 
-        //RenderToHtmlWithExternalResources.run(); 
-        //ExcludingFontsFromOutputHtml.run(); 
-        //MinifyHtmlDocument.run(); 
-        //RenderToResponsiveHtml.run(); 
+        // region Render document to HTML
+        RenderToHtmlWithEmbeddedResources.run();
+        RenderToHtmlWithExternalResources.run();
+        ExcludingFontsFromOutputHtml.run();
+        MinifyHtmlDocument.run();
+        RenderToResponsiveHtml.run();
+        // endregion
 
-        // Render document to Image
-        //RenderToPng.run(); 
-        //RenderToJpg.run(); 
-        //GetTextCoordinates.run(); 
-        //RenderForDisplayWithText.run(); 
-        //AdjustQualityWhenRenderingToJpg.run(); 
-        //AdjustImageSize.run();
+        // region Render document to Image
+        RenderToPng.run();
+        RenderToJpg.run();
+        GetTextCoordinates.run();
+        RenderForDisplayWithText.run();
+        AdjustQualityWhenRenderingToJpg.run();
+        AdjustImageSize.run();
+        // endregion
 
-        // Render document to PDF
-        //RenderToPdf.run(); 
-        //AdjustQualityOfJpgImages.run(); 
-        //ProtectPdfDocument.run(); 
+        // region Render document to PDF
+        RenderToPdf.run();
+        GetPdfStream.run();
+        AdjustQualityOfJpgImages.run();
+        ProtectPdfDocument.run();
+        // endregion
 
-        // Advanced Usage
-        // Common rendering options
-        //AddWatermark.run(); 
-        //RenderDocumentWithComments.run(); 
-        //RenderDocumentWithNotes.run(); 
-        //RenderHiddenPages.run();
-        //RenderNConsecutivePages.run(); 
-        //RenderSelectedPages.run(); 
-        //ReplaceMissingFont.run(); 
-        //ReorderPages.run(); 
-        //RenderWithCustomFonts.run(); 
-        //RotatePages.run(); 
+        // endregion
 
-        // Rendering options by document type
-        // Rendering Archive Files
-        //GetViewInfoForArchiveFile.run(); 
-        //RenderArchiveFolder.run(); 
+        // region Advanced Usage
 
-        // Rendering CAD Drawings
-        //GetViewInfoForCadDrawing.run(); 
-        //RenderAllLayouts.run(); 
-        //RenderLayers.run(); 
-        //RenderSingleLayout.run(); 
-        //SplitDrawingIntoTiles.run(); 
-        //AdjustOutputImageSize.run(); 
+        // region Common rendering options
+        AddWatermark.run();
+        RenderDocumentWithComments.run();
+        RenderDocumentWithNotes.run();
+        RenderHiddenPages.run();
+        RenderNConsecutivePages.run();
+        RenderSelectedPages.run();
+        ReplaceMissingFont.run();
+        ReorderPages.run();
+        FlipRotatePages.run();
+        RenderWithCustomFonts.run();
+        RenderingTxt.run();
+        RenderOriginalPageSize.run();
+        // endregion
 
-        // Rendering E-Mail Messages
-        //AdjustPageSize.run(); 
-        //RenameEmailFields.run(); 
+        // region Rendering options by document type
 
-        // Rendering Outlook Data Files
-        //FilterMessages.run(); 
-        //GetViewInfoForOutlookDataFile.run(); 
-        //LimitCountOfItemsToRender.run(); 
-        //RenderOutlookDataFileFolder.run(); 
+        // region Rendering Archive Files
+        GetViewInfoForArchiveFile.run();
+        RenderArchiveFolder.run();
+        SpecifyFilenameWhenRenderingArchiveFiles.run();
+        // endregion
 
-        // Rendering PDF Documents
-        //AdjustImageQuality.run(); 
-        //DisableCharactersGrouping.run(); 
-        //EnableFontHinting.run(); 
-        //EnableLayeredRendering.run(); 
-        //GetViewInfoForPdfDocument.run(); 
+        // region Rendering CAD Drawings
+        GetViewInfoForCadDrawing.run();
+        RenderAllLayouts.run();
+        RenderLayers.run();
+        RenderSingleLayout.run();
+        SplitDrawingIntoTiles.run();
+        AdjustOutputImageSize.run();
+        RenderingPlt.run();
+        RenderingObj.run();
+        RenderingCf2.run();
+        RenderingHpg.run();
+        SetImageBackgroundColor.run();
+        RenderingFodp.run();
+        RenderingIgs.run();
+        RenderingNotes.run();
+        RenderingFodgAndOdg.run();
+        RenderingPstAndOst.run();
+        // endregion
 
-        // Rendering MS Project Documents
-        //AdjustTimeUnit.run(); 
-        //GetViewInfoForProjectDocument.run(); 
-        //RenderProjectTimeInterval.run(); 
+        // region Rendering E-Mail Messages
+        AdjustPageSize.run();
+        RenameEmailFields.run();
+        // endregion
 
-        // Rendering Spreadsheets
-        //AdjustTextOverflowInCells.run(); 
-        //RenderGridLines.run(); 
-        //RenderHiddenRowsAndColumns.run(); 
-        //RenderPrintAreas.run(); 
-        //SkipRenderingOfEmptyColumns.run(); 
-        //SkipRenderingOfEmptyRows.run(); 
-        //SplitWorksheetsIntoPages.run(); 
+        // region Rendering Outlook Data Files
+        FilterMessages.run();
+        GetViewInfoForOutlookDataFile.run();
+        LimitCountOfItemsToRender.run();
+        RenderOutlookDataFileFolder.run();
+        // endregion
 
-        // Rendering Word Processing Documents
-        //RenderTrackedChanges.run(); 
+        // region Rendering PDF Documents
+        AdjustImageQuality.run();
+        DisableCharactersGrouping.run();
+        EnableFontHinting.run();
+        EnableLayeredRendering.run();
+        GetViewInfoForPdfDocument.run();
+        RenderOriginalPageSize.run();
+        // endregion
 
-        // Caching
-        //UseCacheWhenProcessingDocuments.run(); 
+        // region Rendering MS Project Documents
+        AdjustTimeUnit.run();
+        GetViewInfoForProjectDocument.run();
+        RenderProjectTimeInterval.run();
+        // endregion
 
-        // Loading
-        //LoadPasswordProtectedDocument.run(); 
-        //LoadDocumentsWithCharset.run(); 
-        //SpecifyFileTypeWhenLoadingDocument.run(); 
+        // region Rendering Spreadsheets
+        AdjustTextOverflowInCells.run();
+        RenderGridLines.run();
+        RenderHiddenRowsAndColumns.run();
+        RenderPrintAreas.run();
+        SkipRenderingOfEmptyColumns.run();
+        SkipRenderingOfEmptyRows.run();
+        SplitWorksheetsIntoPages.run();
+        RenderRowAndColumnHeadings.run();
+        GetWorksheetsNames.run();
+        // endregion
 
-        // Loading documents from different sources
-        //LoadDocumentFromLocalDisk.run(); 
-        //LoadDocumentFromStream.run(); 
-        //LoadDocumentFromUrl.run(); 
+        // region Rendering Word Processing Documents
+        RenderTrackedChanges.run();
+        // endregion
+
+        // endregion
+
+        // region Caching
+        UseCacheWhenProcessingDocuments.run();
+        UseCustomCacheImplementation.run();
+        // endregion
+
+        // region Loading
+        LoadPasswordProtectedDocument.run();
+        LoadDocumentsWithCharset.run();
+        SpecifyFileTypeWhenLoadingDocument.run();
+        // endregion
+
+        // region Loading documents from different sources
+        LoadDocumentFromLocalDisk.run();
+        LoadDocumentFromStream.run();
+        LoadDocumentFromUrl.run();
 //        LoadDocumentFromFtp.run();
+        // endregion
+
+        // endregion
+
+        // endregion
+
+        // region HowTo
+        HowToDetermineFileType.fromFileExtension();
+        HowToDetermineFileType.fromMediaType();
+        HowToDetermineFileType.fromStream();
+        // endregion
+
 
         System.out.println();
         System.out.println("All done.");

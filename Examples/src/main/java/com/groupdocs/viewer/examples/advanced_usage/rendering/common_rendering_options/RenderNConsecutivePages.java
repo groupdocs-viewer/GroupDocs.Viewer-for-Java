@@ -18,12 +18,12 @@ public class RenderNConsecutivePages {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderNConsecutivePages");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
-        int[] pages = new int[] { 1, 2, 3 };
+        int[] pages = new int[]{1, 2, 3};
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        viewer.view(viewOptions, pages);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            viewer.view(viewOptions, pages);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

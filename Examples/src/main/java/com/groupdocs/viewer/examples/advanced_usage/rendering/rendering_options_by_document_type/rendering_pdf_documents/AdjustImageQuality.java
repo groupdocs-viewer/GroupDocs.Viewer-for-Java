@@ -24,9 +24,9 @@ public class AdjustImageQuality {
         ImageQuality quality = ImageQuality.MEDIUM;
         viewOptions.getPdfOptions().setImageQuality(quality);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

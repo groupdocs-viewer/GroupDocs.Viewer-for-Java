@@ -5,20 +5,19 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ProjectManagementViewInfo;
 
-import java.io.FileNotFoundException;
-
 public class GetViewInfoForProjectDocument {
 
     /**
      * This example demonstrates how to get view info for MS Project document.
      */
 
-    public static void run() throws FileNotFoundException {
+    public static void run() {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP);
-        ProjectManagementViewInfo info = (ProjectManagementViewInfo) viewer.getViewInfo(viewInfoOptions);
-        viewer.close();
+        ProjectManagementViewInfo info;
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
+            info = (ProjectManagementViewInfo) viewer.getViewInfo(viewInfoOptions);
+        }
 
         System.out.println("Document type is: " + info.getFileType());
         System.out.println("Pages count: " + info.getPages().size());

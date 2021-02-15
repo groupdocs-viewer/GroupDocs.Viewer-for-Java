@@ -22,9 +22,9 @@ public class EnableFontHinting {
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
         viewOptions.getPdfOptions().setEnableFontHinting(true);
 
-        Viewer viewer = new Viewer(SampleFiles.HIEROGLYPHS_1_PDF);
-        viewer.view(viewOptions, 1);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.HIEROGLYPHS_1_PDF)) {
+            viewer.view(viewOptions, 1);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

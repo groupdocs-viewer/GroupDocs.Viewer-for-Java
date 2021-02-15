@@ -21,9 +21,9 @@ public class SkipRenderingOfEmptyRows {
         HtmlViewOptions viewInfoOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewInfoOptions.getSpreadsheetOptions().setSkipEmptyRows(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_EMPTY_ROW);
-        viewer.view(viewInfoOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_EMPTY_ROW)) {
+            viewer.view(viewInfoOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

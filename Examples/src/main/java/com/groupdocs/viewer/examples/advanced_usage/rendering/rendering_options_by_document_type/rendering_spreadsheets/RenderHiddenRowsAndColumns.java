@@ -22,9 +22,9 @@ public class RenderHiddenRowsAndColumns {
         viewOptions.getSpreadsheetOptions().setRenderHiddenColumns(true);
         viewOptions.getSpreadsheetOptions().setRenderHiddenRows(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_HIDDEN_ROW_AND_COLUMN);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_HIDDEN_ROW_AND_COLUMN)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
     }

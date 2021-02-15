@@ -21,9 +21,9 @@ public class SkipRenderingOfEmptyColumns {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getSpreadsheetOptions().setSkipEmptyColumns(true);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_EMPTY_COLUMN);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX_WITH_EMPTY_COLUMN)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));

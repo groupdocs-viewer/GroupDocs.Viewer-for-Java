@@ -20,9 +20,9 @@ public class RenderToHtmlWithEmbeddedResources {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }

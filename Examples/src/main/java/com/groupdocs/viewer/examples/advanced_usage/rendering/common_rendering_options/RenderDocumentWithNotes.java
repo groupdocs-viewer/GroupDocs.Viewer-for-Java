@@ -21,9 +21,9 @@ public class RenderDocumentWithNotes {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setRenderNotes(true);
 
-        Viewer viewer = new Viewer(SampleFiles.PPTX_WITH_NOTES);
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(SampleFiles.PPTX_WITH_NOTES)) {
+            viewer.view(viewOptions);
+        }
 
         System.out.println(
                 String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
