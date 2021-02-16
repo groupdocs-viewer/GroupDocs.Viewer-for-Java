@@ -8,7 +8,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.results.Layer;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class RenderLayers {
      * This example demonstrates how to render layers.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderLayers");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -31,6 +30,6 @@ public class RenderLayers {
             viewer.view(viewOptions);
         }
 
-        System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

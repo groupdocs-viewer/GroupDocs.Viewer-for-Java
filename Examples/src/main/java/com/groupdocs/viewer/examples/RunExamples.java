@@ -9,9 +9,7 @@ import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_fr
 import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromStream;
 import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromUrl;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.common_rendering_options.*;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.GetViewInfoForArchiveFile;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.RenderArchiveFolder;
-import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.SpecifyFilenameWhenRenderingArchiveFiles;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files.*;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_cad_drawings.*;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_email_messages.AdjustPageSize;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_email_messages.RenameEmailFields;
@@ -26,7 +24,9 @@ import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_presentation_documents.RenderingFodp;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_spreadsheets.*;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_text_documents.RenderingTxt;
+import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_web_documents.RenderingHtmlWithUserDefinedMargins;
 import com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_word_processing_documents.RenderTrackedChanges;
+import com.groupdocs.viewer.examples.basic_usage.CheckFileIsEncrypted;
 import com.groupdocs.viewer.examples.basic_usage.GetSupportedFileFormats;
 import com.groupdocs.viewer.examples.basic_usage.GetViewInfo;
 import com.groupdocs.viewer.examples.basic_usage.processing_attachments.RenderDocumentAttachments;
@@ -63,10 +63,8 @@ public class RunExamples {
 
         // region Basic Usage
         GetSupportedFileFormats.run();
-        HowToDetermineFileType.fromFileExtension();
-        HowToDetermineFileType.fromMediaType();
-        HowToDetermineFileType.fromStream();
         GetViewInfo.run();
+        CheckFileIsEncrypted.run();
 
         // region Processing attachments
         RetrieveAndPrintDocumentAttachments.run();
@@ -123,6 +121,8 @@ public class RunExamples {
         GetViewInfoForArchiveFile.run();
         RenderArchiveFolder.run();
         SpecifyFilenameWhenRenderingArchiveFiles.run();
+        RenderingRar.run();
+        RenderingArchivesToMultipleAndSinglePagesHtml.run();
         // endregion
 
         // region Rendering CAD Drawings
@@ -178,13 +178,20 @@ public class RunExamples {
         RenderPrintAreas.run();
         SkipRenderingOfEmptyColumns.run();
         SkipRenderingOfEmptyRows.run();
-        SplitWorksheetsIntoPages.run();
+        SplitWorksheetsIntoPages.splitByRows();
+        SplitWorksheetsIntoPages.splitByRowsAndColumns();
         RenderRowAndColumnHeadings.run();
         GetWorksheetsNames.run();
+        RenderingNumbers.run();
+        RenderingXmlSpreadSheetML.run();
         // endregion
 
         // region Rendering Word Processing Documents
         RenderTrackedChanges.run();
+        // endregion
+
+        // region Rendering Web documents
+        RenderingHtmlWithUserDefinedMargins.run();
         // endregion
 
         // endregion

@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class ReorderPages {
 
@@ -14,7 +13,7 @@ public class ReorderPages {
      * This example demonstrates how to reorder pages in the output PDF document.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("ReorderPages");
         String outputFilePath = new File(outputDirectory, "output.pdf").getPath();
 
@@ -26,6 +25,6 @@ public class ReorderPages {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

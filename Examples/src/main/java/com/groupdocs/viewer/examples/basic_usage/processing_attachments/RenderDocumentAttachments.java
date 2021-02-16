@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.results.Attachment;
-import com.groupdocs.viewer.utils.PathUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,9 +17,9 @@ public class RenderDocumentAttachments {
     /**
      * This example demonstrates how to render attachment into HTML.
      */
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderDocumentAttachments");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
 
         Attachment attachment = CacheableFactory.getInstance().newAttachment("attachment-word.doc");
 
@@ -34,6 +33,8 @@ public class RenderDocumentAttachments {
 
                 attachmentViewer.view(options);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("\nAttachment rendered successfully.\nCheck output in " + outputDirectory);

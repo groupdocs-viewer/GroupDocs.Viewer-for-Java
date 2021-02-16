@@ -5,18 +5,16 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.CadOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
 
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * This example demonstrates how to adjust output image size when rendering CAD drawings.
  */
 public class SetImageBackgroundColor {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("SetImageBackgroundColor");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.png");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);

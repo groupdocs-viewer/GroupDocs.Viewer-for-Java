@@ -7,8 +7,9 @@ public class SampleFiles {
     // Archives
     public static final String SAMPLE_ZIP = getSampleFilePath("sample.zip");
     public static final String SAMPLE_ZIP_WITH_FOLDERS = getSampleFilePath("with_folders.zip");
+    public static final String SAMPLE_RAR_WITH_FOLDERS = getSampleFilePath("with_folders.rar");
 
-    // Diagrams
+    // CAD drawings
     public static final String SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS = getSampleFilePath("with_layers_and_layouts.dwg");
     public static final String SAMPLE_PLT = getSampleFilePath("sample.plt");
     public static final String SAMPLE_CF2 = getSampleFilePath("sample.cf2");
@@ -27,6 +28,7 @@ public class SampleFiles {
     public static final String SAMPLE_PDF = getSampleFilePath("sample.pdf");
     public static final String HIEROGLYPHS_PDF = getSampleFilePath("hieroglyphs.pdf");
     public static final String HIEROGLYPHS_1_PDF = getSampleFilePath("hieroglyphs_1.pdf");
+    public static final String ENCRYPTED = getSampleFilePath("encrypted.pdf");
 
     // Presentations
     public static final String PPTX_WITH_NOTES = getSampleFilePath("with_notes.pptx");
@@ -46,6 +48,10 @@ public class SampleFiles {
     public static final String SAMPLE_XLSX_WITH_HIDDEN_ROW_AND_COLUMN = getSampleFilePath("with_hidden_row_and_column.xlsx");
     public static final String SAMPLE_XLSX_WITH_TEXT_OVERFLOW = getSampleFilePath("with_overflowing_text.xlsx");
     public static final String THREE_SHEETS = getSampleFilePath("three_sheets.xlsx");
+    public static final String SAMPLE_NUMBERS = getSampleFilePath("sample.numbers");
+    public static final String SAMPLE_XML_SPREADSHEETML = getSampleFilePath("excel-2003-xml.xml");
+    public static final String TWO_PAGES_XLSX = getSampleFilePath("two-pages.xlsx");
+    public static final String FOUR_PAGES_XLSX = getSampleFilePath("four-pages.xlsx");
 
     // Word Processing documents
 
@@ -54,6 +60,8 @@ public class SampleFiles {
     public static final String SAMPLE_DOCX_WITH_PASSWORD = getSampleFilePath("password_protected.docx");
     public static final String SAMPLE_DOCX_WITH_TRACKED_CHANGES = getSampleFilePath("with_tracked_changes.docx");
     public static final String SAMPLE_TXT_SHIFT_JS_ENCODED = getSampleFilePath("shift_jis_encoded.txt");
+    public static final String WITH_EXTERNAL_IMAGE_DOC = getSampleFilePath("with_external_image.doc");
+    public static final String SAMPLE_HTML = getSampleFilePath("sample.htm");
 
     // Text
     public static final String SAMPLE_TXT = getSampleFilePath("sample.txt");

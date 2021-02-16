@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render MS Project document into HTML, JPG, PNG, PDF with notes.
  */
 public class RenderingNotes {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingNotes");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "mpp_result.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
@@ -28,7 +25,7 @@ public class RenderingNotes {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "mpp_{0}_result.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_{0}_result.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -38,7 +35,7 @@ public class RenderingNotes {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "mpp_{0}_result.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_{0}_result.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -48,7 +45,7 @@ public class RenderingNotes {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "mpp_result.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_result.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

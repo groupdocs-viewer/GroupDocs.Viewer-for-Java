@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderAllLayouts {
 
@@ -14,7 +13,7 @@ public class RenderAllLayouts {
      * This example demonstrates how to render all the layouts.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderAllLayouts");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -26,6 +25,6 @@ public class RenderAllLayouts {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

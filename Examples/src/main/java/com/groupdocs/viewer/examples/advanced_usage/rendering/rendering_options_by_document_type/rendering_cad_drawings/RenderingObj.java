@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render OBJ document into HTML, JPG, PNG, PDF.
  */
 public class RenderingObj {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingObj");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "obj_result.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
@@ -31,7 +28,7 @@ public class RenderingObj {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "obj_result.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -44,7 +41,7 @@ public class RenderingObj {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "obj_result.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -57,7 +54,7 @@ public class RenderingObj {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "obj_result.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

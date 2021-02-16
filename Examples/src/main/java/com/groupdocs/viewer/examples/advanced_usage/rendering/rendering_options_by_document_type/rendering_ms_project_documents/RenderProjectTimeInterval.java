@@ -8,7 +8,6 @@ import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ProjectManagementViewInfo;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderProjectTimeInterval {
 
@@ -17,7 +16,7 @@ public class RenderProjectTimeInterval {
      * time interval.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderProjectTimeInterval");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -36,6 +35,6 @@ public class RenderProjectTimeInterval {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

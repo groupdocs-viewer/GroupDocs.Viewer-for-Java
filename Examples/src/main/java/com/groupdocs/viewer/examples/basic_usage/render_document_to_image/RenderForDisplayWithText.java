@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderForDisplayWithText {
 
@@ -15,7 +14,7 @@ public class RenderForDisplayWithText {
      * placed as top layer over the image.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderForDisplayWithText");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
 
@@ -27,6 +26,6 @@ public class RenderForDisplayWithText {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

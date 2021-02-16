@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderHiddenRowsAndColumns {
 
@@ -14,7 +13,7 @@ public class RenderHiddenRowsAndColumns {
      * This example demonstrates how to render hidden rows and columns.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderHiddenRowsAndColumns");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -26,6 +25,6 @@ public class RenderHiddenRowsAndColumns {
             viewer.view(viewOptions);
         }
 
-        System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

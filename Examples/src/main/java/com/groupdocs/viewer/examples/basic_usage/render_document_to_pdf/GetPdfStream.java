@@ -11,7 +11,7 @@ import java.io.*;
  * This example demonstrates how to convert file to PDF and get PDF file stream.
  */
 public class GetPdfStream {
-    public static void run() throws IOException {
+    public static void run() {
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX);
              MemoryFileStreamFactory streamFactory = new MemoryFileStreamFactory()) {
 
@@ -23,6 +23,8 @@ public class GetPdfStream {
             InputStream stream = streamFactory.getStream();
 
             stream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("\nSource document rendered successfully.");

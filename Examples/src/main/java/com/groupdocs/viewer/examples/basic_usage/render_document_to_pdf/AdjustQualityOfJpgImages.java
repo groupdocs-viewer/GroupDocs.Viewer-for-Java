@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AdjustQualityOfJpgImages {
 
@@ -14,7 +13,7 @@ public class AdjustQualityOfJpgImages {
      * This example demonstrates how to adjust quality of JPG images of the output PDF document.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustQualityOfJpgImages");
         String filePath = new File(outputDirectory, "output.pdf").getPath();
 
@@ -26,6 +25,6 @@ public class AdjustQualityOfJpgImages {
             viewer.view(viewOptions);
         }
 
-        System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

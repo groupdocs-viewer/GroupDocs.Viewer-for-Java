@@ -5,15 +5,13 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
-import java.io.IOException;
-
 public class RenderToHtmlWithExternalResources {
 
     /**
      * This example demonstrates how to render document into HTML with external
      * resources.
      */
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderToHtmlWithExternalResources");
 
         // The {0} and {1} patterns will be replaced with current processing page number
@@ -30,6 +28,6 @@ public class RenderToHtmlWithExternalResources {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

@@ -16,19 +16,21 @@ public class LoadDocumentFromStream {
      * This example demonstrates how to render document from stream.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromStream");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
-        InputStream fileStream = new FileInputStream(SampleFiles.SAMPLE_DOCX);
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        try (Viewer viewer = new Viewer(fileStream)) {
+        try (InputStream fileStream = new FileInputStream(SampleFiles.SAMPLE_DOCX);
+             Viewer viewer = new Viewer(fileStream)) {
             viewer.view(viewOptions);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 
 }

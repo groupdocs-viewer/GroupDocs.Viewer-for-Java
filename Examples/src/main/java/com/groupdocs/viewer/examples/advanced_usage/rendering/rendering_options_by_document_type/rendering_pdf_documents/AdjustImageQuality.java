@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.ImageQuality;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AdjustImageQuality {
 
@@ -16,7 +15,7 @@ public class AdjustImageQuality {
      * source PDF document.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustImageQuality");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -29,6 +28,6 @@ public class AdjustImageQuality {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

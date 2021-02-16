@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render FODP document into HTML, JPG, PNG, PDF.
  */
 public class RenderingFodp {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingFodp");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "Fodp_result.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
@@ -27,7 +24,7 @@ public class RenderingFodp {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "Fodp_result.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -36,7 +33,7 @@ public class RenderingFodp {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "Fodp_result.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -45,7 +42,7 @@ public class RenderingFodp {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "Fodp_result.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
