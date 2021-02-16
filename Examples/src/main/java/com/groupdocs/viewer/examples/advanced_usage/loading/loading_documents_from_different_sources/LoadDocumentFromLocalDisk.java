@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class LoadDocumentFromLocalDisk {
 
@@ -14,7 +13,7 @@ public class LoadDocumentFromLocalDisk {
      * This example demonstrates how to render document from local disk.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromLocalDisk");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -25,6 +24,6 @@ public class LoadDocumentFromLocalDisk {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

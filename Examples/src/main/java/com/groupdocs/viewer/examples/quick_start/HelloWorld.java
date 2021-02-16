@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class HelloWorld {
 
@@ -14,7 +13,7 @@ public class HelloWorld {
      * This example demonstrates how to render document into HTML.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("HelloWorld");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -25,6 +24,6 @@ public class HelloWorld {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

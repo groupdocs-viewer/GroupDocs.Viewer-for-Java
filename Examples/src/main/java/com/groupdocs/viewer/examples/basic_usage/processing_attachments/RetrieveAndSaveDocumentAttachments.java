@@ -4,7 +4,6 @@ import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.results.Attachment;
-import com.groupdocs.viewer.utils.PathUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,18 +16,20 @@ public class RetrieveAndSaveDocumentAttachments {
      * This example demonstrates how to retrieve and save attachments.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RetrieveAndSaveDocumentAttachments");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
 
             List<Attachment> attachments = viewer.getAttachments();
             for (Attachment attachment : attachments) {
-                final File file = new File(PathUtils.combine(outputDirectory, attachment.getFileName()));
-                FileOutputStream outputStream = new FileOutputStream(file);
-                viewer.saveAttachment(attachment, outputStream);
+                final File file = new File(Utils.combinePaths(outputDirectory, attachment.getFileName()));
+                try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                    viewer.saveAttachment(attachment, outputStream);
+                }
             }
-
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("\nAttachments saved successfully.\nCheck output in " + outputDirectory);

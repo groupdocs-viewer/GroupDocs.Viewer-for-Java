@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render PST/OST document into HTML, JPG, PNG, PDF.
  */
 public class RenderingPstAndOst {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingPstAndOst");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "PST_result.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PST)) {
@@ -27,7 +24,7 @@ public class RenderingPstAndOst {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "PST_result_{0}.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PST)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -36,7 +33,7 @@ public class RenderingPstAndOst {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "PST_result_{0}.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result_{0}.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PST)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -45,7 +42,7 @@ public class RenderingPstAndOst {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "PST_result.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PST)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

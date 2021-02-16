@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render row and column headings.
  */
 public class RenderRowAndColumnHeadings {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderRowAndColumnHeadings");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
@@ -28,7 +25,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -38,7 +35,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -48,7 +45,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "output.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "output.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

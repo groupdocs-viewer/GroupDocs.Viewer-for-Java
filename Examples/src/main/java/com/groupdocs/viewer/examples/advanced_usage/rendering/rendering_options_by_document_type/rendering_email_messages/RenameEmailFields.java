@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.Field;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +16,7 @@ public class RenameEmailFields {
      * This example demonstrates how to rename fields when rendering email messages.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenameEmailFields");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -35,6 +34,6 @@ public class RenameEmailFields {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

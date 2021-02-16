@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderToPdf {
 
@@ -14,7 +13,7 @@ public class RenderToPdf {
      * This example demonstrates how to render document into PDF file.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderToPdf");
         String outputFilePath = new File(outputDirectory, "output.pdf").getPath();
 
@@ -25,6 +24,6 @@ public class RenderToPdf {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

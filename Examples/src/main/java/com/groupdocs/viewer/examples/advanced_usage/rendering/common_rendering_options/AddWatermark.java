@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.Watermark;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AddWatermark {
 
@@ -16,7 +15,7 @@ public class AddWatermark {
      * page.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AddWatermark");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -28,6 +27,6 @@ public class AddWatermark {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

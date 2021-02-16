@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.PageSize;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AdjustPageSize {
 
@@ -16,7 +15,7 @@ public class AdjustPageSize {
      * messages.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustPageSize");
         String filePath = new File(outputDirectory, "output.pdf").getPath();
 
@@ -28,6 +27,6 @@ public class AdjustPageSize {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

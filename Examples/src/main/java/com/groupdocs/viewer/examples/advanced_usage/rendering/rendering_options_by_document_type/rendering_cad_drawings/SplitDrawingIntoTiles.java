@@ -9,7 +9,6 @@ import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ViewInfo;
 
 import java.io.File;
-import java.io.IOException;
 
 public class SplitDrawingIntoTiles {
 
@@ -17,7 +16,7 @@ public class SplitDrawingIntoTiles {
      * This example demonstrates how to split drawing into tiles.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("SplitDrawingIntoTiles");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
 
@@ -60,6 +59,6 @@ public class SplitDrawingIntoTiles {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

@@ -10,7 +10,6 @@ import com.groupdocs.viewer.fonts.SearchOption;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderWithCustomFonts {
 
@@ -19,7 +18,7 @@ public class RenderWithCustomFonts {
      * documents.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         FontSource fontSource =
                 new FolderFontSource(Utils.FONTS_PATH, SearchOption.TOP_FOLDER_ONLY);
         FontSettings.setFontSources(fontSource);
@@ -34,6 +33,6 @@ public class RenderWithCustomFonts {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

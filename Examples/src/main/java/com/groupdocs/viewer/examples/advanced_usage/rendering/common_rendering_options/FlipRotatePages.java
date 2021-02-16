@@ -5,17 +5,14 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.Rotation;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to rotate the first page 90-degree clockwise.
  */
 public class FlipRotatePages {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("FlipRotatePages");
-        String outputFilePath = PathUtils.combine(outputDirectory, "output.pdf");
+        String outputFilePath = Utils.combinePaths(outputDirectory, "output.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
             PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);

@@ -11,16 +11,31 @@ public class Utils {
     public static final String FONTS_PATH = "resources/fonts";
     public static final String OUTPUT_PATH = "output";
 
-    public static String getOutputDirectoryPath(String outputDirName) throws IOException {
-        File outputDirectory = new File(OUTPUT_PATH, outputDirName).getCanonicalFile();
-        if (outputDirectory.exists() && !deleteDirectory(outputDirectory)) {
-            outputDirectory.deleteOnExit();
-            throw new IOException("Can't delete output directory '" + outputDirectory.getAbsolutePath() + "'");
+    public static String getOutputDirectoryPath(String... pathParts) {
+        try {
+            File outputDirectory = new File(OUTPUT_PATH, combinePaths(pathParts)).getCanonicalFile();
+            if (outputDirectory.exists() && !deleteDirectory(outputDirectory)) {
+                outputDirectory.deleteOnExit();
+                throw new IOException("Can't delete output directory '" + outputDirectory.getAbsolutePath() + "'");
+            }
+            if (!outputDirectory.mkdirs()) {
+                throw new IOException("Can't create output directory '" + outputDirectory.getAbsolutePath() + "'");
+            }
+            return outputDirectory.getAbsolutePath();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        if (!outputDirectory.mkdirs()) {
-            throw new IOException("Can't create output directory '" + outputDirectory.getAbsolutePath() + "'");
+    }
+
+    public static String combinePaths(String... pathParts) {
+        StringBuilder relativePath = new StringBuilder();
+        for (String pathPart : pathParts) {
+            if (relativePath.length() > 0) {
+                relativePath.append(File.separator);
+            }
+            relativePath.append(pathPart);
         }
-        return outputDirectory.getAbsolutePath();
+        return relativePath.toString();
     }
 
     private static boolean deleteDirectory(File dir) {

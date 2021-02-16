@@ -6,7 +6,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import org.apache.commons.net.ftp.FTPClient;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class LoadDocumentFromFtp {
@@ -15,7 +14,7 @@ public class LoadDocumentFromFtp {
      * This example demonstrates how to render document downloaded from FTP.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromFtp");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
         String server = "localhost";
@@ -28,15 +27,19 @@ public class LoadDocumentFromFtp {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 
-    private static InputStream getFileFromFtp(String server, String filePath) throws IOException {
-        FTPClient client = new FTPClient();
-        client.connect(server);
-        InputStream inputStream = client.retrieveFileStream(filePath);
-        client.disconnect();
+    private static InputStream getFileFromFtp(String server, String filePath) {
+        try {
+            FTPClient client = new FTPClient();
+            client.connect(server);
+            InputStream inputStream = client.retrieveFileStream(filePath);
+            client.disconnect();
 
-        return inputStream;
+            return inputStream;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.TimeUnit;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AdjustTimeUnit {
 
@@ -15,7 +14,7 @@ public class AdjustTimeUnit {
      * This example demonstrates how to adjust time unit of the project.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustTimeUnit");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -27,6 +26,6 @@ public class AdjustTimeUnit {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

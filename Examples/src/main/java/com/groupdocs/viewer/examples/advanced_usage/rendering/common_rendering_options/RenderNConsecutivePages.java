@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RenderNConsecutivePages {
 
@@ -14,7 +13,7 @@ public class RenderNConsecutivePages {
      * This example demonstrates how to render range of pages.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderNConsecutivePages");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -26,6 +25,6 @@ public class RenderNConsecutivePages {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

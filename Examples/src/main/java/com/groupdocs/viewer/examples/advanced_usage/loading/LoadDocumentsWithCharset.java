@@ -6,9 +6,7 @@ import com.groupdocs.viewer.examples.SampleFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
-import com.groupdocs.viewer.utils.PathUtils;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class LoadDocumentsWithCharset {
@@ -17,10 +15,10 @@ public class LoadDocumentsWithCharset {
      * This example demonstrates how to specify charset.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String filePath = SampleFiles.SAMPLE_TXT_SHIFT_JS_ENCODED;
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setFileType(FileType.TXT);
@@ -33,6 +31,6 @@ public class LoadDocumentsWithCharset {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

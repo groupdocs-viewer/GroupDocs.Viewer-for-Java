@@ -14,14 +14,16 @@ public class SetLicenseFromStream {
      * This example demonstrates how to set license from stream.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         File licenseFile = new File(Utils.LICENSE_PATH);
 
         if (licenseFile.exists()) {
-            InputStream stream = new FileInputStream(Utils.LICENSE_PATH);
-            License license = new License();
-            license.setLicense(stream);
-            stream.close();
+            try (InputStream stream = new FileInputStream(Utils.LICENSE_PATH)) {
+                License license = new License();
+                license.setLicense(stream);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             System.out.print("License set successfully.");
         } else {

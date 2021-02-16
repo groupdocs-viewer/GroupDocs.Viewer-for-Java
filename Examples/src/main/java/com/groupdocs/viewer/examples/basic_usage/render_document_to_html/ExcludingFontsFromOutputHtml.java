@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class ExcludingFontsFromOutputHtml {
 
@@ -15,7 +14,7 @@ public class ExcludingFontsFromOutputHtml {
      * rendering into HTML.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("ExcludingFontsFromOutputHtml");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -27,6 +26,6 @@ public class ExcludingFontsFromOutputHtml {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

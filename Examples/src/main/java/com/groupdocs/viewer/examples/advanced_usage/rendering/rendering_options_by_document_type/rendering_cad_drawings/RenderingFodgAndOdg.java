@@ -7,17 +7,14 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
-
-import java.io.IOException;
 
 /**
  * This example demonstrates how to render FODG/ODG document into HTML, JPG, PNG, PDF.
  */
 public class RenderingFodgAndOdg {
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingFodgAndOdg");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "fodg_result.html");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODG)) {
@@ -27,7 +24,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "fodg_result.jpg");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.jpg");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODG)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -36,7 +33,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "fodg_result.png");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.png");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODG)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -45,7 +42,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "fodg_result.pdf");
+        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.pdf");
 
         try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODG)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

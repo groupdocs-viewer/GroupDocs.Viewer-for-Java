@@ -8,7 +8,6 @@ import com.groupdocs.viewer.options.Permissions;
 import com.groupdocs.viewer.options.Security;
 
 import java.io.File;
-import java.io.IOException;
 
 public class ProtectPdfDocument {
 
@@ -16,7 +15,7 @@ public class ProtectPdfDocument {
      * This example demonstrates how to protect output PDF document.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("ProtectPdfDocument");
         String filePath = new File(outputDirectory, "output.pdf").getPath();
 
@@ -32,6 +31,6 @@ public class ProtectPdfDocument {
             viewer.view(viewOptions);
         }
 
-        System.out.println(String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

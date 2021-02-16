@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.JpgViewOptions;
 
 import java.io.File;
-import java.io.IOException;
 
 public class AdjustImageSize {
 
@@ -15,7 +14,7 @@ public class AdjustImageSize {
      * images.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustImageSize");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.jpg").getPath();
 
@@ -28,6 +27,6 @@ public class AdjustImageSize {
         }
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

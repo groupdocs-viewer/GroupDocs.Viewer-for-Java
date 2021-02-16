@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.Rotation;
 
 import java.io.File;
-import java.io.IOException;
 
 public class RotatePages {
 
@@ -15,7 +14,7 @@ public class RotatePages {
      * This example demonstrates how to rotate first page on 90 degree clockwise.
      */
 
-    public static void run() throws IOException {
+    public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RotatePages");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
@@ -28,6 +27,6 @@ public class RotatePages {
         viewer.close();
 
         System.out.println(
-                String.format("\nSource document rendered successfully.\nCheck output in '%s'.", outputDirectory));
+                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }
