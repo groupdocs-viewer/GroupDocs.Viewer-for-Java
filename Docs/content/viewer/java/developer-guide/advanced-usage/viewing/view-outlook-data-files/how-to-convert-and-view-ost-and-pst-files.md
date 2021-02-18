@@ -44,6 +44,7 @@ To convert OST and PST files to JPG with [GroupDocs.Viewer for Java](https://pro
 ```
 
 The following screenshot shows the output JPG file opened in a Windows Photo Viewer application.
+
 ![](viewer/java/images/how-to-convert-and-view-ost-and-pst-files_2.png)
 
 ### Convert OST and PST to PNG

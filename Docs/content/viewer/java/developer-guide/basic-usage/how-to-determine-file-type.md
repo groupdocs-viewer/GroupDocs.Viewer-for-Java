@@ -46,6 +46,7 @@ As you can see from the output below the file type detected correctly.
 ```
 
 The media-type will be mapped to the file type as shown on the screenshot below.
+
 ![](viewer/java/images/how-to-determine-file-type_1.png)
 
 ### Determining file type form stream or bytes
@@ -59,6 +60,7 @@ try (InputStream stream = new FileInputStream("sample.docx")) {
 ```
 
 A similar output would be printed in case of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) detected the file type successfully.
+
 ![](viewer/java/images/how-to-determine-file-type_2.png)
 
 ## More resources

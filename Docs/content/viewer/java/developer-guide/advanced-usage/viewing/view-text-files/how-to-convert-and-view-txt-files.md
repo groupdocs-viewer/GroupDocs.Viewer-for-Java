@@ -57,6 +57,7 @@ To convert TXT files to JPG with [GroupDocs.Viewer for Java](https://products.g
 ```
 
 The following screenshot shows the output JPG file opened in a Windows Photo Viewer application.
+
 ![](viewer/java/images/how-to-convert-and-view-txt-files_2.png)
 
 ### Convert TXT to PNG
@@ -83,6 +84,7 @@ To convert TXT files to PDF with [GroupDocs.Viewer for Java](https://products.g
 ```
 
 The following screenshot shows the output PDF file opened in an Acrobat Reader.
+
 ![](viewer/java/images/how-to-convert-and-view-txt-files_4.png)
 
 ## More resources 
