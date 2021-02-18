@@ -25,12 +25,12 @@ In case you need to view a MPP file in a browser or in a standard image or PDF v
 To convert MPP files to HTML with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code:
 
 ```java
-    Viewer viewer = new Viewer("sample.mpp");
-    HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("output_{0}.html");
-    options.setRenderNotes(true);
-
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.mpp")) {
+        HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("output_{0}.html");
+        options.setRenderNotes(true);
+    
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output HTML with the tasks file opened in a browser.
@@ -48,12 +48,12 @@ The following screenshot shows the output HTML with the notes file opened in a b
 To convert MPP files to JPG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.mpp");
-    JpgViewOptions options = new JpgViewOptions("output.jpg");
-    options.setRenderNotes(true);
-
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.mpp")) {
+        JpgViewOptions options = new JpgViewOptions("output.jpg");
+        options.setRenderNotes(true);
+    
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output JPG file opened in a Windows Photo Viewer application.
@@ -71,12 +71,12 @@ The following screenshot shows the output JPEG with notes file opened in a Wind
 To convert MPP files to PNG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.mpp");
-    PngViewOptions options = new PngViewOptions("output_{0}.png");
-    options.setRenderNotes(true);
-
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.mpp")) {
+        PngViewOptions options = new PngViewOptions("output_{0}.png");
+        options.setRenderNotes(true);
+    
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output PNG file opened in a Windows Photo Viewer application.
@@ -94,11 +94,11 @@ The following screenshot shows the output PNG with notes file opened in a Windo
 To convert MPP files to PDF with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.mpp");
-    PdfViewOptions options = new PdfViewOptions("output.pdf");
-    options.setRenderNotes(true);
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.mpp")) {
+        PdfViewOptions options = new PdfViewOptions("output.pdf");
+        options.setRenderNotes(true);
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output PDF file opened in an Adobe Acrobat Reader.
@@ -115,7 +115,7 @@ The following screenshot shows the page of output PDF with notes file opened in
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

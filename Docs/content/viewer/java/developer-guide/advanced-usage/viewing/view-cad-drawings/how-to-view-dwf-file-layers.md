@@ -29,15 +29,15 @@ If you want to view only specific layers you can set [setLayers(...)](https://a
 Let's view only "Doors", "Stairs", "Walls" layers, to do that use following code, 
 
 ```java
-    Viewer viewer = new Viewer("sample.dwf");
-    PngViewOptions viewOptions = new PngViewOptions();
-
-    viewOptions.getCadOptions().getLayers().add(new Layer("Stairs"));
-    viewOptions.getCadOptions().getLayers().add(new Layer("Walls"));
-    viewOptions.getCadOptions().getLayers().add(new Layer("Doors"));
-
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.dwf")) {
+        PngViewOptions viewOptions = new PngViewOptions();
+    
+        viewOptions.getCadOptions().getLayers().add(new Layer("Stairs"));
+        viewOptions.getCadOptions().getLayers().add(new Layer("Walls"));
+        viewOptions.getCadOptions().getLayers().add(new Layer("Doors"));
+    
+        viewer.view(viewOptions);
+    }
 ```
 
 Now [GroupDocs.Viewer](https://products.groupdocs.com/viewer) will render only these layers:
@@ -48,7 +48,7 @@ Now [GroupDocs.Viewer](https://products.groupdocs.com/viewer) will render only 
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

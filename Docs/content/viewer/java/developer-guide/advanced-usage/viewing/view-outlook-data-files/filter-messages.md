@@ -20,19 +20,19 @@ hideChildren: False
 As an example, when setting [setTextFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setTextFilter(java.lang.String)) as `Microsoft` the API will render all messages that contain the text `Microsoft` in the message's subject or body. Whereas, setting [setAddressFilter(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/OutlookOptions#setAddressFilter(java.lang.String)) as `susan` will filter messages that contain `susan` as a part of the sender's or recipient's address. The following code samples show how to filter the messages.
 
 ```java
-    Viewer viewer = new Viewer("sample.ost");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-    viewOptions.getOutlookOptions().setTextFilter("Microsoft");
-    viewOptions.getOutlookOptions().setAddressFilter("susan");
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.ost")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+        viewOptions.getOutlookOptions().setTextFilter("Microsoft");
+        viewOptions.getOutlookOptions().setAddressFilter("susan");
+        viewer.view(viewOptions);
+    }
 ```
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

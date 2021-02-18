@@ -30,16 +30,16 @@ To view attachments just follow steps below:
 Following code snippet demonstrates on how to view attachments from MSG file.
 
 ```java
-    ByteArrayOutputStream attachmentStream = new ByteArrayOutputStream();
+    ByteArrayOutputStream attachmentStream = new ByteArrayOutputStream()
 
-    Viewer viewer = new Viewer("sample.msg");
-    viewer.saveAttachment("attachment-word.doc", attachmentStream);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.msg")) {
+        viewer.saveAttachment("attachment-word.doc", attachmentStream);
+    }
     
-    Viewer viewer = new Viewer(new ByteArrayInputStream(attachmentStream.toByteArray()));
-    HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources();
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer(new ByteArrayInputStream(attachmentStream.toByteArray()))) {
+        HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources();
+        viewer.view(options);
+    }
 ```
 
 {{< alert style="info" >}}NOTE: provided code example is actual for all document types that support attachments - Email documents, Outlook data files, Archives and PDF documents.{{< /alert >}}
@@ -51,7 +51,7 @@ To learn more about document viewing features, please refer to the [advanced us
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

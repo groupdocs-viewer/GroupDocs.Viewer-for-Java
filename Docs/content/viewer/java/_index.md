@@ -8,7 +8,9 @@ keywords:
 productName: GroupDocs.Viewer for Java
 hideChildren: True
 ---
-{{< alert style="info" >}}Welcome to the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java). It is a powerful document viewer component that allows you to display over 50 document formats in your Java applications. The viewer can both rasterize documents and convert them to SVG+HTML+CSS, delivering true-text high-fidelity rendering. The [GroupDocs.Viewer](https://products.groupdocs.com/viewer) allows getting representation in HTML or image format for whole document, page-by-page or custom range of pages.{{< /alert >}}
+{{< alert style="info" >}}![](viewer/java/images/home.png) **Welcome to the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java)**.
+[GroupDocs.Viewer](https://products.groupdocs.com/viewer) is a fast, powerful and high-quality [file and document viewer](https://en.wikipedia.org/wiki/File_viewer) API for Java (1.7+) which allows you to display over 140 file formats in your desktop, web or mobile applications. The API provides flexible and fully customizable rendering options with an ability to render documents into HTML5, Image, and PDFto satisfy any requirements for different use cases. Our document viewer API is simple, intuitive and complete.With only a few lines of code, you can render/display your documents without installing any additional software and at the same time configure rendering options to fulfill your needs
+{{< /alert >}}
 
 ## GroupDocs.Viewer for Java Resources
 

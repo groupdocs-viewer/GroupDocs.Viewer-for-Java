@@ -23,11 +23,10 @@ In case you need to view an IGS file in a browser or in a standard image or PDF 
 To convert IGS files to HTML with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code:
 
 ```java
-    Viewer viewer = new Viewer("sample.igs");
-
-    HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("output.html");
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.igs")) {
+        HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources("output.html");
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output HTML file opened in a browser.
@@ -39,11 +38,10 @@ The following screenshot shows the output HTML file opened in a browser.
 To convert IGS files to JPG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.igs");
-
-    JpgViewOptions options = new JpgViewOptions("output.jpg");
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.igs")) {
+        JpgViewOptions options = new JpgViewOptions("output.jpg");
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output JPG file opened in a Windows Photo Viewer application.
@@ -55,10 +53,10 @@ The following screenshot shows the output JPG file opened in a Windows Photo Vie
 To convert IGS files to PNG with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.igs");
-    PngViewOptions options = new PngViewOptions("output.png");
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.igs")) {
+        PngViewOptions options = new PngViewOptions("output.png");
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output PNG file opened in a Windows Photo Viewer application.
@@ -70,11 +68,11 @@ The following screenshot shows the output PNG file opened in a Windows Photo Vie
 To convert IGS files to PDF with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) use following code: 
 
 ```java
-    Viewer viewer = new Viewer("sample.igs");
-    PdfViewOptions options = new PdfViewOptions("output.pdf");
-
-    viewer.view(options);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.igs")) {
+        PdfViewOptions options = new PdfViewOptions("output.pdf");
+    
+        viewer.view(options);
+    }
 ```
 
 The following screenshot shows the output PDF file opened in an Acrobat Reader.
@@ -85,7 +83,7 @@ The following screenshot shows the output PDF file opened in an Acrobat Reader.
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

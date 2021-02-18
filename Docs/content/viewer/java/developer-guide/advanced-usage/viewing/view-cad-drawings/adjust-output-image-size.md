@@ -13,12 +13,11 @@ hideChildren: False
 When CAD drawings are rendered, the size of the render result is adjusted by API automatically, the biggest side (width or height depending on which one is bigger) is set 2000 px, another side is set value based on width-to-length ratio. You may adjust the size of resulting document by setting [CadOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/CadOptions) as show in example.
 
 ```java
-     Viewer viewer = new Viewer("sample.dwg");
- 
-     HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-     viewOptions.setCadOptions(CadOptions.forRenderingByScaleFactor(0.3f));
-     viewer.view(viewOptions);
-     viewer.close();
+     try (Viewer viewer = new Viewer("sample.dwg")) {
+         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+         viewOptions.setCadOptions(CadOptions.forRenderingByScaleFactor(0.3f));
+         viewer.view(viewOptions);
+     }
 ```
 
 When rendering CAD drawings [GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides following options:
@@ -31,7 +30,7 @@ When rendering CAD drawings [GroupDocs.Viewer](https://products.groupdocs.com/vi
 
 ## How sizing works for Sheets and Layouts
 
-DWF drawing format consists of sheets, that may have different sizes, DWG and DXF drawing formats consists of the Model and Layouts. Refer to [Adjust output image size]({{< ref "render-all-layouts.md" >}}) article that describes layouts rendering. Sizing rules described above, work for the drawings that consist of a one sheet or rendered without layouts and provide only one page as an output. In this section we will review how sizing works when the output consist of several pages. Later in this article, for convenience, we will refer to Model and layouts as sheets.
+DWF drawing format consists of sheets, that may have different sizes, DWG and DXF drawing formats consists of the Model and Layouts. Refer to [Adjust output image size]({{< ref "viewer/java/developer-guide/advanced-usage/viewing/view-cad-drawings/how-to-get-cad-layers-and-layouts.md" >}}) article that describes layouts rendering. Sizing rules described above, work for the drawings that consist of a one sheet or rendered without layouts and provide only one page as an output. In this section we will review how sizing works when the output consist of several pages. Later in this article, for convenience, we will refer to Model and layouts as sheets.
 
 By default, when we render DWF format with several sheets, or DWG and DXF formats with layouts,  each sheet is rendered into separate page, that has it's own size.
 
@@ -45,7 +44,7 @@ When the `ScaleFactor` option is set, it will be used to form resulting page 
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

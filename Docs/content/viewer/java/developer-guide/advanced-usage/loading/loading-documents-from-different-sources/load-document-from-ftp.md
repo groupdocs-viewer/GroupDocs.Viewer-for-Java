@@ -12,11 +12,10 @@ Following example demonstrates how to render a document from FTP.
 
 ```java
     public void loadDocumentFromFtp() {
-        Viewer viewer = new Viewer(getFileFromFtp("sample.docx"));
-
-        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-        viewer.view(viewOptions);
-        viewer.close();
+        try (Viewer viewer = new Viewer(getFileFromFtp("sample.docx"))) {
+            HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+            viewer.view(viewOptions);
+        }
     }
 
     private InputStream getFileFromFtp(String filePath) {
@@ -41,7 +40,7 @@ Following example demonstrates how to render a document from FTP.
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

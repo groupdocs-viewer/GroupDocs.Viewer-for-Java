@@ -23,6 +23,7 @@ Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/view
 | [.PPTX](https://wiki.fileformat.com/presentation/pptx/) | [Microsoft PowerPoint Presentation](https://wiki.fileformat.com/presentation/pptx/) | Yes |
 | [.PPT](https://wiki.fileformat.com/presentation/ppt/) | [Microsoft PowerPoint 97-2003 Presentation](https://wiki.fileformat.com/presentation/ppt/) | Yes |
 | [.ODP](https://wiki.fileformat.com/presentation/odp) | [OpenDocument Presentation](https://wiki.fileformat.com/presentation/odp) | Yes |
+| .FODP | Flat OpenDocument Presentation | Yes |
 | [.OTP](https://wiki.fileformat.com/presentation/otp) | [OpenDocument Presentation Template](https://wiki.fileformat.com/presentation/otp) | Yes |
 | [.POTM](https://wiki.fileformat.com/presentation/potm) | [Microsoft PowerPoint Macro-Enabled Template](https://wiki.fileformat.com/presentation/potm) | Yes |
 | [.POTX](https://wiki.fileformat.com/presentation/potx) | [Microsoft PowerPoint Template](https://wiki.fileformat.com/presentation/potx) | Yes |

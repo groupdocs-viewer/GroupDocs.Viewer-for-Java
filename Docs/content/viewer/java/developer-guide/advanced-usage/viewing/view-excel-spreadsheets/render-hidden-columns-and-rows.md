@@ -21,19 +21,19 @@ Sometimes Excel document may contain hidden columns and rows (as shown in the im
 [GroupDocs.Viewer](https://products.groupdocs.com/viewer) provides [setRenderHiddenRows(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions#setRenderHiddenRows(boolean)) and [setRenderHiddenColumns(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions#setRenderHiddenColumns(boolean)) options in [SpreadsheetOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions) class which enables rendering hidden rows and columns as shown in the following code samples. 
 
 ```java
-    Viewer viewer = new Viewer("sample.xlsx");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-    viewOptions.getSpreadsheetOptions().setRenderHiddenColumns(true);
-    viewOptions.getSpreadsheetOptions().setRenderHiddenRows(true);
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.xlsx")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+        viewOptions.getSpreadsheetOptions().setRenderHiddenColumns(true);
+        viewOptions.getSpreadsheetOptions().setRenderHiddenRows(true);
+        viewer.view(viewOptions);
+    }
 ```
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

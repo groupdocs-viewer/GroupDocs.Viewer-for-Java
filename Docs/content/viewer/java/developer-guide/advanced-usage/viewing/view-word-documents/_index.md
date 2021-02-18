@@ -31,6 +31,7 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.RTF](https://wiki.fileformat.com/word-processing/rtf) | [Rich Text Document](https://wiki.fileformat.com/word-processing/rtf) | Yes |
 | [.TXT](https://wiki.fileformat.com/word-processing/txt) | [Plain Text Document](https://wiki.fileformat.com/word-processing/txt) | Yes |
 | .VCF | Electronic Business Card (vCard) | Yes |
+| .VCARD | Electronic Business Card (vCard) | Yes |
 
 *Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 

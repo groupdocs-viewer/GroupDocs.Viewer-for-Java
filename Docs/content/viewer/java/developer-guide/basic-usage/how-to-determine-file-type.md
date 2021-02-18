@@ -45,11 +45,27 @@ As you can see from the output below the file type detected correctly.
     [INFO] ------------------------------------------------------------------------
 ```
 
+The media-type will be mapped to the file type as shown on the screenshot below.
+![](viewer/java/images/how-to-determine-file-type_1.png)
+
+### Determining file type form stream or bytes
+When you don't know the name of a file or media-type you can try determining file type by passing stream to [fromStream(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#fromStream(java.io.InputStream)) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType). GroupDocs.Viewer will try reading the file signature and map it to the file type.
+```java
+try (InputStream stream = new FileInputStream("sample.docx")) {
+    FileType fileType = FileType.fromStream(stream);
+
+    System.out.println("\nFile type: " + fileType);
+}
+```
+
+A similar output would be printed in case of [GroupDocs.Viewer](https://products.groupdocs.com/viewer) detected the file type successfully.
+![](viewer/java/images/how-to-determine-file-type_2.png)
+
 ## More resources
 ### GitHub Examples 
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

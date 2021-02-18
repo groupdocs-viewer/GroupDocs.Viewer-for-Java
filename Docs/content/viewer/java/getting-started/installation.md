@@ -33,7 +33,7 @@ Then define [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/ja
     <dependency>
         <groupId>com.groupdocs</groupId>
         <artifactId>groupdocs-viewer</artifactId>
-        <version>20.7</version> 
+        <version>21.2</version> 
     </dependency>
 </dependencies>
 ```

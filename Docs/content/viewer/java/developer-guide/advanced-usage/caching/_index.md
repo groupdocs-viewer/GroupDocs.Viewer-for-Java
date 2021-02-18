@@ -26,20 +26,20 @@ Here is a code that demonstrates how to enable caching for [GroupDocs.Viewer fo
     FileCache cache = new FileCache(cachePath);
     ViewerSettings settings = new ViewerSettings(cache);
     
-    Viewer viewer = new Viewer("C:\\sample.docx", settings);
-    
-    HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
-    
-    long stopWatch = System.currentTimeMillis();
-    viewer.view(options);
-    stopWatch = System.currentTimeMillis() - stopWatch;
-    System.out.println("Time taken on first call to View method " + stopWatch + " (ms).");
-    
-    stopWatch = System.currentTimeMillis();
-    viewer.view(options);
-    stopWatch = System.currentTimeMillis() - stopWatch;
-    System.out.println("Time taken on second call to View method " + stopWatch + " (ms).");
-    viewer.close();
+    try (Viewer viewer = new Viewer("C:\\sample.docx", settings)) {
+        
+        HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
+        
+        long stopWatch = System.currentTimeMillis();
+        viewer.view(options);
+        stopWatch = System.currentTimeMillis() - stopWatch;
+        System.out.println("Time taken on first call to View method " + stopWatch + " (ms).");
+        
+        stopWatch = System.currentTimeMillis();
+        viewer.view(options);
+        stopWatch = System.currentTimeMillis() - stopWatch;
+        System.out.println("Time taken on second call to View method " + stopWatch + " (ms).");
+    }
 ```
 
 {{< alert style="info" >}}[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also provides an ability to customize caching behavior. To learn more about caching customization please refer to [Caching guide]({{< ref "viewer/java/developer-guide/advanced-usage/caching/how-to-use-custom-cache-implementation.md" >}}).{{< /alert >}}
@@ -48,7 +48,7 @@ Here is a code that demonstrates how to enable caching for [GroupDocs.Viewer fo
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

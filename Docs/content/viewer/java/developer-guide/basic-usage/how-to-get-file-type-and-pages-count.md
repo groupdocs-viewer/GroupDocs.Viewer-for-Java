@@ -23,24 +23,25 @@ For the following document types [GroupDocs.Viewer](https://products.groupdocs.c
 ## Get file type and pages count from file 
 
 ```java
-    Viewer viewer = new Viewer("sample.pdf");
-    ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
-    ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
-
-    System.out.println("Document type is: " + viewInfo.getFileType());
-    System.out.println("Pages count: " + viewInfo.getPages().size());
+    try (Viewer viewer = new Viewer("sample.pdf")) {
+        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
+        ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
+    
+        System.out.println("Document type is: " + viewInfo.getFileType());
+        System.out.println("Pages count: " + viewInfo.getPages().size());
+    }
 ```
 
 ## Get file type and pages count from stream
 
 ```java
-    Viewer viewer = new Viewer(new FileInputStream("sample.pdf"));
-
-    ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
-    ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
-
-    System.out.println("Document type is: " + viewInfo.getFileType());
-    System.out.println("Pages count: " + viewInfo.getPages().size());
+    try (Viewer viewer = new Viewer(new FileInputStream("sample.pdf"))) {
+        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
+        ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
+    
+        System.out.println("Document type is: " + viewInfo.getFileType());
+        System.out.println("Pages count: " + viewInfo.getPages().size());
+    }
 ```
 
 ## More resources
@@ -50,7 +51,7 @@ To learn more about document viewing features, please refer to the [advanced us
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

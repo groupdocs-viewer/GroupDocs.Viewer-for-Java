@@ -28,44 +28,44 @@ You can add as many tiles as you need.
 The following code sample demonstrates how to render DWG drawing into an image by dividing into four equal parts.
 
 ```java
-    Viewer viewer = new Viewer("sample.dwg");
-    ViewInfoOptions viewInfoOptions = ViewInfoOptions.forPngView(false);
-    ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
-
-    // Get width and height
-    int width = viewInfo.getPages().get(0).getWidth();
-    int height = viewInfo.getPages().get(0).getHeight();
-
-    // Set tile width and height as a half of image total width
-    int tileWidth = width / 2;
-    int tileHeight = height / 2;
-    int pointX = 0;
-    int pointY = 0;
-
-    //Create image options and add four tiles, one for each quarter
-    PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
-    Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-    viewOptions.getCadOptions().getTiles().add(tile);
-    pointX += tileWidth;
-    tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-    viewOptions.getCadOptions().getTiles().add(tile);
-    pointX = 0;
-    pointY += tileHeight;
-    tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-    viewOptions.getCadOptions().getTiles().add(tile);
-    pointX += tileWidth;
-    tile = new Tile(pointX, pointY, tileWidth, tileHeight);
-    viewOptions.getCadOptions().getTiles().add(tile);
-
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.dwg")) {
+        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forPngView(false);
+        ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
+    
+        // Get width and height
+        int width = viewInfo.getPages().get(0).getWidth();
+        int height = viewInfo.getPages().get(0).getHeight();
+    
+        // Set tile width and height as a half of image total width
+        int tileWidth = width / 2;
+        int tileHeight = height / 2;
+        int pointX = 0;
+        int pointY = 0;
+    
+        //Create image options and add four tiles, one for each quarter
+        PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
+        Tile tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+        viewOptions.getCadOptions().getTiles().add(tile);
+        pointX += tileWidth;
+        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+        viewOptions.getCadOptions().getTiles().add(tile);
+        pointX = 0;
+        pointY += tileHeight;
+        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+        viewOptions.getCadOptions().getTiles().add(tile);
+        pointX += tileWidth;
+        tile = new Tile(pointX, pointY, tileWidth, tileHeight);
+        viewOptions.getCadOptions().getTiles().add(tile);
+    
+        viewer.view(viewOptions);
+    }
 ```
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

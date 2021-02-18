@@ -23,10 +23,10 @@ Here are the steps for rendering into image with [GroupDocs.Viewer](https://prod
 This example shows how to render each document page into PNG image.
 
 ```java
-    Viewer viewer = new Viewer("sample.docx");
-    PngViewOptions viewOptions = new PngViewOptions();
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.docx")) {
+        PngViewOptions viewOptions = new PngViewOptions();
+        viewer.view(viewOptions);
+    }
 ```
 
 ## Document Viewer - Image Viewer (JPG)
@@ -34,10 +34,10 @@ This example shows how to render each document page into PNG image.
 This example shows how to render each document page into JPG image.
 
 ```java
-    Viewer viewer = new Viewer("sample.docx");
-    JpgViewOptions viewOptions= new JpgViewOptions();                  
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.docx")) {
+        JpgViewOptions viewOptions= new JpgViewOptions();                  
+        viewer.view(viewOptions);
+    }
 ```
 
 {{< alert style="info" >}}[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also provides an ability to customize rendering to image by setting additional options. To learn more about caching customization please refer to the following guides: [Image Viewer - Add text overlay over images]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-add-text-overlay-over-images.md" >}}), [Image Viewer - Adjust image size]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-adjust-image-size.md" >}}), [Image Viewer - Adjust quality for JPG]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-adjust-quality-for-jpg.md" >}}) and [Image Viewer - Get text coordinates]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-image-viewer/image-viewer-get-text-coordinates.md" >}}){{< /alert >}}
@@ -49,7 +49,7 @@ To learn more about document viewing features, please refer to the [advanced us
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
