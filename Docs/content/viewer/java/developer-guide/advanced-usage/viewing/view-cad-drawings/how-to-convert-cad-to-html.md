@@ -25,11 +25,11 @@ There are two ways: HTML with external resources and HTML with embedded resourc
 To render to HTML with external resources use following code:
 
 ```java
-    Viewer viewer = new Viewer("document.dwg");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forExternalResources("page_{0}.html", "page_{0}/resource_{1}", "page_{0}/resources");
+    try (Viewer viewer = new Viewer("document.dwg")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forExternalResources("page_{0}.html", "page_{0}/resource_{1}", "page_{0}/resources");
 
-    viewer.view(viewOptions);
-    viewer.close();
+        viewer.view(viewOptions);
+    }
 ```
 
 Result:
@@ -43,11 +43,11 @@ Output SVG and HTML styles are located in the separate resources folder.
 To render to HTML with embedded resources use following code:
 
 ```java
-    Viewer viewer = new Viewer("document.dwg");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
+    try (Viewer viewer = new Viewer("document.dwg")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("page_{0}.html");
 
-    viewer.view(viewOptions);
-    viewer.close();
+        viewer.view(viewOptions);
+    }
 ```
 
 Result:
@@ -60,7 +60,7 @@ HTML content, SVG and HTML styles are located in one HTML file.
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

@@ -25,6 +25,11 @@ The following CAD formats are supported by the [GroupDocs.Viewer for Java](https
 | [.DXF](https://wiki.fileformat.com/cad/dxf) | [AutoCAD Drawing Interchange](https://wiki.fileformat.com/cad/dxf) | Yes |   |
 | [.IFC](https://wiki.fileformat.com/cad/ifc) | [Industry Foundation Classes](https://wiki.fileformat.com/cad/ifc) | Yes |   |
 | [.STL](https://wiki.fileformat.com/cad/stl) | [Stereo Lithography](https://wiki.fileformat.com/cad/stl) | Yes |   |
+| [.PLT](https://wiki.fileformat.com/cad/plt) | [AutoCAD Plotter Document](https://wiki.fileformat.com/cad/plt) | Yes |   |
+| .OBJ | Wavefront 3D Object File | Yes |   |
+| .CF2 | Common File Format File | Yes |   |
+| .IGS | Initial Graphics Exchange Specification (IGES) File | Yes |   |
+| .HPG | HPGL Plot File | Yes |   |
 
 *Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 

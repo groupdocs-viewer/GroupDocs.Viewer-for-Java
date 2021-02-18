@@ -29,10 +29,12 @@ Auto Detection means that [GroupDocs.Viewer for Java](https://products.groupdocs
 | [.TSV](https://wiki.fileformat.com/spreadsheet/tsv) | [Tab Separated Values File](https://wiki.fileformat.com/spreadsheet/tsv) | Yes |
 | [.XLSB](https://wiki.fileformat.com/spreadsheet/xlsb) | [Microsoft Excel Binary Worksheet](https://wiki.fileformat.com/spreadsheet/xlsb) | Yes |
 | [.XLSM](https://wiki.fileformat.com/spreadsheet/xlsm) | [Microsoft Excel Macro-Enabled Worksheet](https://wiki.fileformat.com/spreadsheet/xlsm) | Yes |
+| [.XLT](https://wiki.fileformat.com/spreadsheet/xlt) | [Microsoft Excel Template](https://wiki.fileformat.com/spreadsheet/xlt) | Yes |
 | [.XLTX](https://wiki.fileformat.com/spreadsheet/xltx) | [Excel Open XML Spreadsheet Template](https://wiki.fileformat.com/spreadsheet/xltx) | Yes |
 | [.XLTM](https://wiki.fileformat.com/spreadsheet/xltm) | [Microsoft Excel Macro-Enabled Template](https://wiki.fileformat.com/spreadsheet/xltm) | Yes |
 | .XLAM | Excel Open XML Macro-Enabled Add-In | Yes |
 | .SXC | StarOffice Calc Spreadsheet | Yes |
+| [.NUMBERS](https://wiki.fileformat.com/spreadsheet/numbers) | [Apple numbers](https://wiki.fileformat.com/spreadsheet/numbers) | Yes |
 
 *Note:* _to get actual information about supported formats it is recommended to call [getSupportedFileTypes()](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType#getSupportedFileTypes()) method of [FileType](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/FileType) class_
 

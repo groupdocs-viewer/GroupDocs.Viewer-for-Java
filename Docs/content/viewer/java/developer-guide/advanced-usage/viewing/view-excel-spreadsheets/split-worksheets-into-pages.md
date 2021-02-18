@@ -4,31 +4,63 @@ url: viewer/java/split-worksheets-into-pages
 title: Split worksheets into pages
 weight: 8
 description: "This article explains how to split worksheets into pages when viewing Spreadsheets with GroupDocs.Viewer within your Java applications."
-keywords: 
+keywords: excel, worksheet, partial, rendering
 productName: GroupDocs.Viewer for Java
 hideChildren: False
 ---
-There might be the case when you do not want to render the whole Spreadsheet on a single page and limit the number of rows that would be rendered on each output page. In this situation, the [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) allows you to specify the number of rows in an Spreadsheet to be rendered on each page.
 
-The following steps are required for partial rendering of large Excel sheets.
+In case you want to achieve better experience in viewing large Excel worksheets you can split worksheets into pages instead of rendering the whole worksheet. There are two options here that are shown in the image below.
 
-*   Instantiate the [HtmlViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/HtmlViewOptions), [JpgViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/JpgViewOptions), [PngViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PngViewOptions) or [PdfViewOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/PdfViewOptions) object
-*   Instantiate [SpreadsheetOptions](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions) object by calling [forSplitSheetIntoPages(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.options/SpreadsheetOptions#forSplitSheetIntoPages(int)) method and specifying desired `countRowsPerPage` parameter.
-*   Call [view(...)](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer/Viewer#view(com.groupdocs.viewer.options.ViewOptions)) method.
+![Split worksheets into pages](viewer/java/images/split-worksheets-into-pages/split-by-rows-and-split-by-rows-and-columns.png)
+
+Each option may be a better choice depending on how many rows and columns your spreadsheets have. When a spreadsheet has a lot of columns it is preferable to split worksheet by rows and columns.
+
+## How to split worksheet by rows only
+
+By default, we're splitting worksheets by rows only. The default "rows per page" value is 40. So, when you have a workbook with a single worksheet with 100 rows you'll get three pages where the first page will contain the first 40 rows, the second page next 40 rows, and the third page the last 20 rows.
+
+In the next example, we'll split the worksheet into two pages. We'll be using [this sample file](viewer/java/sample-files/split-worksheets-into-pages/two-pages.xlsx) and the following code:
 
 ```java
-    Viewer viewer = new Viewer("sample.xlsx");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
-    viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forSplitSheetIntoPages(45));
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("two-pages.xlsx")) {
+        int countRowsPerPage = 15;
+    
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+        viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forSplitSheetIntoPages(countRowsPerPage));
+    
+        viewer.view(viewOptions);
+    }
 ```
+
+The following screenshot shows two output pages.
+
+![Output HTML two pages](viewer/java/images/split-worksheets-into-pages/output-html-two-pages.png)
+
+## How to split worksheet by rows and columns
+
+Now, let's use [this sample file](viewer/java/sample-files/split-worksheets-into-pages/four-pages.xlsx) and split worksheet by rows and columns.
+
+```java
+    try (Viewer viewer = new Viewer("four-pages.xlsx")) {
+        int countRowsPerPage = 15;
+        int countColumnsPerPage = 7;
+    
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources();
+        viewOptions.setSpreadsheetOptions(SpreadsheetOptions.forSplitSheetIntoPages(countRowsPerPage, countColumnsPerPage));
+    
+        viewer.view(viewOptions);
+    }
+```
+
+After executing the code above we'll get four pages on the output.
+
+![Output HTML four pages](viewer/java/images/split-worksheets-into-pages/output-html-four-pages.png)
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

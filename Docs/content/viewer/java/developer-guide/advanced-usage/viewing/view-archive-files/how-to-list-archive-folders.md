@@ -16,18 +16,18 @@ Following example demonstrates how to print out archive contents.
 
 ```java
     public void printViewInfo() {
-        Viewer viewer = new Viewer("sample.zip");
-
-        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
-        ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
-
-        System.out.println("File type: " + viewInfo.getFileType());
-        System.out.println("Pages count: " + viewInfo.getPages().size());
-        System.out.println("Folders: ");
-        System.out.println(" - /");
-
-        String rootFolder = StringExtensions.Empty;
-        printFolders(viewer, rootFolder);
+        try (Viewer viewer = new Viewer("sample.zip")) {
+            ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
+            ViewInfo viewInfo = viewer.getViewInfo(viewInfoOptions);
+    
+            System.out.println("File type: " + viewInfo.getFileType());
+            System.out.println("Pages count: " + viewInfo.getPages().size());
+            System.out.println("Folders: ");
+            System.out.println(" - /");
+    
+            String rootFolder = StringExtensions.Empty;
+            printFolders(viewer, rootFolder);
+        }
     }
 
 
@@ -48,7 +48,7 @@ Following example demonstrates how to print out archive contents.
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

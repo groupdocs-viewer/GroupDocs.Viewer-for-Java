@@ -19,19 +19,19 @@ The [GroupDocs.Viewer](https://products.groupdocs.com/viewer) enables you to rot
 The following code snippet shows how to rotate output pages when viewing a document as PDF ([this example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/blob/master/Examples/src/main/java/com/groupdocs/viewer/examples/advanced_usage/rendering/common_rendering_options/RotatePages.java) can be also found in our public [GitHub repository](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java).)
 
 ```java
-    Viewer viewer = new Viewer("sample.docx");
-    PdfViewOptions viewOptions = new PdfViewOptions();
-    viewOptions.rotatePage(1, Rotation.ON_90_DEGREE);
-
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("sample.docx")) {
+        PdfViewOptions viewOptions = new PdfViewOptions();
+        viewOptions.rotatePage(1, Rotation.ON_90_DEGREE);
+    
+        viewer.view(viewOptions);
+    }
 ```
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

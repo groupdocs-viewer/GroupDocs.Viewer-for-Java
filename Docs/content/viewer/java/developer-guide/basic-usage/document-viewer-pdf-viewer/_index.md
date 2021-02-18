@@ -19,9 +19,10 @@ Here are the steps for rendering to PDF with [GroupDocs.Viewer for Java](https:/
 The following code sample shows how to get **PDF** representation of the document.
 
 ```java
-    Viewer viewer = new Viewer("sample.docx");
-    PdfViewOptions viewOptions = new PdfViewOptions();
-    viewer.view(viewOptions);
+    try (Viewer viewer = new Viewer("sample.docx")) {
+        PdfViewOptions viewOptions = new PdfViewOptions();
+        viewer.view(viewOptions);
+    }
 ```
 
 {{< alert style="info" >}}[GroupDocs.Viewer](https://products.groupdocs.com/viewer) also provides an ability to customize rendering to PDF by setting additional options. To learn more about caching customization please refer to the following guides: [PDF Viewer - Adjust quality for JPG images]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-pdf-viewer/pdf-viewer-adjust-quality-for-jpg-images.md" >}}) and [PDF Viewer - Protect PDF document]({{< ref "viewer/java/developer-guide/basic-usage/document-viewer-pdf-viewer/pdf-viewer-protect-pdf-document.md" >}}){{< /alert >}}
@@ -33,7 +34,7 @@ To learn more about document viewing features, please refer to the [advanced us
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

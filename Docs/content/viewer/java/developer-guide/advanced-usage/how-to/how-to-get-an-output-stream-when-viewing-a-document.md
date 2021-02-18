@@ -27,15 +27,16 @@ What we need to do is to implement one or two of the interfaces listed above. 
 In this example, we'll render into HTML with embedded resources so we need to implement only [PageStreamFactory](https://apireference.groupdocs.com/viewer/java/com.groupdocs.viewer.interfaces/PageStreamFactory) interface.
 
 ```java
-        List<ByteArrayOutputStream> pages = new ArrayList<>();
+    List<ByteArrayOutputStream> pages = new ArrayList<>();
 
-        Viewer viewer = new Viewer("sample.docx");
+    try (Viewer viewer = new Viewer("sample.docx")){
 
         MemoryPageStreamFactory pageStreamFactory = new MemoryPageStreamFactory(pages);
 
         ViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageStreamFactory);
 
         viewer.view(viewOptions);
+    }
 ```
 
 ```java
@@ -64,7 +65,7 @@ In this example, we'll render into HTML with embedded resources so we need to im
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

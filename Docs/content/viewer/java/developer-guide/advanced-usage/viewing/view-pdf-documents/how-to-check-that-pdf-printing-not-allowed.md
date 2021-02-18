@@ -15,20 +15,21 @@ hideChildren: False
 Following example demonstrates how to retrieve view information for PDF document.
 
 ```java
-    Viewer viewer = new Viewer("sample.pdf");
-    ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
-    PdfViewInfo viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
-
-    System.out.println("Document type is: " + viewInfo.getFileType());
-    System.out.println("Pages count: " + viewInfo.getPages().size());
-    System.out.println("Printing allowed: " + viewInfo.isPrintingAllowed());
+    try (Viewer viewer = new Viewer("sample.pdf")) {
+        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
+        PdfViewInfo viewInfo = (PdfViewInfo) viewer.getViewInfo(viewInfoOptions);
+    
+        System.out.println("Document type is: " + viewInfo.getFileType());
+        System.out.println("Pages count: " + viewInfo.getPages().size());
+        System.out.println("Printing allowed: " + viewInfo.isPrintingAllowed());
+    }
 ```
 
 ## More resources
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

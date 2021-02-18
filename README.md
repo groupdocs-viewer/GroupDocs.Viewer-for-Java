@@ -61,4 +61,12 @@ viewer.view(viewOptions);
 viewer.close();
 ```
 
+## How to run documentation
+
+1. Download and install [hugo_extended](https://github.com/gohugoio/hugo)
+2. Open condole and run
+    ```bash
+    call build_docs.cmd
+    ```
+
 [Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/java) | [Documentation](https://docs.groupdocs.com/viewer/java/) | [Demo](https://products.groupdocs.app/viewer/family) | [API Reference](https://apireference.groupdocs.com/java/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)

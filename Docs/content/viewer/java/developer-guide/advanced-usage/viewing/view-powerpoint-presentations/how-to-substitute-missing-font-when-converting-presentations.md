@@ -19,21 +19,21 @@ To set font substitution for missing fonts please use the following code:
 When converting to HTML with embedded resources:
 
 ```java
-    Viewer viewer = new Viewer("input.pptx");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("output/html_embedded/p_{0}.html");
-    viewOptions.setDefaultFontName("Times New Roman");
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("input.pptx")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources("output/html_embedded/p_{0}.html");
+        viewOptions.setDefaultFontName("Times New Roman");
+        viewer.view(viewOptions);
+    }
 ```
 
 When converting to HTML with external resources:
 
 ```java
-    Viewer viewer = new Viewer("input.pptx");
-    HtmlViewOptions viewOptions = HtmlViewOptions.forExternalResources();
-    viewOptions.setDefaultFontName("Times New Roman");
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("input.pptx")) {
+        HtmlViewOptions viewOptions = HtmlViewOptions.forExternalResources();
+        viewOptions.setDefaultFontName("Times New Roman");
+        viewer.view(viewOptions);
+    }
 ```
 
 Output HTML with default font:
@@ -47,11 +47,11 @@ Output HTML with "Times New Roman" font:
 When converting to PDF:
 
 ```java
-    Viewer viewer = new Viewer("input.pptx");
-    PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
-    viewOptions.setDefaultFontName("Times New Roman");
-    viewer.view(viewOptions);
-    viewer.close();
+    try (Viewer viewer = new Viewer("input.pptx")) {
+        PdfViewOptions viewOptions = new PdfViewOptions("output.pdf");
+        viewOptions.setDefaultFontName("Times New Roman");
+        viewer.view(viewOptions);
+    }
 ```
 
 Output PDF with default font:
@@ -66,7 +66,7 @@ Output PDF with "Times New Roman" font:
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)

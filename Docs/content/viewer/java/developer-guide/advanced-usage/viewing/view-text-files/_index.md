@@ -48,6 +48,7 @@ Auto Detection means that [GroupDocs.Viewer](https://products.groupdocs.com/view
 | .LOG | Log File |   |
 | .M | Objective-C Implementation File |   |
 | .MAKE | Xcode Makefile Script |   |
+| .MD | Markdown Documentation File |   |
 | .ML | ML Source Code File |   |
 | .MM | Objective-C++ Source File |   |
 | .PHP | PHP Source Code File |   |

@@ -15,19 +15,20 @@ hideChildren: False
 Following example demonstrates how to retrieve view information for CAD drawing.
 
 ```java
-    Viewer viewer = new Viewer("sample.dwg");
-    ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
-    CadViewInfo viewInfo = (CadViewInfo) viewer.getViewInfo(viewInfoOptions);
-
-    System.out.println("File type: " + viewInfo.getFileType());
-    System.out.println("Pages count: " + viewInfo.getPages().size());
-
-    for (Layout layout : viewInfo.getLayouts()) {
-        System.out.println(layout);
-    }
-
-    for (Layer layer : viewInfo.getLayers()) {
-        System.out.println(layer);
+    try (Viewer viewer = new Viewer("sample.dwg")) {
+        ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
+        CadViewInfo viewInfo = (CadViewInfo) viewer.getViewInfo(viewInfoOptions);
+    
+        System.out.println("File type: " + viewInfo.getFileType());
+        System.out.println("Pages count: " + viewInfo.getPages().size());
+    
+        for (Layout layout : viewInfo.getLayouts()) {
+            System.out.println(layout);
+        }
+    
+        for (Layer layer : viewInfo.getLayers()) {
+            System.out.println(layer);
+        }
     }
 ```
 
@@ -35,7 +36,7 @@ Following example demonstrates how to retrieve view information for CAD drawing.
 ### GitHub Examples
 You may easily run the code above and see the feature in action in our GitHub examples:
 *   [GroupDocs.Viewer for Java examples, plugins, and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java)
-*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-WebForms)    
+*   [Document Viewer for .NET App WebForms UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)    
 *   [Document Viewer for Java App Dropwizard UI Modern Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard)    
 *   [Document Viewer for Java Spring UI Example](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring)
 *   [GroupDocs.Viewer for .NET samples, plugins and showcase](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET)
