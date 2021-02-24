@@ -2,8 +2,11 @@ package com.groupdocs.viewer.examples.advanced_usage.caching.jackson;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.groupdocs.viewer.caching.Cache;
+import com.groupdocs.viewer.examples.advanced_usage.caching.jackson.model.*;
 import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
@@ -17,6 +20,23 @@ import java.util.Map;
 public class JacksonCache implements Cache {
     private final ObjectMapper mObjectMapper;
     private final Map<String, byte[]> mData = new HashMap<>();
+    private static final Class<?>[] SERIALIZATION_MODELS = new Class[]{
+            ArchiveViewInfoModel.class,
+            AttachmentModel.class,
+            CadViewInfoModel.class,
+            CharacterModel.class,
+            FileInfoModel.class,
+            LayerModel.class,
+            LayoutModel.class,
+            LineModel.class,
+            LotusNotesViewInfoModel.class,
+            OutlookViewInfoModel.class,
+            PageModel.class,
+            PdfViewInfoModel.class,
+            ProjectManagementViewInfoModel.class,
+            ViewInfoModel.class,
+            WordModel.class
+    };
 
     public JacksonCache() {
         mObjectMapper = new ObjectMapper();
@@ -43,18 +63,21 @@ public class JacksonCache implements Cache {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T get(String key, Class<T> clazz) {
+    public <T> T get(String key) {
         final byte[] bytes = mData.get(key);
         if (bytes == null) {
             return null;
         }
 
         try {
-            if (InputStream.class.equals(clazz)) {
-                return (T) new ByteArrayInputStream(bytes);
-            } else {
-                return mObjectMapper.readValue(bytes, clazz);
+            for (Class<?> clazz : SERIALIZATION_MODELS) {
+                try {
+                    return (T) mObjectMapper.readValue(bytes, clazz);
+                } catch (JsonParseException | JsonMappingException e) {
+                    // continue, is not this type or is stream
+                }
             }
+            return (T) new ByteArrayInputStream(bytes);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
