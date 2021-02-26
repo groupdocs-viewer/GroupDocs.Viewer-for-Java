@@ -35,9 +35,4 @@ public class LayoutModel implements Layout {
     public double getHeight() {
         return mHeight;
     }
-
-    @Override
-    public boolean equals(Layout layout) {
-        return layout.getHeight() == mHeight && layout.getWidth() == mWidth && Objects.equals(layout.getName(), mName);
-    }
 }
