@@ -12,7 +12,7 @@ hideChildren: False
 
 ## Major Features
 
-There are some features, improvements, and bug-fixes in this release, most notable are:
+There are features, improvements, and bug-fixes in this release, most notable are:
 
 *   Added support of retrieving an attachment file type
 *   Display folder name in the header when viewing archives
@@ -149,7 +149,7 @@ There are some features, improvements, and bug-fixes in this release, most notab
 |VIEWERNET-2638|Application never exits when converting EMF to HTML on Linux|Bug|
 |VIEWERNET-2639|Blank image when converting EMF to PNG on Linux|Bug|
 |VIEWERNET-2640|Invalid row index|Bug|
-
+|VIEWERJAVA-2376|PPTX to HTML has a title on page top that is not in the original document|Bug|
 
 ## Public API and Backward Incompatible Changes
 
