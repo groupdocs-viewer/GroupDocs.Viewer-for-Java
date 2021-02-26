@@ -3,10 +3,15 @@ package com.groupdocs.viewer.examples.advanced_usage.caching.jackson;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.groupdocs.viewer.caching.Cache;
 import com.groupdocs.viewer.examples.advanced_usage.caching.jackson.model.*;
+import com.groupdocs.viewer.results.Character;
+import com.groupdocs.viewer.results.*;
 import org.apache.commons.io.IOUtils;
 
 import java.io.ByteArrayInputStream;
@@ -42,6 +47,29 @@ public class JacksonCache implements Cache {
         mObjectMapper = new ObjectMapper();
         mObjectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         mObjectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+        SimpleModule module = new SimpleModule(Version.unknownVersion());
+
+        SimpleAbstractTypeResolver resolver = new SimpleAbstractTypeResolver();
+        resolver.addMapping(ArchiveViewInfo.class, ArchiveViewInfoModel.class);
+        resolver.addMapping(Attachment.class, AttachmentModel.class);
+        resolver.addMapping(CadViewInfo.class, CadViewInfoModel.class);
+        resolver.addMapping(Character.class, CharacterModel.class);
+        resolver.addMapping(FileInfo.class, FileInfoModel.class);
+        resolver.addMapping(Layer.class, LayerModel.class);
+        resolver.addMapping(Layout.class, LayoutModel.class);
+        resolver.addMapping(Line.class, LineModel.class);
+        resolver.addMapping(LotusNotesViewInfo.class, LotusNotesViewInfoModel.class);
+        resolver.addMapping(OutlookViewInfo.class, OutlookViewInfoModel.class);
+        resolver.addMapping(Page.class, PageModel.class);
+        resolver.addMapping(PdfViewInfo.class, PdfViewInfoModel.class);
+        resolver.addMapping(ProjectManagementViewInfo.class, ProjectManagementViewInfoModel.class);
+        resolver.addMapping(ViewInfo.class, ViewInfoModel.class);
+        resolver.addMapping(Word.class, WordModel.class);
+
+        module.setAbstractTypes(resolver);
+
+        mObjectMapper.registerModule(module);
     }
 
     @Override

@@ -31,9 +31,4 @@ public class LayerModel implements Layer {
     public boolean isVisible() {
         return mVisible;
     }
-
-    @Override
-    public boolean equals(Layer layer) {
-        return Objects.equals(layer.getName(), mName) && layer.isVisible() == mVisible;
-    }
 }
