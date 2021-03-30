@@ -1,6 +1,6 @@
 # Document Viewer Java Library
 
-GroupDocs.Viewer for Java is a [Document Viewer API](https://products.groupdocs.com/viewer/java) for Java developers. It supports over 140 document types from popular categories such as Microsoft Office, OpenOffice, AutoCAD, Photoshop, Visio, images, metafiles, programming, archives, messages, PDF & more.
+GroupDocs.Viewer for Java is a [Document Viewer API](https://products.groupdocs.com/viewer/java) for Java developers. It supports over 170 document types from popular categories such as Microsoft Office, OpenOffice, AutoCAD, Photoshop, Visio, images, metafiles, programming, archives, messages, PDF & more.
 
 View PDF, DOC, PPT, ODT, OTT, ODP among [many other documents](https://docs.groupdocs.com/viewer/java/supported-document-formats/) in HTML5, PDF or image modes with fast and high quality rendering. You may also choose your own rendering strategy by processing the document page-by-page, entire document at once or a custom page range. API also provides the ability to customize document appearance via additional rendering options to add watermarks, rotate or reorder pages, extract document text and much more!
 
