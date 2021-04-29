@@ -5,7 +5,7 @@
 	
 	<groupId>GroupDocs.Viewer.Examples.Java</groupId>
 	<artifactId>GroupDocs.Viewer.Examples.Java</artifactId>
-	<version>21.2</version>
+	<version>21.4</version>
 
 	<properties>
 		<maven.compiler.source>7</maven.compiler.source>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.groupdocs</groupId>
 			<artifactId>groupdocs-viewer</artifactId>
-			<version>21.2</version>
+			<version>21.4</version>
 		</dependency>
 	</dependencies>
 
