@@ -31,3 +31,6 @@ deploy_key
 .idea
 *.iml
 Examples/output
+
+#License files
+.lic
