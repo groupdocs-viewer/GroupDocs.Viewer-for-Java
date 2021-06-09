@@ -12,9 +12,8 @@ View PDF, DOC, PPT, ODT, OTT, ODP among [many other documents](https://docs.grou
 
 Directory | Description
 --------- | -----------
-[Docs](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Docs)  | Product documentation containing the Developer's Guide, Release Notes and more.
-[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Java examples and sample documents for you to get started quickly. 
-[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcases)  | Build Document Viewer Applications using GroupDocs.Viewer for Java. 
+[Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Java examples and sample documents for you to get started quickly.
+[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcases)  | Build Document Viewer Applications using GroupDocs.Viewer for Java.
 
 ## View Documents As HTML, PDF or Images
 
@@ -31,7 +30,7 @@ Directory | Description
 
 ## Get Started with GroupDocs.Viewer for Java
 
-GroupDocs.Viewer for Java requires J2SE 7.0 (1.7), J2SE 8.0 (1.8) or above. Please install Java first if you do not have it already. 
+GroupDocs.Viewer for Java requires J2SE 7.0 (1.7), J2SE 8.0 (1.8) or above. Please install Java first if you do not have it already.
 
 GroupDocs hosts all Java APIs on [GroupDocs Artifact Repository](https://artifact.groupdocs.com/webapp/#/artifacts/browse/tree/General/repo/com/groupdocs/groupdocs-viewer), so simply [configure](https://docs.groupdocs.com/viewer/java/installation/) your Maven project to fetch the dependencies automatically.
 
@@ -60,13 +59,5 @@ viewOptions.setSecurity(security);
 viewer.view(viewOptions);
 viewer.close();
 ```
-
-## How to run documentation
-
-1. Download and install [hugo_extended](https://github.com/gohugoio/hugo)
-2. Open condole and run
-    ```bash
-    call build_docs.cmd
-    ```
 
 [Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/java) | [Documentation](https://docs.groupdocs.com/viewer/java/) | [Demo](https://products.groupdocs.app/viewer/family) | [API Reference](https://apireference.groupdocs.com/java/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
