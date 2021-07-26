@@ -12,8 +12,8 @@ View PDF, DOC, PPT, ODT, OTT, ODP among [many other documents](https://docs.grou
 
 Directory | Description
 --------- | -----------
+[Demos](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos)  | GroupDocs.Viewer for Java Dropwizard and Spring Demo projects.
 [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Java examples and sample documents for you to get started quickly.
-[Showcases](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Showcases)  | Build Document Viewer Applications using GroupDocs.Viewer for Java.
 
 ## View Documents As HTML, PDF or Images
 
