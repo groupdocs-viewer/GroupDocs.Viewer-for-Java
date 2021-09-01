@@ -34,3 +34,10 @@ Examples/output
 
 #License files
 .lic
+
+#Node
+node_modules
+node
+
+#Cache files
+DocumentSamples/

@@ -6,7 +6,7 @@
 
     <groupId>com.groupdocs.ui</groupId>
     <artifactId>viewer</artifactId>
-    <version>1.14.35</version>
+    <version>1.14.41</version>
     <packaging>jar</packaging>
 
     <name>GroupDocs.Viewer Dropwizard</name>
