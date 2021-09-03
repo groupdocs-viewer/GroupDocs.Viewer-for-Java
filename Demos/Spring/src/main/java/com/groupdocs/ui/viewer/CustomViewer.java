@@ -4,7 +4,7 @@ import com.groupdocs.ui.cache.ViewerCache;
 import com.groupdocs.ui.config.ViewerConfiguration;
 import com.groupdocs.ui.util.Utils;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.interfaces.PageStreamFactory;
+import com.groupdocs.viewer.interfaces.*;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.*;
 
@@ -21,6 +21,7 @@ public abstract class CustomViewer {
     protected final ViewerCache cache;
     protected final Viewer viewer;
     protected ViewInfoOptions viewInfoOptions;
+    protected PdfViewOptions pdfViewOptions;
 
     public CustomViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
         this.cache = cache;
@@ -96,6 +97,15 @@ public abstract class CustomViewer {
         return this.viewer;
     }
 
+    public void createPdf() {
+        String fileKey = "f.pdf";
+        synchronized (this.filePath) {
+            if (this.cache.doesNotContains(fileKey)) {
+                this.viewer.view(this.pdfViewOptions);
+            }
+        }
+    }
+
     public void close() {
         this.viewer.close();
     }
@@ -125,6 +135,37 @@ public abstract class CustomViewer {
 
         @Override
         public void closePageStream(int pageNumber, OutputStream outputStream) {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    protected class CustomFileStreamFactory implements FileStreamFactory {
+        private final String mExtension;
+
+        public CustomFileStreamFactory(String extension) {
+            this.mExtension = extension;
+        }
+
+        @Override
+        public OutputStream createFileStream() {
+            String fileName = "f" + mExtension;
+            String cacheFilePath = cache.getCacheFilePath(fileName);
+
+            try {
+                return new FileOutputStream(cacheFilePath);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public void closeFileStream(OutputStream outputStream) {
             try {
                 outputStream.close();
             } catch (IOException e) {

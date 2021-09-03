@@ -1,10 +1,7 @@
 package com.groupdocs.ui.viewer;
 
 import com.groupdocs.ui.cache.ViewerCache;
-import com.groupdocs.viewer.options.LoadOptions;
-import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.options.Rotation;
-import com.groupdocs.viewer.options.ViewInfoOptions;
+import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
 import org.apache.commons.lang3.ArrayUtils;
@@ -23,6 +20,7 @@ public class PngViewer extends CustomViewer {
     public PngViewer(String filePath, ViewerCache cache, LoadOptions loadOptions, int pageNumber/* = -1*/, int newAngle/* = 0*/) {
         super(filePath, cache, loadOptions);
         this.pngViewOptions = this.createPngViewOptions(pageNumber, newAngle);
+        this.pdfViewOptions = this.createPdfViewOptions();
         this.viewInfoOptions = ViewInfoOptions.fromPngViewOptions(this.pngViewOptions);
     }
 
@@ -37,6 +35,12 @@ public class PngViewer extends CustomViewer {
         setWatermarkOptions(createdPngViewOptions);
 
         return createdPngViewOptions;
+    }
+
+    private com.groupdocs.viewer.options.PdfViewOptions createPdfViewOptions() {
+        PdfViewOptions pdfViewOptions = new PdfViewOptions(new CustomFileStreamFactory(".pdf"));
+        setWatermarkOptions(pdfViewOptions);
+        return pdfViewOptions;
     }
 
     public void createCache() {

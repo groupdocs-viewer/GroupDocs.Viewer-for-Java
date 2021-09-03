@@ -15,6 +15,8 @@ import com.groupdocs.ui.viewer.model.response.UploadedDocumentEntity;
 import com.groupdocs.ui.viewer.service.ViewerService;
 import com.groupdocs.ui.viewer.service.ViewerServiceImpl;
 import com.groupdocs.ui.viewer.views.Viewer;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -153,7 +155,12 @@ public class ViewerResources extends Resources {
     @Path(value = "/printPdf")
     @Consumes(APPLICATION_JSON)
     public void printPdf(LoadDocumentRequest loadDocumentRequest, @Context HttpServletResponse response) {
-        downloadFile(response, loadDocumentRequest.getGuid());
+        String fileName = FilenameUtils.getName(loadDocumentRequest.getGuid());
+        String fileExtension = FilenameUtils.getExtension(fileName);
+        String pdfFileName = fileName.replace(fileExtension, "pdf");
+        InputStream fileStream = viewerService.getPdf(loadDocumentRequest);
+
+        respondWithPdf(response, fileStream, pdfFileName);
     }
 
     /**

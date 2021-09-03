@@ -14,6 +14,7 @@ import com.groupdocs.ui.model.response.UploadedDocumentEntity;
 import com.groupdocs.ui.service.ViewerService;
 import com.groupdocs.ui.util.Utils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -128,16 +130,20 @@ public class ViewerController {
      */
     @RequestMapping(method = RequestMethod.POST, value = "/printPdf", consumes = APPLICATION_JSON_VALUE)
     public void printPdf(@RequestBody LoadDocumentRequest loadDocumentRequest, HttpServletResponse response) {
-        String documentGuid = loadDocumentRequest.getGuid();
-        File file = new File(documentGuid);
-        // set response content info
-        Utils.addFileDownloadHeaders(response, file.getName(), file.length());
-        // download the document
-        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(documentGuid));
-             ServletOutputStream outputStream = response.getOutputStream()) {
+        String fileName = FilenameUtils.getName(loadDocumentRequest.getGuid());
+        String fileExtension = FilenameUtils.getExtension(fileName);
+        String pdfFileName = fileName.replace(fileExtension, "pdf");
+        InputStream inputStream = viewerService.getPdf(loadDocumentRequest);
 
+        try (OutputStream outputStream = response.getOutputStream()){
+            int size = inputStream.available();
+            
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-Type", "application/pdf");
+            response.setHeader("Content-Length", String.valueOf(size));
+    
             IOUtils.copyLarge(inputStream, outputStream);
-        } catch (Exception ex) {
+        } catch (Exception ex){
             logger.error("Exception in opening document", ex);
             throw new TotalGroupDocsException(ex.getMessage(), ex);
         }

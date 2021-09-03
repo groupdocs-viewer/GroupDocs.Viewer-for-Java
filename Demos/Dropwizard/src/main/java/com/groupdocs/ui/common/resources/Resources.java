@@ -149,6 +149,27 @@ public abstract class Resources {
     }
 
     /**
+     * Download PDF file
+     *
+     * @param response http response
+     * @param fileStream file stream
+     * @param fileName file name
+     */
+    protected void respondWithPdf(HttpServletResponse response, InputStream inputStream, String fileName) {
+        try (OutputStream outputStream = response.getOutputStream()){
+            int size = inputStream.available();
+            
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-Type", "application/pdf");
+            response.setHeader("Content-Length", String.valueOf(size));
+    
+            IOUtils.copyLarge(inputStream, outputStream);
+        } catch (Exception ex){
+            throw new TotalGroupDocsException(ex.getMessage(), ex);
+        }
+    }
+
+    /**
      * Constructor
      * @param globalConfiguration global application configuration
      * @throws UnknownHostException
