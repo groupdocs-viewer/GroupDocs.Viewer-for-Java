@@ -157,9 +157,9 @@
 
     <repositories>
         <repository>
-            <id>GroupDocsJavaAPI</id>
-            <name>GroupDocs Java API</name>
-            <url>http://artifact.groupdocs.com/repo/</url>
+            <id>GroupDocs Artifact Repository</id>
+            <name>GroupDocs Artifact Repository</name>
+            <url>https://artifact.groupdocs.com/repo/</url>
         </repository>
     </repositories>
 
