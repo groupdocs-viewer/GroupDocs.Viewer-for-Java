@@ -16,7 +16,7 @@ Customize document appearance via additional rendering options by adding waterma
 
 ## How to run the examples
 
-- To run the examples with the Eclipse IDE follow [this article](https://docs.groupdocs.com/display/viewerjava/How+to+Run+Examples).
+- To run the examples with the Eclipse IDE follow [this article](https://docs.groupdocs.com/viewer/java/how-to-run-examples/).
 
 - To run the examples from a console it is required that [maven](https://maven.apache.org/download.cgi) is installed and configured in your system path.
 Uncomment the examples that you want to run in `RunExamples.java` file. Than navigate to `Examples` folder and run:
@@ -28,7 +28,7 @@ Uncomment the examples that you want to run in `RunExamples.java` file. Than nav
 ## Licensing
 
 The license is not included into this repository, so  GroupDocs.Viewer will work in the evaluation mode.
-The evaluation limitations are described [here](https://docs.groupdocs.com/display/viewerjava/Evaluation+Limitations+and+Licensing+of+GroupDocs.Viewer).
+The evaluation limitations are described [here](https://docs.groupdocs.com/viewer/java/evaluation-limitations-and-licensing-of-groupdocs-viewer/).
 To test all the features you can request temporary license at https://purchase.groupdocs.com/temporary-license.
 
 In case you have a license, put it into `resources` folder and adjust license file name in the `Utils.java` file.
