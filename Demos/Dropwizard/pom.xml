@@ -244,14 +244,14 @@
 
     <repositories>
         <repository>
-            <id>com.springsource.repository.bundles.external</id>
+            <id>SpringSource Enterprise Bundle Repository</id>
             <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/external</url>
+            <url>https://repository.springsource.com/maven/bundles/external</url>
         </repository>
         <repository>
-            <id>GroupDocsJavaAPI</id>
-            <name>GroupDocs Java API</name>
-            <url>http://artifact.groupdocs.com/repo/</url>
+            <id>GroupDocs Artifact Repository</id>
+            <name>GroupDocs Artifact Repository</name>
+            <url>https://artifact.groupdocs.com/repo/</url>
         </repository>
     </repositories>
 
