@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import com.groupdocs.ui.cache.mixin.*;
 import com.groupdocs.ui.exception.DiskAccessException;
 import com.groupdocs.ui.exception.TotalGroupDocsException;
@@ -111,7 +112,7 @@ public class FileViewerCache implements ViewerCache {
                 final FileInputStream inputStream = new FileInputStream(cacheFilePath);
                 try {
                     return (T)  MAPPER.readValue(inputStream, clazz);
-                } catch (UnrecognizedPropertyException | InvalidDefinitionException e) {
+                } catch (UnrecognizedPropertyException | InvalidDefinitionException | ValueInstantiationException e) {
                     // continue;
                 } finally {
                     inputStream.close();
