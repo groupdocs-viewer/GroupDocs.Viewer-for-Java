@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
@@ -22,7 +22,7 @@ public class LoadDocumentFromStream {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        try (InputStream fileStream = new FileInputStream(SampleFiles.SAMPLE_DOCX);
+        try (InputStream fileStream = new FileInputStream(TestFiles.SAMPLE_DOCX);
              Viewer viewer = new Viewer(fileStream)) {
             viewer.view(viewOptions);
         } catch (IOException e) {

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.howto;
 
 import com.groupdocs.viewer.FileType;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class HowToDetermineFileType {
     }
 
     public static void fromStream() throws IOException {
-        try (InputStream inputStream = new FileInputStream(SampleFiles.SAMPLE_DOCX)) {
+        try (InputStream inputStream = new FileInputStream(TestFiles.SAMPLE_DOCX)) {
             FileType fileType = FileType.fromStream(inputStream);
 
-            System.out.println("\nFile path " + SampleFiles.SAMPLE_DOCX + "; File type: " + fileType);
+            System.out.println("\nFile path " + TestFiles.SAMPLE_DOCX + "; File type: " + fileType);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.basic_usage.render_document_to_image;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.*;
@@ -17,7 +17,7 @@ public class GetTextCoordinates {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forPngView(true);
 
         ViewInfo viewInfo;
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
             viewInfo = viewer.getViewInfo(viewInfoOptions);
         }
 

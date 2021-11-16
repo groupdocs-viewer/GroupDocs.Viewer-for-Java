@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.loading;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
@@ -22,7 +22,7 @@ public class LoadPasswordProtectedDocument {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX_WITH_PASSWORD, loadOptions)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX_WITH_PASSWORD, loadOptions)) {
             viewer.view(viewOptions);
         }
 

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_pdf_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
@@ -21,7 +21,7 @@ public class EnableFontHinting {
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
         viewOptions.getPdfOptions().setEnableFontHinting(true);
 
-        try (Viewer viewer = new Viewer(SampleFiles.HIEROGLYPHS_1_PDF)) {
+        try (Viewer viewer = new Viewer(TestFiles.HIEROGLYPHS_1_PDF)) {
             viewer.view(viewOptions, 1);
         }
 

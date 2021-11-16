@@ -2,7 +2,7 @@ package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options
 
 import com.groupdocs.viewer.FileType;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.*;
 
@@ -21,7 +21,7 @@ public class RenderingXmlSpreadSheetML {
         LoadOptions loadOptions = new LoadOptions(FileType.EXCEL_2003_XML);
 
         // TO MULTI PAGES HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFileFullPath);
 
             viewer.view(options);
@@ -30,7 +30,7 @@ public class RenderingXmlSpreadSheetML {
         // TO JPG
         pageFileFullPath = Utils.combinePaths(outputDirectory, "Excel_2003_Xml_result.jpg");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
             JpgViewOptions options = new JpgViewOptions(pageFileFullPath);
 
             viewer.view(options);
@@ -39,7 +39,7 @@ public class RenderingXmlSpreadSheetML {
         // TO PNG
         pageFileFullPath = Utils.combinePaths(outputDirectory, "Excel_2003_Xml_result.png");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
             PngViewOptions options = new PngViewOptions(pageFileFullPath);
 
             viewer.view(options);
@@ -48,7 +48,7 @@ public class RenderingXmlSpreadSheetML {
         // TO PDF
         pageFileFullPath = Utils.combinePaths(outputDirectory, "Excel_2003_Xml_result.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XML_SPREADSHEETML, loadOptions)) {
             PdfViewOptions options = new PdfViewOptions(pageFileFullPath);
 
             viewer.view(options);

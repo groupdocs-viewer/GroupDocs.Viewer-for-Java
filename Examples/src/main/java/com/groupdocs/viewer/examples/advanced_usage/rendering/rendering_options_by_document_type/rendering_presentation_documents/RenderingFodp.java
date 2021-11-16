@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_presentation_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
@@ -17,7 +17,7 @@ public class RenderingFodp {
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.html");
 
         // TO HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
             viewer.view(options);
@@ -26,7 +26,7 @@ public class RenderingFodp {
         // TO JPG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.jpg");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -35,7 +35,7 @@ public class RenderingFodp {
         // TO PNG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.png");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -44,7 +44,7 @@ public class RenderingFodp {
         // TO PDF
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_FODP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
 
             viewer.view(options);

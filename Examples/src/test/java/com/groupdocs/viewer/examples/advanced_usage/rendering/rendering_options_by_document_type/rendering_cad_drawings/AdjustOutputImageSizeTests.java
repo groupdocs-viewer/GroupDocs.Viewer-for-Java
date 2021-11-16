@@ -1,0 +1,15 @@
+package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_cad_drawings;
+
+import org.testng.annotations.Test;
+
+public class AdjustOutputImageSizeTests {
+
+    /**
+     * This example demonstrates how to adjust output image size when rendering CAD
+     * drawings.
+     */
+    @Test
+    public void run() {
+        AdjustOutputImageSize.run();
+    }
+}

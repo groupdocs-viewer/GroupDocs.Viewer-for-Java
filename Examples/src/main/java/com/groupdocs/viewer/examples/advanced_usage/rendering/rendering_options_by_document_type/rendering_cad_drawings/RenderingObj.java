@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_cad_drawings;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
@@ -17,7 +17,7 @@ public class RenderingObj {
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.html");
 
         // TO HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 //            options.setCadOptions(CadOptions.forRenderingByScaleFactor(0.7f)); // Render image and reduce it by 30%
             //options.setCadOptions(CadOptions.forRenderingByWidthAndHeight(400,400)); // Render image and set output size to 400x400
@@ -30,7 +30,7 @@ public class RenderingObj {
         // TO JPG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.jpg");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
             //options.setCadOptions(CadOptions.forRenderingByScaleFactor(0.7f)); // Render image and reduce it by 30%
             //options.setCadOptions(CadOptions.forRenderingByWidthAndHeight(400,400)); // Render image and set output size to 400x400
@@ -43,7 +43,7 @@ public class RenderingObj {
         // TO PNG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.png");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
             //options.setCadOptions(CadOptions.forRenderingByScaleFactor(0.7f)); // Render image and reduce it by 30%
             //options.setCadOptions(CadOptions.forRenderingByWidthAndHeight(400,400)); // Render image and set output size to 400x400
@@ -56,7 +56,7 @@ public class RenderingObj {
         // TO PDF
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OBJ)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
             //options.setCadOptions(CadOptions.forRenderingByScaleFactor(0.7f)); // Render image and reduce it by 30%
             //options.setCadOptions(CadOptions.forRenderingByWidthAndHeight(400,400)); // Render image and set output size to 400x400

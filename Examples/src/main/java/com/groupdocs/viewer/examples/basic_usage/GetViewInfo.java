@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.basic_usage;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ViewInfo;
 
@@ -15,7 +15,7 @@ public class GetViewInfo {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
         ViewInfo info;
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PDF)) {
             info = viewer.getViewInfo(viewInfoOptions);
         }
 

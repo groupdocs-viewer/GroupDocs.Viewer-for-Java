@@ -155,7 +155,7 @@
         <dependency>
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
-            <version>20.7</version>
+            <version>21.11</version>
             <type>jar</type>
         </dependency>
 

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.basic_usage.processing_attachments;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.results.Attachment;
 
@@ -19,7 +19,7 @@ public class RetrieveAndSaveDocumentAttachments {
     public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("RetrieveAndSaveDocumentAttachments");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
 
             List<Attachment> attachments = viewer.getAttachments();
             for (Attachment attachment : attachments) {

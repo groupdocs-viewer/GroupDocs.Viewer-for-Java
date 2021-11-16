@@ -56,13 +56,13 @@ public class JacksonCacheableFactory extends CacheableFactory {
     }
 
     @Override
-    public Attachment newAttachment(String id, String fileName, long size) {
-        return new AttachmentModel(id, fileName, size);
+    public Attachment newAttachment(String id, String fileName, String filePath, long size) {
+        return new AttachmentModel(id, fileName, filePath, size);
     }
 
     @Override
-    public Attachment newAttachment(String id, String fileName, FileType fileType, long size) {
-        return new AttachmentModel(id, fileName, fileType, size);
+    public Attachment newAttachment(String id, String fileName, String filePath, FileType fileType, long size) {
+        return new AttachmentModel(id, fileName, filePath, fileType, size);
     }
 
     @Override

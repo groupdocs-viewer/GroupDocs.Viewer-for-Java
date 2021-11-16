@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.common_rendering_options;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
@@ -20,7 +20,7 @@ public class RenderNConsecutivePages {
         int[] pages = new int[]{1, 2, 3};
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
             viewer.view(viewOptions, pages);
         }
 

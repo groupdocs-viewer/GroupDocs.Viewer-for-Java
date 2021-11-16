@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.ArchiveViewInfo;
@@ -16,7 +16,7 @@ public class RenderingRar {
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.html");
 
         // TO HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
             viewer.view(options);
@@ -25,7 +25,7 @@ public class RenderingRar {
         // TO JPG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.jpg");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -34,7 +34,7 @@ public class RenderingRar {
         // TO PNG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.png");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -43,7 +43,7 @@ public class RenderingRar {
         // TO PDF
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -60,7 +60,7 @@ public class RenderingRar {
      * This example demonstrates how to get view info for Archive files.
      */
     private static void getViewInfoForRar() {
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             ViewInfo info = viewer.getViewInfo(ViewInfoOptions.forHtmlView());
 
             System.out.println("File type: " + info.getFileType());
@@ -84,7 +84,7 @@ public class RenderingRar {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderSpecificArchiveFolder");
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "archive_folder_page_{0}.html");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
             options.getArchiveOptions().setFolder("with_folders\\ThirdFolderWithItems");
 

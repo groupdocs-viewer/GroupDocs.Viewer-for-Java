@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.common_rendering_options;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.Rotation;
@@ -14,7 +14,7 @@ public class FlipRotatePages {
         String outputDirectory = Utils.getOutputDirectoryPath("FlipRotatePages");
         String outputFilePath = Utils.combinePaths(outputDirectory, "output.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
             PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);
             viewOptions.rotatePage(1, Rotation.ON_90_DEGREE);
 

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_pdf_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.ImageQuality;
@@ -14,7 +14,6 @@ public class AdjustImageQuality {
      * This example demonstrates how to adjust quality of images contained by the
      * source PDF document.
      */
-
     public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("AdjustImageQuality");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
@@ -23,11 +22,10 @@ public class AdjustImageQuality {
         ImageQuality quality = ImageQuality.MEDIUM;
         viewOptions.getPdfOptions().setImageQuality(quality);
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PDF)) {
             viewer.view(viewOptions);
         }
 
-        System.out.println(
-                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }
