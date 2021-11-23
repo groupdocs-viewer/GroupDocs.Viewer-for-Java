@@ -27,6 +27,6 @@ public class RenderingByPageBreaks {
             viewer.view(viewOptions);
         }
 
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory + ".");
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

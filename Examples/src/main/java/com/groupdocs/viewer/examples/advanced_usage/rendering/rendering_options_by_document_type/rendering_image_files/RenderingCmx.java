@@ -63,6 +63,6 @@ public class RenderingCmx {
             //viewer.view(options,2);
         }
 
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory + ".");
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

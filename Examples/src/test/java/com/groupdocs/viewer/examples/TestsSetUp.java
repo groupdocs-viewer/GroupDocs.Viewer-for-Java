@@ -1,5 +1,7 @@
 package com.groupdocs.viewer.examples;
 
+import com.groupdocs.viewer.logging.ConsoleLogger;
+import com.groupdocs.viewer.logging.ViewerLogger;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -12,6 +14,8 @@ import java.nio.file.Paths;
 public class TestsSetUp {
     @BeforeSuite(alwaysRun = true)
     public final void beforeSuite() {
+//        ViewerLogger.setLogger(new ConsoleLogger(false, true, true, true));
+
         final String comparisonLicense = System.getenv("GROUPDOCS_LIC_PATH");
         if (comparisonLicense == null) {
             System.err.println("Variable %GROUPDOCS_LIC_PATH% is not set! Running tests without license");

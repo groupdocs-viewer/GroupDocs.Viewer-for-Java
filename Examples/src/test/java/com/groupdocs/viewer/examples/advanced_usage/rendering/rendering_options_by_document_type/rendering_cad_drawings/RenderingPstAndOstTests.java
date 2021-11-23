@@ -8,6 +8,6 @@ import org.testng.annotations.Test;
 public class RenderingPstAndOstTests {
     @Test
     public void run() {
-        RenderingPstAndOst.run(); // Fails pst to pdf conversion
+        RenderingPstAndOst.run();
     }
 }

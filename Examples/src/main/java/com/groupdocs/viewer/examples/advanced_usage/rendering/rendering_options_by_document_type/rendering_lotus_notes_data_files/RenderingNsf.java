@@ -3,10 +3,7 @@ package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options
 import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
-import com.groupdocs.viewer.options.HtmlViewOptions;
-import com.groupdocs.viewer.options.JpgViewOptions;
-import com.groupdocs.viewer.options.PdfViewOptions;
-import com.groupdocs.viewer.options.PngViewOptions;
+import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.utils.PathUtils;
 
 /**
@@ -17,8 +14,11 @@ public class RenderingNsf {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingNsf");
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "NSF_result.html");
 
+        LoadOptions loadOptions = new LoadOptions();
+        loadOptions.setResourceLoadingTimeout(100);
+
         // TO HTML
-        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
             viewer.view(options);
@@ -27,7 +27,7 @@ public class RenderingNsf {
         // TO JPG
         pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result_{0}.jpg");
 
-        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -36,7 +36,7 @@ public class RenderingNsf {
         // TO PNG
         pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result_{0}.png");
 
-        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
 
             viewer.view(options);
@@ -45,12 +45,12 @@ public class RenderingNsf {
         // TO PDF
         pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result.pdf");
 
-        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
 
             viewer.view(options);
         }
 
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory + ".");
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

@@ -24,6 +24,6 @@ public class DateTimeFormatAndTimeZoneOffset {
             viewer.view(options);
         }
 
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory + ".");
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

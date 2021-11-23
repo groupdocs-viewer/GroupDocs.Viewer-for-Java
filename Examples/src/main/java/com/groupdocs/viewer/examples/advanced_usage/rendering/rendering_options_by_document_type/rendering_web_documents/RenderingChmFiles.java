@@ -55,6 +55,6 @@ public class RenderingChmFiles {
             viewer.view(options); // Convert all pages
         }
 
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory + ".");
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }
