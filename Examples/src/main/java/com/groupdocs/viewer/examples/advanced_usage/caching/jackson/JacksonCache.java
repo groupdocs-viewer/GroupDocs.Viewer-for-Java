@@ -83,6 +83,7 @@ public class JacksonCache implements Cache {
             }
             // Here bytes could be written to file or sent somewhere
             mData.put(key, bytes);
+            System.out.println("Data with key '" + key + "' was put to cache");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -100,11 +101,14 @@ public class JacksonCache implements Cache {
         try {
             for (Class<?> clazz : SERIALIZATION_MODELS) {
                 try {
-                    return (T) mObjectMapper.readValue(bytes, clazz);
+                    T value =  (T) mObjectMapper.readValue(bytes, clazz);
+                    System.out.println("Data with key '" + key + "' was get from cache");
+                    return value;
                 } catch (JsonParseException | JsonMappingException e) {
-                    // continue, is not this type or is stream
+                    // continue, it is not this type or it is a stream
                 }
             }
+            System.out.println("Data with key '" + key + "' was get from cache as a stream");
             return (T) new ByteArrayInputStream(bytes);
         } catch (IOException e) {
             e.printStackTrace();
