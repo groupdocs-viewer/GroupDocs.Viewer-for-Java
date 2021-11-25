@@ -68,7 +68,7 @@ public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
         return pdfViewOptions;
     }
 
-    private void setCommonViewOptions(com.groupdocs.viewer.options.ViewOptions viewOptions){
+    private void setCommonViewOptions(com.groupdocs.viewer.options.ViewOptions viewOptions) {
         viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);
         viewOptions.getSpreadsheetOptions().setSkipEmptyColumns(true);
         viewOptions.getSpreadsheetOptions().setSkipEmptyRows(true);
@@ -79,5 +79,5 @@ public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
     protected String getCachePagesExtension() {
         return ".html";
     }
-  
+
 }

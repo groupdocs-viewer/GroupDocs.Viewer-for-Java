@@ -2,6 +2,7 @@ package com.groupdocs.ui.viewer.views;
 
 import com.groupdocs.ui.common.config.GlobalConfiguration;
 import io.dropwizard.views.View;
+
 import java.nio.charset.Charset;
 
 /**
@@ -15,16 +16,18 @@ public class Viewer extends View {
 
     /**
      * Constructor
+     *
      * @param globalConfiguration total configuration
-     * @param charset charset
+     * @param charset             charset
      */
-    public Viewer(GlobalConfiguration globalConfiguration, String charset){
+    public Viewer(GlobalConfiguration globalConfiguration, String charset) {
         super("viewer.ftl", Charset.forName(charset));
         this.globalConfiguration = globalConfiguration;
     }
 
     /**
      * Get total config
+     *
      * @return total config
      */
     public GlobalConfiguration getGlobalConfiguration() {
@@ -33,6 +36,7 @@ public class Viewer extends View {
 
     /**
      * Set total config
+     *
      * @param globalConfiguration total config
      */
     public void setGlobalConfiguration(GlobalConfiguration globalConfiguration) {

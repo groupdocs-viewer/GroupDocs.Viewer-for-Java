@@ -2,6 +2,7 @@ package com.groupdocs.ui.viewer.util;
 
 import com.groupdocs.ui.common.exception.PasswordExceptions;
 import com.groupdocs.viewer.Viewer;
+import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
@@ -42,7 +43,9 @@ public class Utils {
             int fixWidth = fixPage.getWidth();
             int fixHeight = fixPage.getHeight();
             if (page.getWidth() == 0 && page.getHeight() == 0) {
-                pages.set(n, new Page(page.getNumber(), page.isVisible(), (fixWidth == 0) ? lastFixWidth : fixWidth, (fixHeight == 0) ? lastFixHeight : fixHeight, page.getLines()));
+                // You can use new PageImpl(...) but in this way you can't use custom models in caching mechanism
+                // More details are here - https://docs.groupdocs.com/viewer/java/how-to-use-custom-cache-implementation/
+                pages.set(n, CacheableFactory.getInstance().newPage(page.getNumber(), page.isVisible(), (fixWidth == 0) ? lastFixWidth : fixWidth, (fixHeight == 0) ? lastFixHeight : fixHeight, page.getLines()));
             }
             lastFixWidth = pages.get(n).getWidth();
             lastFixHeight = pages.get(n).getHeight();

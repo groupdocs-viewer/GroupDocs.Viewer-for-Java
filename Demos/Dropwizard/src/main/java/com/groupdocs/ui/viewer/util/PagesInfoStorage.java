@@ -41,7 +41,7 @@ public class PagesInfoStorage {
         }
     }
 
-    public static String createPagesInfo(String fileCacheSubFolder, ViewInfo viewInfo) {
+    public static String createPagesInfo(String fileCacheSubFolder, ViewInfo viewInfo, boolean isViewerLicenseSet) {
         try {
             final File file = new File(fileCacheSubFolder);
             if (!file.exists() && !file.mkdir()) {
@@ -51,8 +51,13 @@ public class PagesInfoStorage {
             final File pagesInfoFile = new File(PathUtils.combine(fileCacheSubFolder, FILE_NAME));
             if (!pagesInfoFile.exists()) {
                 final PagesInfoStorage.PagesInfo pagesInfo = new PagesInfoStorage.PagesInfo();
-                for (Page page : viewInfo.getPages()) {
-                    final PagesInfoStorage.PagesInfo.PageData pageData = new PagesInfoStorage.PagesInfo.PageData();
+                List<Page> pages = viewInfo.getPages();
+                for (int i = 0, pagesSize = pages.size(); i < pagesSize; i++) {
+                    Page page = pages.get(i);
+                    if (!isViewerLicenseSet && i == 2) {
+                        break; // only 2 pages in evaluation mode
+                    }
+                    final PagesInfo.PageData pageData = new PagesInfo.PageData();
                     pageData.setNumber(page.getNumber());
                     pageData.setAngle(0);
                     pagesInfo.getPages().add(pageData);

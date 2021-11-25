@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ArchiveViewInfo;
 import com.groupdocs.viewer.results.ViewInfo;
@@ -11,9 +11,8 @@ public class GetViewInfoForArchiveFile {
     /**
      * This example demonstrates how to get view info for Archive files.
      */
-
     public static void run() {
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP_WITH_FOLDERS)) {
             ViewInfo viewInfo = viewer.getViewInfo(ViewInfoOptions.forHtmlView());
 
             System.out.println("File type: " + viewInfo.getFileType());

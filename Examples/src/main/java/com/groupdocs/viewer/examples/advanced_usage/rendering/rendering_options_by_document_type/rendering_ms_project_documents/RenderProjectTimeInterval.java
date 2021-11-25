@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.ViewInfoOptions;
@@ -20,7 +20,7 @@ public class RenderProjectTimeInterval {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderProjectTimeInterval");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
 
             ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
             ProjectManagementViewInfo viewInfo = (ProjectManagementViewInfo) viewer.getViewInfo(viewInfoOptions);

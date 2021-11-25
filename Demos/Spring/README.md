@@ -92,6 +92,8 @@ mvn clean spring-boot:run
 ## Open http://localhost:8080/viewer/ in your favorite browser.
 ```
 
+_Note: to debug application in IntelliJ IDEA, use `mvn clean spring-boot:run -Dspring-boot.run.fork=false` command_
+
 #### Build war from source
 
 Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/archive/master.zip) from github or clone this repository.

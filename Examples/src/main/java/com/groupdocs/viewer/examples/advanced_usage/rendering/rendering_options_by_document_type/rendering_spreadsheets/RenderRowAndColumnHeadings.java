@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_spreadsheets;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
@@ -17,7 +17,7 @@ public class RenderRowAndColumnHeadings {
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
 
         // TO HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
@@ -27,7 +27,7 @@ public class RenderRowAndColumnHeadings {
         // TO JPG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.jpg");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
@@ -37,7 +37,7 @@ public class RenderRowAndColumnHeadings {
         // TO PNG
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.png");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
@@ -47,7 +47,7 @@ public class RenderRowAndColumnHeadings {
         // TO PDF
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "output.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_XLSX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 

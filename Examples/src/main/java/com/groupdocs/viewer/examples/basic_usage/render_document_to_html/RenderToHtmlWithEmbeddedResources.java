@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.basic_usage.render_document_to_html;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
@@ -19,7 +19,7 @@ public class RenderToHtmlWithEmbeddedResources {
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
             viewer.view(viewOptions);
         }
 

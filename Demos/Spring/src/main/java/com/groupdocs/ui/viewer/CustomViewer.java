@@ -1,6 +1,7 @@
 package com.groupdocs.ui.viewer;
 
 import com.groupdocs.ui.cache.ViewerCache;
+import com.groupdocs.ui.cache.model.*;
 import com.groupdocs.ui.config.ViewerConfiguration;
 import com.groupdocs.ui.util.Utils;
 import com.groupdocs.viewer.Viewer;
@@ -9,13 +10,26 @@ import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.*;
 
 import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
-public abstract class CustomViewer {
-    private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{CadViewInfo.class, PdfViewInfo.class, ProjectManagementViewInfo.class, OutlookViewInfo.class, ViewInfo.class};
+public abstract class CustomViewer implements Closeable {
+    private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{
+            ArchiveViewInfoModel.class,
+            AttachmentModel.class,
+            CadViewInfoModel.class,
+            CharacterModel.class,
+            FileInfoModel.class,
+            LayerModel.class,
+            LayoutModel.class,
+            LineModel.class,
+            LotusNotesViewInfoModel.class,
+            OutlookViewInfoModel.class,
+            PageModel.class,
+            PdfViewInfoModel.class,
+            ProjectManagementViewInfoModel.class,
+            ViewInfoModel.class,
+            WordModel.class
+    };
     protected static ViewerConfiguration viewerConfiguration;
     protected final String filePath;
     protected final ViewerCache cache;
@@ -106,6 +120,7 @@ public abstract class CustomViewer {
         }
     }
 
+    @Override
     public void close() {
         this.viewer.close();
     }

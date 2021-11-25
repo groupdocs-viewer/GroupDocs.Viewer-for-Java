@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.groupdocs.viewer.results.Layer;
 
-import java.util.Objects;
-
 public class LayerModel implements Layer {
     @JsonProperty("Name")
     private final String mName;

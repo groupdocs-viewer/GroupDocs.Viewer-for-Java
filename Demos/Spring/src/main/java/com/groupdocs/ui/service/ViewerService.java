@@ -32,10 +32,10 @@ public interface ViewerService {
      * Get document description
      *
      * @param loadDocumentRequest document data for loading
-     * @param allPages            to load all pages data of the document
+     * @param loadAllPages            to load all pages data of the document
      * @return document info container
      */
-    LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean allPages);
+    LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion);
 
     /**
      * Get document page

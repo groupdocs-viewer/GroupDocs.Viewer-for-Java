@@ -31,6 +31,7 @@ deploy_key
 .idea
 *.iml
 Examples/output
+surefire-rep*
 
 #License files
 .lic

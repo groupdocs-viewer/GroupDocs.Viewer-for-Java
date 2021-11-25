@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_outlook_data_files;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.OutlookViewInfo;
 
@@ -15,7 +15,7 @@ public class GetViewInfoForOutlookDataFile {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
         OutlookViewInfo viewInfo;
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_OST_SUBFOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OST_SUBFOLDERS)) {
             viewInfo = (OutlookViewInfo) viewer.getViewInfo(viewInfoOptions);
         }
 

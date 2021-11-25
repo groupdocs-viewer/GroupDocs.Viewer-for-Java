@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
@@ -21,7 +21,7 @@ public class AdjustQualityOfJpgImages {
         byte quality = 10;
         viewOptions.setJpgQuality(quality);
 
-        try (Viewer viewer = new Viewer(SampleFiles.JPG_IMAGE_PPTX)) {
+        try (Viewer viewer = new Viewer(TestFiles.JPG_IMAGE_PPTX)) {
             viewer.view(viewOptions);
         }
 

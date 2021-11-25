@@ -33,7 +33,7 @@ public class GlobalConfiguration extends Configuration {
     /**
      * Constructor
      */
-    public GlobalConfiguration(){
+    public GlobalConfiguration() {
         server = new ServerConfiguration();
         application = new ApplicationConfiguration();
         common = new CommonConfiguration();
@@ -42,6 +42,7 @@ public class GlobalConfiguration extends Configuration {
 
     /**
      * Get server configuration
+     *
      * @return server configuration
      */
     public ServerConfiguration getServer() {
@@ -50,6 +51,7 @@ public class GlobalConfiguration extends Configuration {
 
     /**
      * Get application configuration
+     *
      * @return application configuration
      */
     public ApplicationConfiguration getApplication() {
@@ -58,6 +60,7 @@ public class GlobalConfiguration extends Configuration {
 
     /**
      * Get common configuration
+     *
      * @return common configuration
      */
     public CommonConfiguration getCommon() {
@@ -66,6 +69,7 @@ public class GlobalConfiguration extends Configuration {
 
     /**
      * Get viewer configuration
+     *
      * @return viewer configuration
      */
     public ViewerConfiguration getViewer() {

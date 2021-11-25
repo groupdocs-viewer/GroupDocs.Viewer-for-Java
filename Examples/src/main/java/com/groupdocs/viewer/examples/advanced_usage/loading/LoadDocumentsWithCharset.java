@@ -2,7 +2,7 @@ package com.groupdocs.viewer.examples.advanced_usage.loading;
 
 import com.groupdocs.viewer.FileType;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
@@ -16,7 +16,7 @@ public class LoadDocumentsWithCharset {
      */
 
     public static void run() {
-        String filePath = SampleFiles.SAMPLE_TXT_SHIFT_JS_ENCODED;
+        String filePath = TestFiles.SAMPLE_TXT_SHIFT_JS_ENCODED;
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
 

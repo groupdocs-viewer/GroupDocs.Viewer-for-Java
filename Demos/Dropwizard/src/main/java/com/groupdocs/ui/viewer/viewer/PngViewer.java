@@ -1,11 +1,7 @@
 package com.groupdocs.ui.viewer.viewer;
 
 import com.groupdocs.ui.viewer.cache.ViewerCache;
-import com.groupdocs.viewer.options.LoadOptions;
-import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.options.PdfViewOptions;
-import com.groupdocs.viewer.options.Rotation;
-import com.groupdocs.viewer.options.ViewInfoOptions;
+import com.groupdocs.viewer.options.*;
 
 public class PngViewer extends CustomViewer<PngViewOptions> {
 
@@ -35,7 +31,7 @@ public class PngViewer extends CustomViewer<PngViewOptions> {
 
     private com.groupdocs.viewer.options.PdfViewOptions createPdfViewOptions() {
         PdfViewOptions pdfViewOptions = new PdfViewOptions(
-            new CustomFileStreamFactory(getCachePdfFileExtension()));
+                new CustomFileStreamFactory(getCachePdfFileExtension()));
         setWatermarkOptions(pdfViewOptions);
         return pdfViewOptions;
     }

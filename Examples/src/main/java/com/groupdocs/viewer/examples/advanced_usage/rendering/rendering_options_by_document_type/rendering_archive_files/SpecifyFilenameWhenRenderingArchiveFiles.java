@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.FileName;
 import com.groupdocs.viewer.options.PdfViewOptions;
@@ -14,7 +14,7 @@ public class SpecifyFilenameWhenRenderingArchiveFiles {
         String outputDirectory = Utils.getOutputDirectoryPath("SpecifyFilenameWhenRenderingArchiveFiles");
         String outputFilePath = Utils.combinePaths(outputDirectory, "output.pdf");
 
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_ZIP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP)) {
             PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);
             viewOptions.getArchiveOptions().setFileName(new FileName("my filename"));
 

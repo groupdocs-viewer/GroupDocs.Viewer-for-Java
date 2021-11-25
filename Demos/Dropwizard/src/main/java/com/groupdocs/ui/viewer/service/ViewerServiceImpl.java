@@ -3,9 +3,11 @@ package com.groupdocs.ui.viewer.service;
 import com.groupdocs.ui.common.config.GlobalConfiguration;
 import com.groupdocs.ui.common.exception.TotalGroupDocsException;
 import com.groupdocs.ui.viewer.cache.FileViewerCache;
+import com.groupdocs.ui.viewer.cache.FileViewerCacheableFactory;
 import com.groupdocs.ui.viewer.cache.ViewerCache;
 import com.groupdocs.ui.viewer.config.ViewerConfiguration;
 import com.groupdocs.ui.viewer.exception.DiskAccessException;
+import com.groupdocs.ui.viewer.exception.EvaluationModeException;
 import com.groupdocs.ui.viewer.exception.ReadWriteException;
 import com.groupdocs.ui.viewer.model.request.LoadDocumentPageRequest;
 import com.groupdocs.ui.viewer.model.request.LoadDocumentRequest;
@@ -19,6 +21,7 @@ import com.groupdocs.ui.viewer.viewer.CustomViewer;
 import com.groupdocs.ui.viewer.viewer.HtmlViewer;
 import com.groupdocs.ui.viewer.viewer.PngViewer;
 import com.groupdocs.viewer.License;
+import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.exception.IncorrectPasswordException;
 import com.groupdocs.viewer.exception.PasswordRequiredException;
 import com.groupdocs.viewer.fonts.FolderFontSource;
@@ -36,12 +39,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.*;
 
 public class ViewerServiceImpl implements ViewerService {
@@ -51,6 +49,7 @@ public class ViewerServiceImpl implements ViewerService {
     private final GlobalConfiguration globalConfiguration;
 
     private final String mCachePath;
+    private boolean isViewerLicenseSet = false;
 
 
     public ViewerServiceImpl(GlobalConfiguration globalConfiguration) {
@@ -69,6 +68,45 @@ public class ViewerServiceImpl implements ViewerService {
 
         HtmlViewer.setViewerConfiguration(viewerConfiguration);
         PngViewer.setViewerConfiguration(viewerConfiguration);
+    }
+
+    private static LoadOptions createLoadOptions(String password) {
+        final LoadOptions loadOptions = new LoadOptions();
+        loadOptions.setResourceLoadingTimeout(500);
+        if (password != null && !password.isEmpty()) {
+            loadOptions.setPassword(password);
+        }
+        return loadOptions;
+    }
+
+    private static int mergeAngles(int currentAngle, int angle) {
+        switch (currentAngle) {
+            case 0:
+                return (angle == 90 ? 90 : 270);
+            case 90:
+                return (angle == 90 ? 180 : 0);
+            case 180:
+                return (angle == 90 ? 270 : 90);
+            case 270:
+                return (angle == 90 ? 0 : 180);
+        }
+        return 0;
+    }
+
+    private static PageDescriptionEntity getPageInfo(Page page, String pagesInfoPath) {
+
+        int currentAngle = PagesInfoStorage.loadPageAngle(pagesInfoPath, page.getNumber());
+
+        PageDescriptionEntity pageDescriptionEntity = new PageDescriptionEntity();
+
+        pageDescriptionEntity.setNumber(page.getNumber());
+
+        // we intentionally use the 0 here because we plan to rotate only the page background using height/width
+        pageDescriptionEntity.setAngle(0);
+        pageDescriptionEntity.setHeight(currentAngle == 0 || currentAngle == 180 ? page.getHeight() : page.getWidth());
+        pageDescriptionEntity.setWidth(currentAngle == 0 || currentAngle == 180 ? page.getWidth() : page.getHeight());
+
+        return pageDescriptionEntity;
     }
 
     /**
@@ -128,12 +166,13 @@ public class ViewerServiceImpl implements ViewerService {
      * {@inheritDoc}
      */
     @Override
-    public LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages) {
+    public LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion) {
         // set request parameters
         String documentGuid = loadDocumentRequest.getGuid();
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         LoadDocumentEntity loadDocumentEntity;
+
         CustomViewer<?> customViewer = null;
         try {
             String fileCacheSubFolder = createFileCacheSubFolderPath(documentGuid);
@@ -145,15 +184,12 @@ public class ViewerServiceImpl implements ViewerService {
             } else {
                 customViewer = new PngViewer(documentGuid, cache, createLoadOptions(password));
             }
-            loadDocumentEntity = getLoadDocumentEntity(loadAllPages, documentGuid, fileCacheSubFolder, customViewer);
+            loadDocumentEntity = getLoadDocumentEntity(loadAllPages, documentGuid, fileCacheSubFolder, customViewer, printVersion);
             loadDocumentEntity.setShowGridLines(viewerConfiguration.isShowGridLines());
             loadDocumentEntity.setPrintAllowed(viewerConfiguration.isPrintAllowed());
         } catch (IncorrectPasswordException | PasswordRequiredException ex) {
             logger.error("Exception that is connected to password", ex);
             throw new TotalGroupDocsException(Utils.getExceptionMessage(password), ex);
-        } catch (Exception ex) {
-            logger.error("Exception in loading document", ex);
-            throw new TotalGroupDocsException("Exception in loading document", ex);
         } finally {
             if (customViewer != null) {
                 customViewer.close();
@@ -228,6 +264,7 @@ public class ViewerServiceImpl implements ViewerService {
             PagesInfoStorage.savePageAngle(fileCacheSubFolder, pageNumber, newAngle);
             // Generate new cache
             ViewerCache cache = new FileViewerCache(mCachePath, fileCacheSubFolder);
+
             if (viewerConfiguration.isHtmlMode()) {
                 customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password), pageNumber, newAngle);
             } else {
@@ -304,21 +341,13 @@ public class ViewerServiceImpl implements ViewerService {
         return PathUtils.combine(mCachePath, fileFolderName);
     }
 
-    private static LoadOptions createLoadOptions(String password) {
-        final LoadOptions loadOptions = new LoadOptions();
-        if (password != null && !password.isEmpty()) {
-            loadOptions.setPassword(password);
-        }
-        return loadOptions;
-    }
-
     private PageDescriptionEntity getPageDescriptionEntity(CustomViewer<?> customViewer, String documentGuid, int pageNumber, String fileCacheSubFolder) throws IOException {
         customViewer.createCache();
 
         ViewInfo viewInfo = customViewer.getViewInfo();
         Utils.applyWidthHeightFix(customViewer.getViewer(), viewInfo);
         PageDescriptionEntity page = getPageInfo(viewInfo.getPages().get(pageNumber - 1), fileCacheSubFolder);
-        page.setData(getPageContent(pageNumber, documentGuid, mCachePath));
+        page.setData(getPageContent(pageNumber, documentGuid, mCachePath, false));
 
         return page;
     }
@@ -331,7 +360,7 @@ public class ViewerServiceImpl implements ViewerService {
         return pdfStream;
     }
 
-    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentGuid, String fileCacheSubFolder, CustomViewer<?> customViewer) {
+    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentGuid, String fileCacheSubFolder, CustomViewer<?> customViewer, boolean printVersion) {
         try {
             if (loadAllPages) {
                 customViewer.createCache();
@@ -345,12 +374,17 @@ public class ViewerServiceImpl implements ViewerService {
                 throw new DiskAccessException("create cache directory", file);
             }
 
-            String pagesInfoPath = PagesInfoStorage.createPagesInfo(fileCacheSubFolder, viewInfo);
+            String pagesInfoPath = PagesInfoStorage.createPagesInfo(fileCacheSubFolder, viewInfo, isViewerLicenseSet);
 
-            for (Page page : viewInfo.getPages()) {
+            List<Page> pages = viewInfo.getPages();
+            for (int i = 0, pagesSize = pages.size(); i < pagesSize; i++) {
+                if (!isViewerLicenseSet && i == 2) {
+                    break; // only 2 pages in evaluation mode
+                }
+                Page page = pages.get(i);
                 PageDescriptionEntity pageData = getPageInfo(page, pagesInfoPath);
                 if (loadAllPages) {
-                    pageData.setData(getPageContent(page.getNumber(), documentGuid, mCachePath));
+                    pageData.setData(getPageContent(page.getNumber(), documentGuid, mCachePath, printVersion));
                 }
 
                 loadDocumentEntity.getPages().add(pageData);
@@ -358,23 +392,30 @@ public class ViewerServiceImpl implements ViewerService {
 
             loadDocumentEntity.setGuid(documentGuid);
             return loadDocumentEntity;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
+            if (e.getMessage() != null && e.getMessage().contains("At most 4 elements")) {
+                throw new EvaluationModeException(documentGuid);
+            }
             throw new ReadWriteException(e);
         }
     }
 
-    private String getPageContent(int pageNumber, String documentGuid, String cachePath) throws IOException {
+    private String getPageContent(int pageNumber, String documentGuid, String cachePath, boolean printVersion) {
         String fileFolderName = new File(documentGuid).getName().replace(".", "_");
 
-        if (viewerConfiguration.isHtmlMode()) {
-            String htmlFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".html";
-            return FileUtils.readFileToString(new File(htmlFilePath));
-        } else {
-            String pngFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".png";
+        try {
+            if (viewerConfiguration.isHtmlMode() && !printVersion) {
+                String htmlFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".html";
+                return FileUtils.readFileToString(new File(htmlFilePath));
+            } else {
+                String pngFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".png";
 
-            byte[] imageBytes = FileUtils.readFileToByteArray(new File(pngFilePath));
+                byte[] imageBytes = FileUtils.readFileToByteArray(new File(pngFilePath));
 
-            return Base64.getEncoder().encodeToString(imageBytes);
+                return Base64.getEncoder().encodeToString(imageBytes);
+            }
+        } catch (IOException e) {
+            throw new ReadWriteException(e);
         }
     }
 
@@ -387,44 +428,15 @@ public class ViewerServiceImpl implements ViewerService {
         return new ByteArrayInputStream(fileBytes);
     }
 
-    private static int mergeAngles(int currentAngle, int angle) {
-        switch (currentAngle) {
-            case 0:
-                return (angle == 90 ? 90 : 270);
-            case 90:
-                return (angle == 90 ? 180 : 0);
-            case 180:
-                return (angle == 90 ? 270 : 90);
-            case 270:
-                return (angle == 90 ? 0 : 180);
-        }
-        return 0;
-    }
-
     private void setLicense() {
         try {
             // set GroupDocs license
             License license = new License();
             license.setLicense(globalConfiguration.getApplication().getLicensePath());
+            isViewerLicenseSet = true;
         } catch (Throwable throwable) {
             logger.error("Can not verify Viewer license!");
         }
     }
 
-    private static PageDescriptionEntity getPageInfo(Page page, String pagesInfoPath) {
-
-        int currentAngle = PagesInfoStorage.loadPageAngle(pagesInfoPath, page.getNumber());
-
-        PageDescriptionEntity pageDescriptionEntity = new PageDescriptionEntity();
-
-        pageDescriptionEntity.setNumber(page.getNumber());
-
-        // we intentionally use the 0 here because we plan to rotate only the page background using height/width
-        pageDescriptionEntity.setAngle(0);
-        pageDescriptionEntity.setHeight(currentAngle == 0 || currentAngle == 180 ? page.getHeight() : page.getWidth());
-        pageDescriptionEntity.setWidth(currentAngle == 0 || currentAngle == 180 ? page.getWidth() : page.getHeight());
-
-        return pageDescriptionEntity;
-    }
-    
 }

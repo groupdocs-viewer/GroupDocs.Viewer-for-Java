@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_spreadsheets;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.SpreadsheetOptions;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.Page;
@@ -12,7 +12,7 @@ import com.groupdocs.viewer.results.ViewInfo;
  */
 public class GetWorksheetsNames {
     public static void run() {
-        try (Viewer viewer = new Viewer(SampleFiles.THREE_SHEETS)) {
+        try (Viewer viewer = new Viewer(TestFiles.THREE_SHEETS)) {
             ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
             viewInfoOptions.setSpreadsheetOptions(SpreadsheetOptions.forOnePagePerSheet());
 

@@ -3,7 +3,7 @@ package com.groupdocs.viewer.examples.advanced_usage.caching;
 import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.ViewerSettings;
 import com.groupdocs.viewer.caching.FileCache;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
@@ -25,7 +25,7 @@ public class UseCacheWhenProcessingDocuments {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
         StopWatch stopWatch = new StopWatch();
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX, settings)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX, settings)) {
 
             stopWatch.start();
             viewer.view(viewOptions);

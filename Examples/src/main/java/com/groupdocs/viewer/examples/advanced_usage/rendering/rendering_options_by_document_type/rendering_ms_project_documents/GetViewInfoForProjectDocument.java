@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_ms_project_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ProjectManagementViewInfo;
 
@@ -15,7 +15,7 @@ public class GetViewInfoForProjectDocument {
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forHtmlView();
 
         ProjectManagementViewInfo info;
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_MPP)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
             info = (ProjectManagementViewInfo) viewer.getViewInfo(viewInfoOptions);
         }
 

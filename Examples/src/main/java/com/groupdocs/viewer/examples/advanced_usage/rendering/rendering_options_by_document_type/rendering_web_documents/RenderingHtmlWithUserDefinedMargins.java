@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_web_documents;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
@@ -32,7 +32,7 @@ public class RenderingHtmlWithUserDefinedMargins {
              */
 
         // TO JPG
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_HTML)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
             options.getWordProcessingOptions().setLeftMargin(40);
             options.getWordProcessingOptions().setRightMargin(40);
@@ -45,7 +45,7 @@ public class RenderingHtmlWithUserDefinedMargins {
         pageFilePathFormat = Paths.get(outputDirectory, "html_render_margins_page_{0}.png").toString();
 
         // TO PNG
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_HTML)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
             options.getWordProcessingOptions().setLeftMargin(40);
             options.getWordProcessingOptions().setRightMargin(40);
@@ -58,7 +58,7 @@ public class RenderingHtmlWithUserDefinedMargins {
         pageFilePathFormat = Paths.get(outputDirectory, "html_render_margins.pdf").toString();
 
         // TO PDF
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_HTML)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
             options.getWordProcessingOptions().setLeftMargin(40);
             options.getWordProcessingOptions().setRightMargin(40);

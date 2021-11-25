@@ -13,7 +13,6 @@ public class LoadDocumentFromFtp {
     /**
      * This example demonstrates how to render document downloaded from FTP.
      */
-
     public static void run() {
         String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromFtp");
         String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
@@ -26,8 +25,7 @@ public class LoadDocumentFromFtp {
             viewer.view(viewOptions);
         }
 
-        System.out.println(
-                "\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 
     private static InputStream getFileFromFtp(String server, String filePath) {

@@ -1,7 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options_by_document_type.rendering_archive_files;
 
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
@@ -15,10 +15,10 @@ public class RenderingArchivesToMultipleAndSinglePagesHtml {
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.html");
 
         // TO single page HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
-            options.setRenderSinglePage(true);
+            options.setRenderToSinglePage(true);
 
             viewer.view(options);
         }
@@ -27,7 +27,7 @@ public class RenderingArchivesToMultipleAndSinglePagesHtml {
         pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_page_{0}.html");
 
         // TO multi pages HTML
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_RAR_WITH_FOLDERS)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
             /*

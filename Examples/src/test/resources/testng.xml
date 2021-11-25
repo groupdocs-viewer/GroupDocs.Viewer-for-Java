@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="All tests">
+    <test name="All tests" parallel="none" time-out="30000">
+        <packages>
+            <package name="com.groupdocs.viewer.examples.*"/>
+        </packages>
+        <classes>
+            <class name="com.groupdocs.viewer.examples.TestsSetUp"/>
+        </classes>
+    </test>
+</suite>

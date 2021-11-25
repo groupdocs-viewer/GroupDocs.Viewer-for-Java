@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.groupdocs.viewer.results.Layout;
 
-import java.util.Objects;
-
 public class LayoutModel implements Layout {
     @JsonProperty("Name")
     private final String mName;

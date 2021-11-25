@@ -10,23 +10,27 @@ public class AttachmentModel implements Attachment {
     private final String mId;
     @JsonProperty("FileName")
     private final String mFileName;
+    @JsonProperty("filePath")
+    private final String mFilePath;
     @JsonProperty("Size")
     private final long mSize;
     @JsonProperty("FileType")
     private String mFileType;
 
     @JsonCreator
-    public AttachmentModel(@JsonProperty("Id") String id, @JsonProperty("FileName") String fileName, @JsonProperty("Size") long size) {
+    public AttachmentModel(@JsonProperty("Id") String id, @JsonProperty("FileName") String fileName, @JsonProperty("FilePath") String filePath, @JsonProperty("Size") long size) {
         mId = id;
         mFileName = fileName;
         mSize = size;
+        mFilePath = filePath;
     }
 
     @JsonCreator
-    public AttachmentModel(@JsonProperty("Id") String id, @JsonProperty("FileName") String fileName, @JsonProperty("FileType") FileType fileType, @JsonProperty("Size") long size) {
+    public AttachmentModel(@JsonProperty("Id") String id, @JsonProperty("FileName") String fileName, @JsonProperty("FilePath") String filePath, @JsonProperty("FileType") FileType fileType, @JsonProperty("Size") long size) {
         mId = id;
         mFileName = fileName;
         mSize = size;
+        mFilePath = filePath;
         mFileType = fileType.name();
     }
 
@@ -38,6 +42,11 @@ public class AttachmentModel implements Attachment {
     @Override
     public String getFileName() {
         return mFileName;
+    }
+
+    @Override
+    public String getFilePath() {
+        return mFilePath;
     }
 
     @Override

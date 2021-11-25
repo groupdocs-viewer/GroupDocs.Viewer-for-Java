@@ -4,7 +4,7 @@ import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.ViewerSettings;
 import com.groupdocs.viewer.caching.Cache;
 import com.groupdocs.viewer.caching.extra.CacheableFactory;
-import com.groupdocs.viewer.examples.SampleFiles;
+import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.examples.advanced_usage.caching.jackson.JacksonCache;
 import com.groupdocs.viewer.examples.advanced_usage.caching.jackson.JacksonCacheableFactory;
@@ -29,7 +29,7 @@ public class UseCustomCacheImplementation {
         CacheableFactory.setInstance(new JacksonCacheableFactory());
 
         ViewerSettings settings = new ViewerSettings(cache);
-        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_DOCX, settings)) {
+        try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX, settings)) {
 
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
             long stopWatch = System.currentTimeMillis();
