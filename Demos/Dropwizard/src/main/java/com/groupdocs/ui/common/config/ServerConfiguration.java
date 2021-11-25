@@ -7,7 +7,7 @@ import io.dropwizard.Configuration;
  *
  * @author Aspose Pty Ltd
  */
-public class ServerConfiguration extends Configuration{
+public class ServerConfiguration extends Configuration {
     private int httpPort;
 
     public int getHttpPort() {

@@ -1,26 +1,41 @@
 package com.groupdocs.ui.viewer.viewer;
 
 import com.groupdocs.ui.viewer.cache.ViewerCache;
+import com.groupdocs.ui.viewer.cache.model.*;
 import com.groupdocs.ui.viewer.config.ViewerConfiguration;
 import com.groupdocs.ui.viewer.util.Utils;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.interfaces.PageStreamFactory;
 import com.groupdocs.viewer.interfaces.FileStreamFactory;
+import com.groupdocs.viewer.interfaces.PageStreamFactory;
 import com.groupdocs.viewer.options.*;
-import com.groupdocs.viewer.results.*;
+import com.groupdocs.viewer.results.Page;
+import com.groupdocs.viewer.results.ViewInfo;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class CustomViewer<T extends ViewOptions> {
-    private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{CadViewInfo.class, PdfViewInfo.class, ProjectManagementViewInfo.class, OutlookViewInfo.class, ViewInfo.class};
+public abstract class CustomViewer<T extends ViewOptions> implements Closeable {
+    private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{
+            ArchiveViewInfoModel.class,
+            AttachmentModel.class,
+            CadViewInfoModel.class,
+            CharacterModel.class,
+            FileInfoModel.class,
+            LayerModel.class,
+            LayoutModel.class,
+            LineModel.class,
+            LotusNotesViewInfoModel.class,
+            OutlookViewInfoModel.class,
+            PageModel.class,
+            PdfViewInfoModel.class,
+            ProjectManagementViewInfoModel.class,
+            ViewInfoModel.class,
+            WordModel.class
+    };
     protected static ViewerConfiguration viewerConfiguration;
     protected final String filePath;
     protected final ViewerCache cache;
@@ -51,6 +66,10 @@ public abstract class CustomViewer<T extends ViewOptions> {
                 return Rotation.ON_270_DEGREE;
         }
         return Rotation.ON_90_DEGREE;
+    }
+
+    public static void setViewerConfiguration(ViewerConfiguration viewerConfiguration) {
+        CustomViewer.viewerConfiguration = viewerConfiguration;
     }
 
     /**
@@ -101,12 +120,12 @@ public abstract class CustomViewer<T extends ViewOptions> {
         return ArrayUtils.toPrimitive(missingPages.toArray(new Integer[0]));
     }
 
-    protected abstract String getCachePagesExtension();  
-    
+    protected abstract String getCachePagesExtension();
+
     protected String getCachePdfFileExtension() {
         return ".pdf";
     }
-    
+
     public ViewInfo getViewInfo() {
         String cacheKey = "view_info.dat";
 
@@ -128,10 +147,6 @@ public abstract class CustomViewer<T extends ViewOptions> {
         return viewInfo;
     }
 
-    public static void setViewerConfiguration(ViewerConfiguration viewerConfiguration) {
-        CustomViewer.viewerConfiguration = viewerConfiguration;
-    }
-
     public Viewer getViewer() {
         return this.viewer;
     }
@@ -145,6 +160,7 @@ public abstract class CustomViewer<T extends ViewOptions> {
         }
     }
 
+    @Override
     public void close() {
         this.viewer.close();
     }

@@ -9,8 +9,8 @@ import com.groupdocs.ui.viewer.model.response.LoadDocumentEntity;
 import com.groupdocs.ui.viewer.model.response.PageDescriptionEntity;
 
 import javax.ws.rs.core.Response;
-import java.util.List;
 import java.io.InputStream;
+import java.util.List;
 
 public interface ViewerService {
 
@@ -32,10 +32,10 @@ public interface ViewerService {
      * Get document description
      *
      * @param loadDocumentRequest document data for loading
-     * @param allPages            to load all pages data of the document
+     * @param printVersion        to load all pages data of the document
      * @return document info container
      */
-    LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean allPages);
+    LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion);
 
     /**
      * Get document page
@@ -62,7 +62,7 @@ public interface ViewerService {
      */
     Response getResource(String guid, String resourceName);
 
-     /**
+    /**
      * Retrieves PDF file
      *
      * @param loadDocumentRequest document data for loading

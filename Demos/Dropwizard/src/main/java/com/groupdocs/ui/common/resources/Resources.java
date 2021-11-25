@@ -53,9 +53,9 @@ public abstract class Resources {
      *
      * @param documentUrl url for document
      * @param inputStream file stream
-     * @param fileDetail file description
-     * @param rewrite flag for rewriting file
-     * @param params parameters for creating path to files storage
+     * @param fileDetail  file description
+     * @param rewrite     flag for rewriting file
+     * @param params      parameters for creating path to files storage
      * @return path to file in storage
      */
     protected String uploadFile(String documentUrl, InputStream inputStream, FormDataContentDisposition fileDetail, boolean rewrite, Map<String, Object> params) {
@@ -69,7 +69,7 @@ public abstract class Resources {
                 fileName = fileDetail.getFileName();
             } else {
                 // get the InputStream from the URL
-                URL url =  new URL(documentUrl);
+                URL url = new URL(documentUrl);
                 uploadedInputStream = url.openStream();
                 fileName = FilenameUtils.getName(url.getPath());
             }
@@ -83,7 +83,7 @@ public abstract class Resources {
                 // save file with rewrite if exists
                 Files.copy(uploadedInputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } else {
-                if (file.exists()){
+                if (file.exists()) {
                     // get file with new name
                     file = getFreeFileName(documentStoragePath, fileName);
                 }
@@ -92,7 +92,7 @@ public abstract class Resources {
                 Files.copy(uploadedInputStream, path);
                 pathname = path.toString();
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             throw new TotalGroupDocsException(ex.getMessage(), ex);
         } finally {
             try {
@@ -108,12 +108,13 @@ public abstract class Resources {
 
     /**
      * Date formats with time zone as specified in the HTTP RFC.
+     *
      * @see <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">Section 7.1.1.1 of RFC 7231</a>
      */
-    private static final DateTimeFormatter[] DATE_FORMATTERS = new DateTimeFormatter[] {
+    private static final DateTimeFormatter[] DATE_FORMATTERS = new DateTimeFormatter[]{
             DateTimeFormatter.RFC_1123_DATE_TIME,
             DateTimeFormatter.ofPattern("EEEE, dd-MMM-yy HH:mm:ss zz", Locale.US),
-            DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy",Locale.US).withZone(GMT)
+            DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy", Locale.US).withZone(GMT)
     };
 
     /**
@@ -129,7 +130,7 @@ public abstract class Resources {
     /**
      * Download file
      *
-     * @param response http response
+     * @param response   http response
      * @param pathToFile path to file
      */
     protected void downloadFile(HttpServletResponse response, String pathToFile) {
@@ -138,10 +139,10 @@ public abstract class Resources {
         fillResponseHeaderDisposition(response, fileName);
         long length;
         try (InputStream inputStream = new FileInputStream(pathToFile);
-             OutputStream outputStream = response.getOutputStream()){
+             OutputStream outputStream = response.getOutputStream()) {
             // download the document
             length = IOUtils.copyLarge(inputStream, outputStream);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new TotalGroupDocsException(ex.getMessage(), ex);
         }
         // set response content disposition
@@ -151,26 +152,27 @@ public abstract class Resources {
     /**
      * Download PDF file
      *
-     * @param response http response
+     * @param response   http response
      * @param fileStream file stream
-     * @param fileName file name
+     * @param fileName   file name
      */
     protected void respondWithPdf(HttpServletResponse response, InputStream inputStream, String fileName) {
-        try (OutputStream outputStream = response.getOutputStream()){
+        try (OutputStream outputStream = response.getOutputStream()) {
             int size = inputStream.available();
-            
+
             response.setHeader("Content-disposition", "attachment; filename=" + fileName);
             response.setHeader("Content-Type", "application/pdf");
             response.setHeader("Content-Length", String.valueOf(size));
-    
+
             IOUtils.copyLarge(inputStream, outputStream);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new TotalGroupDocsException(ex.getMessage(), ex);
         }
     }
 
     /**
      * Constructor
+     *
      * @param globalConfiguration global application configuration
      * @throws UnknownHostException
      */
@@ -191,11 +193,12 @@ public abstract class Resources {
 
     /**
      * Rename file if exist
+     *
      * @param directory directory where files are located
-     * @param fileName file name
+     * @param fileName  file name
      * @return new file with new file name
      */
-    protected File getFreeFileName(String directory, String fileName){
+    protected File getFreeFileName(String directory, String fileName) {
         File file = null;
         try {
             File folder = new File(directory);

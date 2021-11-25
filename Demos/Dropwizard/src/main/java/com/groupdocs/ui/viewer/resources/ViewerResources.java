@@ -15,7 +15,6 @@ import com.groupdocs.ui.viewer.model.response.UploadedDocumentEntity;
 import com.groupdocs.ui.viewer.service.ViewerService;
 import com.groupdocs.ui.viewer.service.ViewerServiceImpl;
 import com.groupdocs.ui.viewer.views.Viewer;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -101,7 +100,7 @@ public class ViewerResources extends Resources {
         if (StringUtils.isEmpty(loadDocumentRequest.getGuid())) {
             throw new TotalGroupDocsException("Document guid is empty!");
         }
-        return viewerService.loadDocument(loadDocumentRequest, globalConfiguration.getViewer().getPreloadPageCount() == 0);
+        return viewerService.loadDocument(loadDocumentRequest, globalConfiguration.getViewer().getPreloadPageCount() == 0, false);
     }
 
     /**
@@ -115,7 +114,7 @@ public class ViewerResources extends Resources {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public LoadDocumentEntity loadThumbnails(LoadDocumentRequest loadDocumentRequest) {
-        return viewerService.loadDocument(loadDocumentRequest, true);
+        return viewerService.loadDocument(loadDocumentRequest, true, false);
     }
 
     /**
@@ -143,7 +142,7 @@ public class ViewerResources extends Resources {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public LoadDocumentEntity loadPrint(LoadDocumentRequest loadDocumentRequest) {
-        return viewerService.loadDocument(loadDocumentRequest, true);
+        return viewerService.loadDocument(loadDocumentRequest, true, true);
     }
 
     /**

@@ -1,35 +1,52 @@
 package com.groupdocs.ui.viewer.cache;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.groupdocs.ui.common.exception.TotalGroupDocsException;
-import com.groupdocs.ui.viewer.cache.mixin.*;
+import com.groupdocs.ui.viewer.cache.model.*;
 import com.groupdocs.ui.viewer.exception.DiskAccessException;
+import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.*;
 import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
-import java.lang.Character;
 
 public class FileViewerCache implements ViewerCache {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final long WAIT_TIMEOUT = 100L;
 
     static {
-        MAPPER.addMixIn(CadViewInfo.class, CadViewInfoMixIn.class);
-        MAPPER.addMixIn(Character.class, CharacterMixIn.class);
-        MAPPER.addMixIn(Layer.class, LayerMixIn.class);
-        MAPPER.addMixIn(Layout.class, LayoutMixIn.class);
-        MAPPER.addMixIn(Line.class, LineMixIn.class);
-        MAPPER.addMixIn(OutlookViewInfo.class, OutlookViewInfoMixIn.class);
-        MAPPER.addMixIn(Page.class, PageMixIn.class);
-        MAPPER.addMixIn(PdfViewInfo.class, PdfViewInfoMixIn.class);
-        MAPPER.addMixIn(ProjectManagementViewInfo.class, ProjectManagementViewInfoMixIn.class);
-        MAPPER.addMixIn(ViewInfo.class, ViewInfoMixIn.class);
-        MAPPER.addMixIn(Word.class, WordMixIn.class);
+        MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+        MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+        SimpleModule module = new SimpleModule(Version.unknownVersion());
+
+        SimpleAbstractTypeResolver resolver = new SimpleAbstractTypeResolver();
+        resolver.addMapping(ArchiveViewInfo.class, ArchiveViewInfoModel.class);
+        resolver.addMapping(Attachment.class, AttachmentModel.class);
+        resolver.addMapping(CadViewInfo.class, CadViewInfoModel.class);
+        resolver.addMapping(Character.class, CharacterModel.class);
+        resolver.addMapping(FileInfo.class, FileInfoModel.class);
+        resolver.addMapping(Layer.class, LayerModel.class);
+        resolver.addMapping(Layout.class, LayoutModel.class);
+        resolver.addMapping(Line.class, LineModel.class);
+        resolver.addMapping(LotusNotesViewInfo.class, LotusNotesViewInfoModel.class);
+        resolver.addMapping(OutlookViewInfo.class, OutlookViewInfoModel.class);
+        resolver.addMapping(Page.class, PageModel.class);
+        resolver.addMapping(PdfViewInfo.class, PdfViewInfoModel.class);
+        resolver.addMapping(ProjectManagementViewInfo.class, ProjectManagementViewInfoModel.class);
+        resolver.addMapping(ViewInfo.class, ViewInfoModel.class);
+        resolver.addMapping(Word.class, WordModel.class);
+
+        module.setAbstractTypes(resolver);
+
+        MAPPER.registerModule(module);
     }
 
     /**
@@ -106,27 +123,27 @@ public class FileViewerCache implements ViewerCache {
             set(key, defaultEntry);
             return defaultEntry;
         }
-        try {
+        try (final FileInputStream inputStream = new FileInputStream(cacheFilePath)) {
+            // Avoid using byte array in case of having big objects
+            final byte[] bytes = IOUtils.toByteArray(inputStream);
+
             for (Class<?> clazz : clazzs) {
-                final FileInputStream inputStream = new FileInputStream(cacheFilePath);
                 try {
-                    return (T) MAPPER.readValue(inputStream, clazz);
-                } catch (UnrecognizedPropertyException | InvalidDefinitionException e) {
+                    return (T) MAPPER.readValue(bytes, clazz);
+                } catch (JsonMappingException e) {
                     // continue;
-                } finally {
-                    inputStream.close();
                 }
             }
-        } catch (MismatchedInputException e) {
+            final InputStream fileInputStream = new ByteArrayInputStream(bytes);
             try {
-                return (T) new FileInputStream(cacheFilePath);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                return (T) fileInputStream;
+            } catch (Exception e) {
+                fileInputStream.close();
+                throw new TotalGroupDocsException("Cache file '" + cacheFilePath + "' was not deserialized correctly!", e);
             }
         } catch (IOException e) {
-            throw new TotalGroupDocsException("Cache loading error", e);
+            throw new TotalGroupDocsException("Cache loading error - IO exception", e);
         }
-        return null;
     }
 
 
