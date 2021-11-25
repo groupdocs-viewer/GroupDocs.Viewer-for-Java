@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.groupdocs.ui.common.exception.TotalGroupDocsException;
 import com.groupdocs.ui.viewer.cache.model.*;
 import com.groupdocs.ui.viewer.exception.DiskAccessException;
+import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.*;
 import com.groupdocs.viewer.utils.PathUtils;
@@ -75,6 +76,12 @@ public class FileViewerCache implements ViewerCache {
 
         this.mCachePath = cachePath;
         this.mCacheSubFolder = cacheSubFolder;
+
+        // Setting factory before using custom models for caching
+        // You still can use embedded implementation of models (*Impl) if you don't need
+        // any specific annotations for serialization. In this way no need to set the factory
+        // Embedded models are just implements Serializable interface
+        CacheableFactory.setInstance(new FileViewerCacheableFactory());
     }
 
     /**

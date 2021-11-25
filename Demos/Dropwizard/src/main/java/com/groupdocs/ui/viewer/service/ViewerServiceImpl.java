@@ -179,12 +179,6 @@ public class ViewerServiceImpl implements ViewerService {
 
             ViewerCache cache = new FileViewerCache(mCachePath, fileCacheSubFolder);
 
-            // Setting factory before using custom models for caching
-            // You still can use embedded implementation of models (*Impl) if you don't need
-            // any specific annotations for serialization. In this way no need to set the factory
-            // Embedded models are just implements Serializable interface
-            CacheableFactory.setInstance(new FileViewerCacheableFactory());
-
             if (viewerConfiguration.isHtmlMode()) {
                 customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
             } else {
@@ -193,8 +187,6 @@ public class ViewerServiceImpl implements ViewerService {
             loadDocumentEntity = getLoadDocumentEntity(loadAllPages, documentGuid, fileCacheSubFolder, customViewer, printVersion);
             loadDocumentEntity.setShowGridLines(viewerConfiguration.isShowGridLines());
             loadDocumentEntity.setPrintAllowed(viewerConfiguration.isPrintAllowed());
-        } catch (EvaluationModeException e) {
-            throw e;
         } catch (IncorrectPasswordException | PasswordRequiredException ex) {
             logger.error("Exception that is connected to password", ex);
             throw new TotalGroupDocsException(Utils.getExceptionMessage(password), ex);
@@ -220,12 +212,6 @@ public class ViewerServiceImpl implements ViewerService {
             String fileCacheSubFolder = createFileCacheSubFolderPath(documentGuid);
 
             ViewerCache cache = new FileViewerCache(mCachePath, fileCacheSubFolder);
-
-            // Setting factory before using custom models for caching
-            // You still can use embedded implementation of models (*Impl) if you don't need
-            // any specific annotations for serialization. In this way no need to set the factory
-            // Embedded models are just implements Serializable interface
-            CacheableFactory.setInstance(new FileViewerCacheableFactory());
 
             if (viewerConfiguration.isHtmlMode()) {
                 customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
@@ -278,12 +264,6 @@ public class ViewerServiceImpl implements ViewerService {
             PagesInfoStorage.savePageAngle(fileCacheSubFolder, pageNumber, newAngle);
             // Generate new cache
             ViewerCache cache = new FileViewerCache(mCachePath, fileCacheSubFolder);
-
-            // Setting factory before using custom models for caching
-            // You still can use embedded implementation of models (*Impl) if you don't need
-            // any specific annotations for serialization. In this way no need to set the factory
-            // Embedded models are just implements Serializable interface
-            CacheableFactory.setInstance(new FileViewerCacheableFactory());
 
             if (viewerConfiguration.isHtmlMode()) {
                 customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password), pageNumber, newAngle);
@@ -339,12 +319,6 @@ public class ViewerServiceImpl implements ViewerService {
         try {
             String fileCacheSubFolder = createFileCacheSubFolderPath(documentGuid);
             ViewerCache cache = new FileViewerCache(mCachePath, fileCacheSubFolder);
-
-            // Setting factory before using custom models for caching
-            // You still can use embedded implementation of models (*Impl) if you don't need
-            // any specific annotations for serialization. In this way no need to set the factory
-            // Embedded models are just implements Serializable interface
-            CacheableFactory.setInstance(new FileViewerCacheableFactory());
 
             if (viewerConfiguration.isHtmlMode()) {
                 customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
