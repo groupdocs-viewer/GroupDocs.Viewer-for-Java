@@ -36,7 +36,7 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
-    "@groupdocs.examples.angular/viewer": "^0.8.68",
+    "@groupdocs.examples.angular/viewer": "^0.8.77",
     "@nrwl/angular": "^8.8.2",
     "core-js": "^2.5.4",
     "rxjs": "~6.4.0",

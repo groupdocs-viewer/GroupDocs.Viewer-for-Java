@@ -98,7 +98,7 @@ public class ViewerController {
     @RequestMapping(method = RequestMethod.POST, value = "/loadDocumentDescription", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public LoadDocumentEntity loadDocumentDescription(@RequestBody LoadDocumentRequest loadDocumentRequest) {
-        return viewerService.loadDocument(loadDocumentRequest, viewerService.getViewerConfiguration().getPreloadPageCount() == 0);
+        return viewerService.loadDocument(loadDocumentRequest, viewerService.getViewerConfiguration().getPreloadPageCount() == 0, false);
     }
 
     /**
@@ -110,7 +110,7 @@ public class ViewerController {
     @RequestMapping(method = RequestMethod.POST, value = "/loadThumbnails", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public LoadDocumentEntity loadThumbnails(@RequestBody LoadDocumentRequest loadDocumentRequest) {
-        return viewerService.loadDocument(loadDocumentRequest, true);
+        return viewerService.loadDocument(loadDocumentRequest, true, false);
     }
 
     /**
@@ -122,7 +122,7 @@ public class ViewerController {
     @RequestMapping(method = RequestMethod.POST, value = "/loadPrint", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public LoadDocumentEntity loadPrint(@RequestBody LoadDocumentRequest loadDocumentRequest) {
-        return viewerService.loadDocument(loadDocumentRequest, true);
+        return viewerService.loadDocument(loadDocumentRequest, true, true);
     }
 
     /**

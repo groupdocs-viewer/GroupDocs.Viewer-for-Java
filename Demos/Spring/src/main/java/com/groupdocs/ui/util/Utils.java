@@ -3,6 +3,7 @@ package com.groupdocs.ui.util;
 import com.groupdocs.ui.config.ServerConfiguration;
 import com.groupdocs.ui.exception.TotalGroupDocsException;
 import com.groupdocs.viewer.Viewer;
+import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
@@ -200,7 +201,7 @@ public class Utils {
             int fixWidth = fixPage.getWidth();
             int fixHeight = fixPage.getHeight();
             if (page.getWidth() == 0 && page.getHeight() == 0) {
-                pages.set(n, new Page(page.getNumber(), page.isVisible(), (fixWidth == 0) ? lastFixWidth : fixWidth, (fixHeight == 0) ? lastFixHeight : fixHeight, page.getLines()));
+                pages.set(n, CacheableFactory.getInstance().newPage(page.getNumber(), page.isVisible(), (fixWidth == 0) ? lastFixWidth : fixWidth, (fixHeight == 0) ? lastFixHeight : fixHeight, page.getLines()));
             }
             lastFixWidth = pages.get(n).getWidth();
             lastFixHeight = pages.get(n).getHeight();
