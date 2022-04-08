@@ -16,17 +16,17 @@ public class TestsSetUp {
     public final void beforeSuite() {
 //        ViewerLogger.setLogger(new ConsoleLogger(false, true, true, true));
 
-        final String comparisonLicense = System.getenv("GROUPDOCS_LIC_PATH");
-        if (comparisonLicense == null) {
+        final String viewerLicense = System.getenv("GROUPDOCS_LIC_PATH");
+        if (viewerLicense == null) {
             System.err.println("Variable %GROUPDOCS_LIC_PATH% is not set! Running tests without license");
         } else {
-            if (!comparisonLicense.startsWith("http") && Files.exists(Paths.get(comparisonLicense))) {
-                System.out.println("Using license: " + comparisonLicense);
-                new com.groupdocs.viewer.License().setLicense(comparisonLicense);
-            } else if (comparisonLicense.startsWith("http")) {
-                System.out.println("Using remote license: " + comparisonLicense);
+            if (!viewerLicense.startsWith("http") && Files.exists(Paths.get(viewerLicense))) {
+                System.out.println("Using license: " + viewerLicense);
+                new com.groupdocs.viewer.License().setLicense(viewerLicense);
+            } else if (viewerLicense.startsWith("http")) {
+                System.out.println("Using remote license: " + viewerLicense);
                 try {
-                    URL website = new URL(comparisonLicense);
+                    URL website = new URL(viewerLicense);
                     final URLConnection urlConnection = website.openConnection();
                     urlConnection.setConnectTimeout(5000);
                     urlConnection.setReadTimeout(3000);
@@ -34,7 +34,7 @@ public class TestsSetUp {
                         new com.groupdocs.viewer.License().setLicense(inputStream);
                     }
                 } catch (Exception e) {
-                    System.err.println("Can't load remote license from '" + comparisonLicense + "' (Do you need to activate vpn?)");
+                    System.err.println("Can't load remote license from '" + viewerLicense + "' (Do you need to activate vpn?)");
                     throw new IllegalStateException("Can't load license. Is VPN enabling required?");
                 }
             } else {

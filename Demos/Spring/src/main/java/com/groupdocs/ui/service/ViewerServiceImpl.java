@@ -43,6 +43,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Service
@@ -408,7 +409,7 @@ public class ViewerServiceImpl implements ViewerService {
         try {
             if (viewerConfiguration.isHtmlMode() && !printVersion) {
                 String htmlFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".html";
-                return FileUtils.readFileToString(new File(htmlFilePath));
+                return FileUtils.readFileToString(new File(htmlFilePath), StandardCharsets.UTF_8);
             } else {
                 String pngFilePath = cachePath + "/" + fileFolderName + "/p" + pageNumber + ".png";
 
