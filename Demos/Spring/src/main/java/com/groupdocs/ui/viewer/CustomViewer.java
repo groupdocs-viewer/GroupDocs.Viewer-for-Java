@@ -5,14 +5,16 @@ import com.groupdocs.ui.cache.model.*;
 import com.groupdocs.ui.config.ViewerConfiguration;
 import com.groupdocs.ui.util.Utils;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.interfaces.*;
+import com.groupdocs.viewer.interfaces.FileStreamFactory;
+import com.groupdocs.viewer.interfaces.PageStreamFactory;
 import com.groupdocs.viewer.options.*;
-import com.groupdocs.viewer.results.*;
+import com.groupdocs.viewer.results.ViewInfo;
 
 import java.awt.*;
 import java.io.*;
 
 public abstract class CustomViewer implements Closeable {
+    private static final Object mSync = new Object();
     private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{
             ArchiveViewInfoModel.class,
             AttachmentModel.class,
@@ -86,7 +88,7 @@ public abstract class CustomViewer implements Closeable {
         String cacheKey = "view_info.dat";
 
         if (cache.doesNotContains(cacheKey)) {
-            synchronized (filePath) {
+            synchronized (mSync) {
                 if (cache.doesNotContains(cacheKey)) {
                     return cache.getValue(cacheKey, this.readViewInfo(viewInfoOptions), DESERIALIZATION_CLASSES);
                 }
@@ -113,9 +115,11 @@ public abstract class CustomViewer implements Closeable {
 
     public void createPdf() {
         String fileKey = "f.pdf";
-        synchronized (this.filePath) {
-            if (this.cache.doesNotContains(fileKey)) {
-                this.viewer.view(this.pdfViewOptions);
+        if (this.cache.doesNotContains(fileKey)) {
+            synchronized (mSync) {
+                if (this.cache.doesNotContains(fileKey)) {
+                    this.viewer.view(this.pdfViewOptions);
+                }
             }
         }
     }

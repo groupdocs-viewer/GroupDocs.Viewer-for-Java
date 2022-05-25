@@ -13,8 +13,8 @@ import com.groupdocs.ui.model.response.PageDescriptionEntity;
 import com.groupdocs.ui.model.response.UploadedDocumentEntity;
 import com.groupdocs.ui.service.ViewerService;
 import com.groupdocs.ui.util.Utils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -135,15 +131,15 @@ public class ViewerController {
         String pdfFileName = fileName.replace(fileExtension, "pdf");
         InputStream inputStream = viewerService.getPdf(loadDocumentRequest);
 
-        try (OutputStream outputStream = response.getOutputStream()){
+        try (OutputStream outputStream = response.getOutputStream()) {
             int size = inputStream.available();
-            
+
             response.setHeader("Content-disposition", "attachment; filename=" + fileName);
             response.setHeader("Content-Type", "application/pdf");
             response.setHeader("Content-Length", String.valueOf(size));
-    
+
             IOUtils.copyLarge(inputStream, outputStream);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             logger.error("Exception in opening document", ex);
             throw new TotalGroupDocsException(ex.getMessage(), ex);
         }

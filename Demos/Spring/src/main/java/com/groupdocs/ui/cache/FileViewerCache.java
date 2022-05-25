@@ -13,12 +13,14 @@ import com.groupdocs.ui.exception.TotalGroupDocsException;
 import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.*;
-import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileViewerCache implements ViewerCache {
+    private static final Object mSync = new Object();
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final long WAIT_TIMEOUT = 100L;
 
@@ -53,29 +55,19 @@ public class FileViewerCache implements ViewerCache {
     /**
      * Gets the Relative or absolute path to the cache folder.
      */
-    public String mCachePath;
-    /**
-     * Gets the sub-folder to append to the CachePath.
-     */
-    public String mCacheSubFolder;
+    public Path mCachePath;
 
     /**
      * Initializes a new instance of the FileViewerCache class.
      *
-     * @param cachePath      or absolute path where document cache will be stored.
-     * @param cacheSubFolder sub-folder to append to cachePath.
+     * @param cachePath or absolute path where document cache will be stored.
      */
-    public FileViewerCache(String cachePath, String cacheSubFolder) {
+    public FileViewerCache(Path cachePath) {
         if (cachePath == null) {
             throw new IllegalArgumentException("cachePath");
         }
 
-        if (cacheSubFolder == null) {
-            throw new IllegalArgumentException("cacheSubFolder");
-        }
-
         this.mCachePath = cachePath;
-        this.mCacheSubFolder = cacheSubFolder;
 
 
         // Setting factory before using custom models for caching
@@ -157,21 +149,30 @@ public class FileViewerCache implements ViewerCache {
 
     @Override
     public String getCacheFilePath(String key) {
-        String folderPath = PathUtils.combine(this.getCachePath(), this.getCacheSubFolder());
-        String filePath = PathUtils.combine(folderPath, key);
+        Path keyCachePath = getCachePath();
 
-        final File file = new File(folderPath);
-        if (!file.exists() && !file.mkdirs()) {
-            throw new DiskAccessException("create cache directory", file);
+        try {
+            if (Files.notExists(keyCachePath)) {
+                synchronized (mSync) {
+                    if (Files.notExists(keyCachePath)) {
+                        Files.createDirectories(keyCachePath);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw new DiskAccessException("create cache directory", keyCachePath);
         }
+        Path filePath = keyCachePath.resolve(key);
 
-        return filePath;
+        return filePath.toString();
     }
 
     @Override
     public boolean doesNotContains(String key) {
-        String file = PathUtils.combine(this.getCachePath(), this.getCacheSubFolder(), key);
-        return !new File(file).exists();
+        Path file = getCachePath().resolve(key);
+        synchronized (mSync) {
+            return Files.notExists(file);
+        }
     }
 
     private OutputStream getStream(String path) throws FileNotFoundException, InterruptedException {
@@ -195,12 +196,7 @@ public class FileViewerCache implements ViewerCache {
     }
 
     @Override
-    public String getCachePath() {
+    public Path getCachePath() {
         return mCachePath;
-    }
-
-    @Override
-    public String getCacheSubFolder() {
-        return mCacheSubFolder;
     }
 }

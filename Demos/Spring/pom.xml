@@ -10,7 +10,7 @@
     <packaging>${packaging.type}</packaging>
 
     <name>GroupDocs.Viewer for Java Spring Sample</name>
-    <url>http://groupdocs.com</url>
+    <url>https://groupdocs.com</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -266,17 +266,19 @@
             <!-- Example of usage tomcat7 plugin for deploying
              for deploying/undeploying use war profile '-P war',
              for example: 'mvn -P war tomcat7:deploy'-->
-            <!--
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://localhost:8080/manager/text</url>
-                    <server>TomcatServer</server>
-                    <path>/app</path>
-                </configuration>
-            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.tomcat.maven</groupId>-->
+<!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
+<!--                <version>2.2</version>-->
+<!--                <configuration>-->
+<!--                    <url>http://localhost:8080/manager/text</url>-->
+<!--                    <server>TomcatServer</server>-->
+<!--                    <username>admin</username>-->
+<!--                    <password>password</password>-->
+<!--                    <path>/</path>-->
+<!--                    <update>true</update>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

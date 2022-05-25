@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -141,7 +143,11 @@ public class Utils {
      */
     private static HttpHeaders createFileDownloadHeaders(String fileName, Long fileLength, MediaType mediaType) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentDispositionFormData("attachment", fileName);
+        try {
+            httpHeaders.setContentDispositionFormData("attachment", URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString()));
+        } catch (Exception e) {
+            logger.warn("Can't set attachment filename header", e);
+        }
         httpHeaders.setContentType(mediaType);
         httpHeaders.set("Content-Description", "File Transfer");
         httpHeaders.set("Content-Transfer-Encoding", "binary");

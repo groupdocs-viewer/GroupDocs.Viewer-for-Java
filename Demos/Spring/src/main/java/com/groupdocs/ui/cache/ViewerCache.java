@@ -1,5 +1,7 @@
 package com.groupdocs.ui.cache;
 
+import java.nio.file.Path;
+
 /**
  * Defines methods required for storing rendered document and document resources сache.
  */
@@ -7,12 +9,7 @@ public interface ViewerCache {
     /**
      * The Relative or absolute path to the cache folder.
      */
-    String getCachePath();
-
-    /**
-     * The sub-folder to append to the CachePath.
-     */
-    String getCacheSubFolder();
+    Path getCachePath();
 
     /**
      * Inserts a cache entry into the cache.

@@ -1,6 +1,7 @@
 package com.groupdocs.ui.exception;
 
 import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Wrapper for disk access exceptions
@@ -10,6 +11,10 @@ public class DiskAccessException extends RuntimeException {
 
     public DiskAccessException(String message, File file) {
         this(message, file.getAbsolutePath());
+    }
+
+    public DiskAccessException(String message, Path path) {
+        this(message, path.toString());
     }
 
     public DiskAccessException(String message, String path) {

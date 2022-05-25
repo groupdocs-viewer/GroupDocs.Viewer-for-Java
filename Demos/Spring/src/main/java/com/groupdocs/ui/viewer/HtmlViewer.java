@@ -80,7 +80,7 @@ public class HtmlViewer extends CustomViewer {
         return pdfViewOptions;
     }
 
-    private void setCommonViewOptions(com.groupdocs.viewer.options.ViewOptions viewOptions){
+    private void setCommonViewOptions(com.groupdocs.viewer.options.ViewOptions viewOptions) {
         viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);
         viewOptions.getSpreadsheetOptions().setSkipEmptyColumns(true);
         viewOptions.getSpreadsheetOptions().setSkipEmptyRows(true);

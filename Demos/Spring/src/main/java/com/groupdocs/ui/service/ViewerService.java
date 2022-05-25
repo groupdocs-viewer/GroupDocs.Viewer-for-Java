@@ -9,8 +9,8 @@ import com.groupdocs.ui.model.response.LoadDocumentEntity;
 import com.groupdocs.ui.model.response.PageDescriptionEntity;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
 import java.io.InputStream;
+import java.util.List;
 
 public interface ViewerService {
 
@@ -32,7 +32,7 @@ public interface ViewerService {
      * Get document description
      *
      * @param loadDocumentRequest document data for loading
-     * @param loadAllPages            to load all pages data of the document
+     * @param loadAllPages        to load all pages data of the document
      * @return document info container
      */
     LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion);
