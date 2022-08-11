@@ -1,0 +1,74 @@
+package com.groupdocs.ui.viewer.factory;
+
+import com.groupdocs.ui.cache.ViewerCache;
+import com.groupdocs.ui.exception.ReadWriteException;
+import com.groupdocs.viewer.interfaces.PageStreamFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+public class CustomPageStreamFactory implements PageStreamFactory {
+    private static final Logger logger = LoggerFactory.getLogger(CustomPageStreamFactory.class);
+    private final String extension;
+    private final Path tempDirectory;
+    private final ViewerCache cache;
+
+    public CustomPageStreamFactory(ViewerCache cache, String extension) {
+        this.cache = cache;
+        this.extension = extension;
+
+        try {
+            this.tempDirectory = Files.createTempDirectory("gd_sp_psf_");
+        } catch (IOException e) {
+            logger.warn("Can't create temp directory. Can't create PageStreamFactory object.", e);
+            throw new ReadWriteException(e);
+        }
+    }
+
+    @Override
+    public OutputStream createPageStream(int pageNumber) {
+        String cacheKey = createCacheKey(pageNumber);
+        final Path resourcePath = tempDirectory.resolve(cacheKey);
+
+        try {
+            return new FileOutputStream(resourcePath.toFile());
+        } catch (FileNotFoundException e) {
+            logger.warn("Can't create temp file '" + resourcePath + "'. Can't create page stream.", e);
+            throw new ReadWriteException(e);
+        }
+    }
+
+    @Override
+    public void closePageStream(int pageNumber, OutputStream outputStream) {
+        final String cacheKey = createCacheKey(pageNumber);
+        final Path resourcePath = tempDirectory.resolve(cacheKey);
+
+        try {
+            try (InputStream inputStream = new BufferedInputStream(Files.newInputStream(resourcePath))) {
+                this.cache.set(cacheKey, inputStream);
+            } catch (IOException e) {
+                logger.warn("Can't copy temp file '" + resourcePath + "' to cache.", e);
+                throw new RuntimeException(e);
+            }
+
+            outputStream.close();
+        } catch (IOException e) {
+            logger.warn("Can't close page stream or move data to cache.", e);
+        } finally {
+            try {
+                if (!Files.deleteIfExists(resourcePath)) {
+                    Files.delete(resourcePath);
+                }
+            } catch (IOException e) {
+                logger.warn("Can't delete temp page stream file.", e);
+            }
+        }
+    }
+
+    private String createCacheKey(int pageNumber) {
+        return "p" + pageNumber + extension;
+    }
+}

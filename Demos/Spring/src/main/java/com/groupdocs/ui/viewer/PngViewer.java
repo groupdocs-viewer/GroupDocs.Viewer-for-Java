@@ -1,17 +1,22 @@
 package com.groupdocs.ui.viewer;
 
 import com.groupdocs.ui.cache.ViewerCache;
+import com.groupdocs.ui.exception.TotalGroupDocsException;
+import com.groupdocs.ui.viewer.factory.CustomFileStreamFactory;
+import com.groupdocs.ui.viewer.factory.CustomPageStreamFactory;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class PngViewer extends CustomViewer {
-
-    private final PngViewOptions pngViewOptions;
+public class PngViewer extends CustomViewer<PngViewOptions> {
+    public static final String CACHE_PAGES_EXTENSION = ".png";
 
     public PngViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
         this(filePath, cache, loadOptions, -1, 0);
@@ -19,13 +24,13 @@ public class PngViewer extends CustomViewer {
 
     public PngViewer(String filePath, ViewerCache cache, LoadOptions loadOptions, int pageNumber/* = -1*/, int newAngle/* = 0*/) {
         super(filePath, cache, loadOptions);
-        this.pngViewOptions = this.createPngViewOptions(pageNumber, newAngle);
+        this.viewOptions = this.createPngViewOptions(pageNumber, newAngle);
         this.pdfViewOptions = this.createPdfViewOptions();
-        this.viewInfoOptions = ViewInfoOptions.fromPngViewOptions(this.pngViewOptions);
+        this.viewInfoOptions = ViewInfoOptions.fromPngViewOptions(this.viewOptions);
     }
 
     private PngViewOptions createPngViewOptions(int passedPageNumber/* = -1*/, int newAngle/* = 0*/) {
-        PngViewOptions createdPngViewOptions = new PngViewOptions(new CustomPageStreamFactory(".png"));
+        PngViewOptions createdPngViewOptions = new PngViewOptions(new CustomPageStreamFactory(this.cache, CACHE_PAGES_EXTENSION));
 
         if (passedPageNumber >= 0 && newAngle != 0) {
             Rotation rotationAngle = getRotationByAngle(newAngle);
@@ -38,35 +43,13 @@ public class PngViewer extends CustomViewer {
     }
 
     private com.groupdocs.viewer.options.PdfViewOptions createPdfViewOptions() {
-        PdfViewOptions pdfViewOptions = new PdfViewOptions(new CustomFileStreamFactory(".pdf"));
+        PdfViewOptions pdfViewOptions = new PdfViewOptions(new CustomFileStreamFactory(this.cache, ".pdf"));
         setWatermarkOptions(pdfViewOptions);
         return pdfViewOptions;
     }
 
-    public void createCache() {
-        ViewInfo viewInfo = this.getViewInfo();
-        if (viewInfo == null) {
-            throw new IllegalStateException("Can't get ViewInfo. The problem can be with deserealization (DESERIALIZATION_CLASSES)");
-        }
-
-        synchronized (this.filePath) {
-            int[] missingPages = this.getPagesMissingFromCache(viewInfo.getPages());
-
-            if (missingPages.length > 0) {
-                this.viewer.view(this.pngViewOptions, missingPages);
-            }
-        }
-    }
-
-    private int[] getPagesMissingFromCache(List<Page> pages) {
-        List<Integer> missingPages = new ArrayList<>();
-        for (Page page : pages) {
-            String pageKey = "p" + page.getNumber() + ".png";
-            if (this.cache.doesNotContains(pageKey)) {
-                missingPages.add(page.getNumber());
-            }
-        }
-
-        return ArrayUtils.toPrimitive(missingPages.toArray(new Integer[0]));
+    @Override
+    protected int[] getPagesMissingFromCache(List<Page> pages) {
+        return super.getPagesMissingFromCache(pages, CACHE_PAGES_EXTENSION);
     }
 }

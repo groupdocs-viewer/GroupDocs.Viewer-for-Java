@@ -9,6 +9,8 @@ import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,39 +18,39 @@ public class PagesInfoStorage {
     private static final String FILE_NAME = "PagesInfo.xml";
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    public static int loadPageAngle(String fileCacheSubFolder, int pageNumber) {
+    public static int loadPageAngle(Path cacheDocumentDirectoryPath, int pageNumber) {
+        final Path pagesInfoFile = cacheDocumentDirectoryPath.resolve(FILE_NAME);
         try {
-            final File pagesInfoFile = new File(fileCacheSubFolder.endsWith(FILE_NAME) ? fileCacheSubFolder : PathUtils.combine(fileCacheSubFolder, FILE_NAME));
-            return MAPPER.readValue(FileUtils.readFileToByteArray(pagesInfoFile), PagesInfo.class).getPageByNumber(pageNumber).getAngle();
+            return MAPPER.readValue(pagesInfoFile.toFile(), PagesInfo.class).getPageByNumber(pageNumber).getAngle();
         } catch (Exception e) {
             throw new ReadWriteException(e);
         }
     }
 
-    public static void savePageAngle(String fileCacheSubFolder, int pageNumber, int newAngle) {
+    public static void savePageAngle(Path cacheDocumentDirectoryPath, int pageNumber, int newAngle) {
         try {
-            File pagesInfoFile = new File(fileCacheSubFolder.endsWith(FILE_NAME) ? fileCacheSubFolder : PathUtils.combine(fileCacheSubFolder, FILE_NAME));
+            Path pagesInfoFile = cacheDocumentDirectoryPath.endsWith(FILE_NAME) ? cacheDocumentDirectoryPath : cacheDocumentDirectoryPath.resolve(FILE_NAME);
 
-            if (pagesInfoFile.exists()) {
-                PagesInfoStorage.PagesInfo pagesInfo = MAPPER.readValue(pagesInfoFile, PagesInfoStorage.PagesInfo.class);
+            if (Files.exists(pagesInfoFile)) {
+                PagesInfoStorage.PagesInfo pagesInfo = MAPPER.readValue(pagesInfoFile.toFile(), PagesInfoStorage.PagesInfo.class);
                 final PagesInfoStorage.PagesInfo.PageData pageData = pagesInfo.getPageByNumber(pageNumber);
                 pageData.setAngle(newAngle);
 
-                MAPPER.writeValue(pagesInfoFile, pagesInfo);
+                MAPPER.writeValue(pagesInfoFile.toFile(), pagesInfo);
             }
         } catch (Exception e) {
             throw new ReadWriteException(e);
         }
     }
 
-    public static String createPagesInfo(String fileCacheSubFolder, ViewInfo viewInfo, boolean isViewerLicenseSet) {
+    public static void createPagesInfo(Path fileCacheSubFolder, ViewInfo viewInfo, boolean isViewerLicenseSet) {
         try {
-            final File file = new File(fileCacheSubFolder);
+            final File file = fileCacheSubFolder.toFile();
             if (!file.exists() && !file.mkdir()) {
                 throw new DiskAccessException("create pages info directory", file);
             }
 
-            final File pagesInfoFile = new File(PathUtils.combine(fileCacheSubFolder, FILE_NAME));
+            final File pagesInfoFile = fileCacheSubFolder.resolve(FILE_NAME).toFile();
             if (!pagesInfoFile.exists()) {
                 final PagesInfoStorage.PagesInfo pagesInfo = new PagesInfoStorage.PagesInfo();
                 List<Page> pages = viewInfo.getPages();
@@ -57,14 +59,13 @@ public class PagesInfoStorage {
                     if (!isViewerLicenseSet && i == 2) {
                         break; // only 2 pages in evaluation mode
                     }
-                    final PagesInfo.PageData pageData = new PagesInfo.PageData();
+                    final PagesInfoStorage.PagesInfo.PageData pageData = new PagesInfoStorage.PagesInfo.PageData();
                     pageData.setNumber(page.getNumber());
                     pageData.setAngle(0);
                     pagesInfo.getPages().add(pageData);
                 }
                 MAPPER.writeValue(pagesInfoFile, pagesInfo);
             }
-            return pagesInfoFile.getAbsolutePath();
         } catch (Exception e) {
             throw new ReadWriteException(e);
         }

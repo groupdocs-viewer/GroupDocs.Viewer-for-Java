@@ -25,7 +25,7 @@ public interface ViewerCache {
      * @param key A key identifying the requested entry.
      * @return true if the key was found.
      */
-    <T> T getValue(String key, T defaultEntry, Class<?>[] clazzs);
+    <T> T get(String key, DefaultValue<T> defaultEntry, Class<?>[] clazzs);
 
     /**
      * Gets cache file path;.
@@ -33,7 +33,11 @@ public interface ViewerCache {
      * @param key The cache file key.
      * @return Cache file path.
      */
-    String getCacheFilePath(String key);
+    Path getCacheFilePath(String key);
 
     boolean doesNotContains(String key);
+
+    interface DefaultValue<T> {
+        T create();
+    }
 }

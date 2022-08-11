@@ -1,20 +1,21 @@
 package com.groupdocs.ui.viewer;
 
 import com.groupdocs.ui.cache.ViewerCache;
-import com.groupdocs.viewer.interfaces.ResourceStreamFactory;
+import com.groupdocs.ui.viewer.factory.CustomFileStreamFactory;
+import com.groupdocs.ui.viewer.factory.CustomPageStreamFactory;
+import com.groupdocs.ui.viewer.factory.CustomResourceStreamFactory;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.Page;
-import com.groupdocs.viewer.results.Resource;
-import com.groupdocs.viewer.results.ViewInfo;
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HtmlViewer extends CustomViewer {
-
-    private final HtmlViewOptions htmlViewOptions;
+public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
+    public static final String CACHE_PAGES_EXTENSION = ".html";
 
     public HtmlViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
         this(filePath, cache, loadOptions, -1, 0);
@@ -22,42 +23,15 @@ public class HtmlViewer extends CustomViewer {
 
     public HtmlViewer(String filePath, ViewerCache cache, LoadOptions loadOptions, int pageNumber/* = -1*/, int newAngle/* = 0*/) {
         super(filePath, cache, loadOptions);
-        this.htmlViewOptions = this.createHtmlViewOptions(pageNumber, newAngle);
+        this.viewOptions = this.createHtmlViewOptions(pageNumber, newAngle);
         this.pdfViewOptions = this.createPdfViewOptions();
-        this.viewInfoOptions = ViewInfoOptions.fromHtmlViewOptions(this.htmlViewOptions);
+        this.viewInfoOptions = ViewInfoOptions.fromHtmlViewOptions(this.viewOptions);
     }
 
     private com.groupdocs.viewer.options.HtmlViewOptions createHtmlViewOptions(int passedPageNumber/* = -1*/, int newAngle/* = 0*/) {
-        HtmlViewOptions htmlViewOptions = HtmlViewOptions.forExternalResources(new CustomPageStreamFactory(".html"), new ResourceStreamFactory() {
-            @Override
-            public OutputStream createResourceStream(int pageNumber, Resource resource) {
-                String fileName = "p" + pageNumber + "_" + resource.getFileName();
-                String cacheFilePath = cache.getCacheFilePath(fileName);
-
-                try {
-                    return new FileOutputStream(cacheFilePath);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
-                }
-            }
-
-            @Override
-            public String createResourceUrl(int pageNumber, Resource resource) {
-                String urlPrefix = "/viewer/resources/" + new File(filePath).getName().replace(".", "_");
-                return urlPrefix + "/p" + pageNumber + "_" + resource.getFileName();
-            }
-
-            @Override
-            public void closeResourceStream(int pageNumber, Resource resource, OutputStream outputStream) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        HtmlViewOptions htmlViewOptions = HtmlViewOptions.forExternalResources(
+                new CustomPageStreamFactory(this.cache, CACHE_PAGES_EXTENSION),
+                new CustomResourceStreamFactory(cache, Paths.get(filePath).getFileName().toString()));
 
         htmlViewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);
         htmlViewOptions.getSpreadsheetOptions().setSkipEmptyColumns(true);
@@ -75,7 +49,7 @@ public class HtmlViewer extends CustomViewer {
     }
 
     private com.groupdocs.viewer.options.PdfViewOptions createPdfViewOptions() {
-        PdfViewOptions pdfViewOptions = new PdfViewOptions(new CustomFileStreamFactory(".pdf"));
+        PdfViewOptions pdfViewOptions = new PdfViewOptions(new CustomFileStreamFactory(this.cache, ".pdf"));
         setCommonViewOptions(pdfViewOptions);
         return pdfViewOptions;
     }
@@ -87,27 +61,8 @@ public class HtmlViewer extends CustomViewer {
         setWatermarkOptions(viewOptions);
     }
 
-    public void createCache() {
-        ViewInfo viewInfo = this.getViewInfo();
-
-        synchronized (this.filePath) {
-            int[] missingPages = this.getPagesMissingFromCache(viewInfo.getPages());
-
-            if (missingPages.length > 0) {
-                this.viewer.view(this.htmlViewOptions, missingPages);
-            }
-        }
-    }
-
-    private int[] getPagesMissingFromCache(List<Page> pages) {
-        List<Integer> missingPages = new ArrayList<Integer>();
-        for (Page page : pages) {
-            String pageKey = "p" + page.getNumber() + ".html";
-            if (this.cache.doesNotContains(pageKey)) {
-                missingPages.add(page.getNumber());
-            }
-        }
-
-        return ArrayUtils.toPrimitive(missingPages.toArray(new Integer[0]));
+    @Override
+    protected int[] getPagesMissingFromCache(List<Page> pages) {
+        return super.getPagesMissingFromCache(pages, CACHE_PAGES_EXTENSION);
     }
 }

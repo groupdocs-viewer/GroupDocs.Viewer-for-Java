@@ -5,9 +5,9 @@ import com.groupdocs.ui.exception.DiskAccessException;
 import com.groupdocs.ui.exception.ReadWriteException;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ public class PagesInfoStorage {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public static int loadPageAngle(Path cacheDocumentDirectoryPath, int pageNumber) {
+        final Path pagesInfoFile = cacheDocumentDirectoryPath.resolve(FILE_NAME);
         try {
-            final Path pagesInfoFile = cacheDocumentDirectoryPath.resolve(FILE_NAME);
-            return MAPPER.readValue(FileUtils.readFileToByteArray(pagesInfoFile.toFile()), PagesInfo.class).getPageByNumber(pageNumber).getAngle();
+            return MAPPER.readValue(pagesInfoFile.toFile(), PagesInfo.class).getPageByNumber(pageNumber).getAngle();
         } catch (Exception e) {
             throw new ReadWriteException(e);
         }

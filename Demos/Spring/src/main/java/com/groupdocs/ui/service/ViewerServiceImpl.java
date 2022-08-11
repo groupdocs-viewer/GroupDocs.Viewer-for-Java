@@ -43,6 +43,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,8 +54,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 public class ViewerServiceImpl implements ViewerService {
     private static final Logger logger = LoggerFactory.getLogger(ViewerServiceImpl.class);
-
-    private static final AtomicBoolean mSync = new AtomicBoolean(false);
+    private static final AtomicBoolean isCacheDirectoryNotExist = new AtomicBoolean(false);
     @Autowired
     private GlobalConfiguration globalConfiguration;
     @Autowired
@@ -180,7 +180,7 @@ public class ViewerServiceImpl implements ViewerService {
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         LoadDocumentEntity loadDocumentEntity;
-        CustomViewer customViewer = null;
+        CustomViewer<?> customViewer = null;
         try {
             final Path fileCachePath = createCacheDocumentDirectoryPath(documentGuid);
             ViewerCache cache = new FileViewerCache(fileCachePath);
@@ -213,7 +213,7 @@ public class ViewerServiceImpl implements ViewerService {
         Integer pageNumber = loadDocumentPageRequest.getPage();
         String password = loadDocumentPageRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
-        CustomViewer customViewer = null;
+        CustomViewer<?> customViewer = null;
         try {
             final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
             ViewerCache cache = new FileViewerCache(cacheDocumentDirectoryPath);
@@ -245,7 +245,7 @@ public class ViewerServiceImpl implements ViewerService {
         String password = rotateDocumentPagesRequest.getPassword();
         Integer angle = rotateDocumentPagesRequest.getAngle();
         int pageNumber = pages.get(0);
-        CustomViewer customViewer = null;
+        CustomViewer<?> customViewer = null;
 
         try {
             final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
@@ -325,7 +325,7 @@ public class ViewerServiceImpl implements ViewerService {
         String documentGuid = loadDocumentRequest.getGuid();
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
-        CustomViewer customViewer = null;
+        CustomViewer<?> customViewer = null;
         try {
             Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
             ViewerCache cache = new FileViewerCache(cacheDocumentDirectoryPath);
@@ -354,24 +354,26 @@ public class ViewerServiceImpl implements ViewerService {
         return fileCachePath;
     }
 
-    private PageDescriptionEntity getPageDescriptionEntity(CustomViewer customViewer, Path cacheDocumentDirectoryPath, int pageNumber) {
+    private PageDescriptionEntity getPageDescriptionEntity(CustomViewer<?> customViewer, Path cacheDocumentDirectoryPath, int pageNumber) {
         customViewer.createCache();
 
         ViewInfo viewInfo = customViewer.getViewInfo();
-        Utils.applyWidthHeightFix(customViewer.getViewer(), viewInfo);
         PageDescriptionEntity page = getPageInfo(viewInfo.getPages().get(pageNumber - 1), cacheDocumentDirectoryPath);
         page.setData(getPageContent(pageNumber, cacheDocumentDirectoryPath, false));
 
         return page;
     }
 
-    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentGuid, CustomViewer customViewer, boolean printVersion) {
+    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentGuid, CustomViewer<?> customViewer, boolean printVersion) {
         try {
             if (loadAllPages) {
                 customViewer.createCache();
             }
 
             ViewInfo viewInfo = customViewer.getViewInfo();
+            if (viewInfo == null) {
+                throw new TotalGroupDocsException("Can't get view info. Try again later.");
+            }
             LoadDocumentEntity loadDocumentEntity = new LoadDocumentEntity();
 
             final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
@@ -403,7 +405,6 @@ public class ViewerServiceImpl implements ViewerService {
     }
 
     private String getPageContent(int pageNumber, Path cacheDocumentDirectoryPath, boolean printVersion) {
-
         try {
             if (viewerConfiguration.isHtmlMode() && !printVersion) {
                 Path htmlFilePath = cacheDocumentDirectoryPath.resolve("p" + pageNumber + ".html");
@@ -420,15 +421,9 @@ public class ViewerServiceImpl implements ViewerService {
         }
     }
 
-    private InputStream getPdfFile(CustomViewer customViewer, Path cacheDocumentDirectoryPath) throws IOException {
+    private InputStream getPdfFile(CustomViewer<?> customViewer, Path cacheDocumentDirectoryPath) throws IOException {
         customViewer.createPdf();
 
-        InputStream pdfStream = getPdfFile(cacheDocumentDirectoryPath);
-
-        return pdfStream;
-    }
-
-    private InputStream getPdfFile(Path cacheDocumentDirectoryPath) throws IOException {
         Path pngFilePath = cacheDocumentDirectoryPath.resolve("f.pdf");
 
         byte[] fileBytes = FileUtils.readFileToByteArray(pngFilePath.toFile());
@@ -452,9 +447,9 @@ public class ViewerServiceImpl implements ViewerService {
         final String cacheFolderName = viewerConfiguration.getCacheFolderName();
         Path path = Paths.get(filesDirectory, cacheFolderName);
         try {
-            if (!mSync.get()) {
-                synchronized (mSync) {
-                    if (!mSync.getAndSet(true) && Files.notExists(path)) {
+            if (isCacheDirectoryNotExist.get()) {
+                synchronized (isCacheDirectoryNotExist) {
+                    if (isCacheDirectoryNotExist.getAndSet(true) && Files.notExists(path)) {
                         Files.createDirectories(path);
                     }
                 }

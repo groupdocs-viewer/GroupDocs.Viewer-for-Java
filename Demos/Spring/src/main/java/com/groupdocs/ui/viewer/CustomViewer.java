@@ -3,18 +3,26 @@ package com.groupdocs.ui.viewer;
 import com.groupdocs.ui.cache.ViewerCache;
 import com.groupdocs.ui.cache.model.*;
 import com.groupdocs.ui.config.ViewerConfiguration;
-import com.groupdocs.ui.util.Utils;
+import com.groupdocs.ui.exception.TotalGroupDocsException;
 import com.groupdocs.viewer.Viewer;
-import com.groupdocs.viewer.interfaces.FileStreamFactory;
-import com.groupdocs.viewer.interfaces.PageStreamFactory;
 import com.groupdocs.viewer.options.*;
+import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
+import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.io.*;
+import java.io.Closeable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
-public abstract class CustomViewer implements Closeable {
-    private static final Object mSync = new Object();
+public abstract class CustomViewer<T extends ViewOptions> implements Closeable {
+    protected static final ReentrantLock syncLock = new ReentrantLock();
+    protected static final long LOCK_TIMEOUT = 180_000L;
+    private static final Logger logger = LoggerFactory.getLogger(CustomViewer.class);
     private static final Class<?>[] DESERIALIZATION_CLASSES = new Class[]{
             ArchiveViewInfoModel.class,
             AttachmentModel.class,
@@ -37,6 +45,7 @@ public abstract class CustomViewer implements Closeable {
     protected final ViewerCache cache;
     protected final Viewer viewer;
     protected ViewInfoOptions viewInfoOptions;
+    protected T viewOptions;
     protected PdfViewOptions pdfViewOptions;
 
     public CustomViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
@@ -87,22 +96,7 @@ public abstract class CustomViewer implements Closeable {
     public ViewInfo getViewInfo() {
         String cacheKey = "view_info.dat";
 
-        if (cache.doesNotContains(cacheKey)) {
-            synchronized (mSync) {
-                if (cache.doesNotContains(cacheKey)) {
-                    return cache.getValue(cacheKey, this.readViewInfo(viewInfoOptions), DESERIALIZATION_CLASSES);
-                }
-            }
-        }
-
-        return cache.getValue(cacheKey, null, DESERIALIZATION_CLASSES);
-    }
-
-    private ViewInfo readViewInfo(ViewInfoOptions viewInfoOptions) {
-        ViewInfo viewInfo = getViewer().getViewInfo(viewInfoOptions);
-        Utils.applyWidthHeightFix(getViewer(), viewInfo);
-
-        return viewInfo;
+        return cache.get(cacheKey, () -> getViewer().getViewInfo(viewInfoOptions), DESERIALIZATION_CLASSES);
     }
 
     public static void setViewerConfiguration(ViewerConfiguration viewerConfiguration) {
@@ -115,82 +109,77 @@ public abstract class CustomViewer implements Closeable {
 
     public void createPdf() {
         String fileKey = "f.pdf";
-        if (this.cache.doesNotContains(fileKey)) {
-            synchronized (mSync) {
-                if (this.cache.doesNotContains(fileKey)) {
-                    this.viewer.view(this.pdfViewOptions);
+        try {
+            if (this.cache.doesNotContains(fileKey)) {
+                final boolean tryLock = syncLock.tryLock(LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("createPdf -> syncLock locked");
+                    try {
+                        if (this.cache.doesNotContains(fileKey)) {
+                            this.viewer.view(this.pdfViewOptions);
+                        }
+                    } finally {
+                        syncLock.unlock();
+                        logger.trace("createPdf -> syncLock unlocked");
+                    }
+                } else {
+                    logger.error("Request was not handled because lock was not acquired during " + LOCK_TIMEOUT + "ms.");
+                    throw new TotalGroupDocsException("Can't handle the request. Server is too busy.");
                 }
             }
+        } catch (InterruptedException e) {
+            logger.warn("Thread that worked with viewer and waited for lock was interrupted", e);
         }
+    }
+
+    public void createCache() {
+        ViewInfo viewInfo = this.getViewInfo();
+        if (viewInfo == null) {
+            logger.error("Can't get ViewInfo. The problem can be with deserealization (DESERIALIZATION_CLASSES)");
+            throw new TotalGroupDocsException("Can't handle the request. Server is too busy.");
+        }
+
+        try {
+            int[] missingPages = this.getPagesMissingFromCache(viewInfo.getPages());
+            if (missingPages.length > 0) {
+                final boolean tryLock = syncLock.tryLock(LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("createCache -> syncLock locked");
+                    try {
+                        missingPages = this.getPagesMissingFromCache(viewInfo.getPages());
+                        if (missingPages.length > 0) {
+                            this.viewer.view(this.viewOptions, missingPages);
+                        }
+                    } finally {
+                        syncLock.unlock();
+                        logger.trace("createCache -> syncLock unlocked");
+                    }
+                } else {
+                    logger.error("Request was not handled because lock was not acquired during " + LOCK_TIMEOUT + "ms.");
+                    throw new TotalGroupDocsException("Can't handle the request. Server is too busy.");
+                }
+            }
+        } catch (InterruptedException e) {
+            logger.warn("Thread that worked with viewer and waited for lock was interrupted", e);
+        }
+    }
+
+    protected abstract int[] getPagesMissingFromCache(List<Page> pages);
+
+    protected int[] getPagesMissingFromCache(List<Page> pages, String extension) {
+        List<Integer> missingPages = new ArrayList<>();
+        for (Page page : pages) {
+            String pageKey = "p" + page.getNumber() + extension;
+            if (this.cache.doesNotContains(pageKey)) {
+                missingPages.add(page.getNumber());
+            }
+        }
+
+        return ArrayUtils.toPrimitive(missingPages.toArray(new Integer[0]));
     }
 
     @Override
     public void close() {
         this.viewer.close();
-    }
-
-    public abstract void createCache();
-
-
-    protected class CustomPageStreamFactory implements PageStreamFactory {
-        private final String mExtension;
-
-        public CustomPageStreamFactory(String extension) {
-            this.mExtension = extension;
-        }
-
-        @Override
-        public OutputStream createPageStream(int pageNumber) {
-            String fileName = "p" + pageNumber + mExtension;
-            String cacheFilePath = cache.getCacheFilePath(fileName);
-
-            try {
-                return new FileOutputStream(cacheFilePath);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        public void closePageStream(int pageNumber, OutputStream outputStream) {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    protected class CustomFileStreamFactory implements FileStreamFactory {
-        private final String mExtension;
-
-        public CustomFileStreamFactory(String extension) {
-            this.mExtension = extension;
-        }
-
-        @Override
-        public OutputStream createFileStream() {
-            String fileName = "f" + mExtension;
-            String cacheFilePath = cache.getCacheFilePath(fileName);
-
-            try {
-                return new FileOutputStream(cacheFilePath);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        public void closeFileStream(OutputStream outputStream) {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
     }
 }

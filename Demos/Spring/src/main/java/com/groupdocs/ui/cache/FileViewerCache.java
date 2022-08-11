@@ -8,21 +8,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.groupdocs.ui.cache.model.*;
-import com.groupdocs.ui.exception.DiskAccessException;
-import com.groupdocs.ui.exception.TotalGroupDocsException;
 import com.groupdocs.viewer.caching.extra.CacheableFactory;
 import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.*;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class FileViewerCache implements ViewerCache {
-    private static final Object mSync = new Object();
+    private static final long REQUEST_SYNC_LOCK_TIMEOUT = 500L;
+    private static final int REQUEST_SYNC_LOCK_TRIES = 60; // * REQUEST_SYNC_LOCK_TIMEOUT = lock timeout
     private static final ObjectMapper MAPPER = new ObjectMapper();
-    private static final long WAIT_TIMEOUT = 100L;
+    private static final Logger logger = LoggerFactory.getLogger(FileViewerCache.class);
+    private static final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private static final Lock readLock = readWriteLock.readLock();
+    private static final Lock writeLock = readWriteLock.writeLock();
 
     static {
         MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
@@ -69,7 +77,6 @@ public class FileViewerCache implements ViewerCache {
 
         this.mCachePath = cachePath;
 
-
         // Setting factory before using custom models for caching
         // You still can use embedded implementation of models (*Impl) if you don't need
         // any specific annotations for serialization. In this way no need to set the factory
@@ -89,25 +96,51 @@ public class FileViewerCache implements ViewerCache {
             return;
         }
 
-        String filePath = this.getCacheFilePath(key);
-        try {
-            OutputStream dst = null;
-            try {
-                if (value instanceof InputStream) {
-                    dst = this.getStream(filePath);
-                    IOUtils.copy((InputStream) value, dst);
+        Path cacheFilePath = this.getCacheFilePath(key);
 
+        if (cacheFilePath == null) {
+            return; // Problems with creating cache directory. Cache is not working for the key
+        }
+
+        int tryNumber = REQUEST_SYNC_LOCK_TRIES;
+        while ((tryNumber--) > 0 && Files.notExists(cacheFilePath)) {
+            try {
+                final boolean tryLock = writeLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("cache.set -> writeLock locked (cacheFilePath is '{}')", cacheFilePath);
+                    try {
+                        if (Files.notExists(cacheFilePath)) {
+                            writeValueToStream(value, cacheFilePath);
+                            break;
+                        }
+                    } finally {
+                        writeLock.unlock();
+                        logger.trace("cache.set -> writeLock unlocked (cacheFilePath is '{}')", cacheFilePath);
+                    }
                 } else {
-                    dst = this.getStream(filePath);
-                    MAPPER.writerWithDefaultPrettyPrinter().writeValue(dst, value);
+                    logger.trace("cache.set -> {} try to acquire write lock was NOT successful", REQUEST_SYNC_LOCK_TRIES - tryNumber);
                 }
-            } finally {
-                if (dst != null) {
-                    dst.close();
-                }
+            } catch (InterruptedException e) {
+                logger.warn("Thread that worked with cache and waited for write lock was interrupted", e);
+            } catch (Exception e) {
+                logger.warn("Exception throws while writing object to cache by cacheFilePath '" + cacheFilePath + "'", e);
+//            throw new ReadWriteException(e);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }
+        if (tryNumber <= 0) {
+            logger.warn("Value with cacheFilePath '{}' was not saved into cache because write lock was not acquired during {}ms", cacheFilePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+        }
+    }
+
+    private static void writeValueToStream(Object value, Path cacheFilePath) throws IOException {
+        if (value instanceof InputStream) {
+            try (OutputStream dst = new BufferedOutputStream(Files.newOutputStream(cacheFilePath))) {
+                IOUtils.copy((InputStream) value, dst);
+            }
+        } else {
+            try (OutputStream dst = new BufferedOutputStream(Files.newOutputStream(cacheFilePath))) {
+                MAPPER.writerWithDefaultPrettyPrinter().writeValue(dst, value);
+            }
         }
     }
 
@@ -117,82 +150,127 @@ public class FileViewerCache implements ViewerCache {
      * @param key A key identifying the requested entry.
      * @return true if the key was found.
      */
-    public <T> T getValue(String key, T defaultEntry, Class<?>[] clazzs) {
-        String cacheFilePath = this.getCacheFilePath(key);
-        if (!new File(cacheFilePath).exists()) {
-            set(key, defaultEntry);
-            return defaultEntry;
-        }
-        try (final FileInputStream inputStream = new FileInputStream(cacheFilePath)) {
-            // Avoid using byte array in case of having big objects
-            final byte[] bytes = IOUtils.toByteArray(inputStream);
+    public <T> T get(String key, DefaultValue<T> defaultEntry, Class<?>[] clazzs) {
+        Path cacheFilePath = this.getCacheFilePath(key);
 
-            for (Class<?> clazz : clazzs) {
-                try {
-                    return (T) MAPPER.readValue(bytes, clazz);
-                } catch (JsonMappingException e) {
-                    // continue;
-                }
-            }
-            final InputStream fileInputStream = new ByteArrayInputStream(bytes);
+        if (cacheFilePath == null) {
+            logger.trace("cacheFilePath is null, continuing without caching");
+            return defaultEntry.create(); // Problems with creating cache directory. Cache is not working for the key
+        }
+
+        int tryNumber = REQUEST_SYNC_LOCK_TRIES;
+        while ((tryNumber--) > 0 && Files.notExists(cacheFilePath)) {
             try {
-                return (T) fileInputStream;
+                final boolean tryLock = writeLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("cache.set -> writeLock locked (cacheFilePath is '{}')", cacheFilePath);
+                    try {
+                        if (Files.notExists(cacheFilePath)) {
+
+                            T defaultValue = defaultEntry.create();
+
+                            writeValueToStream(defaultValue, cacheFilePath);
+                            return defaultValue;
+                        } else {
+                            break;
+                        }
+                    } finally {
+                        writeLock.unlock();
+                        logger.trace("cache.set -> writeLock unlocked (cacheFilePath is '{}')", cacheFilePath);
+                    }
+                } else {
+                    logger.trace("cache.set -> {} try to acquire write lock was NOT successful", REQUEST_SYNC_LOCK_TRIES - tryNumber);
+                }
+            } catch (InterruptedException e) {
+                logger.warn("Thread that worked with cache and waited for write lock was interrupted", e);
             } catch (Exception e) {
-                fileInputStream.close();
-                throw new TotalGroupDocsException("Cache file '" + cacheFilePath + "' was not deserialized correctly!", e);
+                logger.warn("Exception throws while writing object to cache by cacheFilePath '" + cacheFilePath + "'", e);
+//            throw new ReadWriteException(e);
             }
-        } catch (IOException e) {
-            throw new TotalGroupDocsException("Cache loading error - IO exception", e);
         }
-    }
-
-
-    @Override
-    public String getCacheFilePath(String key) {
-        Path keyCachePath = getCachePath();
+        if (tryNumber <= 0) {
+            logger.warn("Value with cacheFilePath '{}' was not saved into cache because write lock was not acquired during {}ms", cacheFilePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+        }
 
         try {
-            if (Files.notExists(keyCachePath)) {
-                synchronized (mSync) {
-                    if (Files.notExists(keyCachePath)) {
-                        Files.createDirectories(keyCachePath);
+            if (Files.exists(cacheFilePath)) {
+                final boolean tryLock = readLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("cache.get -> readLock locked (cacheFilePath is '{}')", cacheFilePath);
+                    try {
+                        if (Files.exists(cacheFilePath)) {
+                            for (Class<?> clazz : clazzs) {
+                                try (final BufferedInputStream inputStream = new BufferedInputStream(Files.newInputStream(cacheFilePath))) {
+                                    return (T) MAPPER.readValue(inputStream, clazz);
+                                } catch (JsonMappingException e) {
+                                    // continue;
+                                } catch (Exception e) {
+                                    logger.warn("Exception throws while reading cache file '" + cacheFilePath + "' with cacheFilePath '" + cacheFilePath + "'", e);
+                                }
+                            }
+                            try {
+                                // Was not deserialized, probably it must be raw data
+                                return (T) new BufferedInputStream(Files.newInputStream(cacheFilePath));
+                            } catch (IOException e) {
+                                logger.warn("Exception throws while reading cache file '" + cacheFilePath + "' with cacheFilePath '" + cacheFilePath + "' as raw data", e);
+                            }
+                        }
+                    } finally {
+                        readLock.unlock();
+                        logger.trace("cache.get -> readLock unlocked (cacheFilePath is '{}')", cacheFilePath);
                     }
+                } else {
+                    logger.warn("Value with cacheFilePath '{}' was not got from cache because read lock was not acquired during {}ms. Default entry was used.", cacheFilePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+                    return defaultEntry.create();
                 }
             }
-        } catch (Exception e) {
-            throw new DiskAccessException("create cache directory", keyCachePath);
+        } catch (InterruptedException e) {
+            logger.warn("Thread that worked with cache and waited for read lock was interrupted", e);
         }
-        Path filePath = keyCachePath.resolve(key);
+        return null;
+    }
 
-        return filePath.toString();
+    @Override
+    public Path getCacheFilePath(String key) {
+        Path keyCachePath = getCachePath();
+
+        int tryNumber = REQUEST_SYNC_LOCK_TRIES;
+        while ((tryNumber--) > 0 && Files.notExists(keyCachePath)) {
+            try {
+                final boolean tryLock = writeLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                if (tryLock) {
+                    logger.trace("cache.getCacheFilePath -> writeLock locked (keyCachePath is '{}')", keyCachePath);
+                    try {
+                        if (Files.notExists(keyCachePath)) {
+                            Files.createDirectories(keyCachePath);
+                        }
+                        break;
+                    } finally {
+                        writeLock.unlock();
+                        logger.trace("cache.getCacheFilePath -> writeLock unlocked (keyCachePath is '{}')", keyCachePath);
+                    }
+                } else {
+                    logger.trace("cache.getCacheFilePath -> {} try to acquire write lock was NOT successful", REQUEST_SYNC_LOCK_TRIES - tryNumber);
+                }
+            } catch (InterruptedException e) {
+                logger.error("Thread that worked with cache directory and waited for write lock was interrupted", e);
+                return null;
+            } catch (IOException e) {
+                logger.error("Cache directory with keyCachePath '" + keyCachePath + "' was not created", e);
+                return null;
+            }
+        }
+        if (tryNumber <= 0) {
+            logger.warn("Cache directory ('{}') was not created because write lock was not acquired during {}ms", keyCachePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+        }
+        return keyCachePath.resolve(key);
     }
 
     @Override
     public boolean doesNotContains(String key) {
-        Path file = getCachePath().resolve(key);
-        synchronized (mSync) {
-            return Files.notExists(file);
-        }
-    }
+        Path cacheFilePath = getCachePath().resolve(key);
 
-    private OutputStream getStream(String path) throws FileNotFoundException, InterruptedException {
-        OutputStream stream = null;
-        long totalTime = 0;
-        long interval = 50;
-        while (stream == null) {
-            try {
-                stream = new FileOutputStream(path);
-            } catch (IOException e) {
-                Thread.sleep(50);
-                totalTime += interval;
-
-                if (totalTime > WAIT_TIMEOUT) {
-                    throw e;
-                }
-            }
-        }
-
-        return stream;
+        return Files.notExists(cacheFilePath);
     }
 
     @Override
