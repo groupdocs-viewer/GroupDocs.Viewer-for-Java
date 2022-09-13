@@ -6,12 +6,8 @@ import com.groupdocs.ui.viewer.factory.CustomPageStreamFactory;
 import com.groupdocs.ui.viewer.factory.CustomResourceStreamFactory;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.Page;
-import org.apache.commons.lang3.ArrayUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HtmlViewer extends CustomViewer<HtmlViewOptions> {

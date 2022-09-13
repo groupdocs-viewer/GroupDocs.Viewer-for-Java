@@ -2,6 +2,7 @@ package com.groupdocs.ui.service;
 
 import com.groupdocs.ui.cache.FileViewerCache;
 import com.groupdocs.ui.cache.ViewerCache;
+import com.groupdocs.ui.config.DefaultDirectories;
 import com.groupdocs.ui.config.GlobalConfiguration;
 import com.groupdocs.ui.config.ViewerConfiguration;
 import com.groupdocs.ui.exception.DiskAccessException;
@@ -50,6 +51,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Stream;
 
 @Service
 public class ViewerServiceImpl implements ViewerService {
@@ -434,11 +436,36 @@ public class ViewerServiceImpl implements ViewerService {
     private void setLicense() {
         try {
             // set GroupDocs license
+            final String licensePath = globalConfiguration.getApplication().getLicensePath();
+            final String licenseExtension = DefaultDirectories.LIC;
             License license = new License();
-            license.setLicense(globalConfiguration.getApplication().getLicensePath());
-            isViewerLicenseSet = true;
-        } catch (Throwable throwable) {
-            logger.error("Can not verify Viewer license!");
+            if (licensePath.startsWith("http://") || licensePath.startsWith("https://")) {
+                final URL url = new URL(licensePath);
+                try (final InputStream inputStream = new BufferedInputStream(url.openStream())) {
+                    license.setLicense(inputStream);
+                    isViewerLicenseSet = true;
+                }
+            } else {
+                final java.nio.file.Path path = Paths.get(licensePath);
+                if (Files.exists(path)) {
+                    if (Files.isRegularFile(path)) {
+                        license.setLicense(licensePath);
+                        isViewerLicenseSet = true;
+                    } else {
+                        try (final Stream<Path> pathStream = Files.list(path)) {
+                            final Optional<Path> first = pathStream.filter(it -> it.endsWith(licenseExtension)).findFirst();
+                            first.ifPresent(license::setLicense);
+                            isViewerLicenseSet = true;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Can not verify Comparison license!", e);
+            isViewerLicenseSet = false;
+        }
+        if (isViewerLicenseSet) {
+            logger.info("License was set!");
         }
     }
 

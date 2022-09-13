@@ -61,8 +61,6 @@ public class ViewerServiceImpl implements ViewerService {
         this.viewerConfiguration = globalConfiguration.getViewer();
         this.globalConfiguration = globalConfiguration;
 
-        setLicense();
-
         // Register custom fonts
         if (!StringUtils.isEmpty(viewerConfiguration.getFontsDirectory())) {
             FontSource fontSource = new FolderFontSource(viewerConfiguration.getFontsDirectory(), SearchOption.TOP_FOLDER_ONLY);
@@ -426,17 +424,6 @@ public class ViewerServiceImpl implements ViewerService {
         byte[] fileBytes = FileUtils.readFileToByteArray(pngFilePath.toFile());
 
         return new ByteArrayInputStream(fileBytes);
-    }
-
-    private void setLicense() {
-        try {
-            // set GroupDocs license
-            License license = new License();
-            license.setLicense(globalConfiguration.getApplication().getLicensePath());
-            isViewerLicenseSet = true;
-        } catch (Throwable throwable) {
-            logger.error("Can not verify Viewer license!");
-        }
     }
 
     private Path createCacheDirectoryPath(String... subPathParts) {

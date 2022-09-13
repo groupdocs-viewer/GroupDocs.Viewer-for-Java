@@ -10,9 +10,6 @@ import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static com.groupdocs.ui.config.DefaultDirectories.defaultLicenseDirectory;
-import static com.groupdocs.ui.config.DefaultDirectories.relativePathToAbsolute;
-
 @Component
 public class ApplicationConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
@@ -32,7 +29,6 @@ public class ApplicationConfiguration {
                 hostAddress = "localhost";
             }
         }
-        this.licensePath = StringUtils.isEmpty(this.licensePath) ? defaultLicenseDirectory() : relativePathToAbsolute(this.licensePath);
     }
 
     public String getHostAddress() {

@@ -7,7 +7,7 @@ server:
   adminContextPath: /admin
   connector:
     type: http
-    port: 8080
+    port: ${PORT:-8080}
 
 ################################################
 # Application (global) configurations
@@ -15,9 +15,9 @@ server:
 application:
     # License path
     # Absolute or relative path to GroupDocs license file
-    licensePath:
+  licensePath: ${LIC_PATH:-}
     # Host name or ip for server instance
-    hostAddress: ${application.hostAddress}
+  hostAddress: ${HOST_ADDRESS:-application.hostAddress}
 
 ################################################
 # Common configurations
@@ -26,24 +26,24 @@ common:
   # File rewriting on document uploading
   # Set false to keep both files
   # Set true to replace files with same name
-  rewrite: true
+  rewrite: ${REWRITE:-true}
   # Page navigation
   # Set false to disable document navigation (go to next, previous, last and first page)
   pageSelector: true
   # Document download
   # Set false to disable document download
-  download: true
+  download: ${DOWNLOAD_ON:-true}
   # Document upload
   # Set false to disable document upload
-  upload: true
+  upload: ${UPLOAD_ON:-true}
   # Document print
   # Set false to disable document print
-  print: true
+  print: ${PRINT_ON:-true}
   # File browser
   # Set false to disable document browse
-  browse: true
+  browse: ${BROWSE_ON:-true}
   # Set false to disable right mouse click
-  enableRightClick: true
+  enableRightClick: ${RIGHTCLICK_ON:-true}
 
 ################################################
 # GroupDocs.Viewer configurations
@@ -51,7 +51,7 @@ common:
 viewer:
   # Files directory path
   # Absolute or relative path to files directory
-  filesDirectory: DocumentSamples
+  filesDirectory: ${FILES_DIR:-DocumentSamples}
   # Fonts path
   # Absolute path to custom fonts directory
   fontsDirectory: ''
@@ -92,5 +92,4 @@ viewer:
   # Set true to show grid lines
   showGridLines: true
   # Set cache folder name
-  cacheFolderName: cache
-
+  cacheFolderName: ${CACHE_DIR:-cache}

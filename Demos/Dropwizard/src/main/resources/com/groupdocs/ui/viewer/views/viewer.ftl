@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <title>GroupDocs.Viewer for Java Dropwizard</title>
     <base href="/"/>
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>

@@ -1,5 +1,6 @@
 package com.groupdocs.ui.viewer.resources;
 
+import com.groupdocs.ui.common.config.DefaultDirectories;
 import com.groupdocs.ui.common.config.GlobalConfiguration;
 import com.groupdocs.ui.common.exception.TotalGroupDocsException;
 import com.groupdocs.ui.common.resources.Resources;
@@ -15,19 +16,28 @@ import com.groupdocs.ui.viewer.model.response.UploadedDocumentEntity;
 import com.groupdocs.ui.viewer.service.ViewerService;
 import com.groupdocs.ui.viewer.service.ViewerServiceImpl;
 import com.groupdocs.ui.viewer.views.Viewer;
+import com.groupdocs.viewer.License;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import static javax.ws.rs.core.MediaType.*;
 
@@ -39,6 +49,7 @@ import static javax.ws.rs.core.MediaType.*;
 
 @Path(value = "/viewer")
 public class ViewerResources extends Resources {
+    private static final Logger logger = LoggerFactory.getLogger(ViewerResources.class);
 
     private final ViewerService viewerService;
 
@@ -52,6 +63,30 @@ public class ViewerResources extends Resources {
         super(globalConfiguration);
 
         viewerService = new ViewerServiceImpl(globalConfiguration);
+        try {
+            final String licensePath = globalConfiguration.getApplication().getLicensePath();
+            License license = new License();
+            if (licensePath.startsWith("http://") || licensePath.startsWith("https://")) {
+                final URL url = new URL(licensePath);
+                try (final InputStream inputStream = new BufferedInputStream(url.openStream())) {
+                    license.setLicense(inputStream);
+                }
+            } else {
+                final java.nio.file.Path path = Paths.get(licensePath);
+                if (Files.exists(path)) {
+                    if (Files.isRegularFile(path)) {
+                        license.setLicense(licensePath);
+                    } else {
+                        try (final Stream<java.nio.file.Path> pathStream = Files.list(path)) {
+                            final Optional<java.nio.file.Path> first = pathStream.filter(it -> it.endsWith(DefaultDirectories.LIC)).findFirst();
+                            first.ifPresent(license::setLicense);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Can not verify Comparison license!", e);
+        }
     }
 
     /**

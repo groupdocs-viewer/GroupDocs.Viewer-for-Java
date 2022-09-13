@@ -4,6 +4,7 @@ import com.groupdocs.ui.cache.ViewerCache;
 import com.groupdocs.ui.exception.ReadWriteException;
 import com.groupdocs.viewer.interfaces.ResourceStreamFactory;
 import com.groupdocs.viewer.results.Resource;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class CustomResourceStreamFactory implements ResourceStreamFactory {
+public class CustomResourceStreamFactory implements ResourceStreamFactory, Closeable {
     private static final Logger logger = LoggerFactory.getLogger(CustomResourceStreamFactory.class);
     private final ViewerCache cache;
     private final Path tempDirectory;
@@ -64,18 +65,19 @@ public class CustomResourceStreamFactory implements ResourceStreamFactory {
             outputStream.close();
         } catch (IOException e) {
             logger.warn("Can't close resource stream or move data to cache.", e);
-        } finally {
-            try {
-                if (!Files.deleteIfExists(resourcePath)) {
-                    Files.delete(resourcePath);
-                }
-            } catch (IOException e) {
-                logger.warn("Can't delete temp resource stream files.", e);
-            }
         }
     }
 
     private String createCacheKey(int pageNumber, Resource resource) {
         return "p" + pageNumber + "_" + resource.getFileName();
+    }
+
+    @Override
+    public void close() throws IOException {
+        try {
+            FileUtils.deleteDirectory(this.tempDirectory.toFile());
+        } catch (IOException e) {
+            logger.warn("Can't delete temp directory: " + this.tempDirectory, e);
+        }
     }
 }

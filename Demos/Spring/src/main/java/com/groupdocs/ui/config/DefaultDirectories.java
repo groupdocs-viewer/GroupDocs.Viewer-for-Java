@@ -17,20 +17,6 @@ public class DefaultDirectories {
     public static final String DOCUMENT_SAMPLES = "DocumentSamples";
     private static final Logger logger = LoggerFactory.getLogger(DefaultDirectories.class);
 
-    public static String defaultLicenseDirectory() {
-        Path defaultLicFolder = FileSystems.getDefault().getPath(LICENSES).toAbsolutePath();
-        File licFolder = defaultLicFolder.toFile();
-        if (licFolder.exists()) {
-            Path defaultLicFile = getDefaultLicFile(licFolder);
-            if (defaultLicFile != null) {
-                return defaultLicFile.toString();
-            }
-        }
-        licFolder.mkdirs();
-        logger.info("License file path is incorrect, application launched in trial mode");
-        return "";
-    }
-
     public static String defaultViewerDirectory() {
         return getDefaultFilesDir("");
     }
