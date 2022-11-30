@@ -6,11 +6,11 @@
 
     <groupId>com.groupdocs.ui</groupId>
     <artifactId>viewer</artifactId>
-    <version>22.9</version>
+    <version>22.12</version>
     <packaging>jar</packaging>
 
     <name>GroupDocs.Viewer Dropwizard</name>
-    <url>http://groupdocs.com</url>
+    <url>https://groupdocs.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -120,7 +120,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <mainClass>com.groupdocs.ui.common.MainService</mainClass>
+                    <mainClass>com.groupdocs.ui.viewer.dropwizard.common.MainService</mainClass>
                     <arguments>
                         <argument>server</argument>
                         <argument>configuration.yml</argument>
@@ -154,7 +154,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.groupdocs.ui.common.MainService</mainClass>
+                                    <mainClass>com.groupdocs.ui.viewer.dropwizard.common.MainService</mainClass>
                                     <manifestEntries>
                                         <Class-Path>.</Class-Path>
                                     </manifestEntries>
@@ -189,14 +189,13 @@
 
     <repositories>
         <repository>
-            <id>SpringSource Enterprise Bundle Repository</id>
-            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
-            <url>https://repository.springsource.com/maven/bundles/external</url>
-        </repository>
-        <repository>
             <id>GroupDocs Artifact Repository</id>
             <name>GroupDocs Artifact Repository</name>
-            <url>https://artifact.groupdocs.com/repo/</url>
+            <url>https://releases.groupdocs.com/java/repo/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2</url>
         </repository>
     </repositories>
 

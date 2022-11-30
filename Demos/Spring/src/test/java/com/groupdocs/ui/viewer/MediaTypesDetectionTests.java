@@ -1,6 +1,6 @@
 package com.groupdocs.ui.viewer;
 
-import com.groupdocs.ui.util.Utils;
+import com.groupdocs.ui.viewer.spring.common.util.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.MediaType;

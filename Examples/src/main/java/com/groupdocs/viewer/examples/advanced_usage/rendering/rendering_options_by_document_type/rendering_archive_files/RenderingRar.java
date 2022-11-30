@@ -12,6 +12,16 @@ import com.groupdocs.viewer.results.ViewInfo;
  */
 public class RenderingRar {
     public static void run() {
+        runToHtml();
+        runToJpg();
+        runToPng();
+        runToPdf();
+
+        getViewInfoForRar();
+        renderSpecificArchiveFolder();
+    }
+
+    public static void runToHtml() {
         String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.html");
 
@@ -22,8 +32,13 @@ public class RenderingRar {
             viewer.view(options);
         }
 
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+    }
+
+    public static void runToJpg() {
+        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.jpg");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -31,8 +46,13 @@ public class RenderingRar {
             viewer.view(options);
         }
 
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+    }
+
+    public static void runToPng() {
+        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.png");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -40,8 +60,13 @@ public class RenderingRar {
             viewer.view(options);
         }
 
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+    }
+
+    public static void runToPdf() {
+        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.pdf");
+        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
@@ -49,17 +74,13 @@ public class RenderingRar {
             viewer.view(options);
         }
 
-        getViewInfoForRar();
-        renderSpecificArchiveFolder();
-
         System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
-
     }
 
     /**
      * This example demonstrates how to get view info for Archive files.
      */
-    private static void getViewInfoForRar() {
+    public static void getViewInfoForRar() {
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             ViewInfo info = viewer.getViewInfo(ViewInfoOptions.forHtmlView());
 
@@ -79,7 +100,7 @@ public class RenderingRar {
     /**
      * This example demonstrates how to render folder of archive file.
      */
-    private static void renderSpecificArchiveFolder() {
+    public static void renderSpecificArchiveFolder() {
 
         String outputDirectory = Utils.getOutputDirectoryPath("RenderSpecificArchiveFolder");
         String pageFilePathFormat = Utils.combinePaths(outputDirectory, "archive_folder_page_{0}.html");

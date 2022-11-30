@@ -6,8 +6,34 @@ import org.testng.annotations.Test;
  * This example demonstrates how to render RAR document into HTML, JPG, PNG, PDF.
  */
 public class RenderingRarTests {
+
     @Test
-    public void run() {
-        RenderingRar.run();
+    public void testRunToHtml() {
+        RenderingRar.runToHtml();
+    }
+
+    @Test
+    public void testRunToJpg() {
+        RenderingRar.runToJpg();
+    }
+
+    @Test
+    public void testRunToPng() {
+        RenderingRar.runToPng();
+    }
+
+    @Test
+    public void testRunToPdf() {
+        RenderingRar.runToPdf();
+    }
+
+    @Test
+    public void testGetViewInfoForRar() {
+        RenderingRar.getViewInfoForRar();
+    }
+
+    @Test
+    public void testRenderSpecificArchiveFolder() {
+        RenderingRar.renderSpecificArchiveFolder();
     }
 }

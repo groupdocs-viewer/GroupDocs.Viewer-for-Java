@@ -7,7 +7,7 @@ public class GetViewInfoForArchiveFileTests {
     /**
      * This example demonstrates how to get view info for Archive files.
      */
-    @Test
+    @Test(timeOut = 60000)
     public void run() {
         GetViewInfoForArchiveFile.run();
     }
