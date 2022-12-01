@@ -32,6 +32,8 @@ deploy_key
 *.iml
 Examples/output
 surefire-rep*
+.gradle
+build
 
 #License files
 .lic
