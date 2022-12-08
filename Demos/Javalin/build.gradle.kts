@@ -8,7 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.6.21"
 }
 
-group = "com.groupdocs.ui"
+group = "com.groupdocs.ui.viewer.javalin"
 version = "22.12"
 
 repositories {
@@ -18,7 +18,7 @@ repositories {
 }
 
 application {
-    mainClass.set("com.groupdocs.ui.ApplicationKt")
+    mainClass.set("com.groupdocs.ui.viewer.javalin.ApplicationKt")
 }
 
 tasks {
