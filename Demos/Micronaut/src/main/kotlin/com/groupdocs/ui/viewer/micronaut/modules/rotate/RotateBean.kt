@@ -8,7 +8,7 @@ import com.groupdocs.ui.viewer.micronaut.manager.PathManager
 import com.groupdocs.ui.viewer.micronaut.model.RotateRequest
 import com.groupdocs.ui.viewer.micronaut.model.RotateResponse
 import com.groupdocs.ui.viewer.micronaut.usecase.AreFilesSupportedUseCase
-import com.groupdocs.ui.viewer.micronaut.usecase.RetrieveLocalFilePagesStreamUseCase
+import com.groupdocs.ui.viewer.micronaut.usecase.RetrieveLocalFilePagesDataUseCase
 import com.groupdocs.ui.viewer.micronaut.util.InternalServerException
 import com.groupdocs.ui.viewer.micronaut.util.angleToRotation
 import com.groupdocs.ui.viewer.micronaut.util.rotationToAngle
@@ -30,8 +30,8 @@ interface RotateBean {
 @Bean(typed = [RotateBean::class])
 @Singleton
 class RotateBeanImpl(
-    @Inject private val checkAreFilesSupported: AreFilesSupportedUseCase,
-    @Inject private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesStreamUseCase,
+    @Inject private val areFilesSupported: AreFilesSupportedUseCase,
+    @Inject private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesDataUseCase,
     @Inject private val pathManager: PathManager,
     @Inject private val appConfig: ApplicationConfig,
     @Inject private val filesCache: FilesCache
@@ -44,12 +44,12 @@ class RotateBeanImpl(
 
         val filePath = pathManager.assertPathIsInsideFilesDirectory(guid)
 
-        if (!checkAreFilesSupported(filePath.fileName.toString())) {
-            throw InternalServerException("Document types are not supported in sample app, anyway, it is still supported by GroupDocs.Comparison itself. Other probable reason of the error - documents types are different.") // TODO: Need another exception type
+        if (!areFilesSupported(filePath.fileName.toString())) {
+            throw InternalServerException("Document types are not supported in sample app, anyway, it is still supported by GroupDocs.Viewer itself. Other probable reason of the error - documents types are different.") // TODO: Need another exception type
         }
 
-        val previewPageWidth = appConfig.comparison.previewPageWidthOrDefault
-        val previewPageRatio = appConfig.comparison.previewPageRatioOrDefault
+        val previewPageWidth = appConfig.viewer.previewPageWidthOrDefault
+        val previewPageRatio = appConfig.viewer.previewPageRatioOrDefault
 
         val pageRotations: Map<Int, Rotation>? = if (filesCache.isEntryExist(guid = guid)) {
             val entry = filesCache.readEntry(guid = guid)
@@ -67,15 +67,21 @@ class RotateBeanImpl(
 
         return withContext(Dispatchers.IO) {
             BufferedInputStream(FileInputStream(filePath.toFile())).use { inputStream ->
-                var data = ""
+                var response: RotateResponse? = null
                 retrieveLocalFilePagesStream(
                     inputStream = inputStream,
                     password = password,
                     pageRotations = pageRotations,
                     previewWidth = previewPageWidth,
                     previewRatio = previewPageRatio,
-                ) { _, pageInputStream ->
-                    data = String(pageInputStream.readAllBytes())
+                ) { pageNumber, width, height, pageInputStream ->
+                    response = RotateResponse(
+                        data = String(pageInputStream.readAllBytes()),
+                        angle = 0,
+                        number = pageNumber,
+                        width = width,
+                        height = height,
+                    )
                 }
                 if (filesCache.isEntryExist(guid = guid)) {
                     val entry = filesCache.readEntry(guid = guid)
@@ -84,7 +90,7 @@ class RotateBeanImpl(
                             if (it.pageNumber == pageNumber) {
                                 it.copy(
                                     angle = pageRotations?.get(pageNumber)?.rotationToAngle() ?: 0,
-                                    data = data
+                                    data = response?.data
                                 )
                             } else it
                         }
@@ -96,19 +102,15 @@ class RotateBeanImpl(
                             MemoryFilesCachePage(
                                 pageNumber = pageNumber,
                                 angle = pageRotations?.get(pageNumber)?.rotationToAngle() ?: 0,
-                                data = data
+                                width = response?.width ?: previewPageWidth,
+                                height = response?.height ?: (previewPageWidth * previewPageRatio).toInt(),
+                                data = response?.data
                             )
                         )
                     )
                     filesCache.createEntry(guid = guid, entry)
                 }
-                RotateResponse(
-                    data = data,
-                    angle = 0,
-                    number = pageNumber,
-                    width = previewPageWidth,
-                    height = (previewPageWidth * previewPageRatio).toInt(),
-                )
+                response ?: throw IllegalStateException("Response must not be null")
             }
         }
     }

@@ -20,11 +20,11 @@ class PathManagerImpl(
     private val appConfig: ApplicationConfig
 ) : PathManager {
     private val isLocalProvider: Boolean by lazy {
-        appConfig.comparison.filesProviderTypeOrDefault == Defaults.Comparison.FilesProviderType.LOCAL
+        appConfig.viewer.filesProviderTypeOrDefault == Defaults.Comparison.FilesProviderType.LOCAL
     }
 
     override val tempDirectory: Path by lazy {
-        val absoluteOrRelativeTempDirectory = Paths.get(appConfig.comparison.tempDirectoryOrDefault)
+        val absoluteOrRelativeTempDirectory = Paths.get(appConfig.viewer.tempDirectoryOrDefault)
         if (absoluteOrRelativeTempDirectory.isAbsolute) {
             absoluteOrRelativeTempDirectory
         } else if (isLocalProvider) {

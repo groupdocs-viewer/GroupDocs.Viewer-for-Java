@@ -5,7 +5,7 @@ import java.nio.file.Path
 
 data class ApplicationConfig(
     val common: Common = Common(),
-    val comparison: Comparison = Comparison(),
+    val viewer: Viewer = Viewer(),
     val local: Local = Local(),
     private val licensePath: String = ""
 ) {
@@ -23,7 +23,7 @@ data class Common(
     val enableRightClick: Boolean = false
 )
 
-data class Comparison(
+data class Viewer(
     private val filesProviderType: String = "",
     val preloadResultPageCount: Int = 0,
     private val previewPageWidth: Int = 0,

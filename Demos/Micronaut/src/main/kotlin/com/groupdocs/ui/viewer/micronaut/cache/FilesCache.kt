@@ -11,7 +11,8 @@ interface FilesCache {
 
 @Bean
 @Singleton
-class MemoryFilesCacheImpl(val maxCacheEntries: Int = defaultMaxCacheEntries) : FilesCache {
+class MemoryFilesCacheImpl : FilesCache {
+    private val maxCacheEntries: Int = defaultMaxCacheEntries
     private val cacheEntries: MutableMap<String, MemoryFilesCacheEntry> = mutableMapOf()
 
     override fun createEntry(guid: String, entry: MemoryFilesCacheEntry) {
@@ -50,4 +51,4 @@ class MemoryFilesCacheImpl(val maxCacheEntries: Int = defaultMaxCacheEntries) : 
 }
 
 data class MemoryFilesCacheEntry(val lastAccess: Long = 0, val pages: List<MemoryFilesCachePage> = emptyList())
-data class MemoryFilesCachePage(val pageNumber: Int, val angle: Int, val data: String?)
+data class MemoryFilesCachePage(val pageNumber: Int, val angle: Int, val width: Int, val height: Int, val data: String?)

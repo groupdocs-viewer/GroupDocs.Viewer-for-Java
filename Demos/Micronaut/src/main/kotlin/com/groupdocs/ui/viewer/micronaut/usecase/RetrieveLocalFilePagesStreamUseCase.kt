@@ -6,13 +6,14 @@ import com.groupdocs.viewer.Viewer
 import com.groupdocs.viewer.options.HtmlViewOptions
 import com.groupdocs.viewer.options.LoadOptions
 import com.groupdocs.viewer.options.Rotation
+import com.groupdocs.viewer.options.ViewInfoOptions
 import io.micronaut.context.annotation.Bean
 import java.io.*
 import java.nio.file.Files
 import java.nio.file.Path
 
 @Bean
-class RetrieveLocalFilePagesStreamUseCase(
+class RetrieveLocalFilePagesDataUseCase(
     private val managerBeans: PathManager
 ) {
     operator fun invoke(
@@ -21,7 +22,7 @@ class RetrieveLocalFilePagesStreamUseCase(
         previewWidth: Int,
         previewRatio: Float,
         pageRotations: Map<Int, Rotation>? = null,
-        processStream: (pageNumber: Int, inputStream: InputStream) -> Unit
+        processStream: (pageNumber: Int, width: Int, height: Int, inputStream: InputStream) -> Unit
     ) {
         try {
             val loadOptions = LoadOptions()
@@ -34,18 +35,11 @@ class RetrieveLocalFilePagesStreamUseCase(
                     val pathForTempFile = managerBeans.createPathForTempFile()
                     pages[pageNumber] = pathForTempFile
                     BufferedOutputStream(FileOutputStream(pathForTempFile.toFile()))
-                }) { pageNumber, stream ->
+                }) { _, stream ->
                     try {
                         stream.close()
                     } catch (e: Exception) {
                         e.printStackTrace()
-                    }
-
-                    pages[pageNumber]?.let { pagePath ->
-                        BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->
-                            processStream(pageNumber, inputStream)
-                        }
-                        Files.deleteIfExists(pagePath)
                     }
                 }.also { viewOptions ->
                     viewOptions.imageMaxWidth = previewWidth
@@ -56,11 +50,20 @@ class RetrieveLocalFilePagesStreamUseCase(
                 }
 
                 viewer.view(viewOptions)
+
+                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions))
+
+                pages.forEach { (pageNumber, pagePath) ->
+                    BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->
+                        val pageInfo = viewInfo.pages.first { it.number == pageNumber }
+                        processStream(pageNumber, pageInfo.width, pageInfo.height, inputStream)
+                    }
+                    Files.deleteIfExists(pagePath)
+                }
             }
         } catch (e: Exception) {
             throw RetrieveLocalFilePagesStreamException("Can't retrieve local file description", e)
         }
-
     }
 }
 

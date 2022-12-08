@@ -8,7 +8,7 @@ import com.groupdocs.ui.viewer.micronaut.manager.PathManager
 import com.groupdocs.ui.viewer.micronaut.model.DescriptionEntity
 import com.groupdocs.ui.viewer.micronaut.model.DescriptionRequest
 import com.groupdocs.ui.viewer.micronaut.model.PageDescriptionEntity
-import com.groupdocs.ui.viewer.micronaut.usecase.RetrieveLocalFilePagesStreamUseCase
+import com.groupdocs.ui.viewer.micronaut.usecase.RetrieveLocalFilePagesDataUseCase
 import io.micronaut.context.annotation.Bean
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
@@ -27,7 +27,7 @@ interface DescriptionBean {
 @Bean(typed = [DescriptionBean::class])
 @Singleton
 class DescriptionBeanImpl(
-    @Inject private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesStreamUseCase,
+    @Inject private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesDataUseCase,
     @Inject private val pathManager: PathManager,
     @Inject private val appConfig: ApplicationConfig,
     @Inject private val filesCache: FilesCache
@@ -36,8 +36,8 @@ class DescriptionBeanImpl(
         val guid = URLDecoder.decode(request.guid, StandardCharsets.UTF_8)
         val path = pathManager.assertPathIsInsideFilesDirectory(guid)
         val password = request.password
-        val previewPageWidth = appConfig.comparison.previewPageWidthOrDefault
-        val previewPageRatio = appConfig.comparison.previewPageRatioOrDefault
+        val previewPageWidth = appConfig.viewer.previewPageWidthOrDefault
+        val previewPageRatio = appConfig.viewer.previewPageRatioOrDefault
 
         val entity = DescriptionEntity(
             guid = URLEncoder.encode(guid, StandardCharsets.UTF_8),
@@ -62,13 +62,13 @@ class DescriptionBeanImpl(
                         password = password,
                         previewWidth = previewPageWidth,
                         previewRatio = previewPageRatio,
-                    ) { pageNumber, pageInputStream ->
+                    ) { pageNumber, width, height, pageInputStream ->
                         val data = String(pageInputStream.readAllBytes())
                         entity.pages.add(
                             PageDescriptionEntity(
                                 number = pageNumber,
-                                width = previewPageWidth,
-                                height = (previewPageWidth * previewPageRatio).toInt(),
+                                width = width,
+                                height = height,
                                 data = data
                             )
                         )
@@ -78,6 +78,8 @@ class DescriptionBeanImpl(
                             MemoryFilesCachePage(
                                 pageNumber = page.number,
                                 angle = page.angle,
+                                width = page.width,
+                                height = page.height,
                                 data = page.data
                             )
                         }
