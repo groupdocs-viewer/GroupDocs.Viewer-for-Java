@@ -6,5 +6,5 @@ pluginManagement {
     }
     
 }
-rootProject.name = "groupdocs-viewer-compose"
+rootProject.name = "viewer-compose"
 
