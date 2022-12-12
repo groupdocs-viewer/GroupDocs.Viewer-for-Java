@@ -1,6 +1,6 @@
 package com.groupdocs.ui.viewer;
 
-import com.groupdocs.ui.viewer.util.Utils;
+import com.groupdocs.ui.viewer.dropwizard.common.util.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 

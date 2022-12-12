@@ -1,0 +1,7 @@
+.git
+target
+client/node_modules
+docker
+Dockerfile
+DocumentSamples/Temp/*
+DocumentSamples/cache/*

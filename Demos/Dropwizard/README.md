@@ -1,12 +1,12 @@
 ![Document viewer](https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/banner.png "GroupDocs.Viewer")
 # GroupDocs.Viewer for Java Dropwizard Example
-###### version 1.14.27
+###### version 22.12
 
 [![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard/blob/master/LICENSE)
 
 
 ## System Requirements
-- Java 8 (JDK 1.8)
+- Java 8+ (JDK 1.8)
 - Maven 3
 
 
