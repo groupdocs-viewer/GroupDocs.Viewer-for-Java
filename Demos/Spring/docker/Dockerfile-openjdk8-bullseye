@@ -1,0 +1,45 @@
+# Build the project
+FROM maven:3-openjdk-8 as builder
+COPY pom.xml /usr/local/build/
+COPY src /usr/local/build/src/
+WORKDIR /usr/local/build
+RUN mvn clean package -DskipTests -P jar
+
+# Configure Docker Image
+FROM openjdk:8-jre-bullseye
+
+RUN apt update && \
+    echo "deb http://ftp.de.debian.org/debian bullseye main contrib" >> /etc/apt/sources.list && \
+    apt update && \
+    apt -y install fontconfig && \
+    apt -y install ttf-mscorefonts-installer && \
+    fc-cache -f && \
+    mkdir -p /home/groupdocs/app && \
+    mkdir -p /home/groupdocs/app/DocumentSamples && \
+    mkdir -p /home/groupdocs/app/Licenses
+COPY DocumentSamples/source.doc /home/groupdocs/app/DocumentSamples/
+COPY configuration.yml /home/groupdocs/app/configuration.yml
+COPY --from=builder /usr/local/build/target/viewer-spring-*.jar /home/groupdocs/app/app.jar
+WORKDIR /home/groupdocs/app
+
+ENV LIC_PATH "Licenses"
+ENV DOWNLOAD_ON true
+ENV UPLOAD_ON true
+ENV PRINT_ON true
+ENV BROWSE_ON true
+ENV RIGHTCLICK_ON false
+ENV FILES_DIR "DocumentSamples"
+ENV HOST_ADDRESS ""
+
+LABEL version="22.12" \
+      maintainer="GroupDocs Team" \
+      url="https://products.groupdocs.com/viewer/java" \
+      documentation="https://docs.groupdocs.com/viewer/java" \
+      source="https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java" \
+      description="GroupDocs.Viewer for Java Spring sample, based on Debian Bullseye and OpenJDK 8"
+
+EXPOSE 8080
+
+VOLUME [ "/home/groupdocs/app", "/home/groupdocs/app/DocumentSamples", "/home/groupdocs/app/Licenses" ]
+
+ENTRYPOINT [ "java", "-jar", "app.jar", "configuration.yml" ]
