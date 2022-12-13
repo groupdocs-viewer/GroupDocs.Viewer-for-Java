@@ -59,7 +59,7 @@
                                             <resource>META-INF/spring.handlers</resource>
                                         </transformer>
                                         <transformer
-                                                implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+                                                implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                             <resource>META-INF/spring.factories</resource>
                                         </transformer>
                                         <transformer

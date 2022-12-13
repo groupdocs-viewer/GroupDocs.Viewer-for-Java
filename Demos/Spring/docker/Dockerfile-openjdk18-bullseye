@@ -8,11 +8,11 @@ RUN mvn clean package -DskipTests -P jar
 # Configure Docker Image
 FROM openjdk:18-jdk-bullseye
 
-RUN apt-get update && \
+RUN apt update && \
     echo "deb http://ftp.de.debian.org/debian bullseye main contrib" >> /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get -y install fontconfig && \
-    apt-get -y install ttf-mscorefonts-installer && \
+    apt update && \
+    apt -y install fontconfig && \
+    apt -y install ttf-mscorefonts-installer && \
     fc-cache -f && \
     mkdir -p /home/groupdocs/app && \
     mkdir -p /home/groupdocs/app/DocumentSamples && \
