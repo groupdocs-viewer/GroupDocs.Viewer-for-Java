@@ -21,4 +21,5 @@
 <script src="/assets/angular/viewer/main-es2015.js" type="module"></script>
 <script src="/assets/angular/viewer/vendor-es5.js" nomodule></script>
 <script src="/assets/angular/viewer/main-es5.js" nomodule></script>
+</body>
 </html>

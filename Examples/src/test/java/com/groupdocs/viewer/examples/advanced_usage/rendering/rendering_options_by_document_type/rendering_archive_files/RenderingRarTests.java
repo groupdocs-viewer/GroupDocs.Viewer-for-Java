@@ -27,7 +27,7 @@ public class RenderingRarTests {
         RenderingRar.runToPdf();
     }
 
-    @Test
+    @Test(timeOut = 90000)
     public void testGetViewInfoForRar() {
         RenderingRar.getViewInfoForRar();
     }

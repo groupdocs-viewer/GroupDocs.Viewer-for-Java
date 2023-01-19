@@ -249,12 +249,7 @@ public class ViewerServiceImpl implements ViewerService {
             final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
 
             // Delete cache files connected to the page
-            for (File file : cacheDocumentDirectoryPath.toFile().listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.startsWith("p" + pageNumber);
-                }
-            })) {
+            for (File file : cacheDocumentDirectoryPath.toFile().listFiles((dir, name) -> name.startsWith("p" + pageNumber))) {
                 if (!file.delete()) {
                     file.deleteOnExit();
                     logger.error("Exception in deleting cache path");

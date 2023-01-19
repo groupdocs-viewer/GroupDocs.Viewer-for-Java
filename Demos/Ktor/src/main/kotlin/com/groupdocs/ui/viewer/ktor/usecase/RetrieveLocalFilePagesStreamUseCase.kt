@@ -54,8 +54,13 @@ class RetrieveLocalFilePagesStreamUseCase(
 
                 pages.forEach { (pageNumber, pagePath) ->
                     BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->
-                        val pageInfo = viewInfo.pages.first { it.number == pageNumber }
-                        processStream(pageNumber, pageInfo.width, pageInfo.height, inputStream)
+                        val pageInfo = viewInfo.pages.firstOrNull { it.number == pageNumber }
+                        if (pageInfo == null) {
+                            System.err.println("Pages info has incorrect number of pages. Try to configure HtmlViewOptions")
+                            return@forEach
+                        } else {
+                            processStream(pageNumber, pageInfo.width, pageInfo.height, inputStream)
+                        }
                     }
                     Files.deleteIfExists(pagePath)
                 }

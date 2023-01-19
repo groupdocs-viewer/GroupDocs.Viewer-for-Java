@@ -3,10 +3,7 @@ package com.groupdocs.ui.viewer.micronaut.usecase
 import com.groupdocs.ui.viewer.micronaut.manager.PathManager
 import com.groupdocs.ui.viewer.micronaut.util.InternalServerException
 import com.groupdocs.viewer.Viewer
-import com.groupdocs.viewer.options.HtmlViewOptions
-import com.groupdocs.viewer.options.LoadOptions
-import com.groupdocs.viewer.options.Rotation
-import com.groupdocs.viewer.options.ViewInfoOptions
+import com.groupdocs.viewer.options.*
 import io.micronaut.context.annotation.Bean
 import java.io.*
 import java.nio.file.Files
@@ -51,12 +48,19 @@ class RetrieveLocalFilePagesDataUseCase(
 
                 viewer.view(viewOptions)
 
-                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions))
+                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions).apply {
+                    spreadsheetOptions = SpreadsheetOptions.forSplitSheetIntoPages(25)
+                })
 
                 pages.forEach { (pageNumber, pagePath) ->
                     BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->
-                        val pageInfo = viewInfo.pages.first { it.number == pageNumber }
-                        processStream(pageNumber, pageInfo.width, pageInfo.height, inputStream)
+                        val pageInfo = viewInfo.pages.firstOrNull { it.number == pageNumber }
+                        if (pageInfo == null) {
+                            System.err.println("Pages info has incorrect number of pages. Try to configure HtmlViewOptions")
+                            return@forEach
+                        } else {
+                            processStream(pageNumber, pageInfo.width, pageInfo.height, inputStream)
+                        }
                     }
                     Files.deleteIfExists(pagePath)
                 }
