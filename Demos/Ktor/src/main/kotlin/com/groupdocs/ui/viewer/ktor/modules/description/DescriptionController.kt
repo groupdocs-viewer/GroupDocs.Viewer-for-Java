@@ -8,7 +8,7 @@ import com.groupdocs.ui.viewer.ktor.model.DescriptionEntity
 import com.groupdocs.ui.viewer.ktor.model.DescriptionRequest
 import com.groupdocs.ui.viewer.ktor.model.PageDescriptionEntity
 import com.groupdocs.ui.viewer.ktor.modules.BaseController
-import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesStreamUseCase
+import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesDataUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
@@ -19,7 +19,7 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 class DescriptionControllerImpl(
-    private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesStreamUseCase,
+    private val retrieveLocalFilePagesData: RetrieveLocalFilePagesDataUseCase,
     private val pathManager: PathManager,
     private val filesCache: FilesCache
 ) : BaseController(), DescriptionController, KoinComponent {
@@ -48,7 +48,7 @@ class DescriptionControllerImpl(
         } else {
             return withContext(Dispatchers.IO) {
                 BufferedInputStream(FileInputStream(path.toFile())).use { inputStream ->
-                    retrieveLocalFilePagesStream(
+                    retrieveLocalFilePagesData(
                         inputStream = inputStream,
                         password = password,
                         previewWidth = previewPageWidth,

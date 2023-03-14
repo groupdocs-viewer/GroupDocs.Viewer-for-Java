@@ -3,16 +3,13 @@ package com.groupdocs.ui.viewer.ktor.usecase
 import com.groupdocs.ui.viewer.ktor.manager.PathManager
 import com.groupdocs.ui.viewer.ktor.status.InternalServerException
 import com.groupdocs.viewer.Viewer
-import com.groupdocs.viewer.options.HtmlViewOptions
-import com.groupdocs.viewer.options.LoadOptions
-import com.groupdocs.viewer.options.Rotation
-import com.groupdocs.viewer.options.ViewInfoOptions
+import com.groupdocs.viewer.options.*
 import org.koin.core.component.KoinComponent
 import java.io.*
 import java.nio.file.Files
 import java.nio.file.Path
 
-class RetrieveLocalFilePagesStreamUseCase(
+class RetrieveLocalFilePagesDataUseCase(
     private val managerBeans: PathManager
 ) : KoinComponent {
     operator fun invoke(
@@ -50,7 +47,13 @@ class RetrieveLocalFilePagesStreamUseCase(
 
                 viewer.view(viewOptions)
 
-                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions))
+                val viewInfoOptions = ViewInfoOptions.fromHtmlViewOptions(viewOptions).apply {
+                    spreadsheetOptions.textOverflowMode = TextOverflowMode.HIDE_TEXT
+                    spreadsheetOptions.isSkipEmptyColumns = true
+                    spreadsheetOptions.isSkipEmptyRows = true
+                }
+
+                val viewInfo = viewer.getViewInfo(viewInfoOptions)
 
                 pages.forEach { (pageNumber, pagePath) ->
                     BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->
@@ -66,9 +69,9 @@ class RetrieveLocalFilePagesStreamUseCase(
                 }
             }
         } catch (e: Exception) {
-            throw RetrieveLocalFilePagesStreamException("Can't retrieve local file description", e)
+            throw RetrieveLocalFilePagesDataException("Can't retrieve local file description", e)
         }
     }
 }
 
-class RetrieveLocalFilePagesStreamException(message: String, e: Throwable? = null) : InternalServerException(message, e)
+class RetrieveLocalFilePagesDataException(message: String, e: Throwable? = null) : InternalServerException(message, e)

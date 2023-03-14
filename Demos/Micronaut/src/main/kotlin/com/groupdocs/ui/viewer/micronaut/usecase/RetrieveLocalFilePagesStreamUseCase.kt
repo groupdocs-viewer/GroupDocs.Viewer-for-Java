@@ -48,9 +48,13 @@ class RetrieveLocalFilePagesDataUseCase(
 
                 viewer.view(viewOptions)
 
-                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions).apply {
-                    spreadsheetOptions = SpreadsheetOptions.forSplitSheetIntoPages(25)
-                })
+                val viewInfoOptions = ViewInfoOptions.fromHtmlViewOptions(viewOptions).apply {
+                    spreadsheetOptions.textOverflowMode = TextOverflowMode.HIDE_TEXT
+                    spreadsheetOptions.isSkipEmptyColumns = true
+                    spreadsheetOptions.isSkipEmptyRows = true
+                }
+
+                val viewInfo = viewer.getViewInfo(viewInfoOptions)
 
                 pages.forEach { (pageNumber, pagePath) ->
                     BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->

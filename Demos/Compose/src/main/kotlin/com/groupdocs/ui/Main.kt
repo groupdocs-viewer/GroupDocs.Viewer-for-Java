@@ -8,17 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.groupdocs.ui.settings.SettingsScreen
 import com.groupdocs.ui.common.Screen
 import com.groupdocs.ui.home.HomeScreen
 import com.groupdocs.ui.result.ResultScreen
+import com.groupdocs.ui.settings.SettingsScreen
 import com.groupdocs.ui.theme.GroupDocsTheme
 import java.awt.Dimension
 
+@ExperimentalComposeUiApi
 @Composable
 @Preview
 fun App() {
@@ -49,6 +51,7 @@ fun App() {
     }
 }
 
+@ExperimentalComposeUiApi
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,

@@ -1,12 +1,12 @@
 package com.groupdocs.ui.viewer.dropwizard.service;
 
-import com.groupdocs.ui.viewer.dropwizard.config.ViewerConfiguration;
-import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.LoadDocumentPageRequest;
-import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.LoadDocumentRequest;
-import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.RotateDocumentPagesRequest;
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.FileDescriptionEntity;
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.LoadDocumentEntity;
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.PageDescriptionEntity;
+import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.LoadDocumentPageRequest;
+import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.LoadDocumentRequest;
+import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.RotateDocumentPagesRequest;
+import com.groupdocs.ui.viewer.dropwizard.config.ViewerConfiguration;
 
 import javax.ws.rs.core.Response;
 import java.io.InputStream;
@@ -70,4 +70,9 @@ public interface ViewerService {
      */
     InputStream getPdf(LoadDocumentRequest loadDocumentRequest);
 
+    /**
+     * Configures sample to render more than 2 pages. Without license will get error,
+     * something line 'only 2 elements are allowed in any collection'
+     */
+    void setViewerLicenseSet(boolean viewerLicenseSet);
 }

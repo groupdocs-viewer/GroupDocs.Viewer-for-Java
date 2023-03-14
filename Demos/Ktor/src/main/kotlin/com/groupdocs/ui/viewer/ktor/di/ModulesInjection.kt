@@ -18,7 +18,7 @@ import com.groupdocs.ui.viewer.ktor.modules.tree.TreeController
 import com.groupdocs.ui.viewer.ktor.modules.tree.TreeControllerImpl
 import com.groupdocs.ui.viewer.ktor.usecase.AreFilesSupportedUseCase
 import com.groupdocs.ui.viewer.ktor.usecase.GetLocalFilesUseCase
-import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesStreamUseCase
+import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesDataUseCase
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -35,7 +35,7 @@ object ModulesInjection {
     }
     val usecaseBeans = module {
         singleOf(::GetLocalFilesUseCase)
-        singleOf(::RetrieveLocalFilePagesStreamUseCase)
+        singleOf(::RetrieveLocalFilePagesDataUseCase)
         singleOf(::AreFilesSupportedUseCase)
     }
     val managerBeans = module {

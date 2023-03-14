@@ -65,21 +65,26 @@ public class ViewerResources extends Resources {
         viewerService = new ViewerServiceImpl(globalConfiguration);
         try {
             final String licensePath = globalConfiguration.getApplication().getLicensePath();
-            License license = new License();
+            final License license = new License();
             if (licensePath.startsWith("http://") || licensePath.startsWith("https://")) {
                 final URL url = new URL(licensePath);
                 try (final InputStream inputStream = new BufferedInputStream(url.openStream())) {
                     license.setLicense(inputStream);
+                    viewerService.setViewerLicenseSet(true);
                 }
             } else {
                 final java.nio.file.Path path = Paths.get(licensePath);
                 if (Files.exists(path)) {
                     if (Files.isRegularFile(path)) {
                         license.setLicense(licensePath);
+                        viewerService.setViewerLicenseSet(true);
                     } else {
                         try (final Stream<java.nio.file.Path> pathStream = Files.list(path)) {
                             final Optional<java.nio.file.Path> first = pathStream.filter(it -> it.endsWith(DefaultDirectories.LIC)).findFirst();
-                            first.ifPresent(license::setLicense);
+                            first.ifPresent(licPath -> {
+                                license.setLicense(licPath);
+                                viewerService.setViewerLicenseSet(true);
+                            });
                         }
                     }
                 }

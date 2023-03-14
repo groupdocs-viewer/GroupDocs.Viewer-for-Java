@@ -24,6 +24,7 @@ import com.groupdocs.ui.result.component.SubHeaderScreen
 import com.groupdocs.ui.theme.GrayLight
 import com.groupdocs.ui.theme.spaces
 
+@ExperimentalComposeUiApi
 @Composable
 fun ResultScreen(screen: MutableState<Screen>) {
     val viewModel = remember { ResultViewModel(screen) }
@@ -91,7 +92,7 @@ fun ResultScreen(screen: MutableState<Screen>) {
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalComposeUiApi
 @Composable
 fun BodyScreen(modifier: Modifier, state: ResultState) {
     LazyColumn(
@@ -110,6 +111,7 @@ fun BodyScreen(modifier: Modifier, state: ResultState) {
     }
 }
 
+@ExperimentalComposeUiApi
 @Preview
 @Composable
 fun ResultScreenPreview() {

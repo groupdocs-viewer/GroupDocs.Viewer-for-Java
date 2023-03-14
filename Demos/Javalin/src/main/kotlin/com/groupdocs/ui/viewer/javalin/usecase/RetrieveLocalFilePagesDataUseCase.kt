@@ -3,10 +3,7 @@ package com.groupdocs.ui.viewer.javalin.usecase
 import com.groupdocs.ui.viewer.javalin.manager.PathManager
 import com.groupdocs.ui.viewer.javalin.util.InternalServerException
 import com.groupdocs.viewer.Viewer
-import com.groupdocs.viewer.options.HtmlViewOptions
-import com.groupdocs.viewer.options.LoadOptions
-import com.groupdocs.viewer.options.Rotation
-import com.groupdocs.viewer.options.ViewInfoOptions
+import com.groupdocs.viewer.options.*
 import java.io.*
 import java.nio.file.Files
 import java.nio.file.Path
@@ -49,7 +46,13 @@ class RetrieveLocalFilePagesDataUseCase(
 
                 viewer.view(viewOptions)
 
-                val viewInfo = viewer.getViewInfo(ViewInfoOptions.fromHtmlViewOptions(viewOptions))
+                val viewInfoOptions = ViewInfoOptions.fromHtmlViewOptions(viewOptions).apply {
+                    spreadsheetOptions.textOverflowMode = TextOverflowMode.HIDE_TEXT
+                    spreadsheetOptions.isSkipEmptyColumns = true
+                    spreadsheetOptions.isSkipEmptyRows = true
+                }
+
+                val viewInfo = viewer.getViewInfo(viewInfoOptions)
 
                 pages.forEach { (pageNumber, pagePath) ->
                     BufferedInputStream(FileInputStream(pagePath.toFile())).use { inputStream ->

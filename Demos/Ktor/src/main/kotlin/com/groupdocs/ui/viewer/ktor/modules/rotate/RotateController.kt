@@ -9,7 +9,7 @@ import com.groupdocs.ui.viewer.ktor.model.RotateResponse
 import com.groupdocs.ui.viewer.ktor.modules.BaseController
 import com.groupdocs.ui.viewer.ktor.status.InternalServerException
 import com.groupdocs.ui.viewer.ktor.usecase.AreFilesSupportedUseCase
-import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesStreamUseCase
+import com.groupdocs.ui.viewer.ktor.usecase.RetrieveLocalFilePagesDataUseCase
 import com.groupdocs.ui.viewer.ktor.util.angleToRotation
 import com.groupdocs.ui.viewer.ktor.util.rotationToAngle
 import com.groupdocs.viewer.options.Rotation
@@ -26,7 +26,7 @@ interface RotateController {
 }
 
 class RotateControllerImpl(
-    private val retrieveLocalFilePagesStream: RetrieveLocalFilePagesStreamUseCase,
+    private val retrieveLocalFilePagesData: RetrieveLocalFilePagesDataUseCase,
     private val areFilesSupported: AreFilesSupportedUseCase,
     private val pathManager: PathManager,
     private val filesCache: FilesCache
@@ -63,7 +63,7 @@ class RotateControllerImpl(
         return withContext(Dispatchers.IO) {
             BufferedInputStream(FileInputStream(filePath.toFile())).use { inputStream ->
                 var response: RotateResponse? = null
-                retrieveLocalFilePagesStream(
+                retrieveLocalFilePagesData(
                     inputStream = inputStream,
                     password = password,
                     pageRotations = pageRotations,

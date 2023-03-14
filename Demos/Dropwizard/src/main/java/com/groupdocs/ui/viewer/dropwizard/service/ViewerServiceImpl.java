@@ -439,4 +439,8 @@ public class ViewerServiceImpl implements ViewerService {
         }
         return path;
     }
+
+    public void setViewerLicenseSet(boolean viewerLicenseSet) {
+        isViewerLicenseSet = viewerLicenseSet;
+    }
 }
