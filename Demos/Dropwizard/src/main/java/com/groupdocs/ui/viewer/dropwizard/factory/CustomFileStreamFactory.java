@@ -22,7 +22,7 @@ public class CustomFileStreamFactory implements FileStreamFactory, Closeable {
         this.extension = extension;
 
         try {
-            this.tempDirectory = Files.createTempDirectory("gd_sp_psf_");
+            this.tempDirectory = Files.createTempDirectory("gd_sp_fsf_");
         } catch (IOException e) {
             logger.warn("Can't create temp directory. Can't create PageStreamFactory object.", e);
             throw new ReadWriteException(e);
@@ -66,7 +66,7 @@ public class CustomFileStreamFactory implements FileStreamFactory, Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
             FileUtils.deleteDirectory(this.tempDirectory.toFile());
         } catch (IOException e) {

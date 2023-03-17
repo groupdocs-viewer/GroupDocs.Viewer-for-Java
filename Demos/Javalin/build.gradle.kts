@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.javalin"
-version = "23.2"
+version = "23.2.1"
 
 repositories {
     mavenLocal()
@@ -28,7 +28,7 @@ tasks {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
 
-    implementation("com.groupdocs:groupdocs-viewer:$version")
+    implementation("com.groupdocs:groupdocs-viewer:23.2")
 
     implementation("io.insert-koin:koin-core:$koin_version")
 

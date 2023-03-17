@@ -157,39 +157,40 @@ public class FileViewerCache implements ViewerCache {
             logger.trace("cacheFilePath is null, continuing without caching");
             return defaultEntry.create(); // Problems with creating cache directory. Cache is not working for the key
         }
+        if (Files.notExists(cacheFilePath)) {
+            T defaultValue = defaultEntry.create();
 
-        int tryNumber = REQUEST_SYNC_LOCK_TRIES;
-        while ((tryNumber--) > 0 && Files.notExists(cacheFilePath)) {
-            try {
-                final boolean tryLock = writeLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
-                if (tryLock) {
-                    logger.trace("cache.set -> writeLock locked (cacheFilePath is '{}')", cacheFilePath);
-                    try {
-                        if (Files.notExists(cacheFilePath)) {
+            int tryNumber = REQUEST_SYNC_LOCK_TRIES;
+            while ((tryNumber--) > 0 && Files.notExists(cacheFilePath)) {
+                try {
+                    final boolean tryLock = writeLock.tryLock(REQUEST_SYNC_LOCK_TIMEOUT, TimeUnit.MILLISECONDS);
+                    if (tryLock) {
+                        logger.trace("cache.set -> writeLock locked (cacheFilePath is '{}')", cacheFilePath);
+                        try {
+                            if (Files.notExists(cacheFilePath)) {
 
-                            T defaultValue = defaultEntry.create();
-
-                            writeValueToStream(defaultValue, cacheFilePath);
-                            return defaultValue;
-                        } else {
-                            break;
+                                writeValueToStream(defaultValue, cacheFilePath);
+                                return defaultValue;
+                            } else {
+                                break;
+                            }
+                        } finally {
+                            writeLock.unlock();
+                            logger.trace("cache.set -> writeLock unlocked (cacheFilePath is '{}')", cacheFilePath);
                         }
-                    } finally {
-                        writeLock.unlock();
-                        logger.trace("cache.set -> writeLock unlocked (cacheFilePath is '{}')", cacheFilePath);
+                    } else {
+                        logger.trace("cache.set -> {} try to acquire write lock was NOT successful", REQUEST_SYNC_LOCK_TRIES - tryNumber);
                     }
-                } else {
-                    logger.trace("cache.set -> {} try to acquire write lock was NOT successful", REQUEST_SYNC_LOCK_TRIES - tryNumber);
-                }
-            } catch (InterruptedException e) {
-                logger.warn("Thread that worked with cache and waited for write lock was interrupted", e);
-            } catch (Exception e) {
-                logger.warn("Exception throws while writing object to cache by cacheFilePath '" + cacheFilePath + "'", e);
+                } catch (InterruptedException e) {
+                    logger.warn("Thread that worked with cache and waited for write lock was interrupted", e);
+                } catch (Exception e) {
+                    logger.warn("Exception throws while writing object to cache by cacheFilePath '" + cacheFilePath + "'", e);
 //            throw new ReadWriteException(e);
+                }
             }
-        }
-        if (tryNumber <= 0) {
-            logger.warn("Value with cacheFilePath '{}' was not saved into cache because write lock was not acquired during {}ms", cacheFilePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+            if (tryNumber <= 0) {
+                logger.warn("Value with cacheFilePath '{}' was not saved into cache because write lock was not acquired during {}ms", cacheFilePath, REQUEST_SYNC_LOCK_TIMEOUT * REQUEST_SYNC_LOCK_TRIES);
+            }
         }
 
         try {
