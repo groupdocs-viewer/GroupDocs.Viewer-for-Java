@@ -1,6 +1,6 @@
 ![Document Viewer](https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/banner.png "GroupDocs.Viewer")
 # GroupDocs.Viewer for Java Ktor Example
-###### version 23.2
+###### version 23.2.1
 
 [![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-Java-Ktor.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Ktor/blob/master/LICENSE)
 
@@ -84,7 +84,7 @@ You can run this sample by one of following methods
 
 #### Run using IDE
 
-Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases/download/v23.2/groupdocs-viewer-ktor-23.2.0.zip) from github or clone this repository.
+Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases/download/v23.2.1/groupdocs-viewer-ktor-23.2.1.zip) from github or clone this repository.
 
 ```bash
 git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java.git
@@ -136,9 +136,9 @@ Download [latest release](https://github.com/groupdocs-viewer/GroupDocs.Viewer-f
 **Note**: This method is **recommended** for running this sample behind firewall.
 
 ```bash
-curl -J -L -o release.tar.gz https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases/download/v23.2/groupdocs-viewer-ktor-23.2.0.tar
+curl -J -L -o release.tar.gz https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases/download/v23.2.1/groupdocs-viewer-ktor-23.2.1.tar
 tar -xvzf release.tar.gz
-cd release/viewer-ktor-23.2
+cd release/viewer-ktor-23.2.1
 ## Make `bin/viewer-ktor` file to be runnable
 bin/viewer-ktor
 ## Open http://localhost:8080/viewer/ in your favorite browser.
