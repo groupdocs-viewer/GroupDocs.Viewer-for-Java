@@ -6,6 +6,8 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
 
+import java.nio.file.Path;
+
 public class LoadPasswordProtectedDocument {
 
     /**
@@ -13,8 +15,8 @@ public class LoadPasswordProtectedDocument {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadPasswordProtectedDocument");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadPasswordProtectedDocument");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
         String password = "12345";
 
         final LoadOptions loadOptions = new LoadOptions();

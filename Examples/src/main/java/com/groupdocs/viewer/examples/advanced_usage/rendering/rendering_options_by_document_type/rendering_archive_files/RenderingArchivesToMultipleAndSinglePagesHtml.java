@@ -5,14 +5,16 @@ import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render archives files into multiple/single pages HTML.
  */
 public class RenderingArchivesToMultipleAndSinglePagesHtml {
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingArchivesToMultipleAndSinglePagesHtml");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingArchivesToMultipleAndSinglePagesHtml");
+        Path pageFilePathFormat = outputDirectory.resolve("RAR_result.html");
 
         // TO single page HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
@@ -24,7 +26,7 @@ public class RenderingArchivesToMultipleAndSinglePagesHtml {
         }
 
         // RAR_result_page_{0}.html - {0} is page number mask
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_page_{0}.html");
+        pageFilePathFormat = outputDirectory.resolve("RAR_result_page_{0}.html");
 
         // TO multi pages HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {

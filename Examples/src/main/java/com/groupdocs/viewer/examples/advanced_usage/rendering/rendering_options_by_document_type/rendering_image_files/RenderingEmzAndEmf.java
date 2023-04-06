@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render EMZ/EMF document into HTML, JPG, PNG, PDF.
  */
 public class RenderingEmzAndEmf {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingEmzAndEmf");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "emz_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingEmzAndEmf");
+        Path pageFilePathFormat = outputDirectory.resolve("emz_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_EMZ)) {
@@ -25,7 +27,7 @@ public class RenderingEmzAndEmf {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "emz_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("emz_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_EMZ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingEmzAndEmf {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "emz_result.png");
+        pageFilePathFormat = outputDirectory.resolve("emz_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_EMZ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingEmzAndEmf {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "emz_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("emz_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_EMZ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

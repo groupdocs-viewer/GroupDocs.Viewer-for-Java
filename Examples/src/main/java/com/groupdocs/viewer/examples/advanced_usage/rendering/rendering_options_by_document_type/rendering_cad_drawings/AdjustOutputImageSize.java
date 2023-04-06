@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.CadOptions;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class AdjustOutputImageSize {
 
@@ -16,8 +17,8 @@ public class AdjustOutputImageSize {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("AdjustOutputImageSize");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("AdjustOutputImageSize");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setCadOptions(CadOptions.forRenderingByScaleFactor(0.5f));

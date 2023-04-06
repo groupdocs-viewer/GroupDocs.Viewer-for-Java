@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render CMX document into HTML, JPG, PNG, PDF.
  */
 public class RenderingCmx {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingCmx");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "cmx_result_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingCmx");
+        Path pageFilePathFormat = outputDirectory.resolve("cmx_result_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX)) {
@@ -28,7 +30,7 @@ public class RenderingCmx {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cmx_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("cmx_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -40,7 +42,7 @@ public class RenderingCmx {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cmx_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("cmx_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -52,7 +54,7 @@ public class RenderingCmx {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cmx_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("cmx_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CMX)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

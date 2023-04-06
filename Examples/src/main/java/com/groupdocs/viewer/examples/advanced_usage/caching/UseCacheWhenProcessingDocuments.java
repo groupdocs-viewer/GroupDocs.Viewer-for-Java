@@ -8,6 +8,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class UseCacheWhenProcessingDocuments {
 
@@ -16,9 +17,9 @@ public class UseCacheWhenProcessingDocuments {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("UseCacheWhenProcessingDocuments");
-        String cachePath = new File(outputDirectory, "cache").getPath();
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("UseCacheWhenProcessingDocuments");
+        Path cachePath = outputDirectory.resolve( "cache");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         FileCache cache = new FileCache(cachePath);
         ViewerSettings settings = new ViewerSettings(cache);

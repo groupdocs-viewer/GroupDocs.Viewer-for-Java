@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render WMZ/WMF document into HTML, JPG, PNG, PDF.
  */
 public class RenderingWmzAndWmf {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingWmzAndWmf");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "wmz_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingWmzAndWmf");
+        Path pageFilePathFormat = outputDirectory.resolve("wmz_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ)) {
@@ -25,7 +27,7 @@ public class RenderingWmzAndWmf {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "wmz_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("wmz_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingWmzAndWmf {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "wmz_result.png");
+        pageFilePathFormat = outputDirectory.resolve("wmz_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingWmzAndWmf {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "wmz_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("wmz_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_WMZ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

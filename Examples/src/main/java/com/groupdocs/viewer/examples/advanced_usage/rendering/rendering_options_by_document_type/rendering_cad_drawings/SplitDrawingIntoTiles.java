@@ -9,6 +9,7 @@ import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ViewInfo;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class SplitDrawingIntoTiles {
 
@@ -17,8 +18,8 @@ public class SplitDrawingIntoTiles {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SplitDrawingIntoTiles");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("SplitDrawingIntoTiles");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         ViewInfoOptions viewInfoOptions = ViewInfoOptions.forPngView(false);
 

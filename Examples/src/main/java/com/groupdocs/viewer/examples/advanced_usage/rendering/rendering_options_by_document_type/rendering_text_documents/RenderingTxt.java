@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render TXT document into HTML, JPG, PNG, PDF.
  */
 public class RenderingTxt {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingTxt");
-        String pageFileFullPath = Utils.combinePaths(outputDirectory, "Txt_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingTxt");
+        Path pageFileFullPath = outputDirectory.resolve("Txt_result.html");
 
         // TO MULTI PAGES HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT)) {
@@ -23,7 +25,7 @@ public class RenderingTxt {
             viewer.view(options);
         }
 
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Txt_result_single_page.html");
+        pageFileFullPath = outputDirectory.resolve("Txt_result_single_page.html");
 
         // TO SINGLE HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_2_TXT)) {
@@ -34,7 +36,7 @@ public class RenderingTxt {
         }
 
         // TO JPG
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Txt_result.jpg");
+        pageFileFullPath = outputDirectory.resolve("Txt_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT)) {
             JpgViewOptions options = new JpgViewOptions(pageFileFullPath);
@@ -43,7 +45,7 @@ public class RenderingTxt {
         }
 
         // TO PNG
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Txt_result.png");
+        pageFileFullPath = outputDirectory.resolve("Txt_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT)) {
             PngViewOptions options = new PngViewOptions(pageFileFullPath);
@@ -52,7 +54,7 @@ public class RenderingTxt {
         }
 
         // TO PDF
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Txt_result.pdf");
+        pageFileFullPath = outputDirectory.resolve("Txt_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TXT)) {
             PdfViewOptions options = new PdfViewOptions(pageFileFullPath);

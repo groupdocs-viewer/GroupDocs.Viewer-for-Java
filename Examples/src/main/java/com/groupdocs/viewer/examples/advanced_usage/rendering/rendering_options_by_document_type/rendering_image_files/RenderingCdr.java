@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render CDR document into HTML, JPG, PNG, PDF.
  */
 public class RenderingCdr {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingCdr");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "cdr_result_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingCdr");
+        Path pageFilePathFormat = outputDirectory.resolve("cdr_result_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CDR)) {
@@ -28,7 +30,7 @@ public class RenderingCdr {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cdr_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("cdr_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CDR)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -40,7 +42,7 @@ public class RenderingCdr {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cdr_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("cdr_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CDR)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -52,7 +54,7 @@ public class RenderingCdr {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "cdr_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("cdr_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CDR)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

@@ -11,13 +11,15 @@ import com.groupdocs.viewer.examples.advanced_usage.caching.jackson.JacksonCache
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.results.FileInfo;
 
+import java.nio.file.Path;
+
 public class UseCustomCacheImplementation {
 
     /**
      * This example demonstrates how to create custom cache and how to use it.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("UseCustomCacheImplementation");
+        Path outputDirectory = Utils.getOutputDirectoryPath("UseCustomCacheImplementation");
         String pageFilePathFormat = outputDirectory + "\\page_{0}.html";
 
         Cache cache = new JacksonCache();

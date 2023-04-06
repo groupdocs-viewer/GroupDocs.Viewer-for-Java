@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderForDisplayWithText {
 
@@ -15,8 +16,8 @@ public class RenderForDisplayWithText {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderForDisplayWithText");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderForDisplayWithText");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
         viewOptions.setExtractText(true);

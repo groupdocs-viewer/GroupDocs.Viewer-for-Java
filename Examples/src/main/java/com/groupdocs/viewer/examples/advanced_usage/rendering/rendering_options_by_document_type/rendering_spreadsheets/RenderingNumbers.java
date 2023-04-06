@@ -8,14 +8,16 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render Apple Numbers document into HTML, JPG, PNG, PDF.
  */
 public class RenderingNumbers {
     public static void run() {
 
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingNumbers");
-        String pageFileFullPath = Utils.combinePaths(outputDirectory, "Numbers_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingNumbers");
+        Path pageFileFullPath = outputDirectory.resolve("Numbers_result.html");
 
         // TO MULTI PAGES HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NUMBERS)) {
@@ -25,7 +27,7 @@ public class RenderingNumbers {
         }
 
         // TO JPG
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Numbers_result.jpg");
+        pageFileFullPath = outputDirectory.resolve("Numbers_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NUMBERS)) {
             JpgViewOptions options = new JpgViewOptions(pageFileFullPath);
@@ -34,7 +36,7 @@ public class RenderingNumbers {
         }
 
         // TO PNG
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Numbers_result.png");
+        pageFileFullPath = outputDirectory.resolve("Numbers_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NUMBERS)) {
             PngViewOptions options = new PngViewOptions(pageFileFullPath);
@@ -43,7 +45,7 @@ public class RenderingNumbers {
         }
 
         // TO PDF
-        pageFileFullPath = Utils.combinePaths(outputDirectory, "Numbers_result.pdf");
+        pageFileFullPath = outputDirectory.resolve("Numbers_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NUMBERS)) {
             PdfViewOptions options = new PdfViewOptions(pageFileFullPath);

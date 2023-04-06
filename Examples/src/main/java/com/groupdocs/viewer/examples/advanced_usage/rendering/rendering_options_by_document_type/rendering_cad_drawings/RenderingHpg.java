@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render HPG document into HTML, JPG, PNG, PDF.
  */
 public class RenderingHpg {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingHpg");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "hpg_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingHpg");
+        Path pageFilePathFormat = outputDirectory.resolve("hpg_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HPG)) {
@@ -28,7 +30,7 @@ public class RenderingHpg {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "hpg_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("hpg_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HPG)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -41,7 +43,7 @@ public class RenderingHpg {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "hpg_result.png");
+        pageFilePathFormat = outputDirectory.resolve("hpg_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HPG)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -54,7 +56,7 @@ public class RenderingHpg {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "hpg_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("hpg_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HPG)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

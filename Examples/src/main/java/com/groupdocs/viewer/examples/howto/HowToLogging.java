@@ -10,6 +10,8 @@ import com.groupdocs.viewer.logging.FileLogger;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to log to file or console.
  */
@@ -20,8 +22,8 @@ public class HowToLogging {
     public static void toConsole() {
 //        ViewerSettings viewerSettings = new ViewerSettings(new ConsoleLogger());
 //
-//        String outputDirectory = Utils.getOutputDirectoryPath("HowToLogging");
-//        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+//        Path outputDirectory = Utils.getOutputDirectoryPath("HowToLogging");
+//        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 //
 //        try (Viewer viewer = new Viewer(SampleFiles.SAMPLE_PDF, viewerSettings)) {
 //            HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
@@ -38,8 +40,8 @@ public class HowToLogging {
     public static void toFile() {
         ViewerSettings viewerSettings = new ViewerSettings(new FileLogger("output.log"));
 
-        String outputDirectory = Utils.getOutputDirectoryPath("HowToLogging");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("HowToLogging");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PDF, viewerSettings)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);

@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.Permissions;
 import com.groupdocs.viewer.options.Security;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class ProtectPdfDocument {
 
@@ -16,8 +17,8 @@ public class ProtectPdfDocument {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("ProtectPdfDocument");
-        String filePath = new File(outputDirectory, "output.pdf").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("ProtectPdfDocument");
+        Path filePath = outputDirectory.resolve("output.pdf");
 
         Security security = new Security();
         security.setDocumentOpenPassword("o123");

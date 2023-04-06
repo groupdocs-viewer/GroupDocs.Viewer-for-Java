@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render Animated PNG format
  */
 public class RenderingApng {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingApng");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "apng_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingApng");
+        Path pageFilePathFormat = outputDirectory.resolve("apng_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_APNG)) {
@@ -26,7 +28,7 @@ public class RenderingApng {
 
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "apng_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("apng_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_APNG)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -35,7 +37,7 @@ public class RenderingApng {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "apng_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("apng_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_APNG)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -44,7 +46,7 @@ public class RenderingApng {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "apng_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("apng_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_APNG)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

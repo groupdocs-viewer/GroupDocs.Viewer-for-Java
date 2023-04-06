@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render MS Project document into HTML, JPG, PNG, PDF with notes.
  */
 public class RenderingNotes {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingNotes");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingNotes");
+        Path pageFilePathFormat = outputDirectory.resolve("mpp_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
@@ -25,7 +27,7 @@ public class RenderingNotes {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_{0}_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("mpp_{0}_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -35,7 +37,7 @@ public class RenderingNotes {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_{0}_result.png");
+        pageFilePathFormat = outputDirectory.resolve("mpp_{0}_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -45,7 +47,7 @@ public class RenderingNotes {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "mpp_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("mpp_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

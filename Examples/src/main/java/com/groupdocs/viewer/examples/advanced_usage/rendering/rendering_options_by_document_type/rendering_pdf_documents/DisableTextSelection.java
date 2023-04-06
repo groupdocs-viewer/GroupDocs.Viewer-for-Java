@@ -6,13 +6,15 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to disable text selection when rendering PDF documents to HTML.
  */
 public class DisableTextSelection {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("DisableTextSelection");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("DisableTextSelection");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.ONE_PAGE_TEXT_PDF)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);

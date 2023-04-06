@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render row and column headings.
  */
 public class RenderRowAndColumnHeadings {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderRowAndColumnHeadings");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderRowAndColumnHeadings");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
@@ -25,7 +27,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("page_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -35,7 +37,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -45,7 +47,7 @@ public class RenderRowAndColumnHeadings {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "output.pdf");
+        pageFilePathFormat = outputDirectory.resolve("output.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

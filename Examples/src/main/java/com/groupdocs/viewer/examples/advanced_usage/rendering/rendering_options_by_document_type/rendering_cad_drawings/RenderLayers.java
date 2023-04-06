@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.results.Layer;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class RenderLayers {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderLayers");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderLayers");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         List<Layer> layers = new ArrayList<>();

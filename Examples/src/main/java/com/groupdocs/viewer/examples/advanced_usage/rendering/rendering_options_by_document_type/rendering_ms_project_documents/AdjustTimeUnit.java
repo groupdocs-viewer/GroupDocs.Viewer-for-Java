@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.TimeUnit;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class AdjustTimeUnit {
 
@@ -15,8 +16,8 @@ public class AdjustTimeUnit {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("AdjustTimeUnit");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("AdjustTimeUnit");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getProjectManagementOptions().setTimeUnit(TimeUnit.DAYS);

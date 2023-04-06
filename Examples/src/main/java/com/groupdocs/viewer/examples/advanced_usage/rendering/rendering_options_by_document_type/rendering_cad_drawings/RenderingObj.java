@@ -8,15 +8,32 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render OBJ document into HTML, JPG, PNG, PDF.
  */
 public class RenderingObj {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingObj");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingObj");
+        Path pageFilePathFormat = outputDirectory.resolve("obj_result.html");
 
         // TO HTML
+        runToHtml(pageFilePathFormat);
+
+        // TO JPG
+        runToJpg(outputDirectory);
+
+        // TO PNG
+        runToPng(outputDirectory);
+
+        // TO PDF
+        runToPdf(outputDirectory);
+
+        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
+    }
+
+    public static void runToHtml(Path pageFilePathFormat) {
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 //            options.setCadOptions(CadOptions.forRenderingByScaleFactor(0.7f)); // Render image and reduce it by 30%
@@ -26,9 +43,10 @@ public class RenderingObj {
 
             viewer.view(options);
         }
+    }
 
-        // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.jpg");
+    public static void runToJpg(Path outputDirectory) {
+        Path pageFilePathFormat = outputDirectory.resolve("obj_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -39,9 +57,10 @@ public class RenderingObj {
 
             viewer.view(options);
         }
+    }
 
-        // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.png");
+    public static void runToPng(Path outputDirectory) {
+        Path pageFilePathFormat = outputDirectory.resolve("obj_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -52,9 +71,10 @@ public class RenderingObj {
 
             viewer.view(options);
         }
+    }
 
-        // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "obj_result.pdf");
+    public static void runToPdf(Path outputDirectory) {
+        Path pageFilePathFormat = outputDirectory.resolve("obj_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_OBJ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
@@ -65,7 +85,5 @@ public class RenderingObj {
 
             viewer.view(options);
         }
-
-        System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);
     }
 }

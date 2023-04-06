@@ -1,7 +1,7 @@
 ![GroupDocs.Viewer](https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/banner.png "GroupDocs.Viewer")
 # GroupDocs.Viewer for Kotlin Compose Example
 New GroupDocs.Viewer for Java Dropwizard UI Example
-###### version 23.2.1
+###### version 23.4
 
 [![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/blob/master/Demos/Compose/LICENSE)
 

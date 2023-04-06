@@ -6,10 +6,12 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 public class RenderingPc3Files {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingPc3Files");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "pc3_result.jpg");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingPc3Files");
+        Path pageFilePathFormat = outputDirectory.resolve("pc3_result.jpg");
 
         // TO JPG with PC3 config
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DWG_WITH_LAYOUTS_AND_LAYERS)) {

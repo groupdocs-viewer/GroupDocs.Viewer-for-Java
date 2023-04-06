@@ -2,7 +2,8 @@ package com.groupdocs.viewer.examples;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class Utils {
 
@@ -11,19 +12,22 @@ public class Utils {
     public static final String FONTS_PATH = "resources/fonts";
     public static final String OUTPUT_PATH = "output";
 
-    public static String getOutputDirectoryPath(String... pathParts) {
+    private Utils() {
+    }
+
+    public static void cleanOutputDirectory() throws IOException {
+        final Path outputPath = Paths.get(OUTPUT_PATH);
+        if (Files.exists(outputPath)) {
+            deleteDirectoryWithContent(outputPath);
+        }
+    }
+
+    public static Path getOutputDirectoryPath(String sampleName) {
+        final Path sampleDirectory = Paths.get(OUTPUT_PATH, sampleName);
         try {
-            File outputDirectory = new File(OUTPUT_PATH, combinePaths(pathParts)).getCanonicalFile();
-            if (outputDirectory.exists() && !deleteDirectory(outputDirectory)) {
-                outputDirectory.deleteOnExit();
-                throw new IOException("Can't delete output directory '" + outputDirectory.getAbsolutePath() + "'");
-            }
-            if (!outputDirectory.mkdirs()) {
-                throw new IOException("Can't create output directory '" + outputDirectory.getAbsolutePath() + "'");
-            }
-            return outputDirectory.getAbsolutePath();
+            return Files.createDirectories(sampleDirectory);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't create sample directory: '" + sampleDirectory.toAbsolutePath() + "'", e);
         }
     }
 
@@ -38,16 +42,22 @@ public class Utils {
         return relativePath.toString();
     }
 
-    private static boolean deleteDirectory(File dir) {
-        if (dir.isDirectory()) {
-            File[] children = dir.listFiles();
-            for (File child : Objects.requireNonNull(children)) {
-                boolean success = deleteDirectory(child);
-                if (!success) {
-                    return false;
-                }
+    private static void deleteDirectoryWithContent(Path pathToBeDeleted) throws IOException {
+        Files.walkFileTree(pathToBeDeleted, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult postVisitDirectory(
+                    Path dir, IOException exc) throws IOException {
+                Files.delete(dir);
+                return FileVisitResult.CONTINUE;
             }
-        }
-        return dir.delete();
+
+            @Override
+            public FileVisitResult visitFile(
+                    Path file, BasicFileAttributes attrs)
+                    throws IOException {
+                Files.delete(file);
+                return FileVisitResult.CONTINUE;
+            }
+        });
     }
 }

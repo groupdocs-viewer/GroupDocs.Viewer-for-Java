@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render FODP document into HTML, JPG, PNG, PDF.
  */
 public class RenderingFodp {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingFodp");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingFodp");
+        Path pageFilePathFormat = outputDirectory.resolve("Fodp_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
@@ -24,7 +26,7 @@ public class RenderingFodp {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("Fodp_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -33,7 +35,7 @@ public class RenderingFodp {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.png");
+        pageFilePathFormat = outputDirectory.resolve("Fodp_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -42,7 +44,7 @@ public class RenderingFodp {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "Fodp_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("Fodp_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODP)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

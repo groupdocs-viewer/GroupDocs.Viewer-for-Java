@@ -7,6 +7,7 @@ import org.apache.commons.net.ftp.FTPClient;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 public class LoadDocumentFromFtp {
 
@@ -14,8 +15,8 @@ public class LoadDocumentFromFtp {
      * This example demonstrates how to render document downloaded from FTP.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromFtp");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromFtp");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
         String server = "localhost";
         String filePath = "sample.doc";
 

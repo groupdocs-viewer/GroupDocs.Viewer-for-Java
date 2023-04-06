@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderSingleLayout {
 
@@ -14,8 +15,8 @@ public class RenderSingleLayout {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderSingleLayout");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderSingleLayout");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getCadOptions().setLayoutName("Model");

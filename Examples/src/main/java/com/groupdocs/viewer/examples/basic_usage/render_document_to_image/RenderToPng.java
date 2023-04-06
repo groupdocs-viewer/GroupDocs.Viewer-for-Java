@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderToPng {
 
@@ -14,8 +15,8 @@ public class RenderToPng {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderToPng");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderToPng");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
 

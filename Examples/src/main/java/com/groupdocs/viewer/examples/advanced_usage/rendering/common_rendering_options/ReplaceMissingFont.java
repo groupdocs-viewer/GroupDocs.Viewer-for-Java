@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class ReplaceMissingFont {
 
@@ -15,8 +16,8 @@ public class ReplaceMissingFont {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("ReplaceMissingFont");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("ReplaceMissingFont");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.setDefaultFontName("Courier New");

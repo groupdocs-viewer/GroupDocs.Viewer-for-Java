@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
 
 import java.nio.charset.Charset;
+import java.nio.file.Path;
 
 public class LoadDocumentsWithCharset {
 
@@ -17,8 +18,8 @@ public class LoadDocumentsWithCharset {
 
     public static void run() {
         String filePath = TestFiles.SAMPLE_TXT_SHIFT_JS_ENCODED;
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setFileType(FileType.TXT);

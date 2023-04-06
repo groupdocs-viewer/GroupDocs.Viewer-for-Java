@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class SkipRenderingOfEmptyRows {
 
@@ -14,8 +15,8 @@ public class SkipRenderingOfEmptyRows {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SkipRenderingOfEmptyRows");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("SkipRenderingOfEmptyRows");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewInfoOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewInfoOptions.getSpreadsheetOptions().setSkipEmptyRows(true);

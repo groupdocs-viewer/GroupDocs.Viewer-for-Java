@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render FODG/ODG document into HTML, JPG, PNG, PDF.
  */
 public class RenderingFodgAndOdg {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingFodgAndOdg");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingFodgAndOdg");
+        Path pageFilePathFormat = outputDirectory.resolve("fodg_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODG)) {
@@ -24,7 +26,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("fodg_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODG)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -33,7 +35,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.png");
+        pageFilePathFormat = outputDirectory.resolve("fodg_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODG)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -42,7 +44,7 @@ public class RenderingFodgAndOdg {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "fodg_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("fodg_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_FODG)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

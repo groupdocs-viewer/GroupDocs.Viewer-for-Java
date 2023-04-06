@@ -9,14 +9,16 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render Visio documents figures into HTML, JPG, PNG, PDF.
  */
 public class RenderingVisioDocumentsFigures {
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingCmx");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "result_page.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingCmx");
+        Path pageFilePathFormat = outputDirectory.resolve("result_page.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO)) {
@@ -28,7 +30,7 @@ public class RenderingVisioDocumentsFigures {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "visio_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("visio_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -39,7 +41,7 @@ public class RenderingVisioDocumentsFigures {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "visio_result.png");
+        pageFilePathFormat = outputDirectory.resolve("visio_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -50,7 +52,7 @@ public class RenderingVisioDocumentsFigures {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "visio_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("visio_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_VISIO)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

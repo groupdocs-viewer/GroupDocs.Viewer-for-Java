@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render SVG/SVGZ document into HTML, JPG, PNG, PDF.
  */
 public class RenderingSvgAndSvgz {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingSvgAndSvgz");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "svgz_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingSvgAndSvgz");
+        Path pageFilePathFormat = outputDirectory.resolve("svgz_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_SVGZ)) {
@@ -25,7 +27,7 @@ public class RenderingSvgAndSvgz {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "svgz_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("svgz_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_SVGZ)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingSvgAndSvgz {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "svgz_result.png");
+        pageFilePathFormat = outputDirectory.resolve("svgz_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_SVGZ)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingSvgAndSvgz {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "svgz_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("svgz_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_SVGZ)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

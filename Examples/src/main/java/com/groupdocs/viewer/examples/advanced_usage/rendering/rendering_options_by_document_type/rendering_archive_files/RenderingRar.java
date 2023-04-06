@@ -7,6 +7,8 @@ import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.results.ArchiveViewInfo;
 import com.groupdocs.viewer.results.ViewInfo;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render RAR document into HTML, JPG, PNG, PDF.
  */
@@ -22,8 +24,8 @@ public class RenderingRar {
     }
 
     public static void runToHtml() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
+        Path pageFilePathFormat = outputDirectory.resolve("RAR_result_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
@@ -36,9 +38,9 @@ public class RenderingRar {
     }
 
     public static void runToJpg() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO JPG
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.jpg");
+        Path pageFilePathFormat = outputDirectory.resolve("RAR_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -50,9 +52,9 @@ public class RenderingRar {
     }
 
     public static void runToPng() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO PNG
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result_{0}.png");
+        Path pageFilePathFormat = outputDirectory.resolve("RAR_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -64,9 +66,9 @@ public class RenderingRar {
     }
 
     public static void runToPdf() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingRar");
         // TO PDF
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "RAR_result.pdf");
+        Path pageFilePathFormat = outputDirectory.resolve("RAR_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
@@ -102,8 +104,8 @@ public class RenderingRar {
      */
     public static void renderSpecificArchiveFolder() {
 
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderSpecificArchiveFolder");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "archive_folder_page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderSpecificArchiveFolder");
+        Path pageFilePathFormat = outputDirectory.resolve("archive_folder_page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_RAR_WITH_FOLDERS)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);

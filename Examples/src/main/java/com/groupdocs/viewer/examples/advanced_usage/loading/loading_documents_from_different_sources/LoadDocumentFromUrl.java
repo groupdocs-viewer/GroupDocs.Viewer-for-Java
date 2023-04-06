@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
 
 public class LoadDocumentFromUrl {
 
@@ -16,8 +17,8 @@ public class LoadDocumentFromUrl {
 
     public static void run() {
         String url = "https://cms.admin.containerize.com/templates/groupdocs/images/logos/groupdocs-logo.png";
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromUrl");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromUrl");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try {
             InputStream fileStream = new URL(url).openStream();

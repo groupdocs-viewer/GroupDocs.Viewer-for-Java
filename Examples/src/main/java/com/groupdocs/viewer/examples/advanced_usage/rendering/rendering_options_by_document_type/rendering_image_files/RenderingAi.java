@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render Ai document into HTML, JPG, PNG, PDF.
  */
 public class RenderingAi {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingAi");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "ai_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingAi");
+        Path pageFilePathFormat = outputDirectory.resolve("ai_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_AI)) {
@@ -25,7 +27,7 @@ public class RenderingAi {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "ai_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("ai_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_AI)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingAi {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "ai_result.png");
+        pageFilePathFormat = outputDirectory.resolve("ai_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_AI)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingAi {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "ai_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("ai_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_AI)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

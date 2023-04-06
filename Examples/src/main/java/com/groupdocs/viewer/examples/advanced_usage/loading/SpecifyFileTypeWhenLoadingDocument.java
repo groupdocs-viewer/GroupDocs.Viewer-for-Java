@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class SpecifyFileTypeWhenLoadingDocument {
 
@@ -16,8 +17,8 @@ public class SpecifyFileTypeWhenLoadingDocument {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SpecifyFileTypeWhenLoadingDocument");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("SpecifyFileTypeWhenLoadingDocument");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setFileType(FileType.DOCX);

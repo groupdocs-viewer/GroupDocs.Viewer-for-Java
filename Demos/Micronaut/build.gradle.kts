@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.micronaut"
-version = "23.2.1"
+version = "23.4"
 
 val kotlinVersion = project.properties["kotlinVersion"]
 repositories {
@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     kapt("io.micronaut:micronaut-http-validation")
-    implementation("com.groupdocs:groupdocs-viewer:23.2")
+    implementation("com.groupdocs:groupdocs-viewer:23.4")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")

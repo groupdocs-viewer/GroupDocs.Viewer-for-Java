@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
 import java.util.TimeZone;
 
 /**
@@ -13,8 +14,8 @@ import java.util.TimeZone;
  */
 public class DateTimeFormatAndTimeZoneOffset {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("DateTimeFormatAndTimeZoneOffset");
-        String filePath = PathUtils.combine(outputDirectory, "output.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("DateTimeFormatAndTimeZoneOffset");
+        Path filePath = outputDirectory.resolve("output.html");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_EML)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(filePath);

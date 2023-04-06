@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class EnableFontHinting {
 
@@ -15,8 +16,8 @@ public class EnableFontHinting {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("EnableFontHinting");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("EnableFontHinting");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
         viewOptions.getPdfOptions().setEnableFontHinting(true);

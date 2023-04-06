@@ -7,16 +7,18 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.LoadOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to set timeout for loading external resources contained by a document.
  */
 public class SetResourceLoadingTimeout {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SetResourceLoadingTimeout");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("SetResourceLoadingTimeout");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         LoadOptions loadOptions = new LoadOptions();
-        loadOptions.setResourceLoadingTimeout(5000);
+        loadOptions.setResourceLoadingTimeout(60_000);
 
         try (Viewer viewer = new Viewer(TestFiles.WITH_EXTERNAL_IMAGE_DOC, loadOptions)) {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);

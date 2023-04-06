@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -14,8 +15,8 @@ import java.nio.file.Paths;
  */
 public class RenderingHtmlWithUserDefinedMargins {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingHtmlWithUserDefinedMargins");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "html_render_margins_page_{0}.jpg");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingHtmlWithUserDefinedMargins");
+        Path pageFilePathFormat = outputDirectory.resolve("html_render_margins_page_{0}.jpg");
 
             /*
              You can adjust margins (top,bottom,left,right) of final document by setting following properties in
@@ -34,36 +35,36 @@ public class RenderingHtmlWithUserDefinedMargins {
         // TO JPG
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40);
-            options.getWordProcessingOptions().setRightMargin(40);
-            options.getWordProcessingOptions().setTopMargin(40);
-            options.getWordProcessingOptions().setBottomMargin(40);
+            options.getWordProcessingOptions().setLeftMargin(40f);
+            options.getWordProcessingOptions().setRightMargin(40f);
+            options.getWordProcessingOptions().setTopMargin(40f);
+            options.getWordProcessingOptions().setBottomMargin(40f);
 
             viewer.view(options);
         }
 
-        pageFilePathFormat = Paths.get(outputDirectory, "html_render_margins_page_{0}.png").toString();
+        pageFilePathFormat = outputDirectory.resolve("html_render_margins_page_{0}.png");
 
         // TO PNG
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40);
-            options.getWordProcessingOptions().setRightMargin(40);
-            options.getWordProcessingOptions().setTopMargin(40);
-            options.getWordProcessingOptions().setBottomMargin(40);
+            options.getWordProcessingOptions().setLeftMargin(40f);
+            options.getWordProcessingOptions().setRightMargin(40f);
+            options.getWordProcessingOptions().setTopMargin(40f);
+            options.getWordProcessingOptions().setBottomMargin(40f);
 
             viewer.view(options);
         }
 
-        pageFilePathFormat = Paths.get(outputDirectory, "html_render_margins.pdf").toString();
+        pageFilePathFormat = outputDirectory.resolve("html_render_margins.pdf");
 
         // TO PDF
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40);
-            options.getWordProcessingOptions().setRightMargin(40);
-            options.getWordProcessingOptions().setTopMargin(40);
-            options.getWordProcessingOptions().setBottomMargin(40);
+            options.getWordProcessingOptions().setLeftMargin(40f);
+            options.getWordProcessingOptions().setRightMargin(40f);
+            options.getWordProcessingOptions().setTopMargin(40f);
+            options.getWordProcessingOptions().setBottomMargin(40f);
 
             viewer.view(options);
         }

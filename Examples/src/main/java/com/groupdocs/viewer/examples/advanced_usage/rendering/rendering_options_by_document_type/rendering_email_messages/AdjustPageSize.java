@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.PageSize;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class AdjustPageSize {
 
@@ -15,8 +16,8 @@ public class AdjustPageSize {
      * messages.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("AdjustPageSize");
-        String filePath = new File(outputDirectory, "output.pdf").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("AdjustPageSize");
+        Path filePath = outputDirectory.resolve("output.pdf");
 
         PdfViewOptions viewOptions = new PdfViewOptions(filePath);
         viewOptions.getEmailOptions().setPageSize(PageSize.A4);

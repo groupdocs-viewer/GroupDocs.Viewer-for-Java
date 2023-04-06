@@ -7,14 +7,16 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.SpreadsheetOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render spreadsheets by page breaks.
  * More details at https://docs.groupdocs.com/viewer/net/render-spreadsheets-by-page-breaks/
  */
 public class RenderingByPageBreaks {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingByPageBreaks");
-        String outputFilePath = PathUtils.combine(outputDirectory, "output.pdf");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingByPageBreaks");
+        Path outputFilePath = outputDirectory.resolve("output.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.PAGE_BREAKS_XLSX)) {
             PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);

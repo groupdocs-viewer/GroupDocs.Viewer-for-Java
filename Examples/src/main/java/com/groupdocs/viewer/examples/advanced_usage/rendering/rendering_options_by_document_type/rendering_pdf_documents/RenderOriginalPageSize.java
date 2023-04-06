@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderOriginalPageSize {
 
@@ -13,8 +14,8 @@ public class RenderOriginalPageSize {
      * This example demonstrates how to rotate first page on 90 degree clockwise.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderOriginalPageSize");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.png").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderOriginalPageSize");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.png");
 
         PngViewOptions viewOptions = new PngViewOptions(pageFilePathFormat);
         viewOptions.getPdfOptions().setRenderOriginalPageSize(true);

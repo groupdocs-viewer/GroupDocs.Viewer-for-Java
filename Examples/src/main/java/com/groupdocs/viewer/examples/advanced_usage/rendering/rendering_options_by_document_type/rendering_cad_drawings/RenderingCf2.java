@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render CF2 document into HTML, JPG, PNG, PDF.
  */
 public class RenderingCf2 {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingCf2");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "CF2_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingCf2");
+        Path pageFilePathFormat = outputDirectory.resolve("CF2_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2)) {
@@ -28,7 +30,7 @@ public class RenderingCf2 {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "CF2_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("CF2_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -41,7 +43,7 @@ public class RenderingCf2 {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "CF2_result.png");
+        pageFilePathFormat = outputDirectory.resolve("CF2_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -54,7 +56,7 @@ public class RenderingCf2 {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "CF2_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("CF2_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

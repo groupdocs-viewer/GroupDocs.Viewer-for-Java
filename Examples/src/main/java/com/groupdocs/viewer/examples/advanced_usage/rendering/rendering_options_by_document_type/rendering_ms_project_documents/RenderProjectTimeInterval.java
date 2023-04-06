@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ProjectManagementViewInfo;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderProjectTimeInterval {
 
@@ -17,8 +18,8 @@ public class RenderProjectTimeInterval {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderProjectTimeInterval");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderProjectTimeInterval");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MPP)) {
 

@@ -5,7 +5,7 @@
 
     <groupId>GroupDocs.Viewer.Examples.Java</groupId>
     <artifactId>GroupDocs.Viewer.Examples.Java</artifactId>
-    <version>23.2</version>
+    <version>23.4</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -55,7 +55,7 @@
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
             <version>${project.version}</version>
-        </dependency>
+            </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

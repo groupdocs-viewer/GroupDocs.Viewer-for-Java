@@ -6,13 +6,15 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.FileName;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to specify filename when rendering archive files.
  */
 public class SpecifyFilenameWhenRenderingArchiveFiles {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SpecifyFilenameWhenRenderingArchiveFiles");
-        String outputFilePath = Utils.combinePaths(outputDirectory, "output.pdf");
+        Path outputDirectory = Utils.getOutputDirectoryPath("SpecifyFilenameWhenRenderingArchiveFiles");
+        Path outputFilePath = outputDirectory.resolve("output.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_ZIP)) {
             PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);

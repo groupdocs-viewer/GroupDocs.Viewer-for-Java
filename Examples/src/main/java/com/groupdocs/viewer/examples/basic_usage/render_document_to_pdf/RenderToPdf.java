@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderToPdf {
 
@@ -14,8 +15,8 @@ public class RenderToPdf {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderToPdf");
-        String outputFilePath = new File(outputDirectory, "output.pdf").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderToPdf");
+        Path outputFilePath = outputDirectory.resolve("output.pdf");
 
         PdfViewOptions viewOptions = new PdfViewOptions(outputFilePath);
 

@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.Rotation;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RotatePages {
 
@@ -15,8 +16,8 @@ public class RotatePages {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RotatePages");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RotatePages");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.rotatePage(1, Rotation.ON_90_DEGREE);

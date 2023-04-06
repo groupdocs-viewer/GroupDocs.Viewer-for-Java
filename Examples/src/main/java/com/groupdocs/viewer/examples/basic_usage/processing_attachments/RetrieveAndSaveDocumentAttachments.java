@@ -8,6 +8,7 @@ import com.groupdocs.viewer.results.Attachment;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 public class RetrieveAndSaveDocumentAttachments {
@@ -17,14 +18,14 @@ public class RetrieveAndSaveDocumentAttachments {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RetrieveAndSaveDocumentAttachments");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RetrieveAndSaveDocumentAttachments");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
 
             List<Attachment> attachments = viewer.getAttachments();
             for (Attachment attachment : attachments) {
-                final File file = new File(Utils.combinePaths(outputDirectory, attachment.getFileName()));
-                try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                final Path file = outputDirectory.resolve(attachment.getFileName());
+                try (FileOutputStream outputStream = new FileOutputStream(file.toFile())) {
                     viewer.saveAttachment(attachment, outputStream);
                 }
             }

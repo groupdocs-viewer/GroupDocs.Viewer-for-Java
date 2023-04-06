@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class RenderGridLines {
 
@@ -14,8 +15,8 @@ public class RenderGridLines {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderGridLines");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderGridLines");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getSpreadsheetOptions().setRenderGridLines(true);

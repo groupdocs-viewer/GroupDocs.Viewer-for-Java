@@ -8,6 +8,7 @@ import com.groupdocs.viewer.options.LoadOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
 import java.nio.charset.Charset;
+import java.nio.file.Path;
 
 /**
  * This example demonstrates how to specify encoding.
@@ -15,8 +16,8 @@ import java.nio.charset.Charset;
 public class LoadDocumentsWithEncoding {
     public static void run() {
         String filePath = TestFiles.SAMPLE_TXT_SHIFT_JS_ENCODED;
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentsWithEncoding");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setCharset(Charset.forName("shift_jis"));

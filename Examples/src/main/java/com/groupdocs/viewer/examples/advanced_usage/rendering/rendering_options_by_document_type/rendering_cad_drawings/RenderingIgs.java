@@ -8,13 +8,15 @@ import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render IGS document into HTML, JPG, PNG, PDF.
  */
 public class RenderingIgs {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingIgs");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "IGS_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingIgs");
+        Path pageFilePathFormat = outputDirectory.resolve("IGS_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_IGS)) {
@@ -28,7 +30,7 @@ public class RenderingIgs {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "IGS_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("IGS_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_IGS)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -41,7 +43,7 @@ public class RenderingIgs {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "IGS_result.png");
+        pageFilePathFormat = outputDirectory.resolve("IGS_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_IGS)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -54,7 +56,7 @@ public class RenderingIgs {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "IGS_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("IGS_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_IGS)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

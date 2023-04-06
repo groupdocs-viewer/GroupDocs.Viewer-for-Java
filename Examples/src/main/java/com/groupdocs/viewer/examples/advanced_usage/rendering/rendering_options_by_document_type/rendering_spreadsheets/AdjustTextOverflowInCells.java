@@ -7,6 +7,7 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.TextOverflowMode;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class AdjustTextOverflowInCells {
 
@@ -15,8 +16,8 @@ public class AdjustTextOverflowInCells {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("AdjustTextOverflowInCells");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("AdjustTextOverflowInCells");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
         viewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);

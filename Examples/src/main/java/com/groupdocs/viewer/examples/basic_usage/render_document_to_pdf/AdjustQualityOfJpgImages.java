@@ -6,6 +6,7 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
 import java.io.File;
+import java.nio.file.Path;
 
 public class AdjustQualityOfJpgImages {
 
@@ -14,8 +15,8 @@ public class AdjustQualityOfJpgImages {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("AdjustQualityOfJpgImages");
-        String filePath = new File(outputDirectory, "output.pdf").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("AdjustQualityOfJpgImages");
+        Path filePath = outputDirectory.resolve("output.pdf");
 
         PdfViewOptions viewOptions = new PdfViewOptions(filePath);
         byte quality = 10;

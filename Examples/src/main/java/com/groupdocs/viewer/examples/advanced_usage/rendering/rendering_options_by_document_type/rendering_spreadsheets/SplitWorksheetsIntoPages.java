@@ -6,6 +6,8 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.SpreadsheetOptions;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to split worksheet(s) into page(s).
  */
@@ -13,8 +15,8 @@ public class SplitWorksheetsIntoPages {
 
     public static void splitByRows() {
 
-        String outputDirectory = Utils.getOutputDirectoryPath("SplitByRows");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("SplitByRows");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.TWO_PAGES_XLSX)) {
             int countRowsPerPage = 15;
@@ -30,8 +32,8 @@ public class SplitWorksheetsIntoPages {
 
     public static void splitByRowsAndColumns() {
 
-        String outputDirectory = Utils.getOutputDirectoryPath("SplitByRowsAndColumns");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("SplitByRowsAndColumns");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         try (Viewer viewer = new Viewer(TestFiles.FOUR_PAGES_XLSX)) {
             int countRowsPerPage = 15;

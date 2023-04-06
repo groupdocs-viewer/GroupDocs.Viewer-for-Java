@@ -6,13 +6,15 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how set output image size limits when rendering documents to JPG/PNG.
  */
 public class SetImageSizeLimits {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("SetImageSizeLimits");
-        String outputFile = PathUtils.combine(outputDirectory, "result_image_size_limit.jpg");
+        Path outputDirectory = Utils.getOutputDirectoryPath("SetImageSizeLimits");
+        Path outputFile = outputDirectory.resolve("result_image_size_limit.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CF2)) {
             JpgViewOptions options = new JpgViewOptions(outputFile);

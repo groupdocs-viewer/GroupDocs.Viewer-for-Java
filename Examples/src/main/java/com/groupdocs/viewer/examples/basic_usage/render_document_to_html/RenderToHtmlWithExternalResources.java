@@ -5,6 +5,8 @@ import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
+import java.nio.file.Path;
+
 public class RenderToHtmlWithExternalResources {
 
     /**
@@ -12,7 +14,7 @@ public class RenderToHtmlWithExternalResources {
      * resources.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderToHtmlWithExternalResources");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderToHtmlWithExternalResources");
 
         // The {0} and {1} patterns will be replaced with current processing page number
         // and resource name accordingly.

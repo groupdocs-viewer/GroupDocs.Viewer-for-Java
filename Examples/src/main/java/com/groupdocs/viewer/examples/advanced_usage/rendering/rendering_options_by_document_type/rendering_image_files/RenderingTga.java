@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render Truevision TGA (TARGA) (tga) format
  */
 public class RenderingTga {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingTga");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "tga_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingTga");
+        Path pageFilePathFormat = outputDirectory.resolve("tga_result.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TGA)) {
@@ -25,7 +27,7 @@ public class RenderingTga {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "tga_result.jpg");
+        pageFilePathFormat = outputDirectory.resolve("tga_result.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TGA)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingTga {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "tga_result.png");
+        pageFilePathFormat = outputDirectory.resolve("tga_result.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TGA)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingTga {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "tga_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("tga_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_TGA)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

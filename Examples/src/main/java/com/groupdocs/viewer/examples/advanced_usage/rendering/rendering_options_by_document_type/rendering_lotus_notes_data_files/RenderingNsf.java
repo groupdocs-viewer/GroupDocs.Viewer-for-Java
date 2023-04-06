@@ -6,13 +6,15 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.*;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render NSF document into HTML, JPG, PNG, PDF.
  */
 public class RenderingNsf {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingNsf");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "NSF_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingNsf");
+        Path pageFilePathFormat = outputDirectory.resolve("NSF_result.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setResourceLoadingTimeout(100);
@@ -25,7 +27,7 @@ public class RenderingNsf {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("NSF_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -34,7 +36,7 @@ public class RenderingNsf {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("NSF_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -43,7 +45,7 @@ public class RenderingNsf {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "NSF_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("NSF_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_NSF, loadOptions)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

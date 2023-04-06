@@ -5,13 +5,15 @@ import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.*;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render PST/OST document into HTML, JPG, PNG, PDF.
  */
 public class RenderingPstAndOst {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingPstAndOst");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingPstAndOst");
+        Path pageFilePathFormat = outputDirectory.resolve("PST_result.html");
 
         LoadOptions loadOptions = new LoadOptions();
         loadOptions.setResourceLoadingTimeout(100);
@@ -24,7 +26,7 @@ public class RenderingPstAndOst {
         }
 
         // TO JPG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("PST_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PST, loadOptions)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -33,7 +35,7 @@ public class RenderingPstAndOst {
         }
 
         // TO PNG
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("PST_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PST, loadOptions)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -42,7 +44,7 @@ public class RenderingPstAndOst {
         }
 
         // TO PDF
-        pageFilePathFormat = Utils.combinePaths(outputDirectory, "PST_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("PST_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PST, loadOptions)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

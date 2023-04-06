@@ -9,13 +9,15 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 import com.groupdocs.viewer.utils.PathUtils;
 
+import java.nio.file.Path;
+
 /**
  * This example demonstrates how to render CHM document into HTML, JPG, PNG, PDF.
  */
 public class RenderingChmFiles {
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderingChmFiles");
-        String pageFilePathFormat = PathUtils.combine(outputDirectory, "chm_result_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderingChmFiles");
+        Path pageFilePathFormat = outputDirectory.resolve("chm_result_{0}.html");
 
         // TO HTML
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
@@ -27,7 +29,7 @@ public class RenderingChmFiles {
         }
 
         // TO JPG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "chm_result_{0}.jpg");
+        pageFilePathFormat = outputDirectory.resolve("chm_result_{0}.jpg");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
@@ -37,7 +39,7 @@ public class RenderingChmFiles {
         }
 
         // TO PNG
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "chm_result_{0}.png");
+        pageFilePathFormat = outputDirectory.resolve("chm_result_{0}.png");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
@@ -47,7 +49,7 @@ public class RenderingChmFiles {
         }
 
         // TO PDF
-        pageFilePathFormat = PathUtils.combine(outputDirectory, "chm_result.pdf");
+        pageFilePathFormat = outputDirectory.resolve("chm_result.pdf");
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);

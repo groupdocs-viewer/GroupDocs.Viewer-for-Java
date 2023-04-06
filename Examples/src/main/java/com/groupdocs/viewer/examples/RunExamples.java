@@ -14,6 +14,8 @@ public class RunExamples {
         System.out.println("Uncomment the example(s) that you want to run in RunExamples.java file.");
         System.out.println("=======================================================================");
 
+        Utils.cleanOutputDirectory();
+
         // region Quick Start
 
 //        SetLicenseFromFile.run();
@@ -162,6 +164,7 @@ public class RunExamples {
 //        EnableLayeredRendering.run();
 //        RenderOriginalPageSize.run();
 //        DisableTextSelection.run();
+//        ExtractTextFromPdfFile.run();
 
         // endregion
 

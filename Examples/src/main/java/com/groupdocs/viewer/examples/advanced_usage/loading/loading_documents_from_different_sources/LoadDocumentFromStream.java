@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 public class LoadDocumentFromStream {
 
@@ -17,8 +18,8 @@ public class LoadDocumentFromStream {
      */
 
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromStream");
-        String pageFilePathFormat = new File(outputDirectory, "page_{0}.html").getPath();
+        Path outputDirectory = Utils.getOutputDirectoryPath("LoadDocumentFromStream");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 

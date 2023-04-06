@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 public class RenderDocumentAttachments {
 
@@ -18,10 +19,10 @@ public class RenderDocumentAttachments {
      * This example demonstrates how to render attachment into HTML.
      */
     public static void run() {
-        String outputDirectory = Utils.getOutputDirectoryPath("RenderDocumentAttachments");
-        String pageFilePathFormat = Utils.combinePaths(outputDirectory, "page_{0}.html");
+        Path outputDirectory = Utils.getOutputDirectoryPath("RenderDocumentAttachments");
+        Path pageFilePathFormat = outputDirectory.resolve("page_{0}.html");
 
-        Attachment attachment = CacheableFactory.getInstance().newAttachment("attachment-word.doc", pageFilePathFormat);
+        Attachment attachment = CacheableFactory.getInstance().newAttachment("attachment-word.doc", pageFilePathFormat.toString());
 
         try (ByteArrayOutputStream attachmentStream = new ByteArrayOutputStream();
              Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
