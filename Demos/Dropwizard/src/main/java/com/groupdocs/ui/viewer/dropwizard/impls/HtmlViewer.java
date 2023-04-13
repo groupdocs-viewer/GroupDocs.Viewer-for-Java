@@ -13,6 +13,8 @@ import java.util.List;
 public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
     public static final String CACHE_PAGES_EXTENSION = ".html";
     private final CustomFileStreamFactory fileStreamFactory = new CustomFileStreamFactory(this.cache, ".pdf");
+    private CustomPageStreamFactory customPageStreamFactory;
+    private CustomResourceStreamFactory customResourceStreamFactory;
 
     public HtmlViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
         this(filePath, cache, loadOptions, -1, 0);
@@ -26,9 +28,10 @@ public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
     }
 
     private com.groupdocs.viewer.options.HtmlViewOptions createHtmlViewOptions(int passedPageNumber/* = -1*/, int newAngle/* = 0*/) {
-        HtmlViewOptions htmlViewOptions = HtmlViewOptions.forExternalResources(
-                new CustomPageStreamFactory(this.cache, CACHE_PAGES_EXTENSION),
-                new CustomResourceStreamFactory(cache, Paths.get(filePath).getFileName().toString()));
+        this.customPageStreamFactory = new CustomPageStreamFactory(this.cache, CACHE_PAGES_EXTENSION);
+        this.customResourceStreamFactory = new CustomResourceStreamFactory(cache, Paths.get(filePath).getFileName().toString());
+
+        HtmlViewOptions htmlViewOptions = HtmlViewOptions.forExternalResources(customPageStreamFactory, customResourceStreamFactory);
 
         htmlViewOptions.getSpreadsheetOptions().setTextOverflowMode(TextOverflowMode.HIDE_TEXT);
         htmlViewOptions.getSpreadsheetOptions().setSkipEmptyColumns(true);
@@ -67,5 +70,12 @@ public class HtmlViewer extends CustomViewer<HtmlViewOptions> {
     public void close() {
         super.close();
         fileStreamFactory.close();
+
+        if (this.customPageStreamFactory != null) {
+            this.customPageStreamFactory.close();
+        }
+        if (this.customResourceStreamFactory != null) {
+            this.customResourceStreamFactory.close();
+        }
     }
 }

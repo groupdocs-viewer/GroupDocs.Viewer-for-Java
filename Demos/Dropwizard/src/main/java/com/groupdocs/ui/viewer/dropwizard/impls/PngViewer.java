@@ -10,6 +10,7 @@ import java.util.List;
 
 public class PngViewer extends CustomViewer<PngViewOptions> {
     public static final String CACHE_PAGES_EXTENSION = ".png";
+    private CustomFileStreamFactory customFileStreamFactory;
 
     public PngViewer(String filePath, ViewerCache cache, LoadOptions loadOptions) {
         this(filePath, cache, loadOptions, -1, 0);
@@ -36,8 +37,8 @@ public class PngViewer extends CustomViewer<PngViewOptions> {
     }
 
     private com.groupdocs.viewer.options.PdfViewOptions createPdfViewOptions() {
-        PdfViewOptions pdfViewOptions = new PdfViewOptions(
-                new CustomFileStreamFactory(this.cache, ".pdf"));
+        this.customFileStreamFactory = new CustomFileStreamFactory(this.cache, ".pdf");
+        PdfViewOptions pdfViewOptions = new PdfViewOptions(customFileStreamFactory);
         setWatermarkOptions(pdfViewOptions);
         return pdfViewOptions;
     }
@@ -45,5 +46,13 @@ public class PngViewer extends CustomViewer<PngViewOptions> {
     @Override
     protected int[] getPagesMissingFromCache(List<Page> pages) {
         return super.getPagesMissingFromCache(pages, CACHE_PAGES_EXTENSION);
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        if (this.customFileStreamFactory != null) {
+            this.customFileStreamFactory.close();
+        }
     }
 }
