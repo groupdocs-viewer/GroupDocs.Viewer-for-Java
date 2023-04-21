@@ -92,16 +92,16 @@ public class JacksonCache implements Cache {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T get(String key) {
+    public <T> T get(String key, Class<T> clazz) {
         final byte[] bytes = mData.get(key);
         if (bytes == null) {
             return null;
         }
 
         try {
-            for (Class<?> clazz : SERIALIZATION_MODELS) {
+            for (Class<?> modelClazz : SERIALIZATION_MODELS) {
                 try {
-                    T value =  (T) mObjectMapper.readValue(bytes, clazz);
+                    T value =  (T) mObjectMapper.readValue(bytes, modelClazz);
                     System.out.println("Data with key '" + key + "' was get from cache");
                     return value;
                 } catch (JsonParseException | JsonMappingException e) {

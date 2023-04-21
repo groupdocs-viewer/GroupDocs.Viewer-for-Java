@@ -3,6 +3,9 @@ package com.groupdocs.ui.viewer.dropwizard.common.util;
 import com.groupdocs.ui.viewer.dropwizard.common.exception.PasswordExceptions;
 
 import javax.ws.rs.core.MediaType;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Utils {
 
@@ -19,5 +22,14 @@ public class Utils {
             return MediaType.valueOf(MediaTypes.detectMediaTypeForWeb(extension));
         }
         return MediaType.APPLICATION_OCTET_STREAM_TYPE;
+    }
+
+    public static String normalizePathToGuid(String filesDirectory, String path) {
+        final Path relativePath = Paths.get(filesDirectory).relativize(Paths.get(path));
+        return relativePath.toString().replace(File.separatorChar, '/');
+    }
+
+    public static String normalizeGuidToPath(String path) {
+        return path.replace('/', File.separatorChar);
     }
 }

@@ -66,7 +66,7 @@ public class CustomFileStreamFactory implements FileStreamFactory, Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
             FileUtils.deleteDirectory(this.tempDirectory.toFile());
         } catch (IOException e) {
