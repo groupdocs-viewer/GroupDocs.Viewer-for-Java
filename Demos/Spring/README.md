@@ -132,6 +132,8 @@ docker run -p 8080:8080 --env application.hostAddress=localhost -v `pwd`/Documen
 ### Configuration
 For all methods above you can adjust settings in `configuration.yml`. By default in this sample will lookup for license file in `./Licenses` folder, so you can simply put your license file in that folder or specify relative/absolute path by setting `licensePath` value in `configuration.yml`.
 
+File `logback-spring.xml` is used when sample is run inside Docker container. To use it locally, add next parameter to running command: `-Dlogback.configurationFile=logback-spring.xml`
+
 #### Viewer configuration options
 
 | Option                 | Type    |   Default value   | Description                                                                                                                                  |

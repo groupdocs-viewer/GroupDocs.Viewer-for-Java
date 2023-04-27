@@ -1,10 +1,9 @@
 # Build the project
 FROM maven:3-openjdk-11 as builder
-COPY pom.xml /usr/local/build/
+COPY pom.xml /usr/local/build/pom.xml
 COPY src /usr/local/build/src/
-COPY client /usr/local/build/client/
 WORKDIR /usr/local/build
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -P jar
 
 # Configure Docker Image
 FROM openjdk:11-jre-bullseye
@@ -18,7 +17,8 @@ RUN apt update && \
     mkdir -p /home/groupdocs/app && \
     mkdir -p /home/groupdocs/app/DocumentSamples && \
     mkdir -p /home/groupdocs/app/Licenses
-COPY DocumentSamples/source.doc /home/groupdocs/app/DocumentSamples/
+COPY /DocumentSamples /home/groupdocs/app/DocumentSamples
+COPY /configuration.yml /home/groupdocs/app/configuration.yml
 COPY configuration.yml /home/groupdocs/app/configuration.yml
 COPY --from=builder /usr/local/build/target/viewer-dropwizard-*.jar /home/groupdocs/app/app.jar
 WORKDIR /home/groupdocs/app

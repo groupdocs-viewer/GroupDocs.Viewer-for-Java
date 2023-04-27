@@ -2,9 +2,8 @@
 FROM maven:latest as builder
 COPY pom.xml    /usr/local/build/pom.xml
 COPY src        /usr/local/build/src
-COPY client     /usr/local/build/client
 WORKDIR         /usr/local/build
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -P jar
 
 # Prepare to run
 FROM openjdk:8-jre-alpine

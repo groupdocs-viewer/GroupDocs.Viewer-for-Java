@@ -1,7 +1,7 @@
 # Build the project
 FROM maven:3-openjdk-18 as builder
-COPY pom.xml /usr/local/build/
-COPY src /usr/local/build/src/
+COPY pom.xml /usr/local/build/pom.xml
+COPY src /usr/local/build/src
 WORKDIR /usr/local/build
 RUN mvn clean package -DskipTests -P jar
 
@@ -17,8 +17,9 @@ RUN apt update && \
     mkdir -p /home/groupdocs/app && \
     mkdir -p /home/groupdocs/app/DocumentSamples && \
     mkdir -p /home/groupdocs/app/Licenses
-COPY DocumentSamples/source.doc /home/groupdocs/app/DocumentSamples/
-COPY configuration.yml /home/groupdocs/app/configuration.yml
+COPY /DocumentSamples /home/groupdocs/app/DocumentSamples
+COPY /configuration.yml /home/groupdocs/app/configuration.yml
+COPY /logback-spring.xml /home/groupdocs/app/logback-spring.xml
 COPY --from=builder /usr/local/build/target/viewer-spring-*.jar /home/groupdocs/app/app.jar
 WORKDIR /home/groupdocs/app
 
@@ -42,4 +43,4 @@ EXPOSE 8080
 
 VOLUME [ "/home/groupdocs/app", "/home/groupdocs/app/DocumentSamples", "/home/groupdocs/app/Licenses" ]
 
-ENTRYPOINT [ "java", "-jar", "app.jar", "configuration.yml" ]
+ENTRYPOINT [ "java", "-jar", "-Dlogback.configurationFile=/home/groupdocs/app/logback-spring.xml", "app.jar", "configuration.yml" ]
