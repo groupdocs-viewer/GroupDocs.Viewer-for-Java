@@ -1,0 +1,11 @@
+{
+  "sourceGuid": "GroupDocs_Demo.xml",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.xml",
+    "pages": [],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {}
+}
