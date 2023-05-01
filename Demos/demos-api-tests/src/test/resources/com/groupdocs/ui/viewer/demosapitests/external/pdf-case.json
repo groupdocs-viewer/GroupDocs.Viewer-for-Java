@@ -1,0 +1,24 @@
+{
+  "sourceGuid": "GroupDocs_Demo.pdf",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.pdf",
+    "pages": [
+      {
+        "data": "<!DOCTYPE html><!--[if IE]>  <html class=\"p1-461d25504446-ie\"> <![endif]-->\r\n<html>\r\n\t<head>\r\n\t\t<meta charset=\"utf-8\" />\r\n\t\t<title>\r\n\t\t</title>\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/viewer/resources/GroupDocs_Demo_pdf/p1_s.css\" />\r\n\t</head>\r\n\t<body>\r\n\t\t<div class=\"p1-461d25504446- p1-461d25504446-02\">\r\n\t\t\t<div class=\"p1-461d25504446-03\">\r\n\t\t\t\t<img src=\"/viewer/resources/GroupDocs_Demo_pdf/p1_i.png\" alt=\"\" class=\"p1-461d25504446-04\" />\r\n\t\t\t</div>\r\n\t\t\t<div class=\"p1-461d25504446-view\">\r\n\t\t\t\t<div class=\"p1-461d25504446-05 p1-461d25504446-06\">\r\n\t\t\t\t\t<div class=\"p1-461d25504446-01\" style=\"left:11.5691em;top:4.4422em;\"><span class=\"p1-461d25504446-07 p1-461d25504446-08 p1-461d25504446-09\" style=\"word-spacing:0em;\">Тестовый документ с формой &nbsp;</span></div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</body>\r\n</html>",
+        "angle": 0,
+        "width": 612.0,
+        "height": 792.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {
+      "/viewer/resources/GroupDocs_Demo_pdf/p1_s.css": ".p1-461d25504446- sup {\r\n\tvertical-align: baseline;\r\n\tposition: relative;\r\n\ttop: -0.4em;\r\n}\r\n.p1-461d25504446- sub {\r\n\tvertical-align: baseline;\r\n\tposition: relative;\r\n\ttop: 0.4em;\r\n}\r\n.p1-461d25504446- a:link {text-decoration:none;}\n.p1-461d25504446- a:visited {text-decoration:none;}\n@media screen and (min-device-pixel-ratio:0), (-webkit-min-device-pixel-ratio:0), (min--moz-device-pixel-ratio: 0) {.p1-461d25504446-view{ font-size:10em; transform:scale(0.1); -moz-transform:scale(0.1); -webkit-transform:scale(0.1); -moz-transform-origin:top left; -webkit-transform-origin:top left; } }\n.p1-461d25504446-layer { }.p1-461d25504446-ie { font-size: 1pt; }\n.p1-461d25504446-ie body { font-size: 12em; }\n@media print{.p1-461d25504446-view {font-size:1em; transform:scale(1);}}\n.p1-461d25504446-grlink { position:relative;width:100%;height:100%;z-index:1000000; }\n.p1-461d25504446-01 {\r\n\tposition: absolute;\r\n\twhite-space: nowrap;\r\n}\r\n.p1-461d25504446-02 {\r\n\tfont-size: 1em;\r\n\tline-height: 0.0em;\r\n\twidth: 51em;\r\n\theight: 66em;\r\n\tborder-style: none;\r\n\tdisplay: block;\r\n\tmargin: 0em;\r\n}\r\n\n@supports(-ms-ime-align:auto) { .p1-461d25504446-02 {overflow: hidden;}}\n.p1-461d25504446-03 {\r\n\tposition: relative;\r\n}\r\n.p1-461d25504446-04 {\r\n\tposition: absolute;\r\n\tpointer-events: none;\r\n\tclip: rect(11.67617em,29.51458em,28.41758em,10.29983em);\r\n\twidth: 100%;\r\n}\r\n.p1-461d25504446-05 {\r\n\tposition: relative;\r\n\twidth: 51em;\r\n}\r\n.p1-461d25504446-06 {\r\n\theight: 6.6em;\r\n}\r\n.p1-461d25504446-ie .p1-461d25504446-06 {\r\n\theight: 66em;\r\n}\r\n@font-face {\r\n\tfont-family:\"FGSMDM+MinionPro-Regular\";\r\n\tsrc:url(\"/viewer/resources/GroupDocs_Demo_pdf/p1_f.woff\") format(\"woff\");\n}\r\n.p1-461d25504446-07 {\r\n\tfont-size: 1em;\r\n\tfont-family: \"FGSMDM+MinionPro-Regular\";\r\n\tcolor: #000000;\r\n}\r\n.p1-461d25504446-08 {\r\n\tline-height: 1.349em;\r\n}\r\n.p1-461d25504446-09 {\r\n\tletter-spacing: 0em;\r\n}\r\n\n.p1-461d25504446-ie .p1-461d25504446-09 {\n\tletter-spacing: 0px;\n}\n",
+      "/viewer/resources/GroupDocs_Demo_pdf/p1_i.png": "6199"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "sourceGuid": "GroupDocs_Demo.tiff",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.tiff",
+    "pages": [
+      {
+        "data": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\r\n    <meta charset=\"utf-8\" />\r\n    <title>Page-1</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"/viewer/resources/GroupDocs_Demo_tiff/p1_s.css\">\r\n</head>\r\n<body>\r\n    <img id=\"main_image\" src=\"/viewer/resources/GroupDocs_Demo_tiff/p1_i.png\" alt=\"\"/>\r\n</body>\r\n</html>",
+        "angle": 0,
+        "width": 813.0,
+        "height": 800.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {
+      "/viewer/resources/GroupDocs_Demo_tiff/p1_i.png": "83762",
+      "/viewer/resources/GroupDocs_Demo_tiff/p1_s.css": "#main_image {\r\n    display: block;\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    margin-left: auto !important;\r\n    margin-right: auto !important;\r\n}\r\n@media print {\r\n    * {\r\n        -webkit-print-color-adjust: exact !important;\r\n        margin: 0 !important;\r\n        padding: 0 !important;\r\n    }\r\n\r\n    #main_image {\r\n        display: block;\r\n        max-width: 100%;\r\n        max-height: 100%;\r\n        margin-left: auto !important;\r\n        margin-right: auto !important;\r\n        page-break-after: avoid;\r\n    }\r\n}"
+    }
+  }
+}

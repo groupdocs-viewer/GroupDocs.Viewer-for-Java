@@ -1,0 +1,23 @@
+{
+  "sourceGuid": "GroupDocs_Demo.txt",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.txt",
+    "pages": [
+      {
+        "data": "<!doctype html>\r\n<html lang='en'><head><meta charset = 'utf-8'>\r\n<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>\r\n<title>undefined.txt</title></head>\r\n<link href=\"/viewer/resources/GroupDocs_Demo_txt/p1_s.css\" rel=\"stylesheet\">\r\n<body><div style=\"font-size:10pt;font-family:Times New Roman;\" class='gdv-container'><pre><br><br><br>About GroupDocs<br>The Problem and Our Solution<br>GroupDocs was founded in 2010. We noticed there was a gap in the market for an easy to use, comprehensive online document management solution. Our goal is to make the lives of people who work with documents easier by giving them tools that save them time and effort. Our users are busy people who have a lot to do. Document management � whether it�s gathering signatures, posting documents on websites or collaborating with others to improve a text � should be easy. This is our vision - Work faster, together.<br>Our Vision<br>The GroupDocs vision is of a world where people everywhere can collaborate and share documents seamlessly, regardless of the operating systems or programs they have. The solution is a cloud-based platform supported by tools that really speed up our users� productivity. As well as document storage, we offer an easy way to share, sign, assemble, view, compare and collaborate on documents. Read more about our vision here<br>Our Customers<br>GroupDocs is used by companies of all sizes across the globe, from large multinational firms to small freelance businesses. They come to us because they have a need for a simple, one-stop-shop, document management solution.<br>Our Background<br>GroupDocs is a division ofAspose Pty Ltd, a leading .NET and Java component vendor. Aspose creates tools that software engineers use to work with file formats in the applications they build. Aspose has supported the developer community since 2002 and has over 10,000 customers in over 90 countries. GroupDocs, benefits from Aspose's experience, stability and award winning technology.<br>\r\n</pre></div> </body>\r\n</html>",
+        "angle": 0,
+        "width": 816.0,
+        "height": 1056.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {
+      "/viewer/resources/GroupDocs_Demo_txt/p1_s.css": ".gdv-container pre { width:588px; white-space:normal; } .gdv-container { margin-top:60px; margin-left:60px; }"
+    }
+  }
+}

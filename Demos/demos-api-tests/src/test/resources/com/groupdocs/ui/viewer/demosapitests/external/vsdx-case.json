@@ -1,0 +1,21 @@
+{
+  "sourceGuid": "GroupDocs_Demo.vsdx",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.vsdx",
+    "pages": [
+      {
+        "data": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\r\n    <meta charset=\"utf-8\" />\r\n    <title>Page-1</title>\r\n</head>\r\n<body>\r\n    <object id=\"main_image\" data=\"/viewer/resources/GroupDocs_Demo_vsdx/p1_g.svg\" alt=\"\"/>\r\n</body>\r\n</html>",
+        "angle": 0,
+        "width": 1123.0,
+        "height": 794.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {}
+  }
+}

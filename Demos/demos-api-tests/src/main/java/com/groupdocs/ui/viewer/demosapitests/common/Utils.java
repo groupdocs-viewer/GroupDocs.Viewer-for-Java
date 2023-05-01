@@ -7,9 +7,13 @@ public class Utils {
     public static String normalizeDataBeforeComparing(String inputData) {
         return inputData
                 .replace("\r\n", "\n")
+                .replaceAll("(\\d+)\\.\\d+(em|pt|px)", "$1$2")
                 .replaceAll("Date: \\d{1,2}/\\d{1,2}/\\d{4} \\d{1,2}:\\d{2} \\w{2}", "Date: XX/YY/ZZZ XX:YY ZZ")
                 .replaceAll("font-family:\\s?\"\\w+\\+([^\"']+)\"", "font-family:\"AAAAA+$1\"")
                 .replaceAll("id=\"cp_\\d+\"", "id=\"cp_1234\"")
+                .replaceAll("class=\"(p+\\d+)-\\w+-(\\s)", "class=\"$1-SOMEUID-$2")
+                .replaceAll("class=\"(p+\\d+)-\\w+-\\w+", "class=\"$1-SOMEUID-SUF")
+                .replaceAll("class=\"(p+\\d-SOMEUID-(?:SUF)?)\\s+(p\\d+)-\\w+-\\w+\"", "class=\"$1 $2-SOMEUID-SUF\"")
                 .replaceAll("#cp_\\d+", "#cp_1234")
                 // Somewhy it is different in almost each request
                 .replaceAll("(?s)(font-family:\"AAAAA\\+[^\"]+\";\\s+src:url\\(\"data:application/octet-stream;base64,)[^\"]+", "$1FONT-BASE64-DATA")

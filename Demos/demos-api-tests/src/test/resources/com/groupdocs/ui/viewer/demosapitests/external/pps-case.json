@@ -1,0 +1,397 @@
+{
+  "sourceGuid": "GroupDocs_Demo.pps",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.pps",
+    "pages": [
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p1_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 1
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p2_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 2
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p3_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 3
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p4_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 4
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p5_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 5
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p6_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 6
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p7_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 7
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p8_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 8
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p9_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 9
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p10_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 10
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p11_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 11
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p12_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 12
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p13_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 13
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p14_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 14
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p15_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 15
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p16_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 16
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p17_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 17
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p18_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 18
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p19_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 19
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p20_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 20
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p21_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 21
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p22_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 22
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p23_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 23
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p24_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 24
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p25_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 25
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p26_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 26
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p27_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 27
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p28_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 28
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p29_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 29
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p30_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 30
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p31_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 31
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p32_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 32
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p33_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 33
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p34_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 34
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p35_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 35
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p36_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 36
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p37_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 37
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p38_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 38
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p39_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 39
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p40_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 40
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p41_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 41
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p42_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 42
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p43_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 43
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p44_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 44
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p45_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 45
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p46_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 46
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p47_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 47
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_pps/p48_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 48
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {},
+    "6": {},
+    "7": {},
+    "8": {},
+    "9": {},
+    "10": {},
+    "11": {},
+    "12": {},
+    "13": {},
+    "14": {},
+    "15": {},
+    "16": {},
+    "17": {},
+    "18": {},
+    "19": {},
+    "20": {},
+    "21": {},
+    "22": {},
+    "23": {},
+    "24": {},
+    "25": {},
+    "26": {},
+    "27": {},
+    "28": {},
+    "29": {},
+    "30": {},
+    "31": {},
+    "32": {},
+    "33": {},
+    "34": {},
+    "35": {},
+    "36": {},
+    "37": {},
+    "38": {},
+    "39": {},
+    "40": {},
+    "41": {},
+    "42": {},
+    "43": {},
+    "44": {},
+    "45": {},
+    "46": {},
+    "47": {},
+    "48": {}
+  }
+}

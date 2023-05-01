@@ -1,0 +1,24 @@
+{
+  "sourceGuid": "GroupDocs_Demo.igs",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.igs",
+    "pages": [
+      {
+        "data": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n    <meta charset=\"utf-8\" />\n    <title>Page-1</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"/viewer/resources/GroupDocs_Demo_igs/p1_s.css\">\n</head>\n<body>\n    <img id=\"main_image\" src=\"/viewer/resources/GroupDocs_Demo_igs/p1_g.svg\" alt=\"\"/>\n</body>\n</html>",
+        "angle": 0,
+        "width": 2000.0,
+        "height": 1965.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {
+      "/viewer/resources/GroupDocs_Demo_igs/p1_s.css": "#main_image {\r\n    display: block;\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    margin-left: auto !important;\r\n    margin-right: auto !important;\r\n}\r\n@media print {\r\n    * {\r\n        -webkit-print-color-adjust: exact !important;\r\n        margin: 0 !important;\r\n        padding: 0 !important;\r\n    }\r\n\r\n    #main_image {\r\n        display: block;\r\n        max-width: 100%;\r\n        max-height: 100%;\r\n        margin-left: auto !important;\r\n        margin-right: auto !important;\r\n        page-break-after: avoid;\r\n    }\r\n}",
+      "/viewer/resources/GroupDocs_Demo_igs/p1_g.svg": "<?xml version=\"1.0\" standalone=\"no\"?>\n<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\" \"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" id=\"body_371857150_0\" width=\"2000\" height=\"1965.5172\">\n\n</svg>"
+    }
+  }
+}

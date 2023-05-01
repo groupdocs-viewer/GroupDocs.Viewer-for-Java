@@ -1,0 +1,53 @@
+{
+  "sourceGuid": "GroupDocs_Demo.ppt",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.ppt",
+    "pages": [
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_ppt/p1_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 1
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_ppt/p2_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 2
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_ppt/p3_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 3
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_ppt/p4_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 4
+      },
+      {
+        "data": "\uFEFF<!DOCTYPE html>\r\n<html>\r\n<head>\r\n <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\r\n</head>\r\n<body>\n<object data=\"/viewer/resources/GroupDocs_Demo_ppt/p5_g.svg\" type=\"image/svg+xml\"></object>\r\n</body>\n</html>",
+        "angle": 0,
+        "width": 720.0,
+        "height": 540.0,
+        "number": 5
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {},
+    "2": {},
+    "3": {},
+    "4": {},
+    "5": {}
+  }
+}

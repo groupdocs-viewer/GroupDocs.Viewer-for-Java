@@ -1,0 +1,36 @@
+{
+  "sourceGuid": "GroupDocs_Demo.vss",
+  "sourcePassword": null,
+  "expectedObject": {
+    "guid": "GroupDocs_Demo.vss",
+    "pages": [
+      {
+        "data": "<!doctype html><html lang=\"en\"><head><meta charset = \"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"><title>undefined.vss</title></head> <link href='/viewer/resources/GroupDocs_Demo_vss/p1_s.css' rel='stylesheet' type='text/css'><body><div style=\"font-size:10pt;font-family:Times New Roman;\" class=\"gdv-container\"><div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i1.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i2.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i3.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i4.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i5.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i6.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i7.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i8.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i9.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i10.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i11.png\" /></div><div class='gdv-visio-icon'><img src=\"/viewer/resources/GroupDocs_Demo_vss/p1_i12.png\" /></div></div></div> </body></html>",
+        "angle": 0,
+        "width": 816.0,
+        "height": 1056.0,
+        "number": 1
+      }
+    ],
+    "printAllowed": true,
+    "showGridLines": true
+  },
+  "externalData": {
+    "1": {
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i9.png": "1482",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i11.png": "1942",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i4.png": "6761",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i2.png": "1433",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i6.png": "965",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i3.png": "372",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_s.css": ".gdv-visio-icon { display:inline-block; margin: 10px;} .gdv-container { width:700px; }",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i8.png": "4124",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i10.png": "2798",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i12.png": "1895",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i1.png": "1152",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i5.png": "4672",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i7.png": "2108",
+      "/viewer/resources/GroupDocs_Demo_vss/p1_i.png": "971"
+    }
+  }
+}
