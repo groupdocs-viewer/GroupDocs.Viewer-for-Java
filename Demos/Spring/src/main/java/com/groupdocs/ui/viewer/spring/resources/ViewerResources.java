@@ -14,6 +14,7 @@ import com.groupdocs.ui.viewer.spring.common.entity.web.PageDescriptionEntity;
 import com.groupdocs.ui.viewer.spring.common.entity.web.UploadedDocumentEntity;
 import com.groupdocs.ui.viewer.spring.service.ViewerService;
 import com.groupdocs.ui.viewer.spring.common.util.Utils;
+import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -173,11 +174,12 @@ public class ViewerResources extends Resources {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/downloadDocument")
     public void downloadDocument(@RequestParam(name = "path") String documentGuid, HttpServletResponse response) {
-        File file = new File(documentGuid);
+        String documentPath = PathUtils.combine(viewerService.getViewerConfiguration().getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        File file = new File(documentPath);
         // set response content info
         addFileDownloadHeaders(response, file.getName(), file.length());
         // download the document
-        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(documentGuid));
+        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(documentPath));
              ServletOutputStream outputStream = response.getOutputStream()) {
 
             IOUtils.copyLarge(inputStream, outputStream);

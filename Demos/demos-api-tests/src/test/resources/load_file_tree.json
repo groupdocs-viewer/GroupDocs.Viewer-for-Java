@@ -1,0 +1,338 @@
+[
+  {
+    "guid": "GroupDocs_Demo.bmp",
+    "name": "GroupDocs_Demo.bmp",
+    "isDirectory": false,
+    "size": 83262
+  },
+  {
+    "guid": "GroupDocs_Demo.csv",
+    "name": "GroupDocs_Demo.csv",
+    "isDirectory": false,
+    "size": 1153
+  },
+  {
+    "guid": "GroupDocs_Demo.doc",
+    "name": "GroupDocs_Demo.doc",
+    "isDirectory": false,
+    "size": 34816
+  },
+  {
+    "guid": "GroupDocs_Demo.docm",
+    "name": "GroupDocs_Demo.docm",
+    "isDirectory": false,
+    "size": 19076
+  },
+  {
+    "guid": "GroupDocs_Demo.docx",
+    "name": "GroupDocs_Demo.docx",
+    "isDirectory": false,
+    "size": 12119
+  },
+  {
+    "guid": "GroupDocs_Demo.dot",
+    "name": "GroupDocs_Demo.dot",
+    "isDirectory": false,
+    "size": 34816
+  },
+  {
+    "guid": "GroupDocs_Demo.dotm",
+    "name": "GroupDocs_Demo.dotm",
+    "isDirectory": false,
+    "size": 19440
+  },
+  {
+    "guid": "GroupDocs_Demo.dotx",
+    "name": "GroupDocs_Demo.dotx",
+    "isDirectory": false,
+    "size": 19355
+  },
+  {
+    "guid": "GroupDocs_Demo.dwg",
+    "name": "GroupDocs_Demo.dwg",
+    "isDirectory": false,
+    "size": 211135
+  },
+  {
+    "guid": "GroupDocs_Demo.dxf",
+    "name": "GroupDocs_Demo.dxf",
+    "isDirectory": false,
+    "size": 1100053
+  },
+  {
+    "guid": "GroupDocs_Demo.eml",
+    "name": "GroupDocs_Demo.eml",
+    "isDirectory": false,
+    "size": 36428
+  },
+  {
+    "guid": "GroupDocs_Demo.gif",
+    "name": "GroupDocs_Demo.gif",
+    "isDirectory": false,
+    "size": 67078
+  },
+  {
+    "guid": "GroupDocs_Demo.html",
+    "name": "GroupDocs_Demo.html",
+    "isDirectory": false,
+    "size": 12098
+  },
+  {
+    "guid": "GroupDocs_Demo.ifc",
+    "name": "GroupDocs_Demo.ifc",
+    "isDirectory": false,
+    "size": 2380763
+  },
+  {
+    "guid": "GroupDocs_Demo.igs",
+    "name": "GroupDocs_Demo.igs",
+    "isDirectory": false,
+    "size": 2199474
+  },
+  {
+    "guid": "GroupDocs_Demo.jpeg",
+    "name": "GroupDocs_Demo.jpeg",
+    "isDirectory": false,
+    "size": 136506
+  },
+  {
+    "guid": "GroupDocs_Demo.mht",
+    "name": "GroupDocs_Demo.mht",
+    "isDirectory": false,
+    "size": 69812
+  },
+  {
+    "guid": "GroupDocs_Demo.mhtml",
+    "name": "GroupDocs_Demo.mhtml",
+    "isDirectory": false,
+    "size": 69814
+  },
+  {
+    "guid": "GroupDocs_Demo.mpp",
+    "name": "GroupDocs_Demo.mpp",
+    "isDirectory": false,
+    "size": 312832
+  },
+  {
+    "guid": "GroupDocs_Demo.mpt",
+    "name": "GroupDocs_Demo.mpt",
+    "isDirectory": false,
+    "size": 271872
+  },
+  {
+    "guid": "GroupDocs_Demo.msg",
+    "name": "GroupDocs_Demo.msg",
+    "isDirectory": false,
+    "size": 123392
+  },
+  {
+    "guid": "GroupDocs_Demo.ods",
+    "name": "GroupDocs_Demo.ods",
+    "isDirectory": false,
+    "size": 14755
+  },
+  {
+    "guid": "GroupDocs_Demo.odt",
+    "name": "GroupDocs_Demo.odt",
+    "isDirectory": false,
+    "size": 26939
+  },
+  {
+    "guid": "GroupDocs_Demo.one",
+    "name": "GroupDocs_Demo.one",
+    "isDirectory": false,
+    "size": 493624
+  },
+  {
+    "guid": "GroupDocs_Demo.ost",
+    "name": "GroupDocs_Demo.ost",
+    "isDirectory": false,
+    "size": 525312
+  },
+  {
+    "guid": "GroupDocs_Demo.ott",
+    "name": "GroupDocs_Demo.ott",
+    "isDirectory": false,
+    "size": 26954
+  },
+  {
+    "guid": "GroupDocs_Demo.pdf",
+    "name": "GroupDocs_Demo.pdf",
+    "isDirectory": false,
+    "size": 17949
+  },
+  {
+    "guid": "GroupDocs_Demo.png",
+    "name": "GroupDocs_Demo.png",
+    "isDirectory": false,
+    "size": 61655
+  },
+  {
+    "guid": "GroupDocs_Demo.pps",
+    "name": "GroupDocs_Demo.pps",
+    "isDirectory": false,
+    "size": 544768
+  },
+  {
+    "guid": "GroupDocs_Demo.ppt",
+    "name": "GroupDocs_Demo.ppt",
+    "isDirectory": false,
+    "size": 198656
+  },
+  {
+    "guid": "GroupDocs_Demo.pptx",
+    "name": "GroupDocs_Demo.pptx",
+    "isDirectory": false,
+    "size": 117431
+  },
+  {
+    "guid": "GroupDocs_Demo.psd",
+    "name": "GroupDocs_Demo.psd",
+    "isDirectory": false,
+    "size": 173425
+  },
+  {
+    "guid": "GroupDocs_Demo.rtf",
+    "name": "GroupDocs_Demo.rtf",
+    "isDirectory": false,
+    "size": 247806
+  },
+  {
+    "guid": "GroupDocs_Demo.stl",
+    "name": "GroupDocs_Demo.stl",
+    "isDirectory": false,
+    "size": 14861484
+  },
+  {
+    "guid": "GroupDocs_Demo.svg",
+    "name": "GroupDocs_Demo.svg",
+    "isDirectory": false,
+    "size": 11361
+  },
+  {
+    "guid": "GroupDocs_Demo.tiff",
+    "name": "GroupDocs_Demo.tiff",
+    "isDirectory": false,
+    "size": 184598
+  },
+  {
+    "guid": "GroupDocs_Demo.txt",
+    "name": "GroupDocs_Demo.txt",
+    "isDirectory": false,
+    "size": 1642
+  },
+  {
+    "guid": "GroupDocs_Demo.vdw",
+    "name": "GroupDocs_Demo.vdw",
+    "isDirectory": false,
+    "size": 79872
+  },
+  {
+    "guid": "GroupDocs_Demo.vdx",
+    "name": "GroupDocs_Demo.vdx",
+    "isDirectory": false,
+    "size": 117277
+  },
+  {
+    "guid": "GroupDocs_Demo.vsd",
+    "name": "GroupDocs_Demo.vsd",
+    "isDirectory": false,
+    "size": 176640
+  },
+  {
+    "guid": "GroupDocs_Demo.vsdm",
+    "name": "GroupDocs_Demo.vsdm",
+    "isDirectory": false,
+    "size": 27470
+  },
+  {
+    "guid": "GroupDocs_Demo.vsdx",
+    "name": "GroupDocs_Demo.vsdx",
+    "isDirectory": false,
+    "size": 27470
+  },
+  {
+    "guid": "GroupDocs_Demo.vss",
+    "name": "GroupDocs_Demo.vss",
+    "isDirectory": false,
+    "size": 337920
+  },
+  {
+    "guid": "GroupDocs_Demo.vst",
+    "name": "GroupDocs_Demo.vst",
+    "isDirectory": false,
+    "size": 1869312
+  },
+  {
+    "guid": "GroupDocs_Demo.vsx",
+    "name": "GroupDocs_Demo.vsx",
+    "isDirectory": false,
+    "size": 1814292
+  },
+  {
+    "guid": "GroupDocs_Demo.vtx",
+    "name": "GroupDocs_Demo.vtx",
+    "isDirectory": false,
+    "size": 9035484
+  },
+  {
+    "guid": "GroupDocs_Demo.xls",
+    "name": "GroupDocs_Demo.xls",
+    "isDirectory": false,
+    "size": 30208
+  },
+  {
+    "guid": "GroupDocs_Demo.xlsb",
+    "name": "GroupDocs_Demo.xlsb",
+    "isDirectory": false,
+    "size": 12218
+  },
+  {
+    "guid": "GroupDocs_Demo.xlsm",
+    "name": "GroupDocs_Demo.xlsm",
+    "isDirectory": false,
+    "size": 12032
+  },
+  {
+    "guid": "GroupDocs_Demo.xlsx",
+    "name": "GroupDocs_Demo.xlsx",
+    "isDirectory": false,
+    "size": 12015
+  },
+  {
+    "guid": "GroupDocs_Demo.xltm",
+    "name": "GroupDocs_Demo.xltm",
+    "isDirectory": false,
+    "size": 12572
+  },
+  {
+    "guid": "GroupDocs_Demo.xltx",
+    "name": "GroupDocs_Demo.xltx",
+    "isDirectory": false,
+    "size": 12554
+  },
+  {
+    "guid": "GroupDocs_Demo.xml",
+    "name": "GroupDocs_Demo.xml",
+    "isDirectory": false,
+    "size": 53139
+  },
+  {
+    "guid": "GroupDocs_Demo.xps",
+    "name": "GroupDocs_Demo.xps",
+    "isDirectory": false,
+    "size": 319780
+  },
+  {
+    "guid": "T-Flange.igs",
+    "name": "T-Flange.igs",
+    "isDirectory": false,
+    "size": 1026189
+  },
+  {
+    "guid": "sample_document.igs",
+    "name": "sample_document.igs",
+    "isDirectory": false,
+    "size": 144602490
+  }
+]

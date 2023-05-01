@@ -4,6 +4,7 @@ import com.groupdocs.ui.viewer.dropwizard.common.config.DefaultDirectories;
 import com.groupdocs.ui.viewer.dropwizard.common.config.GlobalConfiguration;
 import com.groupdocs.ui.viewer.dropwizard.common.exception.TotalGroupDocsException;
 import com.groupdocs.ui.viewer.dropwizard.common.resources.Resources;
+import com.groupdocs.ui.viewer.dropwizard.common.util.Utils;
 import com.groupdocs.ui.viewer.dropwizard.config.ViewerConfiguration;
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.FileTreeRequest;
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.request.LoadDocumentPageRequest;
@@ -17,6 +18,7 @@ import com.groupdocs.ui.viewer.dropwizard.service.ViewerService;
 import com.groupdocs.ui.viewer.dropwizard.service.ViewerServiceImpl;
 import com.groupdocs.ui.viewer.dropwizard.views.Viewer;
 import com.groupdocs.viewer.License;
+import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -226,7 +228,8 @@ public class ViewerResources extends Resources {
     @Path(value = "/downloadDocument")
     @Produces(APPLICATION_OCTET_STREAM)
     public void downloadDocument(@QueryParam("path") String documentGuid, @Context HttpServletResponse response) {
-        downloadFile(response, documentGuid);
+        String documentPath = PathUtils.combine(viewerService.getViewerConfiguration().getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        downloadFile(response, documentPath);
     }
 
     @GET
