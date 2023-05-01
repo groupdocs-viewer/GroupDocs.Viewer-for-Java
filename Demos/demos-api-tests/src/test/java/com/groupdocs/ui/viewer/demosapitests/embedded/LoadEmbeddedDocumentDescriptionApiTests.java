@@ -62,7 +62,7 @@ public class LoadEmbeddedDocumentDescriptionApiTests {
 
             actualObject = given()
                     .when()
-                    .body(String.format("{ 'guid': '%s', 'password': '%s' }".replace('\'', '"'), sourceGuid, sourcePassword))
+                    .body(String.format("{ 'guid': '%s', 'password': '%s' }".replace('\'', '"'), sourceGuid, sourcePassword).replace("\"null\"", "null"))
                     .contentType(ContentType.JSON)
                     .post(Constants.URL_TEMPLATE, "loadDocumentDescription")
                     .then()
