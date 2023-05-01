@@ -8,7 +8,9 @@ public class Utils {
         return inputData
                 .replace("\r\n", "\n")
                 .replaceAll("(\\d+)\\.\\d+(em|pt|px)", "$1$2")
-                .replaceAll("Date: \\d{1,2}/\\d{1,2}/\\d{4} \\d{1,2}:\\d{2} \\w{2}", "Date: XX/YY/ZZZ XX:YY ZZ")
+                .replaceAll("\\d{1,2}/\\d{1,2}/\\d{4} \\d{1,2}:\\d{2} \\w{2}", "XX/YY/ZZZ XX:YY ZZ")
+                .replaceAll("\\p{L}{2} \\d{1,2}\\.\\d{2}\\.\\d{2}", "XX XX.YY.ZZ")
+                .replaceAll("\\w{3} \\d{1,2}/\\d{2}/\\d{2}", "XX XX.YY.ZZ")
                 .replaceAll("font-family:\\s?\"\\w+\\+([^\"']+)\"", "font-family:\"AAAAA+$1\"")
                 .replaceAll("id=\"cp_\\d+\"", "id=\"cp_1234\"")
                 .replaceAll("class=\"(p+\\d+)-\\w+-(\\s)", "class=\"$1-SOMEUID-$2")

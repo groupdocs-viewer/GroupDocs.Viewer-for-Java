@@ -33,7 +33,7 @@ public class LoadExternalDocumentDescriptionApiTests {
     public static final int ERROR_MESSAGE_DATA_LOOK_BACK = 16;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadExternalDocumentDescriptionApiTests.class);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private final Pattern EXTERNAL_LINK_PATTERN = Pattern.compile("(?:src|href)=[\"']([^\"']+)[\"']");
+    private final Pattern EXTERNAL_LINK_PATTERN = Pattern.compile("(?:src|href|data)=[\"']([^\"']+)[\"']");
     private final List<String> SKIP_RESOURCES_NAMES = Arrays.asList("filelist.xml", "editdata.mso", "oledata.mso");
 
     @DataProvider(name = "testLoadDocumentDescription_ExternalResources_DataProvider")
@@ -214,18 +214,35 @@ public class LoadExternalDocumentDescriptionApiTests {
                 for (int n = 0; n < Math.max(expectedPages.size(), actualPages.size()); n++) {
                     if (expectedPages.size() > n) {
                         final LoadDocumentDescription.PageDescriptionEntity expectedPageDescriptionEntity = expectedPages.get(n);
-                        final Path expectedTempFile = Files.createTempFile(Paths.get("target"), "LoadDocumentDescription-" + fileName.substring(0, fileName.lastIndexOf('.')) + "-expected-page-" + expectedPageDescriptionEntity.getNumber() + "-", ".html");
-                        FileUtils.write(expectedTempFile.toFile(), expectedPageDescriptionEntity.getData(), StandardCharsets.UTF_8);
+                        final Path expectedTempFile = Files.createTempFile(Paths.get("target"), "LoadDocumentDescription-" + fileName.substring(0, fileName.lastIndexOf('.')) + "-page-" + expectedPageDescriptionEntity.getNumber() + "-expected-", ".html");
+                        final String expectedData = expectedPageDescriptionEntity.getData();
+                        // Fix links
+                        final Matcher matcher = EXTERNAL_LINK_PATTERN.matcher(expectedData);
+                        String expectedDataWithFixedLinks = expectedData;
+                        while (matcher.find()) {
+                            final String nextLink = matcher.group(1);
+                            expectedDataWithFixedLinks = expectedDataWithFixedLinks.replace(nextLink, Constants.URL_BASE + nextLink);
+                        }
+                        FileUtils.write(expectedTempFile.toFile(), expectedDataWithFixedLinks, StandardCharsets.UTF_8);
                         LOGGER.info("Expected data for page {} was written:\t'{}'", n + 1, expectedTempFile);
                     }
                     if (actualPages.size() > n) {
                         final LoadDocumentDescription.PageDescriptionEntity actualPageDescriptionEntity = actualPages.get(n);
-                        final Path actualTempFile = Files.createTempFile(Paths.get("target"), "LoadDocumentDescription-" + fileName.substring(0, fileName.lastIndexOf('.')) + "-actual-page-" + actualPageDescriptionEntity.getNumber() + "-", ".html");
-                        FileUtils.write(actualTempFile.toFile(), actualPageDescriptionEntity.getData(), StandardCharsets.UTF_8);
+                        final Path actualTempFile = Files.createTempFile(Paths.get("target"), "LoadDocumentDescription-" + fileName.substring(0, fileName.lastIndexOf('.')) + "-page-" + actualPageDescriptionEntity.getNumber() + "-actual-", ".html");
+                        final String actualData = actualPageDescriptionEntity.getData();
+                        // Fix links
+                        final Matcher matcher = EXTERNAL_LINK_PATTERN.matcher(actualData);
+                        String actualDataWithFixedLinks = actualData;
+                        while (matcher.find()) {
+                            final String nextLink = matcher.group(1);
+                            actualDataWithFixedLinks = actualDataWithFixedLinks.replace(nextLink, Constants.URL_BASE + nextLink);
+                        }
+                        FileUtils.write(actualTempFile.toFile(), actualDataWithFixedLinks, StandardCharsets.UTF_8);
                         LOGGER.info("Actual data for page {} was written:\t'{}'", n + 1, actualTempFile);
                     }
                 }
             }
+            System.out.println("IT IS RECOMMENDED TO CHECK EXPECTED AND ACTUAL FILES OF FAILED TESTS MANUALLY");
             throw e;
         } finally {
             System.out.println();

@@ -29,3 +29,7 @@ SET FILES_DIR=C:\api-viewer-tests
 ```
 
 Also, keep in mind that Spring and Dropwizard samples have cache functionality, so you should remove `cache` folder in `FILES_DIR` directory
+
+### Known problems
+* 
+* External tests were configured using Spring, so when they are run using Dropwizard, there are minor differences which forces tests to fail. It is recommended to perceive them not as failed, but as tests which are required manual check (result files are saved into `target` directory).
