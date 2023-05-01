@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
@@ -153,5 +154,14 @@ public class Utils {
             return MediaType.parseMediaType(MediaTypes.detectMediaTypeForWeb(extension));
         }
         return MediaType.APPLICATION_OCTET_STREAM;
+    }
+
+    public static String normalizePathToGuid(String filesDirectory, String path) {
+        final Path relativePath = Paths.get(filesDirectory).relativize(Paths.get(path));
+        return relativePath.toString().replace(File.separatorChar, '/');
+    }
+
+    public static String normalizeGuidToPath(String path) {
+        return path.replace('/', File.separatorChar);
     }
 }

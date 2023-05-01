@@ -124,11 +124,12 @@ public class ViewerServiceImpl implements ViewerService {
      */
     @Override
     public List<FileDescriptionEntity> getFileList(String path) {
-        final File filesDirectory = new File(PathUtils.combine(viewerConfiguration.getFilesDirectory(), path));
+        final String filesDirectory = viewerConfiguration.getFilesDirectory();
+        final File filesSubDirectory = new File(PathUtils.combine(filesDirectory, path));
 
         List<FileDescriptionEntity> filesList = new ArrayList<>();
         try {
-            final File[] files = filesDirectory.listFiles();
+            final File[] files = filesSubDirectory.listFiles();
             if (files == null) {
                 throw new TotalGroupDocsException("Can't list files");
             }
@@ -137,7 +138,7 @@ public class ViewerServiceImpl implements ViewerService {
                 // check if current file/folder is hidden
                 if (!(file.getName().equals(viewerConfiguration.getCacheFolderName())) && !file.getName().startsWith(".") && !file.isHidden()) {
                     FileDescriptionEntity fileDescription = new FileDescriptionEntity();
-                    fileDescription.setGuid(file.getCanonicalFile().getAbsolutePath());
+                    fileDescription.setGuid(Utils.normalizePathToGuid(filesDirectory, file.getCanonicalFile().getAbsolutePath()));
                     fileDescription.setName(file.getName());
                     // set is directory true/false
                     fileDescription.setIsDirectory(file.isDirectory());
@@ -178,21 +179,22 @@ public class ViewerServiceImpl implements ViewerService {
     @Override
     public LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion) {
         // set request parameters
-        String documentGuid = loadDocumentRequest.getGuid();
+        final String documentGuid = loadDocumentRequest.getGuid();
+        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         LoadDocumentEntity loadDocumentEntity;
         CustomViewer<?> customViewer = null;
         try {
-            final Path fileCachePath = createCacheDocumentDirectoryPath(documentGuid);
+            final Path fileCachePath = createCacheDocumentDirectoryPath(documentPath);
             ViewerCache cache = new FileViewerCache(fileCachePath);
 
             if (viewerConfiguration.isHtmlMode()) {
-                customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new HtmlViewer(documentPath, cache, createLoadOptions(password));
             } else {
-                customViewer = new PngViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new PngViewer(documentPath, cache, createLoadOptions(password));
             }
-            loadDocumentEntity = getLoadDocumentEntity(loadAllPages, documentGuid, customViewer, printVersion);
+            loadDocumentEntity = getLoadDocumentEntity(loadAllPages, documentPath, customViewer, printVersion);
             loadDocumentEntity.setShowGridLines(viewerConfiguration.getShowGridLines());
             loadDocumentEntity.setPrintAllowed(viewerConfiguration.getPrintAllowed());
         } catch (IncorrectPasswordException | PasswordRequiredException e) {
@@ -211,19 +213,20 @@ public class ViewerServiceImpl implements ViewerService {
      */
     @Override
     public PageDescriptionEntity loadDocumentPage(LoadDocumentPageRequest loadDocumentPageRequest) {
-        String documentGuid = loadDocumentPageRequest.getGuid();
+        final String documentGuid = loadDocumentPageRequest.getGuid();
+        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
         Integer pageNumber = loadDocumentPageRequest.getPage();
         String password = loadDocumentPageRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         CustomViewer<?> customViewer = null;
         try {
-            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
+            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentPath);
             ViewerCache cache = new FileViewerCache(cacheDocumentDirectoryPath);
 
             if (viewerConfiguration.isHtmlMode()) {
-                customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new HtmlViewer(documentPath, cache, createLoadOptions(password));
             } else {
-                customViewer = new PngViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new PngViewer(documentPath, cache, createLoadOptions(password));
             }
             return getPageDescriptionEntity(customViewer, cacheDocumentDirectoryPath, pageNumber);
         } catch (Exception ex) {
@@ -242,7 +245,8 @@ public class ViewerServiceImpl implements ViewerService {
     @Override
     public PageDescriptionEntity rotateDocumentPages(RotateDocumentPagesRequest rotateDocumentPagesRequest) {
         // set request parameters
-        String documentGuid = rotateDocumentPagesRequest.getGuid();
+        final String documentGuid = rotateDocumentPagesRequest.getGuid();
+        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
         List<Integer> pages = rotateDocumentPagesRequest.getPages();
         String password = rotateDocumentPagesRequest.getPassword();
         Integer angle = rotateDocumentPagesRequest.getAngle();
@@ -250,7 +254,7 @@ public class ViewerServiceImpl implements ViewerService {
         CustomViewer<?> customViewer = null;
 
         try {
-            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
+            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentPath);
 
             // Delete cache files connected to the page
             for (File file : cacheDocumentDirectoryPath.toFile().listFiles(new FilenameFilter() {
@@ -272,9 +276,9 @@ public class ViewerServiceImpl implements ViewerService {
             // Generate new cache
             ViewerCache cache = new FileViewerCache(cacheDocumentDirectoryPath);
             if (viewerConfiguration.isHtmlMode()) {
-                customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password), pageNumber, newAngle);
+                customViewer = new HtmlViewer(documentPath, cache, createLoadOptions(password), pageNumber, newAngle);
             } else {
-                customViewer = new PngViewer(documentGuid, cache, createLoadOptions(password), pageNumber, newAngle);
+                customViewer = new PngViewer(documentPath, cache, createLoadOptions(password), pageNumber, newAngle);
             }
             return getPageDescriptionEntity(customViewer, cacheDocumentDirectoryPath, pageNumber);
 
@@ -324,18 +328,19 @@ public class ViewerServiceImpl implements ViewerService {
 
     @Override
     public InputStream getPdf(LoadDocumentRequest loadDocumentRequest) {
-        String documentGuid = loadDocumentRequest.getGuid();
+        final String documentGuid = loadDocumentRequest.getGuid();
+        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         CustomViewer<?> customViewer = null;
         try {
-            Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
+            Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentPath);
             ViewerCache cache = new FileViewerCache(cacheDocumentDirectoryPath);
 
             if (viewerConfiguration.isHtmlMode()) {
-                customViewer = new HtmlViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new HtmlViewer(documentPath, cache, createLoadOptions(password));
             } else {
-                customViewer = new PngViewer(documentGuid, cache, createLoadOptions(password));
+                customViewer = new PngViewer(documentPath, cache, createLoadOptions(password));
             }
             return getPdfFile(customViewer, cacheDocumentDirectoryPath);
         } catch (Exception ex) {
@@ -366,7 +371,7 @@ public class ViewerServiceImpl implements ViewerService {
         return page;
     }
 
-    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentGuid, CustomViewer<?> customViewer, boolean printVersion) {
+    private LoadDocumentEntity getLoadDocumentEntity(boolean loadAllPages, String documentPath, CustomViewer<?> customViewer, boolean printVersion) {
         try {
             if (loadAllPages) {
                 customViewer.createCache();
@@ -378,7 +383,7 @@ public class ViewerServiceImpl implements ViewerService {
             }
             LoadDocumentEntity loadDocumentEntity = new LoadDocumentEntity();
 
-            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentGuid);
+            final Path cacheDocumentDirectoryPath = createCacheDocumentDirectoryPath(documentPath);
             PagesInfoStorage.createPagesInfo(cacheDocumentDirectoryPath, viewInfo, isViewerLicenseSet);
 
             List<Page> pages = viewInfo.getPages();
@@ -395,11 +400,12 @@ public class ViewerServiceImpl implements ViewerService {
                 loadDocumentEntity.getPages().add(pageData);
             }
 
-            loadDocumentEntity.setGuid(documentGuid);
+            final String filesDirectory = viewerConfiguration.getFilesDirectory();
+            loadDocumentEntity.setGuid(Utils.normalizePathToGuid(filesDirectory, documentPath));
             return loadDocumentEntity;
         } catch (RuntimeException e) {
             if (e.getMessage() != null && e.getMessage().contains("At most 4 elements")) {
-                throw new EvaluationModeException(documentGuid);
+                throw new EvaluationModeException(documentPath);
             }
             logger.error("Something went wrong", e);
             throw new ReadWriteException(e);
