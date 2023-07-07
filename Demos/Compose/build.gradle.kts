@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui"
-version = "23.4"
+version = "23.7"
 
 repositories {
     google()

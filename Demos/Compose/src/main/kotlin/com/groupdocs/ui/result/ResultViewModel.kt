@@ -31,7 +31,7 @@ class ResultViewModel(private val screen: MutableState<Screen>) {
     init {
         val sourcePath: String
         val sourceName: String
-        tempDir = Paths.get(System.getenv("TMP"))
+        tempDir = Paths.get(System.getProperty("java.io.tmpdir"))
         if (screen.value is Screen.Result) {
             sourcePath = (screen.value as Screen.Result).source
             sourceName = Paths.get(sourcePath).fileName.nameWithoutExtension
