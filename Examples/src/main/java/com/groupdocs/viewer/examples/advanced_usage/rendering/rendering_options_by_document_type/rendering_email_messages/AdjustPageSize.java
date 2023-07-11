@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PageSize;
 import com.groupdocs.viewer.options.PdfViewOptions;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class AdjustPageSize {

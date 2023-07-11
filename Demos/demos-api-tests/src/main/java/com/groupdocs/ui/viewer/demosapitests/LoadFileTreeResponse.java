@@ -42,8 +42,12 @@ public class LoadFileTreeResponse {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LoadFileTreeResponse that = (LoadFileTreeResponse) o;
         return Objects.equals(guid, that.guid) && Objects.equals(name, that.name) && Objects.equals(isDirectory, that.isDirectory) && Objects.equals(size, that.size);
     }

@@ -11,7 +11,6 @@ import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import kotlinx.coroutines.runBlocking
 import java.io.BufferedInputStream
-import java.nio.charset.StandardCharsets
 import java.nio.file.Paths
 import kotlin.io.path.nameWithoutExtension
 
@@ -24,7 +23,7 @@ class PrintController(
     @Produces(MediaType.APPLICATION_JSON)
     fun print(request: PrintRequest): HttpResponse<*> {
         val inputStream = runBlocking { printBean.print(request = request) }
-        val decodedGuid = java.net.URLDecoder.decode(request.guid, StandardCharsets.UTF_8.name())
+        val decodedGuid = java.net.URLDecoder.decode(request.guid, "UTF-8")
         val guidAsPath = Paths.get(decodedGuid)
 
         return HttpResponse.ok<ConfigResponse>()

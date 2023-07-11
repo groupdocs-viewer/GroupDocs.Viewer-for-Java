@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.micronaut"
-version = "23.4"
+version = "23.7"
 
 val kotlinVersion = project.properties["kotlinVersion"]
 repositories {
@@ -16,9 +16,14 @@ repositories {
     maven("https://repository.groupdocs.com/repo/")
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     kapt("io.micronaut:micronaut-http-validation")
-    implementation("com.groupdocs:groupdocs-viewer:23.4")
+    implementation("com.groupdocs:groupdocs-viewer:$version")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
@@ -44,19 +49,15 @@ tasks {
     create("stage").dependsOn("installDist")
 }
 
-java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-}
-
 tasks {
     compileKotlin {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
     compileTestKotlin {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
 

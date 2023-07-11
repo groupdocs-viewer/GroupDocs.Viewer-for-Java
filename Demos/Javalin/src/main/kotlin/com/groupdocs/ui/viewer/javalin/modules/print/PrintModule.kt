@@ -4,7 +4,6 @@ import com.groupdocs.ui.viewer.javalin.model.PrintRequest
 import io.javalin.Javalin
 import kotlinx.coroutines.runBlocking
 import org.koin.java.KoinJavaComponent.inject
-import java.nio.charset.StandardCharsets
 import java.nio.file.Paths
 import kotlin.io.path.nameWithoutExtension
 
@@ -13,7 +12,7 @@ fun Javalin.printModule() {
 
     post("/viewer/printPdf") { ctx ->
         val request = ctx.bodyAsClass(PrintRequest::class.java)
-        val decodedGuid = java.net.URLDecoder.decode(request.guid, StandardCharsets.UTF_8.name())
+        val decodedGuid = java.net.URLDecoder.decode(request.guid, "UTF-8")
         val guidAsPath = Paths.get(decodedGuid)
 
         ctx.header("Content-Type", "application/pdf")

@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.Rotation;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class RotatePages {

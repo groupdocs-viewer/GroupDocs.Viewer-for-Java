@@ -101,7 +101,7 @@ public class JacksonCache implements Cache {
         try {
             for (Class<?> modelClazz : SERIALIZATION_MODELS) {
                 try {
-                    T value =  (T) mObjectMapper.readValue(bytes, modelClazz);
+                    T value = (T) mObjectMapper.readValue(bytes, modelClazz);
                     System.out.println("Data with key '" + key + "' was get from cache");
                     return value;
                 } catch (JsonParseException | JsonMappingException e) {

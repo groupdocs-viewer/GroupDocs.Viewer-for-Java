@@ -21,7 +21,6 @@ import kotlinx.coroutines.withContext
 import java.io.BufferedInputStream
 import java.io.FileInputStream
 import java.net.URLDecoder
-import java.nio.charset.StandardCharsets
 
 interface RotateBean {
     suspend fun rotate(request: RotateRequest): RotateResponse
@@ -40,7 +39,7 @@ class RotateBeanImpl(
         val password = request.password
         val pageNumber = request.pages.firstOrNull() ?: throw IllegalStateException("Incorrect request data!")
         val angle = request.angle
-        val guid = URLDecoder.decode(request.guid, StandardCharsets.UTF_8)
+        val guid = URLDecoder.decode(request.guid, "UTF-8")
 
         val filePath = pathManager.assertPathIsInsideFilesDirectory(guid)
 
@@ -76,7 +75,7 @@ class RotateBeanImpl(
                     previewRatio = previewPageRatio,
                 ) { pageNumber, width, height, pageInputStream ->
                     response = RotateResponse(
-                        data = String(pageInputStream.readAllBytes()),
+                        data = String(pageInputStream.readBytes()),
                         angle = 0,
                         number = pageNumber,
                         width = width,

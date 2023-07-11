@@ -51,8 +51,12 @@ public class RotatePageResponse {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         RotatePageResponse that = (RotatePageResponse) o;
         return angle == that.angle && Double.compare(that.width, width) == 0 && Double.compare(that.height, height) == 0 && number == that.number && Objects.equals(data, that.data);
     }

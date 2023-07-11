@@ -11,7 +11,7 @@ import java.nio.file.Files
 class DownloadControllerImpl(
     private val pathManager: PathManager
 ) : BaseController(), DownloadController, KoinComponent {
-    override suspend fun download(fileName: String,  outputStream: OutputStream) {
+    override suspend fun download(fileName: String, outputStream: OutputStream) {
         val resultPath = pathManager.filesDirectory.resolve(fileName).toAbsolutePath().normalize().toString()
         val resultDocumentPath = pathManager.assertPathIsInsideFilesDirectory(resultPath)
 
@@ -23,5 +23,5 @@ class DownloadControllerImpl(
 }
 
 interface DownloadController {
-    suspend fun download(fileName: String,  outputStream: OutputStream)
+    suspend fun download(fileName: String, outputStream: OutputStream)
 }

@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ProjectManagementViewInfo;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class RenderProjectTimeInterval {

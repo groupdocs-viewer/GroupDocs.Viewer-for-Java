@@ -1,7 +1,9 @@
 package com.groupdocs.ui.common
 
-import com.groupdocs.ui.settings.SettingsViewModel
-import java.io.*
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -47,7 +49,8 @@ class Settings private constructor(val path: Path) {
 
     companion object {
 
-        private val settingsPath: Path = Paths.get(System.getProperty("user.home")).resolve("groupdocs-viewer-compose.properties")
+        private val settingsPath: Path =
+            Paths.get(System.getProperty("user.home")).resolve("groupdocs-viewer-compose.properties")
         private var _instance: Settings? = null
 
         val instance: Settings

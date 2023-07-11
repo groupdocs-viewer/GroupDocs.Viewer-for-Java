@@ -9,14 +9,13 @@ import com.groupdocs.ui.viewer.ktor.usecase.LocalStorageEntry
 import org.koin.core.component.KoinComponent
 import java.net.URLDecoder
 import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 class TreeControllerImpl(
     private val getLocalFiles: GetLocalFilesUseCase,
     private val pathManager: PathManager
 ) : BaseController(), TreeController, KoinComponent {
     override suspend fun tree(request: TreeRequest): List<FileDescriptionEntity> {
-        val path = pathManager.assertPathIsInsideFilesDirectory(URLDecoder.decode(request.path, StandardCharsets.UTF_8))
+        val path = pathManager.assertPathIsInsideFilesDirectory(URLDecoder.decode(request.path, "UTF-8"))
 
         val localFiles = getLocalFiles(path)
         return localFiles.sortedBy {
@@ -29,7 +28,7 @@ class TreeControllerImpl(
             val fileFullPath = it.fullPath
             val guid = filesDirectory.relativize(fileFullPath).toString()
             FileDescriptionEntity(
-                guid = URLEncoder.encode(guid, StandardCharsets.UTF_8),
+                guid = URLEncoder.encode(guid, "UTF-8"),
                 name = it.name,
                 isDirectory = isDirectory,
                 size = size

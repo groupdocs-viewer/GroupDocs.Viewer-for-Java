@@ -8,7 +8,6 @@ import com.groupdocs.viewer.options.Tile;
 import com.groupdocs.viewer.options.ViewInfoOptions;
 import com.groupdocs.viewer.results.ViewInfo;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class SplitDrawingIntoTiles {

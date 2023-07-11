@@ -2,6 +2,7 @@ package com.groupdocs.ui.viewer.micronaut.config
 
 import com.groupdocs.ui.viewer.micronaut.Defaults
 import java.nio.file.Path
+import java.nio.file.Paths
 
 data class ApplicationConfig(
     val common: Common = Common(),
@@ -35,6 +36,7 @@ data class Viewer(
             when (filesProviderType.uppercase()) {
                 in Defaults.Comparison.FilesProviderType.values()
                     .map { it.name.uppercase() } -> Defaults.Comparison.FilesProviderType.valueOf(filesProviderType.uppercase())
+
                 else -> Defaults.Comparison.DEFAULT_FILES_PROVIDER_TYPE
             }
     val tempDirectoryOrDefault: String
@@ -52,8 +54,8 @@ data class Local(
 ) {
 
     val filesDirectoryOrDefault: Path
-        get() = Path.of(filesDirectory.ifBlank { Defaults.Local.DEFAULT_FILES_DIRECTORY })
+        get() = Paths.get(filesDirectory.ifBlank { Defaults.Local.DEFAULT_FILES_DIRECTORY })
 
     val resultDirectoryOrDefault: Path
-        get() = Path.of(resultDirectory.ifBlank { Defaults.Local.DEFAULT_RESULT_DIRECTORY })
+        get() = Paths.get(resultDirectory.ifBlank { Defaults.Local.DEFAULT_RESULT_DIRECTORY })
 }

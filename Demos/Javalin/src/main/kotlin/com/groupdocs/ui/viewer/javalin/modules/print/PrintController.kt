@@ -9,9 +9,10 @@ import com.groupdocs.viewer.Viewer
 import com.groupdocs.viewer.options.LoadOptions
 import com.groupdocs.viewer.options.PdfViewOptions
 import org.koin.core.component.KoinComponent
-import java.io.*
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.net.URLDecoder
-import java.nio.charset.StandardCharsets
 
 interface PrintController {
     suspend fun print(request: PrintRequest): InputStream
@@ -24,7 +25,7 @@ class PrintControllerImpl(
 
     override suspend fun print(request: PrintRequest): InputStream {
         val guid = request.guid
-        val fileGuid = URLDecoder.decode(guid, StandardCharsets.UTF_8)
+        val fileGuid = URLDecoder.decode(guid, "UTF-8")
 
         val filePath = pathManager.assertPathIsInsideFilesDirectory(fileGuid)
 

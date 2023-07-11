@@ -204,8 +204,12 @@ public class LoadConfigResponse {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LoadConfigResponse that = (LoadConfigResponse) o;
         return pageSelector == that.pageSelector && cache == that.cache && saveRotateState == that.saveRotateState && Objects.equals(download, that.download) && Objects.equals(upload, that.upload) && Objects.equals(print, that.print) && Objects.equals(browse, that.browse) && Objects.equals(rewrite, that.rewrite) && Objects.equals(enableRightClick, that.enableRightClick) && Objects.equals(filesDirectory, that.filesDirectory) && Objects.equals(fontsDirectory, that.fontsDirectory) && Objects.equals(preloadPageCount, that.preloadPageCount) && Objects.equals(zoom, that.zoom) && Objects.equals(search, that.search) && Objects.equals(thumbnails, that.thumbnails) && Objects.equals(rotate, that.rotate) && Objects.equals(defaultDocument, that.defaultDocument) && Objects.equals(htmlMode, that.htmlMode) && Objects.equals(watermarkText, that.watermarkText) && Objects.equals(printAllowed, that.printAllowed) && Objects.equals(showGridLines, that.showGridLines) && Objects.equals(cacheFolderName, that.cacheFolderName);
     }

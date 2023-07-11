@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.Permissions;
 import com.groupdocs.viewer.options.Security;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class ProtectPdfDocument {

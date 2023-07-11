@@ -10,12 +10,17 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.ktor"
-version = "23.4"
+version = "23.7"
 
 repositories {
     mavenLocal()
     mavenCentral()
     maven("https://repository.groupdocs.com/repo/")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 application {
@@ -32,7 +37,7 @@ tasks {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
 
-    implementation("com.groupdocs:groupdocs-viewer:23.4")
+    implementation("com.groupdocs:groupdocs-viewer:$version")
 
     implementation("io.insert-koin:koin-ktor:$koin_version")
 

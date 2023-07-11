@@ -62,14 +62,15 @@ class PathManagerImpl(
         val sourceNameWithoutExtension = File(sourceName).nameWithoutExtension
         val targetNameWithoutExtension = File(targetName).nameWithoutExtension
 
-        val resultFileName = if (sourceNameWithoutExtension.length + targetNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
-            val halfOfFileNameLength = MAX_FILENAME_LENGTH / 2
-            val trimmedSourceFileName = sourceNameWithoutExtension
-                .substring(min(halfOfFileNameLength, sourceNameWithoutExtension.length))
-            val trimmedTargetFileName = targetNameWithoutExtension
-                .substring(min(halfOfFileNameLength, targetNameWithoutExtension.length))
-            "result-${trimmedSourceFileName}-${trimmedTargetFileName}_${System.currentTimeMillis()}.$extension"
-        } else "result-${sourceNameWithoutExtension}-${targetNameWithoutExtension}.$extension"
+        val resultFileName =
+            if (sourceNameWithoutExtension.length + targetNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
+                val halfOfFileNameLength = MAX_FILENAME_LENGTH / 2
+                val trimmedSourceFileName = sourceNameWithoutExtension
+                    .substring(min(halfOfFileNameLength, sourceNameWithoutExtension.length))
+                val trimmedTargetFileName = targetNameWithoutExtension
+                    .substring(min(halfOfFileNameLength, targetNameWithoutExtension.length))
+                "result-${trimmedSourceFileName}-${trimmedTargetFileName}_${System.currentTimeMillis()}.$extension"
+            } else "result-${sourceNameWithoutExtension}-${targetNameWithoutExtension}.$extension"
 
         return resultDirectory.resolve(resultFileName)
     }

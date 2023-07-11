@@ -55,7 +55,6 @@
             <groupId>com.groupdocs</groupId>
             <artifactId>groupdocs-viewer</artifactId>
             <version>${project.version}</version>
-            <classifier>jarjar</classifier>
             </dependency>
         <dependency>
             <groupId>org.testng</groupId>

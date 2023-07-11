@@ -49,7 +49,7 @@ class SettingsViewModel(private val screen: MutableState<Screen>) {
         JFileChooser().apply {
             fileFilter = FileNameExtensionFilter("License file", "lic")
             val licensePath = _state.value.licensePath
-            if (!licensePath.isNullOrBlank()){
+            if (!licensePath.isNullOrBlank()) {
                 val path = Paths.get(licensePath)
                 if (Files.exists(path)) {
                     selectedFile = path.parent.toFile()

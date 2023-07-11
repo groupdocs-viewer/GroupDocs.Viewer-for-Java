@@ -24,6 +24,7 @@ class GetLocalFilesUseCase {
                                 parentPath = directory
                             )
                         }
+
                         else -> {
                             LocalStorageEntry.File(
                                 name = path.fileName.toString(),

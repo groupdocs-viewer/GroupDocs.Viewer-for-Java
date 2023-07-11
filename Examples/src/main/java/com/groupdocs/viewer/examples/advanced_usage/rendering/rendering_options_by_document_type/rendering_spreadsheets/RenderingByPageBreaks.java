@@ -5,7 +5,6 @@ import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.SpreadsheetOptions;
-import com.groupdocs.viewer.utils.PathUtils;
 
 import java.nio.file.Path;
 

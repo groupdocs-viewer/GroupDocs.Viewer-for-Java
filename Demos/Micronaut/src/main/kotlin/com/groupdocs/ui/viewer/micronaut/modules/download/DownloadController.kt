@@ -11,7 +11,6 @@ import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import kotlinx.coroutines.runBlocking
 import java.io.BufferedInputStream
-import java.nio.charset.StandardCharsets
 import java.nio.file.Paths
 
 @Singleton
@@ -22,7 +21,7 @@ class DownloadController(
     @Get("/downloadDocument")
     @Produces(MediaType.APPLICATION_JSON)
     fun download(@QueryValue path: String): HttpResponse<*> {
-        val decodedGuid = java.net.URLDecoder.decode(path, StandardCharsets.UTF_8.name())
+        val decodedGuid = java.net.URLDecoder.decode(path, "UTF-8")
         val guidAsPath = Paths.get(decodedGuid)
 
         val inputStream = runBlocking { downloadBean.download(fileName = decodedGuid) }

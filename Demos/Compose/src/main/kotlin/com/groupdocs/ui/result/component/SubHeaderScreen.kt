@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
 import com.groupdocs.ui.result.ResultState
 import com.groupdocs.ui.theme.Gray
 import com.groupdocs.ui.theme.spaces

@@ -40,9 +40,11 @@ fun App() {
                 is Screen.Home -> {
                     HomeScreen(screen)
                 }
+
                 is Screen.Result -> {
                     ResultScreen(screen)
                 }
+
                 is Screen.Settings -> {
                     SettingsScreen(screen)
                 }

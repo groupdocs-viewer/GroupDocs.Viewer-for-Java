@@ -88,8 +88,10 @@ public class CommonApiTests {
 
         final JsonPath actualJson = new JsonPath(actualString);
 
-        final List<LoadFileTreeResponse> expectedObject = expectedJson.getObject("", new TypeRef<List<LoadFileTreeResponse>>() {});
-        final List<LoadFileTreeResponse> actualObject = actualJson.getObject("", new TypeRef<List<LoadFileTreeResponse>>() {});
+        final List<LoadFileTreeResponse> expectedObject = expectedJson.getObject("", new TypeRef<List<LoadFileTreeResponse>>() {
+        });
+        final List<LoadFileTreeResponse> actualObject = actualJson.getObject("", new TypeRef<List<LoadFileTreeResponse>>() {
+        });
 
         assertThat(actualObject).isEqualTo(expectedObject);
     }

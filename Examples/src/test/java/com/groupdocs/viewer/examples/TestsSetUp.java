@@ -1,7 +1,5 @@
 package com.groupdocs.viewer.examples;
 
-import com.groupdocs.viewer.logging.ConsoleLogger;
-import com.groupdocs.viewer.logging.ViewerLogger;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

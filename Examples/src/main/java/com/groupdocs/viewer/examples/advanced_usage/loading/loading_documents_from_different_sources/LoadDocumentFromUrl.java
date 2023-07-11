@@ -4,7 +4,6 @@ import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;

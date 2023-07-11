@@ -48,7 +48,9 @@ class ResultViewModel(private val screen: MutableState<Screen>) {
                 Viewer(sourcePath).use { viewer ->
                     try {
                         val options = PngViewOptions { pageNumber ->
-                            return@PngViewOptions FileOutputStream(resultDirectory.resolve("${sourceName}_$pageNumber.png").toFile())
+                            return@PngViewOptions FileOutputStream(
+                                resultDirectory.resolve("${sourceName}_$pageNumber.png").toFile()
+                            )
                         }
                         options.isRenderComments = Settings.instance.isRenderComments
                         options.maxWidth = Settings.instance.maxWidth

@@ -18,7 +18,6 @@ import java.io.BufferedInputStream
 import java.io.FileInputStream
 import java.net.URLDecoder
 import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 interface DescriptionBean {
     suspend fun description(request: DescriptionRequest): DescriptionEntity
@@ -33,14 +32,14 @@ class DescriptionBeanImpl(
     @Inject private val filesCache: FilesCache
 ) : DescriptionBean {
     override suspend fun description(request: DescriptionRequest): DescriptionEntity {
-        val guid = URLDecoder.decode(request.guid, StandardCharsets.UTF_8)
+        val guid = URLDecoder.decode(request.guid, "UTF-8")
         val path = pathManager.assertPathIsInsideFilesDirectory(guid)
         val password = request.password
         val previewPageWidth = appConfig.viewer.previewPageWidthOrDefault
         val previewPageRatio = appConfig.viewer.previewPageRatioOrDefault
 
         val entity = DescriptionEntity(
-            guid = URLEncoder.encode(guid, StandardCharsets.UTF_8),
+            guid = URLEncoder.encode(guid, "UTF-8"),
             printAllowed = appConfig.common.print
         )
         if (filesCache.isEntryExist(guid = guid)) {
@@ -63,7 +62,7 @@ class DescriptionBeanImpl(
                         previewWidth = previewPageWidth,
                         previewRatio = previewPageRatio,
                     ) { pageNumber, width, height, pageInputStream ->
-                        val data = String(pageInputStream.readAllBytes())
+                        val data = String(pageInputStream.readBytes())
                         entity.pages.add(
                             PageDescriptionEntity(
                                 number = pageNumber,

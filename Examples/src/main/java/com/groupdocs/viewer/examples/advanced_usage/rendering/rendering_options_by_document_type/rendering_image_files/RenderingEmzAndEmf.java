@@ -7,7 +7,6 @@ import com.groupdocs.viewer.options.HtmlViewOptions;
 import com.groupdocs.viewer.options.JpgViewOptions;
 import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
-import com.groupdocs.viewer.utils.PathUtils;
 
 import java.nio.file.Path;
 

@@ -5,7 +5,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 import org.apache.commons.net.ftp.FTPClient;
 
-import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Path;
 

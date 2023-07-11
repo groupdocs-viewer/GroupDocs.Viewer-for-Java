@@ -5,7 +5,6 @@ import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.PngViewOptions;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class RenderForDisplayWithText {

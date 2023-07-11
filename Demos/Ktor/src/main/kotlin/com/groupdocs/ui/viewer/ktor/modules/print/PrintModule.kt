@@ -7,7 +7,6 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-import java.nio.charset.StandardCharsets
 import java.nio.file.Paths
 import kotlin.io.path.nameWithoutExtension
 
@@ -16,7 +15,7 @@ fun Route.printModule() {
 
     post("/printPdf") {
         val request = call.receive<PrintRequest>()
-        val decodedGuid = java.net.URLDecoder.decode(request.guid, StandardCharsets.UTF_8.name())
+        val decodedGuid = java.net.URLDecoder.decode(request.guid, "UTF-8")
         val guidAsPath = Paths.get(decodedGuid)
         call.response.headers.apply {
             append("Content-disposition", "attachment; filename=${guidAsPath.nameWithoutExtension}")

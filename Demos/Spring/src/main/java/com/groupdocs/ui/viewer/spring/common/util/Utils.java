@@ -5,25 +5,19 @@ import com.groupdocs.ui.viewer.spring.common.exception.TotalGroupDocsException;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.Map;
 
 import static com.groupdocs.ui.viewer.spring.common.exception.PasswordExceptions.INCORRECT_PASSWORD;
 import static com.groupdocs.ui.viewer.spring.common.exception.PasswordExceptions.PASSWORD_REQUIRED;

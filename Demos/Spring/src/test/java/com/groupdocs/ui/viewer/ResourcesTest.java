@@ -38,7 +38,7 @@ public class ResourcesTest {
     }
 
     @Test
-    public void getView()  throws Exception {
+    public void getView() throws Exception {
         mvc.perform(get("/viewer")).andExpect(status().isOk()).andExpect(view().name("viewer"));
     }
 

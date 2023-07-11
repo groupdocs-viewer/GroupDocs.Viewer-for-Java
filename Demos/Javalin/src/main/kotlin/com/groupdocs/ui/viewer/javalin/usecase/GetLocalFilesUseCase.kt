@@ -23,6 +23,7 @@ class GetLocalFilesUseCase : KoinComponent {
                                 parentPath = directory
                             )
                         }
+
                         else -> {
                             LocalStorageEntry.File(
                                 name = path.fileName.toString(),

@@ -12,5 +12,8 @@ fun StatusPagesConfig.internalStatusPages() {
     }
 }
 
-open class InternalServerException(override val message: String = "Internal server error", throwable: Throwable? = null) :
+open class InternalServerException(
+    override val message: String = "Internal server error",
+    throwable: Throwable? = null
+) :
     Exception(message, throwable)

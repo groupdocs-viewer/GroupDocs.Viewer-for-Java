@@ -6,8 +6,6 @@ import org.koin.core.component.KoinComponent
 import java.io.BufferedInputStream
 import java.io.FileInputStream
 import java.io.InputStream
-import java.nio.charset.StandardCharsets
-import java.nio.file.Paths
 
 class DownloadControllerImpl(
     private val pathManager: PathManager

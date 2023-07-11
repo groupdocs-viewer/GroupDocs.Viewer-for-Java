@@ -8,7 +8,6 @@ import com.groupdocs.viewer.options.PdfViewOptions;
 import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * This example demonstrates how to render HTML files with user defined margins.

@@ -9,7 +9,6 @@ import com.groupdocs.viewer.fonts.FontSource;
 import com.groupdocs.viewer.fonts.SearchOption;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
-import java.io.File;
 import java.nio.file.Path;
 
 public class RenderWithCustomFonts {

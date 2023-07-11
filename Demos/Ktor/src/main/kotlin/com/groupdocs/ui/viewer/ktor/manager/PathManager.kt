@@ -1,8 +1,8 @@
 package com.groupdocs.ui.viewer.ktor.manager
 
 import com.groupdocs.ui.viewer.ktor.Defaults
-import com.groupdocs.ui.viewer.ktor.status.InternalServerException
 import com.groupdocs.ui.viewer.ktor.config.ViewerConfig
+import com.groupdocs.ui.viewer.ktor.status.InternalServerException
 import org.koin.core.component.KoinComponent
 import java.io.File
 import java.nio.file.Path
@@ -62,14 +62,15 @@ class PathManagerImpl(
         val sourceNameWithoutExtension = File(sourceName).nameWithoutExtension
         val targetNameWithoutExtension = File(targetName).nameWithoutExtension
 
-        val resultFileName = if (sourceNameWithoutExtension.length + targetNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
-            val halfOfFileNameLength = MAX_FILENAME_LENGTH / 2
-            val trimmedSourceFileName = sourceNameWithoutExtension
-                .substring(min(halfOfFileNameLength, sourceNameWithoutExtension.length))
-            val trimmedTargetFileName = targetNameWithoutExtension
-                .substring(min(halfOfFileNameLength, targetNameWithoutExtension.length))
-            "result-${trimmedSourceFileName}-${trimmedTargetFileName}_${System.currentTimeMillis()}.$extension"
-        } else "result-${sourceNameWithoutExtension}-${targetNameWithoutExtension}.$extension"
+        val resultFileName =
+            if (sourceNameWithoutExtension.length + targetNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
+                val halfOfFileNameLength = MAX_FILENAME_LENGTH / 2
+                val trimmedSourceFileName = sourceNameWithoutExtension
+                    .substring(min(halfOfFileNameLength, sourceNameWithoutExtension.length))
+                val trimmedTargetFileName = targetNameWithoutExtension
+                    .substring(min(halfOfFileNameLength, targetNameWithoutExtension.length))
+                "result-${trimmedSourceFileName}-${trimmedTargetFileName}_${System.currentTimeMillis()}.$extension"
+            } else "result-${sourceNameWithoutExtension}-${targetNameWithoutExtension}.$extension"
 
         return resultDirectory.resolve(resultFileName)
     }

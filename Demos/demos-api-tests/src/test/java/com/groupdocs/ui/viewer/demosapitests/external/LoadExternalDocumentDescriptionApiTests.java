@@ -37,17 +37,17 @@ public class LoadExternalDocumentDescriptionApiTests {
     private final List<String> SKIP_RESOURCES_NAMES = Arrays.asList("filelist.xml", "editdata.mso", "oledata.mso");
 
     @DataProvider(name = "testLoadDocumentDescription_ExternalResources_DataProvider")
-    public Object[][] testLoadDocumentDescription_ExternalResources_DataProvider() throws IOException {
+    public Object[][] testLoadDocumentDescription_ExternalResources_DataProvider() throws Exception {
         final java.net.URL documentDescriptionResource = this.getClass().getResource("");
         assertThat(documentDescriptionResource).isNotNull();
 
         List<Object[]> caseList = new ArrayList<>();
 
-        final Path documentDescriptionDirectory = Paths.get(documentDescriptionResource.getPath().substring(1));
+        final Path documentDescriptionDirectory = Paths.get(documentDescriptionResource.toURI());
 
         for (Path filePath : Files.newDirectoryStream(documentDescriptionDirectory, "*.json")) {
 //            if (filePath.toString().contains("xps-")) // To run one test
-                caseList.add(new Object[]{filePath.toString()});
+            caseList.add(new Object[]{filePath.toString()});
         }
 
         return caseList.toArray(new Object[0][]);

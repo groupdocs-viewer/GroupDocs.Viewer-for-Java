@@ -6,7 +6,6 @@ import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.options.Field;
 import com.groupdocs.viewer.options.HtmlViewOptions;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;

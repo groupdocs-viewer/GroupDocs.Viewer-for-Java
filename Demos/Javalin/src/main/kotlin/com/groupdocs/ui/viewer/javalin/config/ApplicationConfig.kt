@@ -2,6 +2,7 @@ package com.groupdocs.ui.viewer.javalin.config
 
 import com.groupdocs.ui.viewer.javalin.Defaults
 import java.nio.file.Path
+import java.nio.file.Paths
 
 @kotlinx.serialization.Serializable
 data class ApplicationConfig(
@@ -45,6 +46,7 @@ data class Viewer(
             when (filesProviderType.uppercase()) {
                 in Defaults.Viewer.FilesProviderType.values()
                     .map { it.name.uppercase() } -> Defaults.Viewer.FilesProviderType.valueOf(filesProviderType.uppercase())
+
                 else -> Defaults.Viewer.DEFAULT_FILES_PROVIDER_TYPE
             }
     val tempDirectoryOrDefault: String
@@ -63,8 +65,8 @@ data class Local(
 ) {
 
     val filesDirectoryOrDefault: Path
-        get() = Path.of(filesDirectory.ifBlank { Defaults.Local.DEFAULT_FILES_DIRECTORY })
+        get() = Paths.get(filesDirectory.ifBlank { Defaults.Local.DEFAULT_FILES_DIRECTORY })
 
     val resultDirectoryOrDefault: Path
-        get() = Path.of(resultDirectory.ifBlank { Defaults.Local.DEFAULT_RESULT_DIRECTORY })
+        get() = Paths.get(resultDirectory.ifBlank { Defaults.Local.DEFAULT_RESULT_DIRECTORY })
 }

@@ -6,7 +6,6 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-import java.nio.charset.StandardCharsets
 import java.nio.file.Paths
 
 fun Route.downloadModule() {
@@ -14,7 +13,7 @@ fun Route.downloadModule() {
 
     get("/downloadDocument/") {
         call.parameters["path"]?.let { guid ->
-            val decodedGuid = java.net.URLDecoder.decode(guid, StandardCharsets.UTF_8.name())
+            val decodedGuid = java.net.URLDecoder.decode(guid, "UTF-8")
             val guidAsPath = Paths.get(decodedGuid)
             call.response.headers.apply {
                 append("Content-disposition", "attachment; filename=${guidAsPath.fileName}")

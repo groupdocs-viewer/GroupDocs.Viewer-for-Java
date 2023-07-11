@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.Valid;
 
-import static com.groupdocs.ui.viewer.dropwizard.common.config.DefaultDirectories.*;
+import static com.groupdocs.ui.viewer.dropwizard.common.config.DefaultDirectories.LICENSES;
 
 /**
  * ApplicationConfiguration

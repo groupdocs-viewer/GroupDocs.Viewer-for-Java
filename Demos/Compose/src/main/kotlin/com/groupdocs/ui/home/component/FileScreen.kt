@@ -16,7 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.groupdocs.ui.theme.spaces
 
 @Composable
-fun FileScreen(modifier: Modifier = Modifier, title: String, documentName: String? = null, errorMessage: String? = null, onAdd: () -> Unit){
+fun FileScreen(
+    modifier: Modifier = Modifier,
+    title: String,
+    documentName: String? = null,
+    errorMessage: String? = null,
+    onAdd: () -> Unit
+) {
     Box(
         modifier = modifier
             .padding(MaterialTheme.spaces.medium)

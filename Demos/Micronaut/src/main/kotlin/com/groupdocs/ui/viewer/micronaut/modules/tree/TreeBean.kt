@@ -10,7 +10,6 @@ import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import java.net.URLDecoder
 import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 interface TreeBean {
     suspend fun tree(request: TreeRequest): List<FileDescriptionEntity>
@@ -23,7 +22,7 @@ class TreeBeanImpl(
     @Inject private val pathManager: PathManager,
 ) : TreeBean {
     override suspend fun tree(request: TreeRequest): List<FileDescriptionEntity> {
-        val path = pathManager.assertPathIsInsideFilesDirectory(URLDecoder.decode(request.path, StandardCharsets.UTF_8))
+        val path = pathManager.assertPathIsInsideFilesDirectory(URLDecoder.decode(request.path, "UTF-8"))
 
         val localFiles = getLocalFiles(path)
         return localFiles.sortedBy {
@@ -36,7 +35,7 @@ class TreeBeanImpl(
             val fileFullPath = it.fullPath
             val guid = filesDirectory.relativize(fileFullPath).toString()
             FileDescriptionEntity(
-                guid = URLEncoder.encode(guid, StandardCharsets.UTF_8),
+                guid = URLEncoder.encode(guid, "UTF-8"),
                 name = it.name,
                 isDirectory = isDirectory,
                 size = size
