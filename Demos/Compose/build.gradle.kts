@@ -23,9 +23,14 @@ dependencies {
     implementation("commons-io:commons-io:2.11.0")
     implementation("com.groupdocs:groupdocs-viewer:$version")
 }
+val javaVersion  = JavaVersion.VERSION_11.toString()
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = javaVersion
+}
+tasks.withType<JavaCompile> {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
 }
 
 compose.desktop {
@@ -38,6 +43,9 @@ compose.desktop {
 
             windows {
                 shortcut = true
+                iconFile.set(project.file("icon.ico"))
+            }
+            linux {
                 iconFile.set(project.file("icon.ico"))
             }
         }
