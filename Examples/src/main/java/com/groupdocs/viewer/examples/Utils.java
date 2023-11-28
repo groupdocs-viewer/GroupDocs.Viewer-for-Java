@@ -7,23 +7,17 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class Utils {
 
-    public static final String LICENSE_PATH = new File("resources/GroupDocs.Viewer.Java.lic").getAbsolutePath();
-    public static final String SAMPLES_PATH = "resources/sample_files";
-    public static final String FONTS_PATH = "resources/fonts";
-    public static final String OUTPUT_PATH = "output";
-
     private Utils() {
     }
 
     public static void cleanOutputDirectory() throws IOException {
-        final Path outputPath = Paths.get(OUTPUT_PATH);
-        if (Files.exists(outputPath)) {
-            deleteDirectoryWithContent(outputPath);
+        if (Files.exists(Constants.OUTPUT_PATH)) {
+            deleteDirectoryWithContent(Constants.OUTPUT_PATH);
         }
     }
 
     public static Path getOutputDirectoryPath(String sampleName) {
-        final Path sampleDirectory = Paths.get(OUTPUT_PATH, sampleName);
+        final Path sampleDirectory = Constants.OUTPUT_PATH.resolve(sampleName);
         try {
             return Files.createDirectories(sampleDirectory);
         } catch (IOException e) {

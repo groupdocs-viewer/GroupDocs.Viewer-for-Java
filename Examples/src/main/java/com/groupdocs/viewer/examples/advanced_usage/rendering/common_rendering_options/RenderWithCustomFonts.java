@@ -1,6 +1,7 @@
 package com.groupdocs.viewer.examples.advanced_usage.rendering.common_rendering_options;
 
 import com.groupdocs.viewer.Viewer;
+import com.groupdocs.viewer.examples.Constants;
 import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
 import com.groupdocs.viewer.fonts.FolderFontSource;
@@ -20,7 +21,7 @@ public class RenderWithCustomFonts {
 
     public static void run() {
         FontSource fontSource =
-                new FolderFontSource(Utils.FONTS_PATH, SearchOption.TOP_FOLDER_ONLY);
+                new FolderFontSource(Constants.FONTS_PATH.toString(), SearchOption.TOP_FOLDER_ONLY);
         FontSettings.setFontSources(fontSource);
 
         Path outputDirectory = Utils.getOutputDirectoryPath("RenderWithCustomFonts");

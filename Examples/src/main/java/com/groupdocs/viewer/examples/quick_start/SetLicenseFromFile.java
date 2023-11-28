@@ -1,6 +1,7 @@
 package com.groupdocs.viewer.examples.quick_start;
 
 import com.groupdocs.viewer.License;
+import com.groupdocs.viewer.examples.Constants;
 import com.groupdocs.viewer.examples.Utils;
 
 import java.io.File;
@@ -16,18 +17,24 @@ public class SetLicenseFromFile {
      * instance when the License is stored as an embedded resource.
      */
     public static void run() {
-        File licenseFile = new File(Utils.LICENSE_PATH);
+        final String licensePath = Constants.LICENSE_PATH;
+        if (licensePath != null) {
+            if (licensePath.startsWith("http")) {
+                System.err.println("License path was not provided, license url is found instead!");
+                return;
+            }
 
-        if (licenseFile.exists()) {
             License license = new License();
-            license.setLicense(Utils.LICENSE_PATH);
-
+            license.setLicense(Constants.LICENSE_PATH);
             System.out.println("License set successfully.");
+
         } else {
-            System.out.println("\nWe do not ship any license with this example. "
-                    + "\nVisit the GroupDocs site to obtain either a temporary or permanent license. "
-                    + "\nLearn more about licensing at https://purchase.groupdocs.com/faqs/licensing. "
-                    + "\nLearn how to request temporary license at https://purchase.groupdocs.com/temporary-license.");
+            System.out.println(
+                    "\nWe do not ship any license with this example. "+
+                            "\nVisit the GroupDocs site to obtain either a temporary or permanent license. "+
+                            "\nLearn more about licensing at https://purchase.groupdocs.com/faqs/licensing. "+
+                            "\nLear how to request temporary license at https://purchase.groupdocs.com/temporary-license."
+            );
         }
     }
 }

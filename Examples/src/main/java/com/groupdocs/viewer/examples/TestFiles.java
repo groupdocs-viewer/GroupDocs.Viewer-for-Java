@@ -91,6 +91,6 @@ public class TestFiles {
     public static final String SAMPLE_CHM = getSampleFilePath("sample.chm");
 
     private static String getSampleFilePath(String filePath) {
-        return new File(Utils.SAMPLES_PATH, filePath).getPath();
+        return Constants.FILES_PATH.resolve(filePath).toString();
     }
 }

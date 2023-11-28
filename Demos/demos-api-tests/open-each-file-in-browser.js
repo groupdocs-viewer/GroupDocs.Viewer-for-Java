@@ -58,7 +58,6 @@ const fileNames = [
     "GroupDocs_Demo.xltx",
     "GroupDocs_Demo.xml",
     "GroupDocs_Demo.xps",
-    "sample_document.igs",
     "T-Flange.igs",
 ];
 

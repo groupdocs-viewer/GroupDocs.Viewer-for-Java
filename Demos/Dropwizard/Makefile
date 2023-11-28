@@ -1,6 +1,6 @@
 SHELL=CMD
 
-VIEWER_VERSION = 23.7
+VIEWER_VERSION = 23.11
 
 # Groupdocs.Viewer for Java - Dropwizard sample
 

@@ -1,12 +1,16 @@
 package com.groupdocs.viewer.examples.quick_start;
 
 import com.groupdocs.viewer.License;
+import com.groupdocs.viewer.examples.Constants;
 import com.groupdocs.viewer.examples.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class SetLicenseFromStream {
 
@@ -15,22 +19,37 @@ public class SetLicenseFromStream {
      */
 
     public static void run() {
-        File licenseFile = new File(Utils.LICENSE_PATH);
 
-        if (licenseFile.exists()) {
-            try (InputStream stream = new FileInputStream(Utils.LICENSE_PATH)) {
-                License license = new License();
-                license.setLicense(stream);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        try {
+            final String licensePath = Constants.LICENSE_PATH;
+            if (licensePath == null) {
+                System.err.println("LICENSE_PATH is not provided, setting license from stream is skipped!");
+            } else if (new File(licensePath).isFile()) {
+                final InputStream stream;
+                if (licensePath.startsWith("http")) {
+                    stream = new URL(licensePath).openStream();
+                } else {
+                    stream = Files.newInputStream(Paths.get(licensePath));
+                }
+                try {
+                    License license = new License();
+                    license.setLicense(stream);
+                } finally {
+                    if (stream != null) {
+                        stream.close();
+                    }
+                }
+                System.out.println("License set successfully.");
+            } else {
+                System.out.println(
+                        "\nWe do not ship any license with this example. "
+                                + "\nVisit the GroupDocs site to obtain either a temporary or permanent license. "
+                                + "\nLearn more about licensing at https://purchase.groupdocs.com/faqs/licensing. "
+                                + "\nLear how to request temporary license at https://purchase.groupdocs.com/temporary-license."
+                );
             }
-
-            System.out.println("License set successfully.");
-        } else {
-            System.out.println("\nWe do not ship any license with this example. " +
-                    "\nVisit the GroupDocs site to obtain either a temporary or permanent license. " +
-                    "\nLearn more about licensing at https://purchase.groupdocs.com/faqs/licensing. " +
-                    "\nLearn how to request temporary license at https://purchase.groupdocs.com/temporary-license.");
+        } catch (IOException ex) {
+            ex.getMessage();
         }
     }
 }
