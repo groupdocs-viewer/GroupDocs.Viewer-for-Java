@@ -1,6 +1,6 @@
 SHELL=CMD
 
-VIEWER_VERSION = 23.11
+VIEWER_VERSION = 24.2
 
 # Groupdocs.Viewer for Java - Spring sample
 

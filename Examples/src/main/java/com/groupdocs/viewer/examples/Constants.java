@@ -56,7 +56,7 @@ public class Constants {
                     LICENSE_PATH = conholdateLicPath;
                 } else {
                     final String groupdocsLicPath = System.getenv("GROUPDOCS_LIC_PATH");
-                    if (groupdocsLicPath != null && Files.exists(Paths.get(groupdocsLicPath))) {
+                    if (groupdocsLicPath != null && !groupdocsLicPath.startsWith("http://") && !groupdocsLicPath.startsWith("https://") && Files.exists(Paths.get(groupdocsLicPath))) {
                         LICENSE_PATH = groupdocsLicPath;
                     } else {
                         LICENSE_PATH = null;

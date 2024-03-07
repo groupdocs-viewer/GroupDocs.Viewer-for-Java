@@ -3,7 +3,6 @@ package com.groupdocs.viewer.examples;
 import com.groupdocs.viewer.examples.advanced_usage.caching.UseCacheWhenProcessingDocuments;
 import com.groupdocs.viewer.examples.advanced_usage.caching.UseCustomCacheImplementation;
 import com.groupdocs.viewer.examples.advanced_usage.loading.*;
-import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromFtp;
 import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromLocalDisk;
 import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromStream;
 import com.groupdocs.viewer.examples.advanced_usage.loading.loading_documents_from_different_sources.LoadDocumentFromUrl;

@@ -4,6 +4,7 @@ const url = "http://localhost:8080/viewer";
 
 // Perform the actions for each file
 const fileNames = [
+    "GroupDocs_Demo.azw3",
     "GroupDocs_Demo.bmp",
     "GroupDocs_Demo.csv",
     "GroupDocs_Demo.doc",
@@ -12,9 +13,11 @@ const fileNames = [
     "GroupDocs_Demo.dot",
     "GroupDocs_Demo.dotm",
     "GroupDocs_Demo.dotx",
+    "GroupDocs_Demo.dwfx",
     "GroupDocs_Demo.dwg",
     "GroupDocs_Demo.dxf",
     "GroupDocs_Demo.eml",
+    "GroupDocs_Demo.fbx",
     "GroupDocs_Demo.gif",
     "GroupDocs_Demo.html",
     "GroupDocs_Demo.ifc",
