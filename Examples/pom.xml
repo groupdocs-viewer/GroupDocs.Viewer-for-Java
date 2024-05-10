@@ -5,7 +5,7 @@
 
     <groupId>GroupDocs.Viewer.Examples.Java</groupId>
     <artifactId>GroupDocs.Viewer.Examples.Java</artifactId>
-    <version>24.2</version>
+    <version>24.4</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

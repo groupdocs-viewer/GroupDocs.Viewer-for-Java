@@ -3,9 +3,7 @@ package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options
 import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
-import com.groupdocs.viewer.options.JpgViewOptions;
-import com.groupdocs.viewer.options.PdfViewOptions;
-import com.groupdocs.viewer.options.PngViewOptions;
+import com.groupdocs.viewer.options.*;
 
 import java.nio.file.Path;
 

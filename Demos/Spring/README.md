@@ -1,6 +1,6 @@
 ![GroupDocs.Viewer](https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/banner.png "GroupDocs.Viewer")
 # GroupDocs.Viewer for Java Spring Example
-###### version 24.2
+###### version 24.4
 
 [![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/blob/master/LICENSE)
 

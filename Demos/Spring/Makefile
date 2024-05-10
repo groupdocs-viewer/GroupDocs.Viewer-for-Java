@@ -1,6 +1,7 @@
 SHELL=CMD
+#SHELL=/bin/bash
 
-VIEWER_VERSION = 24.2
+VIEWER_VERSION = 24.4
 
 # Groupdocs.Viewer for Java - Spring sample
 
