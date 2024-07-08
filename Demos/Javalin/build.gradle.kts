@@ -9,12 +9,12 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.javalin"
-version = "24.4"
+version = "24.6"
 
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://repository.groupdocs.com/repo/")
+    maven("https://releases.groupdocs.com/java/repo/")
 }
 
 java {

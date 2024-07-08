@@ -8,14 +8,14 @@ plugins {
 }
 
 group = "com.groupdocs.ui"
-version = "24.4"
+version = "24.6"
 
 repositories {
     google()
     mavenLocal()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    maven("https://repository.groupdocs.com/repo/")
+    maven("https://releases.groupdocs.com/java/repo/")
 }
 
 dependencies {
