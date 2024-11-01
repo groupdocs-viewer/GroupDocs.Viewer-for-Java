@@ -13,9 +13,9 @@ public class PageModel implements Page {
     @JsonProperty("Name")
     private String mName;
     @JsonProperty("Number")
-    private final int mNumber;
+    private int mNumber;
     @JsonProperty("Visible")
-    private final boolean mVisible;
+    private boolean mVisible;
     @JsonProperty("Width")
     private int mWidth;
     @JsonProperty("Height")
@@ -90,5 +90,35 @@ public class PageModel implements Page {
     @Override
     public List<Line> getLines() {
         return mLines;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.mName = name;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.mNumber = number;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        this.mVisible = visible;
+    }
+
+    @Override
+    public void setWidth(int width) {
+        this.mWidth = width;
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.mHeight = height;
+    }
+
+    @Override
+    public void setLines(List<Line> lines) {
+        this.mLines = lines;
     }
 }

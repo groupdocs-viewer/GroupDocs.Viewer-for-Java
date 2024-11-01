@@ -2,18 +2,20 @@ package com.groupdocs.viewer.examples.advanced_usage.caching.jackson.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.groupdocs.viewer.results.Line;
 import com.groupdocs.viewer.results.Page;
 
 import java.util.List;
 
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class PageModel implements Page {
     @JsonProperty("Name")
     private String mName;
     @JsonProperty("Number")
-    private final int mNumber;
+    private int mNumber;
     @JsonProperty("Visible")
-    private final boolean mVisible;
+    private boolean mVisible;
     @JsonProperty("Width")
     private int mWidth;
     @JsonProperty("Height")
@@ -21,14 +23,12 @@ public class PageModel implements Page {
     @JsonProperty("Lines")
     private List<Line> mLines;
 
-    @JsonCreator
     public PageModel(@JsonProperty("Number") int number, @JsonProperty("Name") String name, @JsonProperty("Visible") boolean visible) {
         mName = name;
         mNumber = number;
         mVisible = visible;
     }
 
-    @JsonCreator
     public PageModel(@JsonProperty("Number") int number, @JsonProperty("Name") String name, @JsonProperty("Visible") boolean visible, @JsonProperty("Width") int width, @JsonProperty("Height") int height) {
         mName = name;
         mNumber = number;
@@ -47,7 +47,6 @@ public class PageModel implements Page {
         mLines = lines;
     }
 
-    @JsonCreator
     public PageModel(@JsonProperty("Number") int number, @JsonProperty("Visible") boolean visible, @JsonProperty("Width") int width, @JsonProperty("Height") int height) {
         mNumber = number;
         mVisible = visible;
@@ -55,7 +54,6 @@ public class PageModel implements Page {
         mHeight = height;
     }
 
-    @JsonCreator
     public PageModel(@JsonProperty("Number") int number, @JsonProperty("Visible") boolean visible, @JsonProperty("Width") int width, @JsonProperty("Height") int height, @JsonProperty("Lines") List<Line> lines) {
         mNumber = number;
         mVisible = visible;
@@ -92,5 +90,35 @@ public class PageModel implements Page {
     @Override
     public List<Line> getLines() {
         return mLines;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.mName = name;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.mNumber = number;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        this.mVisible = visible;
+    }
+
+    @Override
+    public void setWidth(int width) {
+        this.mWidth = width;
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.mHeight = height;
+    }
+
+    @Override
+    public void setLines(List<Line> lines) {
+        this.mLines = lines;
     }
 }

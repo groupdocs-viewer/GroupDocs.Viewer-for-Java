@@ -12,7 +12,7 @@ import java.util.List;
 public class ArchiveViewInfoModel extends ViewInfoModel implements ArchiveViewInfo {
 
     @JsonProperty("Folders")
-    private final List<String> mFolders;
+    private List<String> mFolders;
 
     @JsonCreator
     public ArchiveViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("Folders") List<String> folders) {
@@ -24,4 +24,10 @@ public class ArchiveViewInfoModel extends ViewInfoModel implements ArchiveViewIn
     public List<String> getFolders() {
         return mFolders;
     }
+
+    @Override
+    public void setFolders(List<String> folders) {
+        this.mFolders = folders;
+    }
+
 }

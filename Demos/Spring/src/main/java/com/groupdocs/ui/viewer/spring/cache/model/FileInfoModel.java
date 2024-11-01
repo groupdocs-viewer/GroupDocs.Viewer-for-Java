@@ -9,7 +9,7 @@ import com.groupdocs.viewer.results.FileInfo;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class FileInfoModel implements FileInfo {
     @JsonProperty("FileType")
-    private final String mFileType;
+    private String mFileType;
     @JsonProperty("Encrypted")
     private boolean mEncrypted;
 
@@ -31,5 +31,10 @@ public class FileInfoModel implements FileInfo {
     @Override
     public void setEncrypted(boolean encrypted) {
         mEncrypted = encrypted;
+    }
+
+    @Override
+    public void setFileType(FileType fileType) {
+        this.mFileType = fileType.name();
     }
 }

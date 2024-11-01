@@ -12,7 +12,7 @@ import java.util.List;
 public class PdfViewInfoModel extends ViewInfoModel implements PdfViewInfo {
 
     @JsonProperty("PrintingAllowed")
-    private final boolean mPrintingAllowed;
+    private boolean mPrintingAllowed;
 
     @JsonCreator
     public PdfViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("PrintingAllowed") boolean printingAllowed) {
@@ -23,5 +23,10 @@ public class PdfViewInfoModel extends ViewInfoModel implements PdfViewInfo {
     @Override
     public boolean isPrintingAllowed() {
         return mPrintingAllowed;
+    }
+
+    @Override
+    public void setPrintingAllowed(boolean printingAllowed) {
+        this.mPrintingAllowed = printingAllowed;
     }
 }

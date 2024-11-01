@@ -8,11 +8,11 @@ import com.groupdocs.viewer.results.Layout;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class LayoutModel implements Layout {
     @JsonProperty("Name")
-    private final String mName;
+    private String mName;
     @JsonProperty("Width")
-    private final double mWidth;
+    private double mWidth;
     @JsonProperty("Height")
-    private final double mHeight;
+    private double mHeight;
 
     @JsonCreator
     public LayoutModel(@JsonProperty("Name") String name, @JsonProperty("Width") double width, @JsonProperty("Height") double height) {
@@ -34,5 +34,20 @@ public class LayoutModel implements Layout {
     @Override
     public double getHeight() {
         return mHeight;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.mName = name;
+    }
+
+    @Override
+    public void setWidth(double width) {
+        this.mWidth = width;
+    }
+
+    @Override
+    public void setHeight(double height) {
+        this.mHeight = height;
     }
 }

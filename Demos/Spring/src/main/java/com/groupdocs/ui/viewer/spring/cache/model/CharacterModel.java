@@ -9,15 +9,15 @@ import com.groupdocs.viewer.results.Character;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class CharacterModel implements Character {
     @JsonProperty("Value")
-    private final java.lang.Character mValue;
+    private java.lang.Character mValue;
     @JsonProperty("X")
-    private final double mX;
+    private double mX;
     @JsonProperty("Y")
-    private final double mY;
+    private double mY;
     @JsonProperty("Width")
-    private final double mWidth;
+    private double mWidth;
     @JsonProperty("Height")
-    private final double mHeight;
+    private double mHeight;
 
     @JsonCreator
     public CharacterModel(@JsonProperty("Value") char character, @JsonProperty("X") double x, @JsonProperty("Y") double y, @JsonProperty("Width") double width, @JsonProperty("Height") double height) {
@@ -31,6 +31,12 @@ public class CharacterModel implements Character {
     @Override
     public java.lang.Character getValue() {
         return mValue;
+    }
+
+    @Override
+    public void setValue(java.lang.Character value) {
+        this.mValue = value;
+
     }
 
     @Override
@@ -51,5 +57,25 @@ public class CharacterModel implements Character {
     @Override
     public double getHeight() {
         return mHeight;
+    }
+
+    @Override
+    public void setX(double x) {
+        this.mX = x;
+    }
+
+    @Override
+    public void setY(double y) {
+        this.mY = y;
+    }
+
+    @Override
+    public void setWidth(double width) {
+        this.mWidth = width;
+    }
+
+    @Override
+    public void setHeight(double height) {
+        this.mHeight = height;
     }
 }

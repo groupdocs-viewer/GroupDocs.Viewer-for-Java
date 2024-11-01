@@ -46,6 +46,7 @@ import com.groupdocs.viewer.examples.quick_start.HelloWorld;
 import com.groupdocs.viewer.examples.quick_start.SetLicenseFromUrl;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class RunExamples {
 
@@ -58,6 +59,7 @@ public class RunExamples {
         System.out.println("=======================================================================");
 
         Utils.cleanOutputDirectory();
+        Locale.setDefault(Locale.US);
 
         // region Quick Start
 

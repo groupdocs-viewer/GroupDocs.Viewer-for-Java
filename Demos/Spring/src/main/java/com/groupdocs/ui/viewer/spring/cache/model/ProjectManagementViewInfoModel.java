@@ -12,9 +12,9 @@ import java.util.List;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class ProjectManagementViewInfoModel extends ViewInfoModel implements ProjectManagementViewInfo {
     @JsonProperty("StartDate")
-    private final Date mStartDate;
+    private Date mStartDate;
     @JsonProperty("EndDate")
-    private final Date mEndDate;
+    private Date mEndDate;
 
     @JsonCreator
     public ProjectManagementViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("StartDate") Date startDate, @JsonProperty("EndDate") Date endDate) {
@@ -31,5 +31,15 @@ public class ProjectManagementViewInfoModel extends ViewInfoModel implements Pro
     @Override
     public Date getEndDate() {
         return mEndDate;
+    }
+
+    @Override
+    public void setStartDate(Date startDate) {
+        this.mStartDate = startDate;
+    }
+
+    @Override
+    public void setEndDate(Date endDate) {
+        this.mEndDate = endDate;
     }
 }

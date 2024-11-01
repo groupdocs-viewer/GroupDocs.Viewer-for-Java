@@ -2,22 +2,23 @@ package com.groupdocs.viewer.examples.advanced_usage.caching.jackson.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.groupdocs.viewer.FileType;
 import com.groupdocs.viewer.results.Attachment;
 
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class AttachmentModel implements Attachment {
     @JsonProperty("Id")
-    private final String mId;
+    private String mId;
     @JsonProperty("FileName")
-    private final String mFileName;
+    private String mFileName;
     @JsonProperty("filePath")
-    private final String mFilePath;
+    private String mFilePath;
     @JsonProperty("Size")
-    private final long mSize;
+    private long mSize;
     @JsonProperty("FileType")
     private String mFileType;
 
-    @JsonCreator
     public AttachmentModel(@JsonProperty("Id") String id, @JsonProperty("FileName") String fileName, @JsonProperty("FilePath") String filePath, @JsonProperty("Size") long size) {
         mId = id;
         mFileName = fileName;
@@ -57,5 +58,30 @@ public class AttachmentModel implements Attachment {
     @Override
     public FileType getFileType() {
         return FileType.valueOf(mFileType);
+    }
+
+    @Override
+    public void setId(String id) {
+        mId = id;
+    }
+
+    @Override
+    public void setFileName(String fileName) {
+        mFileName = fileName;
+    }
+
+    @Override
+    public void setFilePath(String filePath) {
+        mFilePath = filePath;
+    }
+
+    @Override
+    public void setSize(long size) {
+        mSize = size;
+    }
+
+    @Override
+    public void setFileType(FileType fileType) {
+        mFileType = fileType.name();
     }
 }

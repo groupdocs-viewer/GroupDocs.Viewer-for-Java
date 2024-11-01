@@ -3,7 +3,9 @@ package com.groupdocs.viewer.examples.advanced_usage.rendering.rendering_options
 import com.groupdocs.viewer.Viewer;
 import com.groupdocs.viewer.examples.TestFiles;
 import com.groupdocs.viewer.examples.Utils;
-import com.groupdocs.viewer.options.*;
+import com.groupdocs.viewer.options.JpgViewOptions;
+import com.groupdocs.viewer.options.PdfViewOptions;
+import com.groupdocs.viewer.options.PngViewOptions;
 
 import java.nio.file.Path;
 
@@ -32,10 +34,10 @@ public class RenderingHtmlWithUserDefinedMargins {
         // TO JPG
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40f);
-            options.getWordProcessingOptions().setRightMargin(40f);
-            options.getWordProcessingOptions().setTopMargin(40f);
-            options.getWordProcessingOptions().setBottomMargin(40f);
+            options.getWordProcessingOptions().setLeftMargin(40d);
+            options.getWordProcessingOptions().setRightMargin(40d);
+            options.getWordProcessingOptions().setTopMargin(40d);
+            options.getWordProcessingOptions().setBottomMargin(40d);
 
             viewer.view(options);
         }
@@ -45,10 +47,10 @@ public class RenderingHtmlWithUserDefinedMargins {
         // TO PNG
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40f);
-            options.getWordProcessingOptions().setRightMargin(40f);
-            options.getWordProcessingOptions().setTopMargin(40f);
-            options.getWordProcessingOptions().setBottomMargin(40f);
+            options.getWordProcessingOptions().setLeftMargin(40d);
+            options.getWordProcessingOptions().setRightMargin(40d);
+            options.getWordProcessingOptions().setTopMargin(40d);
+            options.getWordProcessingOptions().setBottomMargin(40d);
 
             viewer.view(options);
         }
@@ -58,10 +60,10 @@ public class RenderingHtmlWithUserDefinedMargins {
         // TO PDF
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_HTML)) {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
-            options.getWordProcessingOptions().setLeftMargin(40f);
-            options.getWordProcessingOptions().setRightMargin(40f);
-            options.getWordProcessingOptions().setTopMargin(40f);
-            options.getWordProcessingOptions().setBottomMargin(40f);
+            options.getWordProcessingOptions().setLeftMargin(40d);
+            options.getWordProcessingOptions().setRightMargin(40d);
+            options.getWordProcessingOptions().setTopMargin(40d);
+            options.getWordProcessingOptions().setBottomMargin(40d);
 
             viewer.view(options);
         }

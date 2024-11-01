@@ -13,9 +13,9 @@ import java.util.List;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class CadViewInfoModel extends ViewInfoModel implements CadViewInfo {
     @JsonProperty("Layers")
-    private final List<Layer> mLayers;
+    private List<Layer> mLayers;
     @JsonProperty("Layouts")
-    private final List<Layout> mLayouts;
+    private List<Layout> mLayouts;
 
     @JsonCreator
     public CadViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("Layers") List<Layer> layers, @JsonProperty("Layouts") List<Layout> layouts) {
@@ -32,5 +32,15 @@ public class CadViewInfoModel extends ViewInfoModel implements CadViewInfo {
     @Override
     public List<Layout> getLayouts() {
         return mLayouts;
+    }
+
+    @Override
+    public void setLayers(List<Layer> layers) {
+        this.mLayers = layers;
+    }
+
+    @Override
+    public void setLayouts(List<Layout> layouts) {
+        this.mLayouts = layouts;
     }
 }

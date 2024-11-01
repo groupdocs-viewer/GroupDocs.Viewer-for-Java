@@ -2,24 +2,26 @@ package com.groupdocs.viewer.examples.advanced_usage.caching.jackson.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.groupdocs.viewer.results.Character;
 import com.groupdocs.viewer.results.Word;
 
 import java.util.List;
 
+@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class WordModel implements Word {
     @JsonProperty("Characters")
-    private final List<Character> mCharacters;
+    private List<Character> mCharacters;
     @JsonProperty("Value")
-    private final String mValue;
+    private String mValue;
     @JsonProperty("X")
-    private final double mX;
+    private double mX;
     @JsonProperty("Y")
-    private final double mY;
+    private double mY;
     @JsonProperty("Width")
-    private final double mWidth;
+    private double mWidth;
     @JsonProperty("Height")
-    private final double mHeight;
+    private double mHeight;
 
     @JsonCreator
     public WordModel(@JsonProperty("Value") String word, @JsonProperty("X") double x, @JsonProperty("Y") double y, @JsonProperty("Width") double width, @JsonProperty("Height") double height, @JsonProperty("Characters") List<Character> characters) {
@@ -60,4 +62,35 @@ public class WordModel implements Word {
     public double getHeight() {
         return mHeight;
     }
+
+    @Override
+    public void setCharacters(List<Character> characters) {
+        this.mCharacters = characters;
+    }
+
+    @Override
+    public void setValue(String value) {
+        this.mValue = value;
+    }
+
+    @Override
+    public void setX(double x) {
+        this.mX = x;
+    }
+
+    @Override
+    public void setY(double y) {
+        this.mY = y;
+    }
+
+    @Override
+    public void setWidth(double width) {
+        this.mWidth = width;
+    }
+
+    @Override
+    public void setHeight(double height) {
+        this.mHeight = height;
+    }
+
 }

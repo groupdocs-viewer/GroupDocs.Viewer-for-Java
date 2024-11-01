@@ -11,7 +11,7 @@ import java.util.List;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class LotusNotesViewInfoModel extends ViewInfoModel implements LotusNotesViewInfo {
     @JsonProperty("NotesCount")
-    private final int mNotesCount;
+    private int mNotesCount;
 
     @JsonCreator
     public LotusNotesViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("NotesCount") int notesCount) {
@@ -23,4 +23,10 @@ public class LotusNotesViewInfoModel extends ViewInfoModel implements LotusNotes
     public int getNotesCount() {
         return mNotesCount;
     }
+
+    @Override
+    public void setNotesCount(int notesCount) {
+        mNotesCount = notesCount;
+    }
+
 }

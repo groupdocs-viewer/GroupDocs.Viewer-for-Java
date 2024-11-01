@@ -8,7 +8,7 @@ import com.groupdocs.viewer.results.Layer;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class LayerModel implements Layer {
     @JsonProperty("Name")
-    private final String mName;
+    private String mName;
     @JsonProperty("Visible")
     private boolean mVisible;
 
@@ -30,5 +30,15 @@ public class LayerModel implements Layer {
     @Override
     public boolean isVisible() {
         return mVisible;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.mName = name;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        this.mVisible = visible;
     }
 }

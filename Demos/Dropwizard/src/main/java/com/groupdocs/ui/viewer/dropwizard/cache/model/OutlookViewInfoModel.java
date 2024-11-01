@@ -11,7 +11,7 @@ import java.util.List;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class OutlookViewInfoModel extends ViewInfoModel implements OutlookViewInfo {
     @JsonProperty("Folders")
-    private final List<String> mFolders;
+    private List<String> mFolders;
 
     @JsonCreator
     public OutlookViewInfoModel(@JsonProperty("FileType") String fileType, @JsonProperty("Pages") List<Page> pages, @JsonProperty("Folders") List<String> folders) {
@@ -22,5 +22,10 @@ public class OutlookViewInfoModel extends ViewInfoModel implements OutlookViewIn
     @Override
     public List<String> getFolders() {
         return mFolders;
+    }
+
+    @Override
+    public void setFolders(List<String> folders) {
+        this.mFolders = folders;
     }
 }

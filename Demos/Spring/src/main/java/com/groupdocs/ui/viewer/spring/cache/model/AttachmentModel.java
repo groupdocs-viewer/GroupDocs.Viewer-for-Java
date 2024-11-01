@@ -9,13 +9,13 @@ import com.groupdocs.viewer.results.Attachment;
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.NAME)
 public class AttachmentModel implements Attachment {
     @JsonProperty("Id")
-    private final String mId;
+    private String mId;
     @JsonProperty("FileName")
-    private final String mFileName;
+    private String mFileName;
     @JsonProperty("filePath")
-    private final String mFilePath;
+    private String mFilePath;
     @JsonProperty("Size")
-    private final long mSize;
+    private long mSize;
     @JsonProperty("FileType")
     private String mFileType;
 
@@ -58,5 +58,30 @@ public class AttachmentModel implements Attachment {
     @Override
     public FileType getFileType() {
         return FileType.valueOf(mFileType);
+    }
+
+    @Override
+    public void setId(String id) {
+        mId = id;
+    }
+
+    @Override
+    public void setFileName(String fileName) {
+        mFileName = fileName;
+    }
+
+    @Override
+    public void setFilePath(String filePath) {
+        mFilePath = filePath;
+    }
+
+    @Override
+    public void setSize(long size) {
+        mSize = size;
+    }
+
+    @Override
+    public void setFileType(FileType fileType) {
+        mFileType = fileType.name();
     }
 }
