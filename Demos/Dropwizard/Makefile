@@ -1,7 +1,7 @@
 #SHELL=CMD
 SHELL=/bin/bash
 
-VIEWER_VERSION = 24.10
+VIEWER_VERSION = 24.12
 
 # Groupdocs.Viewer for Java - Dropwizard sample
 
