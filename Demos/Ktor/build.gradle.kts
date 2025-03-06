@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.ktor"
-version = "24.12"
+version = "25.2"
 
 repositories {
     mavenLocal()

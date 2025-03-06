@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.micronaut"
-version = "24.12"
+version = "25.2"
 
 val kotlinVersion = project.properties["kotlinVersion"]
 repositories {

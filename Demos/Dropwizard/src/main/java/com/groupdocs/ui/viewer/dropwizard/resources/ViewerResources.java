@@ -92,7 +92,7 @@ public class ViewerResources extends Resources {
                 }
             }
         } catch (Exception e) {
-            logger.error("Can not verify Comparison license!", e);
+            logger.error("Can not verify license!", e);
         }
     }
 

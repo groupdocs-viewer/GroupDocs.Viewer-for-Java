@@ -5,12 +5,14 @@
 
     <groupId>GroupDocs.Viewer.Examples.Java</groupId>
     <artifactId>GroupDocs.Viewer.Examples.Java</artifactId>
-    <version>24.12</version>
+    <version>25.2</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sample.files.path>${basedir}/Resources/SampleFiles/viewer</sample.files.path>
+        <sample.output.path>${basedir}/Resources/Output</sample.output.path>
     </properties>
 
     <repositories>
@@ -104,6 +106,24 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${project.basedir}/src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin to clean 'Resources/Output' folder during initialization phase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${sample.output.path}</directory>
+                            <includes>
+                                <include>**/*.*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>
