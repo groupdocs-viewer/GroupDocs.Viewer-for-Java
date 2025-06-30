@@ -43,6 +43,7 @@ import com.groupdocs.viewer.examples.basic_usage.render_document_to_pdf.RenderTo
 import com.groupdocs.viewer.examples.howto.HowToDetermineFileType;
 import com.groupdocs.viewer.examples.howto.HowToLogging;
 import com.groupdocs.viewer.examples.quick_start.HelloWorld;
+import com.groupdocs.viewer.examples.quick_start.SetLicenseFromFile;
 import com.groupdocs.viewer.examples.quick_start.SetLicenseFromUrl;
 
 import java.io.IOException;
@@ -63,9 +64,9 @@ public class RunExamples {
 
         // region Quick Start
 
-//        SetLicenseFromFile.run();
+        SetLicenseFromFile.run();
 //        SetLicenseFromStream.run();
-        SetLicenseFromUrl.run();
+//        SetLicenseFromUrl.run();
 //        SetMeteredLicense.run();
         HelloWorld.run();
 
@@ -79,9 +80,9 @@ public class RunExamples {
 
         // region Processing attachments
 
-        RetrieveAndPrintDocumentAttachments.run();
-        RetrieveAndSaveDocumentAttachments.run();
-        RenderDocumentAttachments.run();
+      RetrieveAndPrintDocumentAttachments.run();
+      RetrieveAndSaveDocumentAttachments.run();
+      RenderDocumentAttachments.run();
 
         // endregion
 
@@ -177,7 +178,7 @@ public class RunExamples {
         RenderingCf2.run();
         RenderingHpg.run();
         SetImageBackgroundColor.run();
-        RenderingFodp.run();
+       RenderingFodp.run();
         RenderingIgs.run();
         RenderingNotes.run();
         RenderingFodgAndOdg.run();

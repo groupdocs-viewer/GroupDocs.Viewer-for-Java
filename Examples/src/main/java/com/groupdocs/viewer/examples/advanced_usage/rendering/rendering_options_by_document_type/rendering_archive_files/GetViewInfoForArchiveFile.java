@@ -35,8 +35,6 @@ public class GetViewInfoForArchiveFile {
 
         for (String subFolder : viewInfo.getFolders()) {
             System.out.println(" - " + subFolder);
-
-            readFolders(viewer, subFolder);
         }
     }
 }

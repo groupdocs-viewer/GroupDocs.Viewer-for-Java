@@ -125,8 +125,6 @@ public class RenderingRar {
 
         for (String subFolder : viewInfo.getFolders()) {
             System.out.println(" - " + subFolder);
-
-            readFolders(viewer, subFolder);
         }
     }
 }

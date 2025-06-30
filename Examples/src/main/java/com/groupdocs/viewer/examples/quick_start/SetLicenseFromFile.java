@@ -25,7 +25,7 @@ public class SetLicenseFromFile {
             }
 
             License license = new License();
-            license.setLicense(Constants.LICENSE_PATH);
+            license.setLicense(licensePath);
             System.out.println("License set successfully.");
 
         } else {
