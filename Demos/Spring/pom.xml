@@ -6,7 +6,7 @@
 
     <groupId>com.groupdocs.ui.viewer.spring</groupId>
     <artifactId>viewer-spring</artifactId>
-    <version>25.2</version>
+    <version>25.6</version>
     <packaging>${packaging.type}</packaging>
 
     <name>GroupDocs.Viewer for Java Spring Sample</name>
