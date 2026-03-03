@@ -459,7 +459,11 @@ public class ViewerServiceImpl implements ViewerService {
                         isViewerLicenseSet = true;
                     } else {
                         try (final Stream<Path> pathStream = Files.list(path)) {
-                            final Optional<Path> first = pathStream.filter(it -> it.endsWith(licenseExtension)).findFirst();
+                            Optional<Path> first = pathStream
+                                    .filter(Files::isRegularFile)
+                                    .filter(p -> p.getFileName().toString().toLowerCase().endsWith(licenseExtension))
+                                    .findFirst();
+
                             first.ifPresent(license::setLicense);
                             isViewerLicenseSet = true;
                         }

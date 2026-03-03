@@ -119,15 +119,70 @@ java -jar viewer-spring-1.14.32.jar configuration.yaml
 ## Open http://localhost:8080/viewer/ in your favorite browser.
 ```
 
-#### Docker image
-Use [docker](https://www.docker.com/) image.
+### Docker image
 
-```bash
+------------------------------------------------------------------------
+##### 🔹 Step 1 --- Build the Docker Image
+
+Navigate to the project root folder (where the Dockerfile is located):
+
+``` bash
+cd Demos/Spring
+```
+
+Build the Docker image:
+
+``` bash
+docker build -t groupdocs-viewer-spring .
+```
+
+##### 🔹 Step 2 --- Prepare Required Folders
+
+Create folders for documents and licenses:
+
+``` bash
 mkdir DocumentSamples
 mkdir Licenses
-docker run -p 8080:8080 --env application.hostAddress=localhost -v `pwd`/DocumentSamples:/home/groupdocs/app/DocumentSamples -v `pwd`/Licenses:/home/groupdocs/app/Licenses groupdocs/viewer
-## Open http://localhost:8080/viewer/ in your favorite browser.
 ```
+
+-   Place sample documents inside **DocumentSamples**
+-   Place the license file inside **Licenses**
+
+##### 🔹 Step 3 --- Run the Docker Container
+
+###### Linux / macOS
+
+``` bash
+docker run -p 8080:8080 \--env application.hostAddress=localhost \-v $(pwd)/DocumentSamples:/home/groupdocs/app/DocumentSamples \-v $(pwd)/Licenses:/home/groupdocs/app/Licenses \groupdocs-viewer-spring
+```
+
+###### Windows PowerShell
+
+``` powershell
+docker run -p 8080:8080 `
+--env application.hostAddress=localhost `
+-v ${PWD}/DocumentSamples:/home/groupdocs/app/DocumentSamples `
+-v ${PWD}/Licenses:/home/groupdocs/app/Licenses `
+groupdocs-viewer-spring
+```
+
+##### 🔹 Step 4 --- Open Application
+
+After successful container startup, open the browser and navigate to:
+
+    http://localhost:8080/viewer/
+
+##### Notes
+
+-   The Docker image must be built before running the container.
+-   Document and license directories are mounted as volumes.
+-   If source code is modified, rebuild the image:
+
+``` bash
+docker build --no-cache -t groupdocs-viewer-spring .
+```
+
+------------------------------------------------------------------------
 
 ### Configuration
 For all methods above you can adjust settings in `configuration.yml`. By default in this sample will lookup for license file in `./Licenses` folder, so you can simply put your license file in that folder or specify relative/absolute path by setting `licensePath` value in `configuration.yml`.
