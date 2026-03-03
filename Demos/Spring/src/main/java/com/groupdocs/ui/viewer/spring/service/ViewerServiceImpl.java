@@ -449,14 +449,14 @@ public class ViewerServiceImpl implements ViewerService {
                 final URL url = new URL(licensePath);
                 try (final InputStream inputStream = new BufferedInputStream(url.openStream())) {
                     license.setLicense(inputStream);
-                    isViewerLicenseSet = true;
+                    isViewerLicenseSet = license.isLicensed();
                 }
             } else {
                 final java.nio.file.Path path = Paths.get(licensePath);
                 if (Files.exists(path)) {
                     if (Files.isRegularFile(path)) {
                         license.setLicense(licensePath);
-                        isViewerLicenseSet = true;
+                        isViewerLicenseSet = license.isLicensed();
                     } else {
                         try (final Stream<Path> pathStream = Files.list(path)) {
                             Optional<Path> first = pathStream
@@ -465,17 +465,19 @@ public class ViewerServiceImpl implements ViewerService {
                                     .findFirst();
 
                             first.ifPresent(license::setLicense);
-                            isViewerLicenseSet = true;
+                            isViewerLicenseSet = license.isLicensed();
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            logger.error("Can not verify Comparison license!", e);
+            logger.error("Can not verify Viewer license!", e);
             isViewerLicenseSet = false;
         }
         if (isViewerLicenseSet) {
             logger.info("License was set!");
+        } else {
+            logger.error("No valid license found. Viewer is running in trial mode.");
         }
     }
 
