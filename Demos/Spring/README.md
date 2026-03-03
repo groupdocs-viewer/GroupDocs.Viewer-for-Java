@@ -81,42 +81,37 @@ In order to demonstrate GroupDocs.Viewer for Java reach and powerful features we
 
 You can run this sample by one of following methods
 
-#### Build from source
+#### Run from Source (Recommended for Development)
 
-Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/archive/master.zip) from github or clone this repository.
+Clone the main repository:
 
 ```bash
-git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring
-cd GroupDocs.Viewer-for-Java-Spring
+git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java.git
+cd GroupDocs.Viewer-for-Java/Demos/Spring
 mvn clean spring-boot:run
-## Open http://localhost:8080/viewer/ in your favorite browser.
 ```
+Then open:
 
+```bash
+http://localhost:8080/viewer/
+```
 _Note: to debug application in IntelliJ IDEA, use `mvn clean spring-boot:run -Dspring-boot.run.fork=false` command_
 
 #### Build war from source
 
-Download [source code](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/archive/master.zip) from github or clone this repository.
-
 ```bash
-git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring
-cd GroupDocs.Viewer-for-Java-Spring
+git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java.git
+cd GroupDocs.Viewer-for-Java/Demos/Spring
 mvn package -P war
-## Deploy this war on any server
 ```
+Deploy the generated WAR file (located in target/) to your application server.
 
 #### Binary release (with all dependencies)
 
-Download [latest release](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/releases/latest) from [releases page](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/releases). 
-
-**Note**: This method is **recommended** for running this sample behind firewall.
+Download the latest release from the main repository releases page:
 
 ```bash
-curl -J -L -o release.tar.gz https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/releases/download/1.14.32/release.tar.gz
-tar -xvzf release.tar.gz
-cd release
-java -jar viewer-spring-1.14.32.jar configuration.yaml
-## Open http://localhost:8080/viewer/ in your favorite browser.
+https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases
 ```
 
 ### Docker image
