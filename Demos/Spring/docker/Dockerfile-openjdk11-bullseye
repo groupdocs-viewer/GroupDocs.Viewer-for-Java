@@ -1,19 +1,23 @@
 # Build the project
-FROM maven:3-openjdk-11 as builder
+FROM maven:3-eclipse-temurin-11 as builder
 COPY pom.xml /usr/local/build/pom.xml
 COPY src /usr/local/build/src/
 WORKDIR /usr/local/build
 RUN mvn clean package -DskipTests -P jar
 
 # Configure Docker Image
-FROM openjdk:11-jre-bullseye
+FROM eclipse-temurin:11-jre-jammy
 
-RUN apt update && \
-    echo "deb http://ftp.de.debian.org/debian bullseye main contrib" >> /etc/apt/sources.list && \
-    apt update && \
-    apt -y install fontconfig && \
-    apt -y install ttf-mscorefonts-installer && \
+RUN apt-get update && \
+    echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        fontconfig software-properties-common && \
+    apt-add-repository multiverse && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ttf-mscorefonts-installer && \
     fc-cache -f && \
+    rm -rf /var/lib/apt/lists/* && \
     mkdir -p /home/groupdocs/app && \
     mkdir -p /home/groupdocs/app/DocumentSamples && \
     mkdir -p /home/groupdocs/app/Licenses

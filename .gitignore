@@ -34,6 +34,7 @@ Examples/output
 surefire-rep*
 .gradle
 build
+bin/
 
 #License files
 .lic
@@ -41,6 +42,9 @@ build
 #Node
 node_modules
 node
+
+#Claude Code
+.claude/
 
 #Cache files
 DocumentSamples/
