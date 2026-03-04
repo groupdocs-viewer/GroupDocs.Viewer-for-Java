@@ -1,0 +1,116 @@
+name: Update Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New version (e.g. 25.12)'
+        required: true
+        type: string
+      create_pr:
+        description: 'Create a pull request with the changes'
+        required: true
+        type: boolean
+        default: true
+
+run-name: "Update version to ${{ inputs.version }}"
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update versions
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+
+          echo "Updating all project versions to ${VERSION}..."
+
+          # --- Maven pom.xml files ---
+          # Project version is the first <version>XX.YY</version> in each file.
+          # The groupdocs-viewer dependency uses ${project.version}, so only project version needs updating.
+          for pom in Examples/pom.xml Demos/Spring/pom.xml Demos/Dropwizard/pom.xml; do
+            echo "  ${pom}"
+            sed -i "0,/<version>[0-9]\+\.[0-9]\+<\/version>/s/<version>[0-9]\+\.[0-9]\+<\/version>/<version>${VERSION}<\/version>/" "${pom}"
+          done
+
+          # --- Gradle build files ---
+          for gradle in Demos/Javalin/build.gradle.kts \
+                        Demos/Ktor/build.gradle.kts \
+                        Demos/Micronaut/build.gradle.kts \
+                        Demos/Compose/build.gradle.kts; do
+            echo "  ${gradle}"
+            sed -i "s/^version = \"[0-9]\+\.[0-9]\+\"/version = \"${VERSION}\"/" "${gradle}"
+          done
+
+          # --- Dockerfiles (LABEL version) ---
+          for dockerfile in Demos/Spring/docker/Dockerfile-openjdk8-bullseye \
+                            Demos/Spring/docker/Dockerfile-openjdk11-bullseye \
+                            Demos/Spring/docker/Dockerfile-openjdk18-bullseye \
+                            Demos/Dropwizard/docker/Dockerfile-openjdk8-bullseye \
+                            Demos/Dropwizard/docker/Dockerfile-openjdk11-bullseye \
+                            Demos/Dropwizard/docker/Dockerfile-openjdk18-bullseye; do
+            echo "  ${dockerfile}"
+            sed -i "s/LABEL version=\"[0-9]\+\.[0-9]\+\"/LABEL version=\"${VERSION}\"/" "${dockerfile}"
+          done
+
+          # --- README.md ---
+          echo "  README.md"
+          # Update demo table version column (last column "| 25.xx |")
+          sed -i "s/| [0-9]\+\.[0-9]\+ |$/| ${VERSION} |/" README.md
+          # Update Maven dependency snippet
+          sed -i "s/<version>[0-9]\+\.[0-9]\+<\/version>/<version>${VERSION}<\/version>/" README.md
+
+      - name: Verify changes
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          echo "=== Verification ==="
+          echo ""
+          echo "pom.xml project versions:"
+          grep -n "<version>${VERSION}</version>" Examples/pom.xml Demos/Spring/pom.xml Demos/Dropwizard/pom.xml | head -3
+          echo ""
+          echo "Gradle versions:"
+          grep -n "^version = " Demos/*/build.gradle.kts
+          echo ""
+          echo "Dockerfile LABEL versions:"
+          grep -rn "LABEL version=" Demos/*/docker/Dockerfile-*
+          echo ""
+          echo "README.md version references:"
+          grep -n "${VERSION}" README.md
+          echo ""
+          echo "=== Changed files ==="
+          git diff --name-only
+
+      - name: Create pull request
+        if: ${{ inputs.create_pr }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          BRANCH="update-version-${VERSION}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add -A
+          git commit -m "Update version to ${VERSION}"
+          git push -u origin "${BRANCH}"
+          gh pr create \
+            --title "Update version to ${VERSION}" \
+            --body "Automated version update to **${VERSION}** across all projects, Dockerfiles, and README." \
+            --base master
+
+      - name: Commit directly
+        if: ${{ !inputs.create_pr }}
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update version to ${VERSION}"
+          git push
