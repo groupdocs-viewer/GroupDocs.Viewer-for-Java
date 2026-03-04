@@ -6,7 +6,7 @@
 
     <groupId>com.groupdocs.ui.viewer.dropwizard</groupId>
     <artifactId>viewer-dropwizard</artifactId>
-    <version>25.9</version>
+    <version>25.12</version>
     <packaging>jar</packaging>
 
     <name>GroupDocs.Viewer Dropwizard</name>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.12.6.1</version>
+            <version>2.12.7.1</version>
         </dependency>
         </dependencies>
 

@@ -1,4 +1,4 @@
-# GroupDocs.Viewer for Java
+# GroupDocs.Viewer for Java - Examples and Demo Projects
 
 [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) is a document viewer API that supports over 170 document formats including Microsoft Office, OpenOffice, PDF, CAD, Photoshop, Visio, images, archives, email messages and more.
 
@@ -18,11 +18,11 @@ All web demos run on `http://localhost:8080/viewer/` and provide document viewin
 | Demo | Framework | Language | Build | Version |
 |------|-----------|----------|-------|---------|
 | [Spring](Demos/Spring) | Spring Boot 2.5 | Java | `mvn clean spring-boot:run` | 25.12 |
-| [Dropwizard](Demos/Dropwizard) | Dropwizard 1.3 | Java | `mvn clean compile exec:java` | 25.9 |
-| [Javalin](Demos/Javalin) | Javalin 4.6 | Kotlin | `./gradlew run` | 25.9 |
-| [Ktor](Demos/Ktor) | Ktor | Kotlin | `./gradlew run` | 25.9 |
-| [Micronaut](Demos/Micronaut) | Micronaut 3.4 | Kotlin | `./gradlew run` | 25.9 |
-| [Compose](Demos/Compose) | Compose Desktop | Kotlin | `gradlew run` | 25.9 |
+| [Dropwizard](Demos/Dropwizard) | Dropwizard 1.3 | Java | `mvn clean compile exec:java` | 25.12 |
+| [Javalin](Demos/Javalin) | Javalin 4.6 | Kotlin | `./gradlew run` | 25.12 |
+| [Ktor](Demos/Ktor) | Ktor | Kotlin | `./gradlew run` | 25.12 |
+| [Micronaut](Demos/Micronaut) | Micronaut 3.4 | Kotlin | `./gradlew run` | 25.12 |
+| [Compose](Demos/Compose) | Compose Desktop | Kotlin | `gradlew run` | 25.12 |
 
 The [Compose](Demos/Compose) demo is a standalone desktop application (not a web app).
 
