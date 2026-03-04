@@ -32,25 +32,37 @@ DOCKERFILES=(
   Demos/Dropwizard/docker/Dockerfile-openjdk18-bullseye
 )
 
+extract_pom_version() {
+  grep -m1 '<version>[0-9]\+\.[0-9]\+</version>' "$1" | sed 's/.*<version>\([0-9]\+\.[0-9]\+\)<\/version>.*/\1/'
+}
+
+extract_gradle_version() {
+  grep '^version = "' "$1" | sed 's/version = "\([0-9]\+\.[0-9]\+\)".*/\1/'
+}
+
+extract_dockerfile_version() {
+  grep 'LABEL version="' "$1" | sed 's/.*LABEL version="\([0-9]\+\.[0-9]\+\)".*/\1/'
+}
+
 print_current_version() {
   echo "Current versions:"
   echo ""
   echo "  pom.xml:"
   for pom in "${POMS[@]}"; do
-    ver=$(grep -m1 -oP '(?<=<version>)[0-9]+\.[0-9]+(?=</version>)' "${REPO_ROOT}/${pom}" || echo "?")
-    printf "    %-40s %s\n" "${pom}" "${ver}"
+    ver=$(extract_pom_version "${REPO_ROOT}/${pom}" || echo "?")
+    printf "    %-55s %s\n" "${pom}" "${ver}"
   done
   echo ""
   echo "  build.gradle.kts:"
   for gradle in "${GRADLES[@]}"; do
-    ver=$(grep -oP '(?<=^version = ")[0-9]+\.[0-9]+(?=")' "${REPO_ROOT}/${gradle}" || echo "?")
-    printf "    %-40s %s\n" "${gradle}" "${ver}"
+    ver=$(extract_gradle_version "${REPO_ROOT}/${gradle}" || echo "?")
+    printf "    %-55s %s\n" "${gradle}" "${ver}"
   done
   echo ""
   echo "  Dockerfiles:"
   for df in "${DOCKERFILES[@]}"; do
-    ver=$(grep -oP '(?<=LABEL version=")[0-9]+\.[0-9]+(?=")' "${REPO_ROOT}/${df}" || echo "?")
-    printf "    %-40s %s\n" "${df}" "${ver}"
+    ver=$(extract_dockerfile_version "${REPO_ROOT}/${df}" || echo "?")
+    printf "    %-55s %s\n" "${df}" "${ver}"
   done
   echo ""
   echo "  README.md:"
