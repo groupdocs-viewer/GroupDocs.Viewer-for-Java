@@ -12,8 +12,30 @@ View PDF, DOC, PPT, ODT, OTT, ODP among [many other documents](https://docs.grou
 
 Directory | Description
 --------- | -----------
-[Demos](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos)  | GroupDocs.Viewer for Java Dropwizard and Spring Demo projects.
+[Demos](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Demos)  | Demo projects: Spring, Dropwizard, Javalin, Ktor, Micronaut, and Compose.
 [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples)  | Java examples and sample documents for you to get started quickly.
+
+## Docker
+
+Pre-built Docker images are available on [Docker Hub](https://hub.docker.com/r/groupdocs/viewer).
+
+```bash
+docker pull groupdocs/viewer:latest
+docker run -p 8080:8080 groupdocs/viewer:latest
+```
+
+Available image tags follow the pattern `{version}-java-{jdk}-bullseye-{framework}`:
+
+Tag | JDK | Framework
+--- | --- | ---------
+`{ver}-java-openjdk8-bullseye-spring` | Eclipse Temurin 8 | Spring
+`{ver}-java-openjdk11-bullseye-spring` | Eclipse Temurin 11 | Spring
+`{ver}-java-openjdk18-bullseye-spring` | Eclipse Temurin 21 | Spring
+`{ver}-java-openjdk8-bullseye-dropwizard` | Eclipse Temurin 8 | Dropwizard
+`{ver}-java-openjdk11-bullseye-dropwizard` | Eclipse Temurin 11 | Dropwizard
+`{ver}-java-openjdk18-bullseye-dropwizard` | Eclipse Temurin 21 | Dropwizard
+
+The `latest` tag points to the `openjdk18-bullseye-spring` variant.
 
 ## View Documents As HTML, PDF or Images
 

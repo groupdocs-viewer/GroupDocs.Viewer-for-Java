@@ -18,6 +18,8 @@ on:
         type: boolean
         default: false
 
+run-name: "Docker ${{ inputs.version }} | push=${{ inputs.push }} | latest=${{ inputs.latest }}"
+
 jobs:
   build:
     runs-on: ubuntu-latest
