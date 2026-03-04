@@ -1,219 +1,94 @@
-![GroupDocs.Viewer](https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/banner.png "GroupDocs.Viewer")
-# GroupDocs.Viewer for Java Spring Example
-###### version 25.2
+# GroupDocs.Viewer for Java - Spring Boot Demo
 
-[![GitHub license](https://img.shields.io/github/license/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring.svg)](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Spring/blob/master/LICENSE)
+A web-based document viewer built with [GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) and Spring Boot 2.5.
+
+Supports viewing 170+ document formats (DOCX, PDF, PPT, XLS, images, CAD, and more) as HTML5 or images. See the [full list of supported formats](https://docs.groupdocs.com/viewer/java/supported-document-formats/).
 
 ## System Requirements
+
 - Java 8 (JDK 1.8)
 - Maven 3
 
-
-## Document Viewer API for Java Spring
-[GroupDocs.Viewer for Java](https://products.groupdocs.com/viewer/java) API allows you to view over 170+ document formats including **DOCX**, **PDF**, **PPT**, **XLS**, among many others without any additional dependencies. Thanks to its flexible configuration it can be configured to **view documents as images or as HTML5**.
-
-
-In order to demonstrate GroupDocs.Viewer for Java reach and powerful features we prepared a modern **document viewer** front-end web UI example. Which can be used as a standalone application or easily integrated into your project.
-
-**Note:** without a license application will run in trial mode, purchase [GroupDocs.Viewer for Java license](https://purchase.groupdocs.com/order-online-step-1-of-8.aspx) or request [GroupDocs.Viewer for Java temporary license](https://purchase.groupdocs.com/temporary-license).
-
-
-## Supported document Formats
-
-| Family                       | Formats                                                                                                                                                                                                                                                                                                                           |
-|------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Archive formats              | `ZIP`, `TAR`, `BZ2`, `RAR`, `GZIP`                                                                                                                                                                                                                                                                                                |
-| Apple formats                | `Numbers` 																														                                                                                                                                                                                                                                                                                          |
-| PDF formats                  | `PDF`, `XPS`, `OXPS`, `TEX`                                                                                                                                                                                                                                                                                                       |
-| CAD formats                  | `DXF`, `DWG` , `DWT`, `STL`, `IFC`,`DWF` , `DWFX`, `DGN`, `PLT`,`CF2`,`OBJ`, `HPG`, `IGS`                                                                                                                                                                                                                                         |
-| Microsoft Word               | `DOC`, `DOCM` , `DOCX`, `DOT`, `DOTM`, `DOTX`,`RTF`                                                                                                                                                                                                                                                                               |
-| Microsoft Excel              | `XLS`, `XLSB`, `XLSM`, `XLSX`, `XLT`, `XLTM`, `XLTX`,`Excel 2003 XML`,`XLAM`                                                                                                                                                                                                                                                      |
-| Microsoft PowerPoint         | `PPT`, `POT`, `POTM`, `POTX`, `PPS`, `PPSM`, `PPSX`, `PPTM`, `PPTX`                                                                                                                                                                                                                                                               |
-| Microsoft Visio              | `VSD`,`VSDX`,`VSDM`,`VDW`, `VDX`, `VSDX`, `VSS`,`VSSX`,`VSSM`,`VST`,`VSTX`, `VSX`, `VTX`,`VSTM`                                                                                                                                                                                                                                   |
-| Microsoft Project            | `MPP`, `MPT`,`MPX`                                                                                                                                                                                                                                                                                                                |
-| Help files                   | `CHM`                                                                                                                                                                                                                                                                                                                             | 
-| Email formats                | `EML`, `EMLX`, `MSG`, `NSF`, `MBOX`, `PST`,`OST`, `VCF`                                                                                                                                                                                                                                                                           |
-| OpenDocument Formats         | `ODT`, `ODP`,`FODP`, `ODS`,`FODS`, `OTT`,`OTS`,`ODG`,`FODG`,`OTG`,`OTP`,`SXC`                                                                                                                                                                                                                                                     |
-| Plain Text File              | `TXT`,`TSV`                                                                                                                                                                                                                                                                                                                       |
-| Comma-Separated Values       | `CSV`                                                                                                                                                                                                                                                                                                                             |
-| HyperText Markup Language    | `HTML`, `MHT`, `MHTML`, `SVG`,`SVGZ`                                                                                                                                                                                                                                                                                              |
-| Extensible Markup Language   | `XML`,`XML`, `XPS`                                                                                                                                                                                                                                                                                                                |
-| AutoCAD Drawing File Format  | `DGN`, `DWG`, `DXF`                                                                                                                                                                                                                                                                                                               |
-| Image files                  | `BMP`, `CAL`, `DCX`,`CGM`,`PCL`,`PSB`, `DIB`, `EMF`,`EMZ`,`WEBP`,`DNG`,`CDR`,`CMX`, `GIF`, <br/> `JP2`,                                    `JPG`,`JPF`,`JPM`,`J2C`,`J2K`,`JPC`,`JPX`,`MIL`, `MIL`, `PCD`, `PCT`, `PCX`, `PNG`, <br/>`Animated PNG`, `PSD`,`PS`, `RAS`, `TGA`,`TIFF`,`WMF`,`WMZ`,`EPS`, `AI`                       |
-| Electronic publication       | `EPUB`,`MOBI`,`DJVU`                                                                                                                                                                                                                                                                                                              |
-| Windows Icon                 | `ICO`                                                                                                                                                                                                                                                                                                                             |
-| Medical image files          | `DCM`                                                                                                                                                                                                                                                                                                                             |
-| Programming Language Formats | `AS`, `AS3`, `ASM`, `BAT`, `C`, `CC`, `CMAKE`, `CPP`, `CS`,`VB`, `CSS`, `CXX`, `DIFF`, `ERB`, <br/> `GROOVY`, `H`,`HAML`, `HH`, `JAVA`, `JS`, `JSON`, `LESS`, `LOG`, `M`, `MAKE`, `MD`, `ML`, <br/> `MM`, `PHP`, `PL`, `PROPERTIES`, `PY`, `RB`, `RST`, `SASS`, `SCALA`, `SCM`, `SCRIPT`, <br/> `SH`, `SML`, `SQL`, `VIM`, `YAML` |  
-
-## Demo Video
-
-<p align="center">
-  <a title="Document viewer for JAVA " href="https://www.youtube.com/watch?v=NnZaMNUC6o0"> 
-    <img src="https://raw.githubusercontent.com/groupdocs-viewer/groupdocs-viewer.github.io/master/resources/image/document-viewer-demo.gif" width="100%" style="width:100%;">
-  </a>
-</p>
-
-## Features
-- Responsive design
-- Zoom in/out documents without quality loss in HTML mode
-- Thumbnails
-- Smooth page navigation
-- Smooth document scrolling
-- Preload pages for faster document rendering
-- Multi-language support for displaying errors
-- Display two or more pages side by side (when zooming out)
-- Cross-browser support (Safari, Chrome, Opera, Firefox)
-- Cross-platform support (Windows, Linux, MacOS)
-- Clean, modern and intuitive design
-- Easily switchable colour theme (create your own colour theme in 5 minutes)
-- Mobile support (open application on any mobile device)
-- Support over 50 documents and image formats including **DOCX**, **PDF**, **PPT**, **XLS**
-- HTML and image modes
-- Fully customizable navigation panel
-- Open password protected documents
-- Text searching & highlighting
-- Download documents
-- Upload documents
-- Print document
-- Rotate pages
-
-## How to run
-
-You can run this sample by one of following methods
-
-#### Run from Source (Recommended for Development)
-
-Clone the main repository:
+## How to Run
 
 ```bash
 git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java.git
 cd GroupDocs.Viewer-for-Java/Demos/Spring
 mvn clean spring-boot:run
 ```
-Then open:
+
+Open http://localhost:8080/viewer/ in your browser.
+
+To debug in IntelliJ IDEA, use `mvn clean spring-boot:run -Dspring-boot.run.fork=false`.
+
+#### Build WAR
 
 ```bash
-http://localhost:8080/viewer/
-```
-_Note: to debug application in IntelliJ IDEA, use `mvn clean spring-boot:run -Dspring-boot.run.fork=false` command_
-
-#### Build war from source
-
-```bash
-git clone https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java.git
-cd GroupDocs.Viewer-for-Java/Demos/Spring
 mvn package -P war
 ```
-Deploy the generated WAR file (located in target/) to your application server.
 
-#### Binary release (with all dependencies)
+Deploy the generated WAR file from `target/` to your application server.
 
-Download the latest release from the main repository releases page:
+## Docker
+
+Build and run locally:
 
 ```bash
-https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/releases
-```
-
-### Docker image
-
-------------------------------------------------------------------------
-##### 🔹 Step 1 --- Build the Docker Image
-
-Navigate to the project root folder (where the Dockerfile is located):
-
-``` bash
-cd Demos/Spring
-```
-
-Build the Docker image:
-
-``` bash
 docker build -t groupdocs-viewer-spring .
+mkdir -p DocumentSamples Licenses
 ```
 
-##### 🔹 Step 2 --- Prepare Required Folders
+Linux / macOS:
 
-Create folders for documents and licenses:
-
-``` bash
-mkdir DocumentSamples
-mkdir Licenses
+```bash
+docker run -p 8080:8080 \
+  --env application.hostAddress=localhost \
+  -v $(pwd)/DocumentSamples:/home/groupdocs/app/DocumentSamples \
+  -v $(pwd)/Licenses:/home/groupdocs/app/Licenses \
+  groupdocs-viewer-spring
 ```
 
--   Place sample documents inside **DocumentSamples**
--   Place the license file inside **Licenses**
+Windows PowerShell:
 
-##### 🔹 Step 3 --- Run the Docker Container
-
-###### Linux / macOS
-
-``` bash
-docker run -p 8080:8080 \--env application.hostAddress=localhost \-v $(pwd)/DocumentSamples:/home/groupdocs/app/DocumentSamples \-v $(pwd)/Licenses:/home/groupdocs/app/Licenses \groupdocs-viewer-spring
-```
-
-###### Windows PowerShell
-
-``` powershell
+```powershell
 docker run -p 8080:8080 `
---env application.hostAddress=localhost `
--v ${PWD}/DocumentSamples:/home/groupdocs/app/DocumentSamples `
--v ${PWD}/Licenses:/home/groupdocs/app/Licenses `
-groupdocs-viewer-spring
+  --env application.hostAddress=localhost `
+  -v ${PWD}/DocumentSamples:/home/groupdocs/app/DocumentSamples `
+  -v ${PWD}/Licenses:/home/groupdocs/app/Licenses `
+  groupdocs-viewer-spring
 ```
 
-##### 🔹 Step 4 --- Open Application
+Pre-built images are also available on [Docker Hub](https://hub.docker.com/r/groupdocs/viewer). See the [main README](../../README.md#docker) for available tags.
 
-After successful container startup, open the browser and navigate to:
+## Configuration
 
-    http://localhost:8080/viewer/
+Edit `configuration.yml` to adjust settings. Place your license file in the `Licenses/` folder or set `licensePath` in `configuration.yml`.
 
-##### Notes
+For Docker, use `logback-spring.xml` for logging. To use it locally, add `-Dlogback.configurationFile=logback-spring.xml` to the run command.
 
--   The Docker image must be built before running the container.
--   Document and license directories are mounted as volumes.
--   If source code is modified, rebuild the image:
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `filesDirectory` | String | `DocumentSamples` | Directory for uploaded and predefined files (absolute or relative path) |
+| `fontsDirectory` | String | | Path to custom fonts directory |
+| `defaultDocument` | String | | Absolute path to document loaded automatically on startup |
+| `preloadPageCount` | Integer | `0` | Pages to preload (`0` = load all at once) |
+| `htmlMode` | Boolean | `true` | `true` for HTML rendering, `false` for image rendering |
+| `zoom` | Boolean | `true` | Enable document zoom |
+| `search` | Boolean | `true` | Enable text search |
+| `thumbnails` | Boolean | `true` | Enable thumbnails preview |
+| `rotate` | Boolean | `true` | Enable page rotation |
+| `cache` | Boolean | `true` | Enable rendering cache |
+| `saveRotateState` | Boolean | `true` | Persist page rotation to the file |
+| `watermarkText` | String | | Watermark text overlay |
 
-``` bash
-docker build --no-cache -t groupdocs-viewer-spring .
-```
+Options can also be set via environment variables, e.g. `application.viewer.htmlMode=false`.
 
-------------------------------------------------------------------------
-
-### Configuration
-For all methods above you can adjust settings in `configuration.yml`. By default in this sample will lookup for license file in `./Licenses` folder, so you can simply put your license file in that folder or specify relative/absolute path by setting `licensePath` value in `configuration.yml`.
-
-File `logback-spring.xml` is used when sample is run inside Docker container. To use it locally, add next parameter to running command: `-Dlogback.configurationFile=logback-spring.xml`
-
-#### Viewer configuration options
-
-| Option                 | Type    |   Default value   | Description                                                                                                                                  |
-| ---------------------- | ------- |:-----------------:|:-------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`filesDirectory`**   | String  | `DocumentSamples` | Files directory path. Indicates where uploaded and predefined files are stored. It can be absolute or relative path                          |
-| **`fontsDirectory`**   | String  |                   | Path to custom fonts directory.                                                                                                              |
-| **`defaultDocument`**  | String  |                   | Absolute path to default document that will be loaded automaticaly.                                                                          |
-| **`preloadPageCount`** | Integer |        `0`        | Indicate how many pages from a document should be loaded, remaining pages will be loaded on page scrolling.Set `0` to load all pages at once |
-| **`htmlMode`**         | Boolean |      `true`       | HTML rendering mode. Set `false` to view documents in image mode. Set `true` to view documents in HTML mode                                  | 
-| **`zoom`**             | Boolean |      `true`       | Enable or disable Document zoom                                                                                                              |
-| **`search`**           | Boolean |      `true`       | Enable or disable document search                                                                                                            |
-| **`thumbnails`**       | Boolean |      `true`       | Enable thumbnails preview                                                                                                                    |
-| **`rotate`**           | Boolean |      `true`       | Enable individual page rotation functionality                                                                                                |
-| **`cache`**            | Boolean |      `true`       | Set true to enable cache                                                                                                                     |
-| **`saveRotateState`**  | Boolean |      `true`       | If enabled it will save chages made by rotating individual pages to same file.                                                               |
-| **`watermarkText`**    | String  |                   | Text which will be used as a watermark                                                                                                       |
-
-**Note**: you can also set the above options using environment variables. For example to set rendering to image mode set `application.viewer.htmlMode` environment variable to `false`
-
+**Note:** Without a license, the application runs in [evaluation mode](https://docs.groupdocs.com/viewer/java/evaluation-limitations-and-licensing-of-groupdocs-viewer/). Request a [temporary license](https://purchase.groupdocs.com/temporary-license) to test all features.
 
 ## License
-The MIT License (MIT). 
 
-Please have a look at the LICENSE.md for more details
+The MIT License (MIT). See [LICENSE](LICENSE) for details.
 
-## GroupDocs Document Viewer on other platforms/frameworks
+## Resources
 
-- JAVA DropWizard [Document Viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java-Dropwizard) 
-- .NET MVC [Document viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-MVC)
-- .NET WebForms [Document viewer](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET-WebForms)
-
-
-[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/viewer/java) | [Documentation](https://docs.groupdocs.com/viewer/java/) | [Demos](https://products.groupdocs.app/viewer/family) | [API Reference](https://apireference.groupdocs.com/java/viewer) | [Examples](https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java/tree/master/Examples) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
+[Product Page](https://products.groupdocs.com/viewer/java) | [Documentation](https://docs.groupdocs.com/viewer/java/) | [API Reference](https://apireference.groupdocs.com/java/viewer) | [Online Demo](https://products.groupdocs.app/viewer/family) | [Blog](https://blog.groupdocs.com/category/viewer/) | [Free Support](https://forum.groupdocs.com/c/viewer) | [Temporary License](https://purchase.groupdocs.com/temporary-license)

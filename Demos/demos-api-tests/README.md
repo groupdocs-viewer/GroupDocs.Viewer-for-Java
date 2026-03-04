@@ -1,35 +1,39 @@
+# GroupDocs.Viewer for Java - Demo API Tests
 
-# Tests that checks web APIs of viewer samples
+Integration tests that verify the web APIs of the viewer demo applications.
 
-There are two types of samples:
+## Test Profiles
 
-* For cases when resources are embedded (Javalin, Ktor, Micronaut, Spring with special configuration, Dropwizard with special configuration)
-* For cases when resources are external (Spring with default configuration, Dropwizard with default configuration)
+Tests are split by how demos serve static resources:
 
-They can be run using next commands
+- **Embedded** (Javalin, Ktor, Micronaut, Spring/Dropwizard with special config):
 
-```shell
-mvn clean compile test -Pembedded
+  ```bash
+  mvn clean compile test -Pembedded
+  ```
+
+- **External** (Spring, Dropwizard with default config):
+
+  ```bash
+  mvn clean compile test -Pexternal
+  ```
+
+## Setup
+
+Set the files directory before running a demo:
+
+```bash
+export FILES_DIR=/path/to/api-viewer-tests
 ```
 
-```shell
-mvn clean compile test -Pexternal
-```
-
-Etalon files were created using next VM Arguments:
+Reference files were generated with the following JVM arguments:
 
 ```
 -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8 -Duser.country=US -Duser.region=US -Duser.language=en -Duser.timezone=America/New_York
 ```
 
-It is important to run a sample specifying directory with files:
+Spring and Dropwizard demos cache rendered output. Delete the `cache/` folder inside `FILES_DIR` between test runs to ensure clean results.
 
-```shell
-SET FILES_DIR=C:\api-viewer-tests
-```
+## Known Issues
 
-Also, keep in mind that Spring and Dropwizard samples have cache functionality, so you should remove `cache` folder in `FILES_DIR` directory
-
-### Known problems
-* 
-* External tests were configured using Spring, so when they are run using Dropwizard, there are minor differences which forces tests to fail. It is recommended to perceive them not as failed, but as tests which are required manual check (result files are saved into `target` directory).
+- External tests were created using Spring. Running them against Dropwizard may produce minor differences that require manual review. Result files are saved in `target/`.
