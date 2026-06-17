@@ -4,6 +4,16 @@ A web-based document viewer built with [GroupDocs.Viewer for Java](https://produ
 
 Supports viewing 170+ document formats (DOCX, PDF, PPT, XLS, images, CAD, and more) as HTML5 or images. See the [full list of supported formats](https://docs.groupdocs.com/viewer/java/supported-document-formats/).
 
+## Security Notice
+
+This Dropwizard sample is a **demonstration application**. It is provided to show how GroupDocs.Viewer can be integrated with a web UI.
+
+- Intended for **local development and evaluation** only
+- **Not** audited or hardened for production deployment
+- File upload, download, and document path handling must be reviewed and adapted before any external exposure
+
+When integrating GroupDocs.Viewer into your product, implement your own secure file storage, input validation, and access control — do not copy this demo directly into a public-facing service.
+
 ## System Requirements
 
 - Java 8+ (JDK 1.8)

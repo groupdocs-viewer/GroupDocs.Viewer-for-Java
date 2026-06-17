@@ -13,6 +13,7 @@ import com.groupdocs.ui.viewer.spring.common.exception.DiskAccessException;
 import com.groupdocs.ui.viewer.spring.common.exception.EvaluationModeException;
 import com.groupdocs.ui.viewer.spring.common.exception.ReadWriteException;
 import com.groupdocs.ui.viewer.spring.common.exception.TotalGroupDocsException;
+import com.groupdocs.ui.viewer.spring.common.util.PathSecurityUtils;
 import com.groupdocs.ui.viewer.spring.common.util.PagesInfoStorage;
 import com.groupdocs.ui.viewer.spring.common.util.Utils;
 import com.groupdocs.ui.viewer.spring.config.DefaultDirectories;
@@ -30,7 +31,6 @@ import com.groupdocs.viewer.fonts.SearchOption;
 import com.groupdocs.viewer.options.LoadOptions;
 import com.groupdocs.viewer.results.Page;
 import com.groupdocs.viewer.results.ViewInfo;
-import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
@@ -125,10 +125,14 @@ public class ViewerServiceImpl implements ViewerService {
     @Override
     public List<FileDescriptionEntity> getFileList(String path) {
         final String filesDirectory = viewerConfiguration.getFilesDirectory();
-        final File filesSubDirectory = new File(PathUtils.combine(filesDirectory, path));
+        final Path filesSubDirectoryPath = PathSecurityUtils.resolveInsideBaseDirectoryOrRoot(filesDirectory, path);
+        final File filesSubDirectory = filesSubDirectoryPath.toFile();
 
         List<FileDescriptionEntity> filesList = new ArrayList<>();
         try {
+            if (!filesSubDirectory.isDirectory()) {
+                throw new TotalGroupDocsException(PathSecurityUtils.ACCESS_DENIED);
+            }
             final File[] files = filesSubDirectory.listFiles();
             if (files == null) {
                 throw new TotalGroupDocsException("Can't list files");
@@ -180,7 +184,8 @@ public class ViewerServiceImpl implements ViewerService {
     public LoadDocumentEntity loadDocument(LoadDocumentRequest loadDocumentRequest, boolean loadAllPages, boolean printVersion) {
         // set request parameters
         final String documentGuid = loadDocumentRequest.getGuid();
-        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        String documentPath = PathSecurityUtils.resolveInsideBaseDirectoryAsString(
+                viewerConfiguration.getFilesDirectory(), documentGuid);
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         LoadDocumentEntity loadDocumentEntity;
@@ -214,7 +219,8 @@ public class ViewerServiceImpl implements ViewerService {
     @Override
     public PageDescriptionEntity loadDocumentPage(LoadDocumentPageRequest loadDocumentPageRequest) {
         final String documentGuid = loadDocumentPageRequest.getGuid();
-        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        String documentPath = PathSecurityUtils.resolveInsideBaseDirectoryAsString(
+                viewerConfiguration.getFilesDirectory(), documentGuid);
         Integer pageNumber = loadDocumentPageRequest.getPage();
         String password = loadDocumentPageRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
@@ -246,7 +252,8 @@ public class ViewerServiceImpl implements ViewerService {
     public PageDescriptionEntity rotateDocumentPages(RotateDocumentPagesRequest rotateDocumentPagesRequest) {
         // set request parameters
         final String documentGuid = rotateDocumentPagesRequest.getGuid();
-        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        String documentPath = PathSecurityUtils.resolveInsideBaseDirectoryAsString(
+                viewerConfiguration.getFilesDirectory(), documentGuid);
         List<Integer> pages = rotateDocumentPagesRequest.getPages();
         String password = rotateDocumentPagesRequest.getPassword();
         Integer angle = rotateDocumentPagesRequest.getAngle();
@@ -296,8 +303,13 @@ public class ViewerServiceImpl implements ViewerService {
     public ResponseEntity<byte[]> getResource(String guid, String resourceName) {
         try {
             if (!org.apache.commons.lang3.StringUtils.isEmpty(guid)) {
-                String path = PathUtils.combine(viewerConfiguration.getFilesDirectory(), viewerConfiguration.getCacheFolderName(), guid, resourceName);
-                File resourceFile = new File(path);
+                Path resourcePath = PathSecurityUtils.resolveInsideCacheDirectory(
+                        viewerConfiguration.getFilesDirectory(),
+                        viewerConfiguration.getCacheFolderName(),
+                        guid,
+                        resourceName
+                );
+                File resourceFile = resourcePath.toFile();
 
                 HttpHeaders responseHeaders = new HttpHeaders();
                 responseHeaders.setContentType(Utils.detectMediaType(resourceFile.getName()));
@@ -329,7 +341,8 @@ public class ViewerServiceImpl implements ViewerService {
     @Override
     public InputStream getPdf(LoadDocumentRequest loadDocumentRequest) {
         final String documentGuid = loadDocumentRequest.getGuid();
-        String documentPath = PathUtils.combine(viewerConfiguration.getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
+        String documentPath = PathSecurityUtils.resolveInsideBaseDirectoryAsString(
+                viewerConfiguration.getFilesDirectory(), documentGuid);
         String password = loadDocumentRequest.getPassword();
         password = org.apache.commons.lang3.StringUtils.isEmpty(password) ? null : password;
         CustomViewer<?> customViewer = null;
@@ -351,6 +364,35 @@ public class ViewerServiceImpl implements ViewerService {
                 customViewer.close();
             }
         }
+    }
+
+    @Override
+    public InputStream downloadDocument(String documentGuid) {
+        try {
+            return new BufferedInputStream(Files.newInputStream(resolveDownloadDocumentPath(documentGuid)));
+        } catch (IOException e) {
+            logger.error("Exception in downloading document", e);
+            throw new TotalGroupDocsException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public long getDownloadDocumentSize(String documentGuid) {
+        try {
+            return Files.size(resolveDownloadDocumentPath(documentGuid));
+        } catch (IOException e) {
+            logger.error("Exception in downloading document", e);
+            throw new TotalGroupDocsException(e.getMessage(), e);
+        }
+    }
+
+    private Path resolveDownloadDocumentPath(String documentGuid) throws IOException {
+        Path documentPath = PathSecurityUtils.resolveInsideBaseDirectory(
+                viewerConfiguration.getFilesDirectory(), documentGuid);
+        if (!Files.isRegularFile(documentPath)) {
+            throw new TotalGroupDocsException(PathSecurityUtils.ACCESS_DENIED);
+        }
+        return documentPath;
     }
 
     private Path createCacheDocumentDirectoryPath(String documentGuid) {

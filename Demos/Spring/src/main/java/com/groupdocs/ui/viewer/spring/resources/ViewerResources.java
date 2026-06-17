@@ -14,7 +14,6 @@ import com.groupdocs.ui.viewer.spring.common.resources.Resources;
 import com.groupdocs.ui.viewer.spring.common.util.Utils;
 import com.groupdocs.ui.viewer.spring.config.ViewerConfiguration;
 import com.groupdocs.ui.viewer.spring.service.ViewerService;
-import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -174,14 +173,11 @@ public class ViewerResources extends Resources {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/downloadDocument")
     public void downloadDocument(@RequestParam(name = "path") String documentGuid, HttpServletResponse response) {
-        String documentPath = PathUtils.combine(viewerService.getViewerConfiguration().getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
-        File file = new File(documentPath);
-        // set response content info
-        addFileDownloadHeaders(response, file.getName(), file.length());
-        // download the document
-        try (InputStream inputStream = new BufferedInputStream(new FileInputStream(documentPath));
+        long fileSize = viewerService.getDownloadDocumentSize(documentGuid);
+        String fileName = FilenameUtils.getName(documentGuid);
+        try (InputStream inputStream = viewerService.downloadDocument(documentGuid);
              ServletOutputStream outputStream = response.getOutputStream()) {
-
+            addFileDownloadHeaders(response, fileName, fileSize);
             IOUtils.copyLarge(inputStream, outputStream);
         } catch (Exception ex) {
             logger.error("Exception in downloading document", ex);
@@ -206,7 +202,7 @@ public class ViewerResources extends Resources {
         String pathToFile = uploadFile(documentStoragePath, content, url, rewrite);
         // create response data
         UploadedDocumentEntity uploadedDocument = new UploadedDocumentEntity();
-        uploadedDocument.setGuid(pathToFile);
+        uploadedDocument.setGuid(Utils.normalizePathToGuid(documentStoragePath, pathToFile));
         return uploadedDocument;
     }
 

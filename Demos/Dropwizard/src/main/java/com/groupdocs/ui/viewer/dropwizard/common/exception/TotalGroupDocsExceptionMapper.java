@@ -1,6 +1,7 @@
 package com.groupdocs.ui.viewer.dropwizard.common.exception;
 
 import com.groupdocs.ui.viewer.dropwizard.common.entity.web.ExceptionEntity;
+import com.groupdocs.ui.viewer.dropwizard.common.util.PathSecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,9 @@ public class TotalGroupDocsExceptionMapper implements ExceptionMapper<TotalGroup
         String message = exception.getMessage();
         exceptionEntity.setMessage(message);
         if (PASSWORD_REQUIRED.equals(message) || INCORRECT_PASSWORD.equals(message)) {
+            return Response.status(Response.Status.FORBIDDEN).entity(exceptionEntity).build();
+        }
+        if (PathSecurityUtils.ACCESS_DENIED.equals(message)) {
             return Response.status(Response.Status.FORBIDDEN).entity(exceptionEntity).build();
         }
         if (logger.isDebugEnabled()) {

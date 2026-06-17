@@ -18,14 +18,15 @@ import com.groupdocs.ui.viewer.dropwizard.service.ViewerService;
 import com.groupdocs.ui.viewer.dropwizard.service.ViewerServiceImpl;
 import com.groupdocs.ui.viewer.dropwizard.views.Viewer;
 import com.groupdocs.viewer.License;
-import com.groupdocs.viewer.utils.PathUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -228,8 +229,16 @@ public class ViewerResources extends Resources {
     @Path(value = "/downloadDocument")
     @Produces(APPLICATION_OCTET_STREAM)
     public void downloadDocument(@QueryParam("path") String documentGuid, @Context HttpServletResponse response) {
-        String documentPath = PathUtils.combine(viewerService.getViewerConfiguration().getFilesDirectory(), Utils.normalizeGuidToPath(documentGuid));
-        downloadFile(response, documentPath);
+        long fileSize = viewerService.getDownloadDocumentSize(documentGuid);
+        String fileName = FilenameUtils.getName(documentGuid);
+        try (InputStream inputStream = viewerService.downloadDocument(documentGuid);
+             ServletOutputStream outputStream = response.getOutputStream()) {
+            addFileDownloadHeaders(response, fileName, fileSize);
+            IOUtils.copyLarge(inputStream, outputStream);
+        } catch (Exception ex) {
+            logger.error("Exception in downloading document", ex);
+            throw new TotalGroupDocsException(ex.getMessage(), ex);
+        }
     }
 
     @GET
@@ -260,7 +269,8 @@ public class ViewerResources extends Resources {
         String pathname = uploadFile(documentUrl, inputStream, fileDetail, rewrite, null);
         // create response
         UploadedDocumentEntity uploadedDocument = new UploadedDocumentEntity();
-        uploadedDocument.setGuid(pathname);
+        uploadedDocument.setGuid(Utils.normalizePathToGuid(
+                viewerService.getViewerConfiguration().getFilesDirectory(), pathname));
         return uploadedDocument;
     }
 

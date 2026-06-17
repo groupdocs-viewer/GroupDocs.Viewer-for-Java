@@ -70,4 +70,20 @@ public interface ViewerService {
      */
     InputStream getPdf(LoadDocumentRequest loadDocumentRequest);
 
+    /**
+     * Download document from files storage
+     *
+     * @param documentGuid relative document path inside files directory
+     * @return document input stream
+     */
+    InputStream downloadDocument(String documentGuid);
+
+    /**
+     * Get size of a document available for download
+     *
+     * @param documentGuid relative document path inside files directory
+     * @return file size in bytes
+     */
+    long getDownloadDocumentSize(String documentGuid);
+
 }

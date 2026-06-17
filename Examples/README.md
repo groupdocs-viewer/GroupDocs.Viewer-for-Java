@@ -4,6 +4,8 @@ Java API usage examples for [GroupDocs.Viewer for Java](https://products.groupdo
 
 GroupDocs.Viewer for Java supports over 170 document formats. View PDF, DOCX, PPT, XLS, and many more in HTML5, image, or PDF mode with fast and high-quality rendering. Process documents page-by-page, all at once, or by custom page range. Customize output with watermarks, page rotation/reordering, and text extraction with coordinates.
 
+These examples demonstrate **library API usage** in standalone Java code. They are intended for learning and integration reference — not as a deployable web service. For web UI samples, see the [Demos](../Demos) folder (demo applications only, not for production).
+
 ## How to Run
 
 #### Using an IDE

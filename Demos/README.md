@@ -4,6 +4,8 @@ Demo projects showcasing [GroupDocs.Viewer for Java](https://products.groupdocs.
 
 All web demos run on `http://localhost:8080/viewer/` and provide document viewing with zoom, thumbnails, text search, page rotation, download/upload, and print support.
 
+> **Demo only — not for production use.** Web demos in this folder illustrate GroupDocs.Viewer API capabilities. They lack production-grade security controls. Use them locally for evaluation and build your own hardened service for deployment.
+
 | Demo | Framework | Language | Run command |
 |------|-----------|----------|-------------|
 | [Spring](Spring) | Spring Boot 2.5 | Java | `mvn clean spring-boot:run` |

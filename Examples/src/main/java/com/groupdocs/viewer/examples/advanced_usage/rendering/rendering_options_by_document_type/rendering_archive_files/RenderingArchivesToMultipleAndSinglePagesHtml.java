@@ -36,7 +36,7 @@ public class RenderingArchivesToMultipleAndSinglePagesHtml {
              * If options.RenderSinglePage is set to false (by default),
              * you can set the number of items per page (default is 16), this property is for rendering to HTML only
              */
-            options.getArchiveOptions().setItemsPerPage(10);
+            options.getArchiveOptions();
 
             viewer.view(options);
         }
