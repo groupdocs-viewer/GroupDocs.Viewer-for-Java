@@ -66,6 +66,8 @@ Available image tags follow the pattern `{version}-java-{jdk}-bullseye-{framewor
 
 The `latest` tag points to the `openjdk18-bullseye-spring` variant.
 
+The [Docker Hub repository overview](https://hub.docker.com/r/groupdocs/viewer) is generated from [`docs/docker-hub-overview.md`](docs/docker-hub-overview.md) when the [Publish Docker Images](.github/workflows/docker-publish.yml) workflow runs with **Push** enabled.
+
 ## Getting Started
 
 GroupDocs.Viewer for Java requires J2SE 8.0 (1.8) or above.

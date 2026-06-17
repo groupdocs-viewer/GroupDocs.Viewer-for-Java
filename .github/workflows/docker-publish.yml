@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       push:
-        description: 'Push images to Docker Hub'
+        description: 'Push images to Docker Hub and update repository description'
         required: true
         type: boolean
         default: false
@@ -21,6 +21,26 @@ on:
 run-name: "Docker ${{ inputs.version }} | push=${{ inputs.push }} | latest=${{ inputs.latest }}"
 
 jobs:
+  update-description:
+    if: ${{ inputs.push }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Render Docker Hub overview
+        run: |
+          sed "s/{{VERSION}}/${{ inputs.version }}/g" docs/docker-hub-overview.md > /tmp/docker-hub-overview.md
+
+      - name: Update Docker Hub description
+        uses: peter-evans/dockerhub-description@v5
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: groupdocs/viewer
+          readme-filepath: /tmp/docker-hub-overview.md
+          short-description: GroupDocs.Viewer for Java ${{ inputs.version }} demo (Spring & Dropwizard)
+
   build:
     runs-on: ubuntu-latest
     strategy:
