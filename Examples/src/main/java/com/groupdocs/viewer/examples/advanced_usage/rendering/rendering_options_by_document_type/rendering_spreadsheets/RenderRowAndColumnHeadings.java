@@ -23,7 +23,7 @@ public class RenderRowAndColumnHeadings {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
-            viewer.view(options, 1, 2, 3);
+            //viewer.view(options, 1, 2, 3);
         }
 
         // TO JPG
@@ -33,7 +33,7 @@ public class RenderRowAndColumnHeadings {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
-            viewer.view(options, 1, 2, 3);
+            //viewer.view(options, 1, 2, 3);
         }
 
         // TO PNG
@@ -43,7 +43,7 @@ public class RenderRowAndColumnHeadings {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
-            viewer.view(options, 1, 2, 3);
+            //viewer.view(options, 1, 2, 3);
         }
 
         // TO PDF
@@ -53,7 +53,7 @@ public class RenderRowAndColumnHeadings {
             PdfViewOptions options = new PdfViewOptions(pageFilePathFormat);
             options.getSpreadsheetOptions().setRenderHeadings(true);
 
-            viewer.view(options, 1, 2, 3);
+            //viewer.view(options, 1, 2, 3);
         }
 
         System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);

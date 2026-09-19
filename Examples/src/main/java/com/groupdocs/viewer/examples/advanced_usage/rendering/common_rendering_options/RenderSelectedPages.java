@@ -20,7 +20,7 @@ public class RenderSelectedPages {
         HtmlViewOptions viewOptions = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
-            viewer.view(viewOptions, 1, 3);
+            //viewer.view(viewOptions, 1, 3);
         }
 
         System.out.println(

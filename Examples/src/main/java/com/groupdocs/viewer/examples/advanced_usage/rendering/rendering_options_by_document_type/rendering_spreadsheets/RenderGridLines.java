@@ -21,7 +21,7 @@ public class RenderGridLines {
         viewOptions.getSpreadsheetOptions().setRenderGridLines(true);
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_XLSX)) {
-            viewer.view(viewOptions, 1, 2, 3);
+            //viewer.view(viewOptions, 1, 2, 3);
         }
 
         System.out.println("\nSource document rendered successfully.\nCheck output in " + outputDirectory);

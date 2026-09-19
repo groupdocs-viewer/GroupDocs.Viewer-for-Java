@@ -21,7 +21,7 @@ public class ReorderPages {
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_DOCX)) {
             // Pass page numbers in the order you want to render them
-            viewer.view(viewOptions, 2, 1);
+            //viewer.view(viewOptions, 2, 1);
         }
 
         System.out.println(

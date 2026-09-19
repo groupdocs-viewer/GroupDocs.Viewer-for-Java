@@ -2,9 +2,6 @@ package com.groupdocs.viewer.examples.quick_start;
 
 import com.groupdocs.viewer.License;
 import com.groupdocs.viewer.examples.Constants;
-import com.groupdocs.viewer.examples.Utils;
-
-import java.io.File;
 
 public class SetLicenseFromFile {
 

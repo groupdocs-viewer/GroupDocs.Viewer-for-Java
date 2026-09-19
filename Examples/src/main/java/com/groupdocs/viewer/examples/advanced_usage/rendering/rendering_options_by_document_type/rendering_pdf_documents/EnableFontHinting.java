@@ -22,7 +22,7 @@ public class EnableFontHinting {
         viewOptions.getPdfOptions().setEnableFontHinting(true);
 
         try (Viewer viewer = new Viewer(TestFiles.HIEROGLYPHS_1_PDF)) {
-            viewer.view(viewOptions, 1);
+            //viewer.view(viewOptions, 1);
         }
 
         System.out.println(

@@ -34,6 +34,7 @@ public class TestFiles {
     public static final String HIEROGLYPHS_1_PDF = getSampleFilePath("hieroglyphs_1.pdf");
     public static final String ENCRYPTED = getSampleFilePath("encrypted.pdf");
     public static final String ONE_PAGE_TEXT_PDF = getSampleFilePath("one-page-text.pdf");
+    public static final String OXPS_EMBEDDED_FONT = getSampleFilePath("resume.oxps");
 
     // Presentations
     public static final String PPTX_WITH_NOTES = getSampleFilePath("with_notes.pptx");

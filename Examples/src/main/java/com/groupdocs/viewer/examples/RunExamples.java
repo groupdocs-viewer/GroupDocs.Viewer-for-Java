@@ -46,83 +46,94 @@ import com.groupdocs.viewer.examples.quick_start.HelloWorld;
 import com.groupdocs.viewer.examples.quick_start.SetLicenseFromFile;
 import com.groupdocs.viewer.examples.quick_start.SetLicenseFromUrl;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class RunExamples {
 
+    @FunctionalInterface
+    private interface Example {
+        void execute() throws Exception;
+    }
+
+    private static final List<String> FAILED_EXAMPLES = new ArrayList<>();
+
     /**
      * The main method.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         System.out.println("Uncomment the example(s) that you want to run in RunExamples.java file.");
         System.out.println("=======================================================================");
 
-        Utils.cleanOutputDirectory();
+        try {
+            Utils.cleanOutputDirectory();
+        } catch (Exception e) {
+            System.out.println("Failed to clean output directory: " + e);
+        }
         Locale.setDefault(Locale.US);
 
         // region Quick Start
-
-        SetLicenseFromFile.run();
-//        SetLicenseFromStream.run();
-//        SetLicenseFromUrl.run();
-//        SetMeteredLicense.run();
-        HelloWorld.run();
+        run("SetLicenseFromFile", SetLicenseFromFile::run);
+//        run("SetLicenseFromStream", SetLicenseFromStream::run);
+//        run("SetLicenseFromUrl", SetLicenseFromUrl::run);
+//        run("SetMeteredLicense", SetMeteredLicense::run);
+        run("HelloWorld", HelloWorld::run);
 
         // endregion
 
         // region Basic Usage
 
-        GetSupportedFileFormats.run();
-        GetViewInfo.run();
-        CheckFileIsEncrypted.run();
+        run("GetSupportedFileFormats", GetSupportedFileFormats::run);
+        run("GetViewInfo", GetViewInfo::run);
+        run("CheckFileIsEncrypted", CheckFileIsEncrypted::run);
 
         // region Processing attachments
 
-      RetrieveAndPrintDocumentAttachments.run();
-      RetrieveAndSaveDocumentAttachments.run();
-      RenderDocumentAttachments.run();
+       run("RetrieveAndPrintDocumentAttachments", RetrieveAndPrintDocumentAttachments::run);
+       run("RetrieveAndSaveDocumentAttachments", RetrieveAndSaveDocumentAttachments::run);
+       run("RenderDocumentAttachments", RenderDocumentAttachments::run);
 
         // endregion
 
         // region Render document to HTML
 
-        RenderToHtmlWithEmbeddedResources.run();
-        RenderToHtmlWithExternalResources.run();
+        run("RenderToHtmlWithEmbeddedResources", RenderToHtmlWithEmbeddedResources::run);
+        run("RenderToHtmlWithExternalResources", RenderToHtmlWithExternalResources::run);
 
-        ExcludingFontsFromOutputHtml.run();
-        MinifyHtmlDocument.run();
-        RenderToResponsiveHtml.run();
+        run("ExcludingFontsFromOutputHtml", ExcludingFontsFromOutputHtml::run);
+        run("MinifyHtmlDocument", MinifyHtmlDocument::run);
+        run("RenderToResponsiveHtml", RenderToResponsiveHtml::run);
 
         // endregion
 
         // region Render document to Image
 
-        RenderToPng.run();
-        RenderToJpg.run();
+        run("RenderToPng", RenderToPng::run);
+        run("RenderToJpg", RenderToJpg::run);
 
-        GetTextCoordinates.run();
-        RenderForDisplayWithText.run();
-        AdjustQualityWhenRenderingToJpg.run();
-        AdjustImageSize.run();
-        RenderingWmzAndWmf.run();
-        RenderingEmzAndEmf.run();
-        RenderingCdr.run();
-        RenderingCmx.run();
-        RenderingAi.run();
-        RenderingTga.run();
-        RenderingApng.run();
+        run("GetTextCoordinates", GetTextCoordinates::run);
+        run("RenderForDisplayWithText", RenderForDisplayWithText::run);
+        run("AdjustQualityWhenRenderingToJpg", AdjustQualityWhenRenderingToJpg::run);
+        run("AdjustImageSize", AdjustImageSize::run);
+        run("RenderingWmzAndWmf", RenderingWmzAndWmf::run);
+        run("RenderingEmzAndEmf", RenderingEmzAndEmf::run);
+        run("RenderingCdr", RenderingCdr::run);
+        run("RenderingCmx", RenderingCmx::run);
+        run("RenderingAi", RenderingAi::run);
+        run("RenderingTga", RenderingTga::run);
+        run("RenderingApng", RenderingApng::run);
 
         // endregion
 
         // region Render document to PDF
 
-        RenderToPdf.run();
-        GetPdfStream.run();
+        run("RenderToPdf", RenderToPdf::run);
+        run("GetPdfStream", GetPdfStream::run);
 
-        AdjustQualityOfJpgImages.run();
-        ProtectPdfDocument.run();
+        run("AdjustQualityOfJpgImages", AdjustQualityOfJpgImages::run);
+        run("ProtectPdfDocument", ProtectPdfDocument::run);
 
         // endregion
 
@@ -132,18 +143,19 @@ public class RunExamples {
 
         // region Common rendering options
 
-        AddWatermark.run();
-        RenderDocumentWithComments.run();
-        RenderDocumentWithNotes.run();
-        RenderHiddenPages.run();
-        RenderNConsecutivePages.run();
-        RenderSelectedPages.run();
-        ReplaceMissingFont.run();
-        ReorderPages.run();
-        FlipRotatePages.run();
-        RenderWithCustomFonts.run();
-        RenderingTxt.run();
-        SetImageSizeLimits.run();
+        run("AddWatermark", AddWatermark::run);
+        run("RenderDocumentWithComments", RenderDocumentWithComments::run);
+        run("RenderDocumentWithNotes", RenderDocumentWithNotes::run);
+        run("RenderHiddenPages", RenderHiddenPages::run);
+        run("RenderNConsecutivePages", RenderNConsecutivePages::run);
+        run("RenderSelectedPages", RenderSelectedPages::run);
+        run("ReplaceMissingFont", ReplaceMissingFont::run);
+        run("ReorderPages", ReorderPages::run);
+        run("FlipRotatePages", FlipRotatePages::run);
+        run("RenderWithCustomFonts", RenderWithCustomFonts::run);
+        run("RenderingTxt", RenderingTxt::run);
+        run("SetImageSizeLimits", SetImageSizeLimits::run);
+        run("CancelRenderWithCancellationToken", CancelRenderWithCancellationToken::run);
 
         // endregion
 
@@ -151,106 +163,107 @@ public class RunExamples {
 
         // region Rendering CAD Files
 
-        RenderingPc3Files.run();
+        run("RenderingPc3Files", RenderingPc3Files::run);
 
         // endregion
 
         // region Rendering Archive Files
 
-        GetViewInfoForArchiveFile.run();
-        RenderArchiveFolder.run();
-        SpecifyFilenameWhenRenderingArchiveFiles.run();
-        RenderingRar.run();
-        RenderingArchivesToMultipleAndSinglePagesHtml.run();
+        run("GetViewInfoForArchiveFile", GetViewInfoForArchiveFile::run);
+        run("RenderArchiveFolder", RenderArchiveFolder::run);
+        run("SpecifyFilenameWhenRenderingArchiveFiles", SpecifyFilenameWhenRenderingArchiveFiles::run);
+        run("RenderingRar", RenderingRar::run);
+        run("RenderingArchivesToMultipleAndSinglePagesHtml", RenderingArchivesToMultipleAndSinglePagesHtml::run);
 
         // endregion
 
         // region Rendering CAD Drawings
 
-        GetViewInfoForCadDrawing.run();
-        RenderAllLayouts.run();
-        RenderLayers.run();
-        RenderSingleLayout.run();
-        SplitDrawingIntoTiles.run();
-        AdjustOutputImageSize.run();
-        RenderingPlt.run();
-        RenderingObj.run();
-        RenderingCf2.run();
-        RenderingHpg.run();
-        SetImageBackgroundColor.run();
-       RenderingFodp.run();
-        RenderingIgs.run();
-        RenderingNotes.run();
-        RenderingFodgAndOdg.run();
-        RenderingPstAndOst.run();
+        run("GetViewInfoForCadDrawing", GetViewInfoForCadDrawing::run);
+        run("RenderAllLayouts", RenderAllLayouts::run);
+        run("RenderLayers", RenderLayers::run);
+        run("RenderSingleLayout", RenderSingleLayout::run);
+        run("SplitDrawingIntoTiles", SplitDrawingIntoTiles::run);
+        run("AdjustOutputImageSize", AdjustOutputImageSize::run);
+        run("RenderingPlt", RenderingPlt::run);
+        run("RenderingObj", RenderingObj::run);
+        run("RenderingCf2", RenderingCf2::run);
+        run("RenderingHpg", RenderingHpg::run);
+        run("SetImageBackgroundColor", SetImageBackgroundColor::run);
+        run("RenderingFodp", RenderingFodp::run);
+        run("RenderingIgs", RenderingIgs::run);
+        run("RenderingNotes", RenderingNotes::run);
+        run("RenderingFodgAndOdg", RenderingFodgAndOdg::run);
+        run("RenderingPstAndOst", RenderingPstAndOst::run);
         // endregion
 
         // region Rendering E-Mail Messages
 
-        AdjustPageSize.run();
-        RenameEmailFields.run();
-        DateTimeFormatAndTimeZoneOffset.run();
+        run("AdjustPageSize", AdjustPageSize::run);
+        run("RenameEmailFields", RenameEmailFields::run);
+        run("DateTimeFormatAndTimeZoneOffset", DateTimeFormatAndTimeZoneOffset::run);
 
         // endregion
 
         // region Rendering Outlook Data Files
 
-        FilterMessages.run();
-        GetViewInfoForOutlookDataFile.run();
-        LimitCountOfItemsToRender.run();
-        RenderOutlookDataFileFolder.run();
+        run("FilterMessages", FilterMessages::run);
+        run("GetViewInfoForOutlookDataFile", GetViewInfoForOutlookDataFile::run);
+        run("LimitCountOfItemsToRender", LimitCountOfItemsToRender::run);
+        run("RenderOutlookDataFileFolder", RenderOutlookDataFileFolder::run);
 
         // endregion
 
         // region Rendering PDF Documents
 
-        DisableCharactersGrouping.run();
-        EnableFontHinting.run();
-        GetViewInfoForPdfDocument.run();
-        AdjustImageQuality.run();
-        EnableLayeredRendering.run();
-        RenderOriginalPageSize.run();
-        DisableTextSelection.run();
-        ExtractTextFromPdfFile.run();
+        run("DisableCharactersGrouping", DisableCharactersGrouping::run);
+        run("EnableFontHinting", EnableFontHinting::run);
+        run("GetViewInfoForPdfDocument", GetViewInfoForPdfDocument::run);
+        run("AdjustImageQuality", AdjustImageQuality::run);
+        run("EnableLayeredRendering", EnableLayeredRendering::run);
+        run("RenderOriginalPageSize", RenderOriginalPageSize::run);
+        run("DisableTextSelection", DisableTextSelection::run);
+        run("DisableFontLicenseVerifications", DisableFontLicenseVerifications::run);
+        run("ExtractTextFromPdfFile", ExtractTextFromPdfFile::run);
 
         // endregion
 
         // region Rendering MS Project Documents
 
-        AdjustTimeUnit.run();
-        GetViewInfoForProjectDocument.run();
-        RenderProjectTimeInterval.run();
+        run("AdjustTimeUnit", AdjustTimeUnit::run);
+        run("GetViewInfoForProjectDocument", GetViewInfoForProjectDocument::run);
+        run("RenderProjectTimeInterval", RenderProjectTimeInterval::run);
 
         // endregion
 
         // region Rendering Spreadsheets
 
-        AdjustTextOverflowInCells.run();
-        RenderGridLines.run();
-        RenderHiddenRowsAndColumns.run();
-        RenderPrintAreas.run();
-        SkipRenderingOfEmptyColumns.run();
-        SkipRenderingOfEmptyRows.run();
-        SplitWorksheetsIntoPages.splitByRows();
-        SplitWorksheetsIntoPages.splitByRowsAndColumns();
-        RenderRowAndColumnHeadings.run();
-        GetWorksheetsNames.run();
-        RenderingNumbers.run();
-        RenderingXmlSpreadSheetML.run();
-        RenderingByPageBreaks.run();
+        run("AdjustTextOverflowInCells", AdjustTextOverflowInCells::run);
+        run("RenderGridLines", RenderGridLines::run);
+        run("RenderHiddenRowsAndColumns", RenderHiddenRowsAndColumns::run);
+        run("RenderPrintAreas", RenderPrintAreas::run);
+        run("SkipRenderingOfEmptyColumns", SkipRenderingOfEmptyColumns::run);
+        run("SkipRenderingOfEmptyRows", SkipRenderingOfEmptyRows::run);
+        run("SplitWorksheetsIntoPages.splitByRows", SplitWorksheetsIntoPages::splitByRows);
+        run("SplitWorksheetsIntoPages.splitByRowsAndColumns", SplitWorksheetsIntoPages::splitByRowsAndColumns);
+        run("RenderRowAndColumnHeadings", RenderRowAndColumnHeadings::run);
+        run("GetWorksheetsNames", GetWorksheetsNames::run);
+        run("RenderingNumbers", RenderingNumbers::run);
+        run("RenderingXmlSpreadSheetML", RenderingXmlSpreadSheetML::run);
+        run("RenderingByPageBreaks", RenderingByPageBreaks::run);
 
         // endregion
 
         // region Rendering Word Processing Documents
 
-        RenderTrackedChanges.run();
+        run("RenderTrackedChanges", RenderTrackedChanges::run);
 
         // endregion
 
         // region Rendering Web documents
 
-        RenderingHtmlWithUserDefinedMargins.run();
-        RenderingChmFiles.run();
+        run("RenderingHtmlWithUserDefinedMargins", RenderingHtmlWithUserDefinedMargins::run);
+        run("RenderingChmFiles", RenderingChmFiles::run);
 
         // endregion
 
@@ -258,25 +271,25 @@ public class RunExamples {
 
         // region Caching
 
-        UseCacheWhenProcessingDocuments.run();
-        UseCustomCacheImplementation.run();
+        run("UseCacheWhenProcessingDocuments", UseCacheWhenProcessingDocuments::run);
+        run("UseCustomCacheImplementation", UseCustomCacheImplementation::run);
 
         // endregion
 
         // region Loading
 
-        LoadPasswordProtectedDocument.run();
-        LoadDocumentsWithCharset.run();
-        LoadDocumentsWithEncoding.run();
-        SpecifyFileTypeWhenLoadingDocument.run();
-        SetResourceLoadingTimeout.run();
+        run("LoadPasswordProtectedDocument", LoadPasswordProtectedDocument::run);
+        run("LoadDocumentsWithCharset", LoadDocumentsWithCharset::run);
+        run("LoadDocumentsWithEncoding", LoadDocumentsWithEncoding::run);
+        run("SpecifyFileTypeWhenLoadingDocument", SpecifyFileTypeWhenLoadingDocument::run);
+        run("SetResourceLoadingTimeout", SetResourceLoadingTimeout::run);
 
         // region Loading documents from different sources
 
-        LoadDocumentFromLocalDisk.run();
-        LoadDocumentFromStream.run();
-        LoadDocumentFromUrl.run();
-//        LoadDocumentFromFtp.run();
+        run("LoadDocumentFromLocalDisk", LoadDocumentFromLocalDisk::run);
+        run("LoadDocumentFromStream", LoadDocumentFromStream::run);
+        run("LoadDocumentFromUrl", LoadDocumentFromUrl::run);
+//        run("LoadDocumentFromFtp", LoadDocumentFromFtp::run);
 
         // endregion
 
@@ -285,16 +298,38 @@ public class RunExamples {
         // endregion
 
         // region HowTo
-        HowToDetermineFileType.fromFileExtension();
-        HowToDetermineFileType.fromMediaType();
-        HowToDetermineFileType.fromStream();
+        run("HowToDetermineFileType.fromFileExtension", HowToDetermineFileType::fromFileExtension);
+        run("HowToDetermineFileType.fromMediaType", HowToDetermineFileType::fromMediaType);
+        run("HowToDetermineFileType.fromStream", HowToDetermineFileType::fromStream);
 
-        HowToLogging.toConsole();
-        HowToLogging.toFile();
+        run("HowToLogging.toConsole", HowToLogging::toConsole);
+        run("HowToLogging.toFile", HowToLogging::toFile);
 
         // endregion
 
         System.out.println();
-        System.out.println("All done.");
+        if (FAILED_EXAMPLES.isEmpty()) {
+            System.out.println("All done. All examples passed.");
+        } else {
+            System.out.println("All done. Failed examples (" + FAILED_EXAMPLES.size() + "):");
+            for (String failed : FAILED_EXAMPLES) {
+                System.out.println("  - " + failed);
+            }
+        }
+    }
+
+    private static void run(String name, Example example) {
+        try {
+            example.execute();
+        } catch (Throwable t) {
+            FAILED_EXAMPLES.add(name);
+            System.out.println();
+            System.out.println("Example '" + name + "' failed with error:");
+            System.out.println("  " + t.getClass().getName() + ": " + t.getMessage());
+            if (t.getCause() != null) {
+                System.out.println("  Caused by: " + t.getCause().getClass().getName() + ": " + t.getCause().getMessage());
+            }
+            System.out.println();
+        }
     }
 }
