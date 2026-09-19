@@ -36,7 +36,7 @@ ENV RIGHTCLICK_ON=false
 ENV FILES_DIR="DocumentSamples"
 ENV HOST_ADDRESS=""
 
-LABEL version="26.5" \
+LABEL version="26.9" \
       maintainer="GroupDocs Team" \
       url="https://products.groupdocs.com/viewer/java" \
       documentation="https://docs.groupdocs.com/viewer/java" \

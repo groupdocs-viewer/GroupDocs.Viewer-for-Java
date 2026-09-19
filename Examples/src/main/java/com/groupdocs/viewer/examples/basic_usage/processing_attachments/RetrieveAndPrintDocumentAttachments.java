@@ -16,9 +16,6 @@ public class RetrieveAndPrintDocumentAttachments {
         List<Attachment> attachments;
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_MSG_WITH_ATTACHMENTS)) {
             attachments = viewer.getAttachments();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return;
         }
 
         System.out.println("\nAttachments:");

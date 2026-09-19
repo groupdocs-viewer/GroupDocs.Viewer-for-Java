@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.groupdocs.ui.viewer.javalin"
-version = "26.5"
+version = "26.9"
 
 repositories {
     mavenLocal()

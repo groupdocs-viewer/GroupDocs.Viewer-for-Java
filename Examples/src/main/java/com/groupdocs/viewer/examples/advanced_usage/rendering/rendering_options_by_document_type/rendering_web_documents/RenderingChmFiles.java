@@ -23,8 +23,8 @@ public class RenderingChmFiles {
             HtmlViewOptions options = HtmlViewOptions.forEmbeddedResources(pageFilePathFormat);
             options.setRenderToSinglePage(true); // Enable it if you want to convert all CHM content to single page
 
-            //viewer.view(options,1,2,3); // Convert only 1,2,3 pages
-            viewer.view(options); // Convert all pages
+            viewer.view(options,1,2,3); // Convert only 1,2,3 pages
+            //viewer.view(options); // Convert all pages
         }
 
         // TO JPG
@@ -33,7 +33,7 @@ public class RenderingChmFiles {
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
             JpgViewOptions options = new JpgViewOptions(pageFilePathFormat);
 
-            //viewer.view(options, [1, 2, 3]); // Convert only 1,2,3 pages
+            viewer.view(options, 1,2,3); // Convert only 1,2,3 pages
             //viewer.view(options); // Convert all pages
         }
 
@@ -43,7 +43,7 @@ public class RenderingChmFiles {
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_CHM)) {
             PngViewOptions options = new PngViewOptions(pageFilePathFormat);
 
-            //viewer.view(options, 1, 2, 3); // Convert only 1,2,3 pages
+            viewer.view(options, 1, 2, 3); // Convert only 1,2,3 pages
             //viewer.view(options); // Convert all pages
         }
 

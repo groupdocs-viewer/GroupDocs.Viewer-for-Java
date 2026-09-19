@@ -23,7 +23,7 @@ public class RotatePages {
         viewOptions.rotatePage(2, Rotation.ON_180_DEGREE);
 
         Viewer viewer = new Viewer(TestFiles.SAMPLE_PDF);
-        //viewer.view(viewOptions, 1, 2);
+        viewer.view(viewOptions, 1, 2);
         viewer.close();
 
         System.out.println(

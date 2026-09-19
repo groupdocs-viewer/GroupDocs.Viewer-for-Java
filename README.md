@@ -33,12 +33,12 @@ All web demos run on `http://localhost:8080/viewer/` and provide document viewin
 
 | Demo | Framework | Language | Build | Version |
 |------|-----------|----------|-------|---------|
-| [Spring](Demos/Spring) | Spring Boot 2.5 | Java | `mvn clean spring-boot:run` | 26.5 |
-| [Dropwizard](Demos/Dropwizard) | Dropwizard 1.3 | Java | `mvn clean compile exec:java` | 26.5 |
-| [Javalin](Demos/Javalin) | Javalin 4.6 | Kotlin | `./gradlew run` | 26.5 |
-| [Ktor](Demos/Ktor) | Ktor | Kotlin | `./gradlew run` | 26.5 |
-| [Micronaut](Demos/Micronaut) | Micronaut 3.4 | Kotlin | `./gradlew run` | 26.5 |
-| [Compose](Demos/Compose) | Compose Desktop | Kotlin | `gradlew run` | 26.5 |
+| [Spring](Demos/Spring) | Spring Boot 2.5 | Java | `mvn clean spring-boot:run` | 26.9 |
+| [Dropwizard](Demos/Dropwizard) | Dropwizard 1.3 | Java | `mvn clean compile exec:java` | 26.9 |
+| [Javalin](Demos/Javalin) | Javalin 4.6 | Kotlin | `./gradlew run` | 26.9 |
+| [Ktor](Demos/Ktor) | Ktor | Kotlin | `./gradlew run` | 26.9 |
+| [Micronaut](Demos/Micronaut) | Micronaut 3.4 | Kotlin | `./gradlew run` | 26.9 |
+| [Compose](Demos/Compose) | Compose Desktop | Kotlin | `gradlew run` | 26.9 |
 
 The [Compose](Demos/Compose) demo is a standalone desktop application (not a web app).
 
@@ -87,7 +87,7 @@ Then add the dependency:
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-viewer</artifactId>
-    <version>26.5</version>
+    <version>26.9</version>
 </dependency>
 ```
 

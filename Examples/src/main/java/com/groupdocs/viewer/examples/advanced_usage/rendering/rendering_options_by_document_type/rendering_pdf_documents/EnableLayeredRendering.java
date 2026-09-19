@@ -22,7 +22,7 @@ public class EnableLayeredRendering {
         viewOptions.getPdfOptions().setEnableLayeredRendering(true);
 
         try (Viewer viewer = new Viewer(TestFiles.SAMPLE_PDF)) {
-            //viewer.view(viewOptions, 1);
+            viewer.view(viewOptions, 1);
         }
 
         System.out.println(
