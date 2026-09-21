@@ -33,7 +33,7 @@ tasks {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
 
-    implementation("com.groupdocs:groupdocs-viewer:$version")
+    implementation("com.groupdocs:groupdocs-viewer:26.9")
 
     implementation("io.insert-koin:koin-core:$koin_version")
 
