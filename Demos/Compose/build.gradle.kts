@@ -21,7 +21,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation("commons-io:commons-io:2.11.0")
-    implementation("com.groupdocs:groupdocs-viewer:$version")
+    implementation("com.groupdocs:groupdocs-viewer:26.9")
 }
 val javaVersion  = JavaVersion.VERSION_11.toString()
 
