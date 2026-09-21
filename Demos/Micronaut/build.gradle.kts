@@ -23,7 +23,7 @@ java {
 
 dependencies {
     kapt("io.micronaut:micronaut-http-validation")
-    implementation("com.groupdocs:groupdocs-viewer:$version")
+    implementation("com.groupdocs:groupdocs-viewer:26.9")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
